@@ -1,0 +1,47 @@
+{
+  "name": "Claude Code Workshop",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
+    }
+  },
+
+  "postCreateCommand": "npm install -g @anthropic-ai/claude-code && cd task-api && npm install",
+
+  "postAttachCommand": "echo '\\n✅ Claude Code Workshop Environment Ready!\\n\\nNext steps:\\n1. Run: claude auth\\n2. Navigate to task-api: cd task-api\\n3. Start Lab 1: Open labs.md\\n\\nHappy coding!\\n'",
+
+  "forwardPorts": [3000],
+
+  "portsAttributes": {
+    "3000": {
+      "label": "Task API Server",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "remoteUser": "node",
+
+  "mounts": [
+    "source=${localEnv:HOME}/.anthropic,target=/home/node/.anthropic,type=bind,consistency=cached"
+  ]
+}
