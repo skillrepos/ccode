@@ -1,0 +1,59 @@
+# Project: Task Management API
+
+## Code Style
+- Use ES6+ syntax (const/let, arrow functions, async/await)
+- Use strict equality (===)
+- Always use try-catch for async operations
+- Add JSDoc comments to exported functions and classes
+
+## Security
+- NEVER hardcode secrets - use environment variables
+- Validate ALL user inputs before processing
+- Use bcrypt for password hashing with salt rounds >= 10
+- Use parameterized queries to prevent injection attacks
+- Sanitize user input before displaying
+
+## Naming Conventions
+- Functions/Variables: camelCase (getUserById, taskList)
+- Constants: UPPER_SNAKE_CASE (MAX_LOGIN_ATTEMPTS, JWT_EXPIRY)
+- Files: kebab-case (auth-middleware.js, user-service.js)
+- Classes: PascalCase (UserModel, TaskController)
+
+## Error Handling
+- Return consistent JSON format: { success: false, message: string, error?: object }
+- Never swallow errors silently - always log with context
+- Use proper HTTP status codes (400, 401, 404, 500, etc.)
+- Include request IDs in error logs for tracing
+
+## Testing
+- Write tests for all new features
+- Test both success and error cases
+- Use descriptive test names: "should return 404 when task not found"
+- Maintain minimum 80% code coverage
+- Use Jest and supertest for API testing
+
+## API Design
+- Use RESTful conventions for endpoints
+- Version APIs if needed (/api/v1/...)
+- Return consistent response formats
+- Include proper CORS headers
+- Document all endpoints
+
+## Performance
+- Avoid N+1 queries
+- Use pagination for list endpoints
+- Implement rate limiting in production
+- Cache frequently accessed data
+- Use async/await properly to avoid blocking
+
+## Documentation
+- Add JSDoc comments for public APIs
+- Keep README.md updated with API endpoints
+- Document environment variables in .env.example
+- Include usage examples for complex functions
+
+## Git Commits
+- Use conventional commit format: type(scope): message
+- Types: feat, fix, docs, refactor, test, chore
+- Keep commits focused and atomic
+- Write descriptive commit messages
