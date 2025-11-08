@@ -14,16 +14,6 @@
 
 ---
 
-**Lab 1 - Understanding Cursor's Autocomplete Functionality**
-
-**Purpose: In this lab, we'll see how to use Cursor's autocomplete for code suggestions.**
-
-
-1. Start the Cursor app. Sign in if needed. Then select *Clone repo* on the main screen.
-
-![clone in Cursor](./images/cursor81.png?raw=true "Clone in Cursor")
-
-<br><br>
 # Lab 1: Introduction to Claude Code and Basic Setup
 **Duration:** 10-12 minutes  
 **Difficulty:** Beginner
@@ -31,6 +21,7 @@
 ## Lab Purpose
 Get familiar with Claude Code installation, authentication, and basic command-line interface. You'll learn how to start Claude Code, authenticate your account, and execute your first commands.
 
+<br><br>
 ---
 
 ## Step 1: Verify Claude Code Installation
@@ -44,6 +35,7 @@ claude --version
 
 You should see output like: `Claude Code v2.x.x`
 
+<br><br>
 ---
 
 ## Step 2: Start Claude Code for the First Time
@@ -60,6 +52,7 @@ You'll see a welcome message and an option to pick a color theme. To select a th
 
 ![startup](./images/ccode13.png?raw=true "Startup")
 
+<br><br>
 ---
 
 ## Step 3: Authenticate Your Account
@@ -71,29 +64,43 @@ You'll see a welcome message and an option to pick a color theme. To select a th
 
 ![subscription](./images/ccode14.png?raw=true "Subscription")
 
+<br><br>
+
 2. Claude will display a URL and code. You can click on it to *Open* the URL. 
 
 ![url popup](./images/ccode15.png?raw=true "URL popup")
+
+<br><br>
 
 3. On the next screen that is shown, click on the *Authorize* button to give Claude Code authorization to use your Claude chat account.
 
 ![auth dialog](./images/ccode16.png?raw=true "auth dialog") 
 
+<br><br>
+
 4. **If you get an error on the next web page displayed** then go back to the codespace and copy the full URL from there.
 
 ![backup method](./images/ccode17.png?raw=true "backup method") 
+
+<br><br>
 
 5. Eventually, you should see a screen with an authentication code. Click on the *Copy Code* link at the bottom to copy the authentication code.
 
 ![authentication code](./images/ccode18.png?raw=true "authentication code") 
 
+<br><br>
+
 6. Go back to the codespace. In the area in the terminal under the URL, you should see a prompt like *Paste code here if prompted*. Click next to that and paste in the authentication code you copied in the previous step.
 
 ![Paste code](./images/ccode19.png?raw=true "Paste code") 
 
+<br><br>
+
 7. After this, you should see an indication that login was successful
 
 ![successful login](./images/ccode20.png?raw=true "Successful login") 
+
+<br><br>
 
 8. Answer *yes* to the questions about using the *recommended settings* and *if you trust the files in the folder*.
    
@@ -101,11 +108,13 @@ You'll see a welcome message and an option to pick a color theme. To select a th
 
 ![trust files](./images/ccode22.png?raw=true "trust files") 
 
+<br><br>
+
 9. After this, you should be ready to use Claude Code!
 
 ![ready to go](./images/ccode23.png?raw=true "Ready to go") 
 
-
+<br><br>
 ---
 
 ## Step 4: Test Basic Interaction
