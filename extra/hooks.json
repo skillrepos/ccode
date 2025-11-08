@@ -1,0 +1,14 @@
+{
+  "preToolUse": [
+    {
+      "tool": "Edit",
+      "command": "echo 'Editing file: $FILE_PATH'"
+    }
+  ],
+  "postToolUse": [
+    {
+      "tool": "Write",
+      "command": "prettier --write $FILE_PATH"
+    }
+  ]
+}

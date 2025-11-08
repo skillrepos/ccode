@@ -1,0 +1,477 @@
+---
+description: "Brief description of what this command does"
+argument-hint: "[argument-type]"
+---
+
+# Command Title
+
+One-sentence summary of the command's purpose and what it accomplishes.
+
+## Command Syntax
+
+```
+/command-name <required-arg> [optional-arg]
+```
+
+## Arguments
+
+- **required-arg** (required): Description of what this argument accepts
+  - Format or type specification (e.g., file path, environment name)
+  - Examples of valid inputs
+  - Any constraints or limitations
+
+- **optional-arg** (optional): Description of optional argument
+  - Default value if not specified
+  - When to use this argument
+  - Examples: `value1`, `value2`, `value3`
+
+## Examples
+
+Clear, practical examples showing command usage:
+
+```
+/command-name my-file.js
+/command-name ./src/module.js special-mode
+/command-name /absolute/path/to/file.ts custom-option
+```
+
+Each example should:
+- Show realistic usage
+- Demonstrate different use cases
+- Be copy-paste ready
+
+## What This Command Does
+
+### Primary Task
+Clear explanation of the main thing this command accomplishes.
+
+#### Sub-task 1
+Details about the first thing that happens
+
+#### Sub-task 2
+Details about the second thing that happens
+
+#### Sub-task 3
+Details about the third thing that happens
+
+### Output Example
+```
+Sample output showing what the user will see:
+
+✅ Task completed successfully
+📊 Summary of what was done
+💡 Helpful information about results
+```
+
+## Step-by-Step Workflow
+
+### Step 1: Preparation
+What the command checks or validates before starting
+- ✅ Verification 1
+- ✅ Verification 2
+- ✅ Verification 3
+
+### Step 2: Execution
+What happens during the main execution
+- Process 1 details
+- Process 2 details
+- Progress tracking
+
+### Step 3: Validation
+How results are validated
+- Validation check 1
+- Validation check 2
+
+### Step 4: Reporting
+What information is returned to the user
+- Result summary
+- Metrics or counts
+- Next steps
+
+## Configuration Options
+
+### Option 1: Standard Mode
+```bash
+/command-name file.js
+```
+Uses default settings, good for typical use cases
+
+### Option 2: Advanced Mode
+```bash
+/command-name file.js --advanced
+```
+Provides additional features or detailed output
+
+### Option 3: Custom Configuration
+Can be customized via:
+- Configuration file (`.commandrc` or `command.config.js`)
+- Environment variables
+- Command-line flags
+- Interactive prompts
+
+## Error Handling
+
+### Common Issues and Solutions
+
+#### Issue: Missing Required Arguments
+```
+Error: Missing required argument 'file_path'
+
+Solution:
+1. Check that you provided a file path
+2. Ensure the path exists: ls ./your/file.js
+3. Use absolute or relative path correctly
+
+Example:
+/command-name ./existing-file.js
+```
+
+#### Issue: File Not Found
+```
+Error: Cannot find file at specified path
+
+Causes:
+- File path is incorrect
+- File was moved or deleted
+- Wrong working directory
+
+Solutions:
+1. Verify file exists: ls -la /path/to/file
+2. Use correct path: /command-name ./correct/path.js
+3. Check file permissions: ls -l file.js
+```
+
+#### Issue: Permission Denied
+```
+Error: Permission denied accessing file
+
+Causes:
+- Insufficient permissions
+- File is locked by another process
+- Directory access restricted
+
+Solutions:
+1. Check permissions: ls -la file.js
+2. Grant read access: chmod +r file.js
+3. Ensure directory access: chmod +x ./directory/
+4. Close files open in other editors
+```
+
+#### Issue: Syntax or Validation Error
+```
+Error: Invalid input or configuration
+
+Causes:
+- Arguments don't match expected format
+- Configuration missing required values
+- Incompatible options selected
+
+Solutions:
+1. Review command syntax: /command-name --help
+2. Check arguments: validate input format
+3. Verify configuration file
+4. Run with verbose flag for details: /command-name file.js --verbose
+```
+
+### Error Prevention
+
+Before running the command:
+- ✅ Verify the file exists
+- ✅ Check file permissions
+- ✅ Confirm argument format
+- ✅ Validate configuration
+- ✅ Ensure dependencies installed
+- ✅ Check disk space if needed
+
+### Getting Help
+
+If you encounter errors:
+
+1. **Check the verbose output**
+   ```
+   /command-name file.js --verbose
+   ```
+
+2. **Verify prerequisites**
+   ```
+   /command-name --check
+   ```
+
+3. **Review example usage**
+   ```
+   /command-name --examples
+   ```
+
+4. **See full documentation**
+   ```
+   /help command-name
+   ```
+
+## Features
+
+Clear list of what this command provides:
+
+- ✅ Feature 1: Brief description
+- ✅ Feature 2: Brief description
+- ✅ Feature 3: Brief description
+- ✅ Feature 4: Brief description
+- ✅ Feature 5: Brief description
+
+## Use Cases
+
+Real-world scenarios when you'd use this command:
+
+### Use Case 1: Typical Scenario
+Description of when you'd use this
+
+```bash
+/command-name file.js
+```
+
+### Use Case 2: Advanced Scenario
+Description of more complex usage
+
+```bash
+/command-name file.js --option value
+```
+
+### Use Case 3: Integration Scenario
+How this command fits with other commands
+
+```bash
+/command-name file.js
+# Then use output with another command
+/other-command file.js
+```
+
+## Output Structure
+
+The command produces output in this structure:
+
+```
+SECTION HEADER
+├─ Item 1
+├─ Item 2
+└─ Item 3
+
+ANOTHER SECTION
+✅ Success message
+📊 Metrics or summary
+💡 Helpful note
+```
+
+Each section provides:
+- Clear visual indicators (✅, ⚠️, ❌, 📊)
+- Organized information
+- Actionable results
+
+## Integration with Other Commands
+
+This command works well with:
+
+- **Command A**: First command you might use together
+  ```bash
+  /command-name file.js
+  /other-command file.js
+  ```
+
+- **Command B**: Another useful integration
+  ```bash
+  /command-name --format json
+  # Output can be piped or used by other tools
+  ```
+
+- **Command C**: Part of a larger workflow
+  ```bash
+  /command-a
+  /command-name
+  /command-b
+  ```
+
+## Tips and Best Practices
+
+### Do's
+- ✅ Use with committed code
+- ✅ Review output before proceeding
+- ✅ Start with simple cases first
+- ✅ Use `--verbose` flag for troubleshooting
+- ✅ Keep files in sync with remote
+
+### Don'ts
+- ❌ Run on uncommitted changes without backup
+- ❌ Ignore error messages
+- ❌ Use outdated command syntax
+- ❌ Assume command worked without verification
+- ❌ Run multiple commands simultaneously
+
+### Performance Tips
+
+For better performance:
+- Use specific file paths instead of wildcards
+- Close unnecessary applications
+- Ensure adequate disk space
+- Run during off-peak times for large operations
+- Use `--cached` flag if available
+
+## Troubleshooting
+
+### Still Having Issues?
+
+1. **Restart the CLI**
+   ```bash
+   exit
+   # Reopen Claude Code
+   ```
+
+2. **Check dependencies**
+   ```bash
+   npm list
+   # Ensure all packages are installed
+   ```
+
+3. **Verify environment**
+   ```bash
+   echo $PATH
+   npm --version
+   node --version
+   ```
+
+4. **Clear cache**
+   ```bash
+   rm -rf .cache/
+   npm cache clean --force
+   ```
+
+5. **Run with debug output**
+   ```bash
+   /command-name file.js --debug
+   ```
+
+## See Also
+
+Related commands that might be helpful:
+
+- `/command-a` - Does related task A
+- `/command-b` - Does related task B
+- `/command-c` - Part of same workflow
+- `/help` - Get general help
+- `/help command-name` - Full documentation for this command
+
+## Advanced Configuration
+
+### Configuration File
+Create `.commandrc` in project root:
+
+```json
+{
+  "option1": "value1",
+  "option2": true,
+  "option3": {
+    "nested": "value"
+  }
+}
+```
+
+### Environment Variables
+Set default behavior via environment:
+
+```bash
+export COMMAND_OPTION1=value
+export COMMAND_OPTION2=true
+/command-name file.js
+```
+
+### Command Aliases
+Create shortcuts (if supported):
+
+```bash
+alias cmd="/command-name"
+cmd file.js
+```
+
+## FAQ
+
+**Q: Can I run this on multiple files?**
+A: This command processes one file at a time. For multiple files, run the command multiple times or use a script to iterate.
+
+**Q: Does this modify the original file?**
+A: By default, yes. The command creates backups in [location]. You can revert with git.
+
+**Q: How long does this take?**
+A: Typically [timeframe] for a [size] file. Larger files may take longer.
+
+**Q: Can I undo what this command does?**
+A: Yes. Use `git checkout filename` to revert, or `git undo` for uncommitted changes.
+
+**Q: What if something goes wrong?**
+A: Check the error messages above. Review the error handling section or run with `--verbose`.
+
+**Q: Can I customize the output?**
+A: Yes. Use flags like `--format json` or `--format table` for different output styles.
+
+## Requirements
+
+### Prerequisites
+- Node.js 12+
+- npm or yarn
+- Git (for version control)
+- Specific tools or libraries if applicable
+
+### Permissions
+- Read access to target file
+- Write access to output directory (if creating files)
+- Execute permissions for scripts (if applicable)
+
+### Disk Space
+- Minimum: [amount] MB free space
+- Recommended: [amount] MB for comfortable operation
+
+### Network
+- Offline: ✅ Fully supported
+- Online: ✅ Optional for some features
+- API calls: ☐ None required for basic usage
+
+## Performance Characteristics
+
+- **Typical Time**: [X] seconds for average file
+- **Memory Usage**: [X] MB
+- **CPU Load**: Light / Medium / Heavy
+- **Scaling**: Linear with file size
+- **Caching**: [Describe if applicable]
+
+## Known Limitations
+
+- Limitation 1: Brief description
+- Limitation 2: Brief description
+- Limitation 3: Brief description
+
+Workarounds for limitations are available in the advanced section.
+
+## Version History
+
+- **v2.0** - Latest version with [feature]
+- **v1.5** - Added [feature]
+- **v1.0** - Initial release
+
+Current version: Run `/command-name --version` to check
+
+## Contributing
+
+Found a bug or have a suggestion?
+
+- **Report Issues**: [Link to issue tracker]
+- **Request Features**: [Link to feature requests]
+- **Contribute**: [Link to contributing guide]
+
+## Additional Resources
+
+- **Documentation**: [Link to full docs]
+- **Examples**: [Link to examples directory]
+- **Tutorial**: [Link to tutorial]
+- **Community**: [Link to discussion forum]
+
+---
+
+**Last Updated**: [Date]
+**Maintainer**: [Name/Team]
+**License**: [License type]

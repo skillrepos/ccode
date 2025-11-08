@@ -1,0 +1,12 @@
+{
+  "projectName": "Team Training Project",
+  "defaultModel": "claude-sonnet-4-5",
+  "autoAccept": false,
+  "customCommands": ["review", "test", "deploy"],
+  "requiredSkills": ["api-tester", "code-quality"],
+  "codeStyle": {
+    "language": "javascript",
+    "formatter": "prettier",
+    "linter": "eslint"
+  }
+}

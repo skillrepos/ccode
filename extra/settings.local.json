@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node /workspaces/ccode/hello.js:*)",
+      "Bash(npm test:*)",
+      "Bash(npx jest:*)",
+      "Bash(node /workspaces/ccode/test-user.js:*)",
+      "Bash(node -c:*)",
+      "Bash(chmod:*)",
+      "Bash(python3:*)",
+      "Bash(pip install:*)",
+      "Bash(tree:*)",
+      "Bash(npm install:*)",
+      "Bash(git init:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
