@@ -7,13 +7,14 @@ echo "Installing Claude Code CLI..."
 npm install -g @anthropic-ai/claude-code
 
 # Create directories for labs
-mkdir -p /workspace/labs/{lab1,lab2,lab3,lab4,lab5,lab6}
+mkdir labs/{lab1,lab2,lab3,lab4,lab5,lab6}
+mkdir sample-project
 mkdir -p ~/.claude/commands
 mkdir -p ~/.claude/skills
 
 # Create sample files for labs
 echo "Creating sample project files..."
-cat > /workspace/sample-project/package.json << 'EOF'
+cat > sample-project/package.json << 'EOF'
 {
   "name": "sample-project",
   "version": "1.0.0",
@@ -27,7 +28,7 @@ cat > /workspace/sample-project/package.json << 'EOF'
 }
 EOF
 
-cat > /workspace/sample-project/index.js << 'EOF'
+cat > sample-project/index.js << 'EOF'
 // Sample JavaScript file with intentional issues for Lab 3
 function calculate_sum(a, b) {
     return a + b
@@ -45,7 +46,7 @@ function findMax(numbers) {
 console.log("Sample application ready!");
 EOF
 
-cat > /workspace/sample-project/README.md << 'EOF'
+cat > sample-project/README.md << 'EOF'
 # Sample Project
 
 This is a sample project for Claude Code training exercises.
@@ -60,7 +61,7 @@ Run `node index.js` to execute the sample code.
 EOF
 
 # Create a sample Python file with bugs for Lab 4
-cat > /workspace/sample-project/calculator.py << 'EOF'
+cat > sample-project/calculator.py << 'EOF'
 # Sample Python calculator with intentional bugs
 
 def add(a, b):
@@ -93,4 +94,4 @@ echo ""
 echo "Quick start:"
 echo "1. Run 'claude --version' to verify installation"
 echo "2. Run 'claude' to start Claude Code"
-echo "3. Navigate to /workspace/labs to begin the exercises"
+echo "3. Navigate to /workspace/ccode/labs to begin the exercises"
