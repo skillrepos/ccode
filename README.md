@@ -1,6 +1,20 @@
-# AI Powered Coding with Claude Code - lab setup
+# AI Powered Coding with Claude Code
 
-## 1. Set codespace timeout
+## Learn practical workflows, hands-on coding techniques, and structured interactions
+
+This 3-hour hands-on workshop teaches you how to leverage Claude Code's AI features to build applications faster and more efficiently. You'll learn essential AI-assisted development techniques through guided labs and practical exercises.
+
+Prerequisites: Claude paid account.
+
+These instructions will guide you through configuring a GitHub Codespaces environment that you can use to do the labs.
+
+## 1. If you don't already have a paid Claude account, sign up for one at [claude.ai](https://claude.ai). 
+
+You **must** have a paid claude account to use Claude Code.
+
+![Claude signup](./images/ccode76.png?raw=true "Claude signup")
+
+## 2. Set codespace timeout
 
 While logged in to GitHub, go to https://github.com/settings/codespaces.
 
@@ -8,13 +22,13 @@ Scroll down and find the section on the page labeled *Default idle timeout*.
 
 Increase the default timeout value to 90 minutes and then select the *Save* button.
 
-![Increasing default timeout](./images/k8sdev33.png?raw=true "Increasing default timeout")
+![Increasing default timeout](./images/ccode77.png?raw=true "Increasing default timeout")
 
 (**NOTE**: If your codespace does time out at some point in the course, there should be a button to restart it. In that case, you will need to run the *minikube start* command again.)
 
 <br><br>
 
-## 2. Create your own codespace to run the labs by clicking on the button below.
+## 3. Create your own codespace to run the labs by clicking on the button below.
 <br/><br/>
 
 Click here ------> [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/skillrepos/ccode?quickstart=1)
@@ -42,6 +56,6 @@ After the codespace has started, you can close the *Welcome* doc by clicking on 
 This will open it up in a tab above your terminal. Then you can follow along with the steps in the labs. 
 Any command in the gray boxes is either code intended to be run in the console or code to be updated in a file.
 
-Labs doc: [Advanced Kubernetes Labs](codespace-labs.md)
+Labs doc: [Claude Code labs](labs.md)
 
 
