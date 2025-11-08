@@ -1,47 +1,51 @@
 {
-  "name": "Claude Code Workshop",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
-
+  "name": "Claude Code Training Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest"
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
     },
-    "ghcr.io/devcontainers/features/github-cli:1": {
-      "version": "latest"
-    }
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-
   "customizations": {
     "vscode": {
       "extensions": [
-        "dbaeumer.vscode-eslint",
+        "anthropic.claude-code",
+        "ms-python.python",
+        "ms-vscode.cpptools",
         "esbenp.prettier-vscode",
-        "ms-vscode.vscode-typescript-next"
+        "dbaeumer.vscode-eslint"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "icon": "terminal-bash"
+          }
+        }
       }
     }
   },
-
-  "postCreateCommand": "npm install -g @anthropic-ai/claude-code && cd task-api && npm install",
-
-  "postAttachCommand": "echo '\\n✅ Claude Code Workshop Environment Ready!\\n\\nNext steps:\\n1. Run: claude auth\\n2. Navigate to task-api: cd task-api\\n3. Start Lab 1: Open labs.md\\n\\nHappy coding!\\n'",
-
-  "forwardPorts": [3000],
-
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "echo 'Welcome to Claude Code Training! Run claude --version to verify installation.'",
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=${localWorkspaceFolder}/labs,target=/workspace/labs,type=bind,consistency=cached"
+  ],
+  "forwardPorts": [3000, 8080],
   "portsAttributes": {
     "3000": {
-      "label": "Task API Server",
+      "label": "Web App",
+      "onAutoForward": "notify"
+    },
+    "8080": {
+      "label": "API Server",
       "onAutoForward": "notify"
     }
-  },
-
-  "remoteUser": "node",
-
-  "mounts": [
-    "source=${localEnv:HOME}/.anthropic,target=/home/node/.anthropic,type=bind,consistency=cached"
-  ]
+  }
 }
