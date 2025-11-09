@@ -663,3 +663,203 @@ Look for your custom commands marked with "(project)" in the list.
 - Chain commands for complex tasks
 - Organize commands effectively
 
+
+# Lab 5: Agent Skills and Advanced Features
+**Difficulty:** Advanced
+
+## Lab Purpose
+Learn to create and use Agent Skills - modular capabilities that extend Claude's functionality with specialized knowledge and scripts. Build skills for document processing, API integration, and domain-specific tasks.
+
+---
+
+## Step 1: Understand Skills vs Commands
+**What we're doing:** Learning the key differences between skills and slash commands.  
+**Why:** Skills are AI-invoked based on context, while commands are user-invoked.
+
+**Action:** Start Claude and ask:
+```
+Explain the difference between Agent Skills in .claude/skills/ and slash commands in .claude/commands/
+```
+
+---
+
+## Step 2: Create Skills Directory
+**What we're doing:** Setting up the folder structure for Agent Skills.  
+**Why:** Skills need proper organization for Claude to discover them.
+
+**Action:** In terminal:
+```bash
+mkdir -p .claude/skills/api-tester/scripts
+mkdir -p .claude/skills/database-helper
+mkdir -p .claude/skills/code-quality
+```
+
+---
+
+## Step 3: Add Your First Skill
+**What we're doing:** Adding a skill for API testing and documentation.  
+**Why:** Skills package expertise that Claude can use autonomously.
+
+**Action:** In terminal, copy the *extra/skills/api-tester/SKILL.md* file to *.claude/skills/api-tester/SKILL.md*. This defines a new project-specific skill that helps with API testing and documentation by doing the following:
+
+1. Parse the API endpoint and method
+2. Construct appropriate headers and body
+3. Make the request using curl or fetch
+4. Validate response structure
+5. Generate documentation in OpenAPI format
+
+After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
+
+```bash
+cp extra/skills/api-tester/SKILL.md .claude/skills/api-tester/
+code extra/skills/api-tester/SKILL.md
+```
+
+## Examples
+- Test GET endpoint: curl -X GET "https://api.example.com/users"
+- Test POST with JSON: curl -X POST -H "Content-Type: application/json" -d '{"name":"test"}'
+
+---
+
+## Step 4: Add Scripts to Your Skill
+**What we're doing:** Including executable scripts within a skill.  
+**Why:** Skills can bundle code for complex operations.
+
+**Action:** In terminal, copy the *extra/skills/api-tester/scripts/test-api.py* file to *.claude/skills/api-tester/scripts/test-api.py*. This defines a new script helps with API testing by doing the following:
+
+- Accepts URL and method as arguments
+- Makes HTTP requests
+- Validates JSON responses
+- Returns formatted results
+
+After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
+
+```bash
+cp extra/skills/api-tester/scripts/test-api.py .claude/skills/api-tester/scripts/
+code extra/skills/api-tester/scripts/test-api.py
+```
+
+
+---
+
+## Step 5: Test Skill Activation
+**What we're doing:** Verifying Claude recognizes and uses the skill.  
+**Why:** Skills should activate automatically based on context.
+
+**Action:** Without mentioning the skill directly, ask:
+```
+I need to test this API endpoint: https://jsonplaceholder.typicode.com/posts/1
+```
+
+Claude should automatically use your api-tester skill.
+
+---
+
+## Step 6: Have Claude Create a Database Helper Skill
+**What we're doing:** Building a skill for database operations.  
+**Why:** Complex database tasks benefit from specialized instructions.
+
+**Action:** In Claude code, give it the following prompt:
+```
+Create .claude/skills/database-helper/SKILL.md for:
+- SQL query optimization
+- Migration generation
+- Schema documentation
+- Index recommendations
+Include example queries and best practices
+```
+
+Afterwards, you can look at the .claude/skills/database-helper/SKILL.md file if you want.
+
+---
+
+## Step 7: Add a Global Code Quality Skill
+**What we're doing:** Creating a comprehensive code analysis skill for all projects.  
+**Why:** Systematic code review improves project quality.
+
+**Action:** In terminal, copy the *extra/skills/code-quality/SKILL.md* file to  *~/.claude/skills/code-quality/SKILL.md*. This defines a new global skill that helps with ensuring code quality through: 
+
+- Linting rules for multiple languages
+- Security scanning patterns
+- Performance analysis
+- Complexity metrics
+- Refactoring suggestions
+
+After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
+
+```bash
+cp extra/skills/code-quality/SKILL.md ~/.claude/skills/code-quality/
+code extra/skills/code-quality/SKILL.md
+```
+
+
+---
+
+## Step 8: Add Subagents
+**What we're doing:** Creating specialized subagents for focused tasks.  
+**Why:** Subagents handle specific responsibilities with dedicated context.
+
+**Action:** In terminal, copy the *extra/agents/test-runner.md* file to  *.claude/agents/test-runner.md*. This defines a new project-specific agent to help with running and fixing failing tests. 
+
+
+After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
+
+```bash
+cp extra/agents/test-runner.md .claude/agents/
+code extra/agents/test-runner.md
+```
+
+---
+
+## Step 9: Configure Hooks
+**What we're doing:** Setting up automated actions at specific points.  
+**Why:** Hooks enforce standards and automate repetitive checks.
+
+**Action:** Create hooks configuration:
+```
+Create .claude/hooks.json with:
+{
+  "preToolUse": [
+    {
+      "tool": "Edit",
+      "command": "echo 'Editing file: $FILE_PATH'"
+    }
+  ],
+  "postToolUse": [
+    {
+      "tool": "Write",
+      "command": "prettier --write $FILE_PATH"
+    }
+  ]
+}
+```
+
+---
+
+## Step 10: Test the Complete System
+**What we're doing:** Using skills, subagents, and hooks together.  
+**Why:** Real workflows combine multiple advanced features.
+
+**Action:** Test with a complex request:
+```
+Create a REST API for a todo application with:
+- CRUD endpoints
+- Input validation
+- Error handling
+- Tests
+- API documentation
+```
+
+Watch Claude use skills, potentially delegate to subagents, and apply hooks.
+
+---
+
+## Lab Summary
+✅ You've mastered:
+- Creating Agent Skills with SKILL.md
+- Adding scripts to skills
+- Building specialized subagents
+- Configuring hooks for automation
+- Combining advanced features
+
+**Next:** Proceed to Lab 6 for VS Code integration and collaboration features!
