@@ -2,4 +2,6 @@
   "theme": "dark",
   "recommendedSettings": true,
   "trustWorkspace": true
+  "hasCompletedOnboarding": true
+  "forceLoginMethod": "claudeai"
 }
