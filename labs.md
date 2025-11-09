@@ -564,10 +564,15 @@ code extra/commands/test.md
 /test
 ```
 
+![Test command](./images/ccode49.png?raw=true "Test command")
+
 Then try with arguments:
 ```
 /test unit
 ```
+
+
+![Test command](./images/ccode50.png?raw=true "Test command")
 
 ---
 
@@ -610,6 +615,9 @@ Analyze the file $ARGUMENTS and create:
 4. API documentation if applicable
 ```
 
+
+![Completed command](./images/ccode54.png?raw=true "Completed command")
+
 ---
 
 ## Step 7: Add a Project-Specific Refactoring Command
@@ -636,7 +644,10 @@ code extra/commands/refactor.md
 /help
 ```
 
-Look for your custom commands marked with "(project)" in the list.
+Look for your custom commands under the *custom-commands* option in the displayed list. Use *Tab* to get to different sections.
+
+
+![Showing custom commands](./images/ccode56.png?raw=true "Showing custom commands")
 
 ---
 
@@ -680,6 +691,8 @@ Learn to create and use Agent Skills - modular capabilities that extend Claude's
 ```
 Explain the difference between Agent Skills in .claude/skills/ and slash commands in .claude/commands/
 ```
+
+![Explain difference](./images/ccode58.png?raw=true "Explain difference")
 
 ---
 
@@ -752,6 +765,9 @@ I need to test this API endpoint: https://jsonplaceholder.typicode.com/posts/1
 ```
 
 Claude should automatically use your api-tester skill.
+
+
+![Testing skill activation](./images/ccode62.png?raw=true "Testing skill activation")
 
 ---
 
@@ -834,6 +850,8 @@ Create .claude/hooks.json with:
 }
 ```
 
+![Configuring hooks](./images/ccode64.png?raw=true "Configuring hooks")
+
 ---
 
 ## Step 10: Test the Complete System
@@ -852,6 +870,11 @@ Create a REST API for a todo application with:
 
 Watch Claude use skills, potentially delegate to subagents, and apply hooks.
 
+
+![Complete system](./images/ccode66.png?raw=true "Complete system")
+
+![Complete system](./images/ccode65.png?raw=true "Complete system")
+
 ---
 
 ## Lab Summary
@@ -862,4 +885,204 @@ Watch Claude use skills, potentially delegate to subagents, and apply hooks.
 - Configuring hooks for automation
 - Combining advanced features
 
-**Next:** Proceed to Lab 6 for VS Code integration and collaboration features!
+
+# Lab 6: VS Code Integration and Team Collaboration
+**Difficulty:** Intermediate
+
+## Lab Purpose
+Set up Claude Code's VS Code extension, configure team workflows, and establish best practices for collaborative development with Claude Code.
+
+---
+
+## Step 1: Install VS Code Extension
+**What we're doing:** Adding Claude Code directly to your IDE.  
+**Why:** The extension provides visual feedback and seamless integration.
+
+**Action:** In VS Code:
+1. Open Extensions panel (`Ctrl+Shift+X`)
+2. Search for "Claude Code"
+3. Install "Claude Code for VS Code" by Anthropic
+4. Reload VS Code if prompted
+
+---
+
+## Step 2: Review Extension Settings
+**What we're doing:** Reviewing the extension's settings.  
+**Why:** Proper configuration improves the development experience.
+
+**Action:** Open VS Code settings:
+1. Click on the *gear* icon in the lower left of the Codespace interface and select *Settings* from the menu.
+2. Search for "Claude Code"
+3. Review the settings. You don't need to change anything.
+
+
+---
+
+## Step 3: Open Claude in VS Code
+**What we're doing:** Starting Claude within the IDE interface.  
+**Why:** IDE integration provides better context awareness.
+
+**Action:** 
+1. Open the Claude Code sidebar (icon in activity bar)
+2. Click "Start New Chat"
+3. Type: `Hello Claude, what files are in my current workspace?`
+
+![Files in workspace](./images/ccode67.png?raw=true "Files in workspace")
+
+
+---
+
+## Step 4: Use Plan Mode in VS Code
+**What we're doing:** Activating visual Plan Mode in the extension.  
+**Why:** Visual planning helps understand complex changes.
+
+**Action:** In the Claude sidebar:
+1. Click the "Extended Thinking" toggle
+2. Ask: `Plan a RESTful API for a blog system with posts, comments, and users`
+3. Watch Claude's thinking process in real-time
+
+
+![Plan blog API](./images/ccode69.png?raw=true "Plan blog API")
+
+---
+
+## Step 5: Enable Auto-Accept Edits
+**What we're doing:** Allowing Claude to make changes without prompts.  
+**Why:** This speeds up iterative development significantly.
+
+**Action:** 
+1. In Claude sidebar, toggle "Auto-accept edits"
+2. Ask: `Create a simple Express server in server.js`
+3. Watch changes apply automatically in your editor
+
+
+![Enable auto-accept edits](./images/ccode72.png?raw=true "Enable auto-accept edits")
+
+---
+
+## Step 6: Create Team Configuration
+**What we're doing:** Setting up shared configuration for team consistency.  
+**Why:** Teams need standardized Claude Code settings.
+
+**Action:** Open a new chat. Then have Claude create:
+```
+Create .claude/team-config.json with:
+{
+  "projectName": "Team Training Project",
+  "defaultModel": "claude-sonnet-4-5",
+  "autoAccept": false,
+  "customCommands": ["review", "test", "deploy"],
+  "requiredSkills": ["api-tester", "code-quality"],
+  "codeStyle": {
+    "language": "javascript",
+    "formatter": "prettier",
+    "linter": "eslint"
+  }
+}
+```
+
+![create team config](./images/ccode74.png?raw=true "Create team config")
+
+---
+
+## Step 7: Set Up Git Integration
+**What we're doing:** Configuring Claude to work with version control.  
+**Why:** Git integration enables Claude to understand project history.
+
+**Action:** Initialize git and create a workflow:
+```
+git init
+Create .claude/commands/pr.md that:
+1. Creates a feature branch
+2. Makes changes
+3. Commits with conventional commit messages
+4. Pushes and creates a pull request description
+```
+
+---
+
+## Step 8: Configure GitHub Integration
+**What we're doing:** Enabling Claude's GitHub app for PR reviews.  
+**Why:** Automated PR reviews catch issues early.
+
+**Action:** In Claude, type:
+```
+/install-github-app
+```
+
+Follow the prompts to connect your GitHub account (if available).
+
+---
+
+## Step 9: Create Shared Knowledge Base
+**What we're doing:** Building documentation for team-wide Claude use.  
+**Why:** Shared knowledge improves team efficiency.
+
+**Action:** Create:
+```
+Create CLAUDE-TEAM.md with:
+1. Project architecture overview
+2. API design patterns we follow
+3. Testing requirements
+4. Deployment process
+5. Common troubleshooting steps
+6. Links to important documentation
+```
+
+---
+
+## Step 10: Set Up MCP Servers
+**What we're doing:** Connecting external tools via Model Context Protocol.  
+**Why:** MCP extends Claude's capabilities with external services.
+
+**Action:** Create MCP configuration:
+```
+Create .claude/mcp.json with example configuration for:
+{
+  "servers": {
+    "github": {
+      "command": "mcp-server-github",
+      "args": ["--repo", "team/project"]
+    }
+  }
+}
+```
+
+Note: Actual MCP server setup requires additional installation.
+
+---
+
+## Step 11: Document Team Workflow
+**What we're doing:** Creating a guide for team Claude Code usage.  
+**Why:** Clear workflows prevent confusion and ensure consistency.
+
+**Action:** Create:
+```
+Create CLAUDE-WORKFLOW.md documenting:
+1. When to use Claude vs manual coding
+2. Review process for Claude-generated code
+3. Testing requirements
+4. Skill creation approval process
+5. Best practices for prompting
+6. Security considerations
+```
+
+---
+
+## Lab Summary
+✅ You've accomplished:
+- VS Code extension installation and configuration
+- Visual Plan Mode and auto-accept features
+- Team configuration setup
+- Git and GitHub integration
+- Shared knowledge base creation
+- Workflow documentation
+
+**Congratulations!** You've completed all labs and are ready to use Claude Code effectively in your development workflow!
+
+## Next Steps
+- Practice creating project-specific skills
+- Experiment with MCP server integrations
+- Build custom workflows for your team
+- Explore advanced hook configurations
+
