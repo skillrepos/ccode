@@ -44,8 +44,8 @@ Then click on the option to create a new codespace.
 <br/><br/>
 
 
-## 4. Complete the startup/authentication steps in the file [STARTUP.md](./startup.md). 
+## 4. Complete the startup/authentication steps in the file [STARTUP.md](./STARTUP.md). 
 
-Once the codespace is running, you will need to authenticate Claude Code in the codespace using your Claude account. Follow the steps in [STARTUP.md](./startup.md) to complete this task.
+Once the codespace is running, you will need to authenticate Claude Code in the codespace using your Claude account. Follow the steps in [STARTUP.md](./STARTUP.md) to complete this task.
 
 
