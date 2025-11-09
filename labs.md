@@ -234,6 +234,8 @@ claude --dangerously-skip-permissions
 
 ⚠️ **Note:** Use with caution! Claude won't ask before making changes.
 
+![YOLO](./images/ccode32.png?raw=true "YOLO")
+
 ---
 
 ## Step 9: Test Auto-Accept Mode
@@ -299,3 +301,209 @@ Create a MODES.md file explaining when to use each Claude Code mode
 - Auto-accept mode for rapid development
 - Headless mode for automation
 - How to combine modes effectively
+
+---
+
+
+# Lab 3: Built-in Commands and Context Management
+**Duration:** 10-12 minutes  
+**Difficulty:** Intermediate
+
+## Lab Purpose
+Master Claude Code's built-in slash commands for managing conversations, context, and memory. Learn how to effectively manage long coding sessions and optimize token usage.
+
+---
+
+## Step 1: Start Fresh with Claude
+**What we're doing:** Beginning a new Claude session to explore commands.  
+**Why:** Starting fresh ensures we have a clean context for learning.
+
+**Action:** Start Claude:
+```bash
+claude
+```
+
+---
+
+## Step 2: View Available Commands
+**What we're doing:** Discovering all built-in slash commands.  
+**Why:** Knowing available commands improves your workflow efficiency.
+
+**Action:** Type:
+```
+/help
+```
+
+Review the list including /clear, /compact, /rewind, /model, and others.
+
+---
+
+## Step 3: Create Some Context
+**What we're doing:** Building up conversation history to practice management.  
+**Why:** We need content to demonstrate context management commands.
+
+**Action:** Have a multi-turn conversation:
+```
+1. Create a user.js file with a User class
+2. Add methods for getName and setName  
+3. Add email validation to the User class
+4. Create a test file for the User class
+```
+
+Let Claude complete each task to build up context.
+
+---
+
+## Step 4: Check Context Usage
+**What we're doing:** Understanding how much context we're using.  
+**Why:** Managing context prevents hitting token limits in long sessions.
+
+**Action:** Type:
+```
+/context
+```
+
+You'll see information about current token usage and remaining capacity.
+
+
+![context command](./images/ccode33.png?raw=true "context command")
+
+---
+
+## Step 5: Compact the Conversation
+**What we're doing:** Condensing conversation history while preserving key information.  
+**Why:** Compacting extends how long you can work without losing context.
+
+**Action:** Type:
+```
+/compact Keep the User class implementation details and test structure
+```
+
+Claude will summarize earlier parts while keeping specified information.
+
+
+![compact](./images/ccode36.png?raw=true "compact")
+
+---
+
+## Step 6: Use Rewind Feature
+**What we're doing:** Rolling back to a previous state in the conversation.  
+**Why:** Rewind lets you undo mistakes or explore different approaches.
+
+**Action:** 
+1. Ask Claude: `Delete the test file we created`
+2. After deletion, press `Esc` twice or type `/rewind`
+3. Select the point before deletion to restore by using the up and down arrow to navigate between the checkpoints listed.
+
+
+![rewind](./images/ccode34.png?raw=true "rewind")
+
+4. Respond to the clarification question to restore both the code and the conversation.
+
+
+![rewind](./images/ccode35.png?raw=true "rewind")
+
+---
+
+## Step 7: Switch Models
+**What we're doing:** Changing between different Claude models.  
+**Why:** Different models offer various speed/capability trade-offs.
+
+**Action:** Type:
+```
+/model
+```
+
+Select a different model (e.g., switch from Opus to Sonnet or vice versa).
+
+![model](./images/ccode37.png?raw=true "model")
+
+
+![model](./images/ccode38.png?raw=true "model")
+
+---
+
+## Step 8: Create a Project Memory File
+**What we're doing:** Setting up a CLAUDE.md file for project context.  
+**Why:** CLAUDE.md provides persistent project knowledge across sessions.
+
+**Action:** Type:
+```
+Create a CLAUDE.md file documenting our User class project structure and testing approach
+```
+
+This file will be automatically read in future sessions.
+
+![claude.md](./images/ccode39.png?raw=true "claude.md")
+
+![claude.md](./images/ccode40.png?raw=true "claude.md")
+
+---
+
+## Step 9: Test Memory Persistence
+**What we're doing:** Verifying that Claude remembers project context.  
+**Why:** Persistent memory improves continuity across sessions.
+
+**Action:**
+1. Type `/clear` to clear the conversation
+2. Ask: `What's the structure of our User class based on the CLAUDE.md?`
+
+Claude should recall information from the CLAUDE.md file.
+
+
+![claude.md](./images/ccode42.png?raw=true "claude.md")
+
+---
+
+## Step 10: Create a Session Summary
+**What we're doing:** Documenting our work before ending the session.  
+**Why:** Summaries help you resume work effectively later.
+
+**Action:** Type:
+```
+Summarize what we've built today and save it to session-notes.md
+```
+
+![session-notes.md](./images/ccode43.png?raw=true "session-notes.md")
+
+![session-notes.md](./images/ccode44.png?raw=true "session-notes.md")
+
+![session-notes.md](./images/ccode45.png?raw=true "session-notes.md")
+
+Then verify with:
+```bash
+cat session-notes.md
+```
+
+---
+
+## Step 11: Advanced Context Trick
+**What we're doing:** Using external files to preserve complex context.  
+**Why:** This technique helps with very long projects.
+
+**Action:** Type:
+```
+Save our complete implementation plan and progress to project-state.md, 
+```
+
+![project-state.md](./images/ccode45.png?raw=true "project-state.md")
+
+**Action:** Type:
+```
+/clear
+Read project-state.md and continue where we left off
+```
+
+
+![project-state.md](./images/ccode47.png?raw=true "project-state.md")
+
+---
+
+## Lab Summary
+✅ You've mastered:
+- Using /help to discover commands
+- Managing context with /compact
+- Undoing changes with /rewind
+- Switching models with /model
+- Creating persistent memory with CLAUDE.md
+- Advanced context preservation techniques
