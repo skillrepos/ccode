@@ -156,13 +156,26 @@ Create a config.json file with database connection settings
 
 Notice how Claude asks permission before creating the file. Type `y` to accept.
 
+
+![Creating config.json](./images/ccode24.png?raw=true "Creating config.json")
+
 ---
 
 ## Step 3: Activate Plan Mode
 **What we're doing:** Switching to Plan Mode for complex task planning.  
 **Why:** Plan Mode helps Claude think through multi-step tasks before executing.
 
-**Action:** Press `Shift+Tab` twice, then type:
+**Action:** Press `Shift+Tab` until you see *Plan mode*
+
+<br><br>
+
+---
+## Step 4: Prompt for a complex task
+**What we're doing:** Prompting Claude for complex task planning.  
+**Why:** Plan Mode helps Claude think through multi-step tasks before executing.
+
+**Action:** Type:
+
 ```
 Create a complete user authentication system with login, signup, and password reset
 ```
@@ -171,20 +184,33 @@ Claude will create a detailed plan before starting implementation.
 
 ---
 
-## Step 4: Review and Modify the Plan
-**What we're doing:** Interacting with Claude's proposed plan.  
-**Why:** You can refine plans before execution to ensure desired outcomes.
+## Step 5: Respond to questions
+**What we're doing:**  Responding to questions from Claude
+**Why:** Claude needs our input on some things before proceeding.
 
-**Action:** After Claude presents the plan, type:
-```
-Good plan, but let's also include email verification in the signup flow
-```
+**Action:** Read any questions that come up and select number of answer to proceed.
 
-Claude will adjust the plan accordingly.
+![Responding to questions](./images/ccode26.png?raw=true "Responding to questions")
+
+
+![Responding to questions](./images/ccode27.png?raw=true "Responding to questions")
+
+
+![Responding to questions](./images/ccode28.png?raw=true "Responding to questions")
 
 ---
 
-## Step 5: Clear the Conversation
+## Step 6: Review and Modify the Plan
+**What we're doing:** Interacting with Claude's proposed plan.  
+**Why:** You can review plans before execution to ensure desired outcomes.
+
+**Action:** After Claude presents the plan, select option 1 to proceed and auto-accept edits.
+
+![Reviewing plan](./images/ccode29.png?raw=true "Reviewing plan")
+
+---
+
+## Step 7: Clear the Conversation
 **What we're doing:** Using /clear to start fresh.  
 **Why:** Clearing context helps when switching between unrelated tasks.
 
@@ -197,7 +223,7 @@ Your conversation history is now cleared, giving you a clean slate.
 
 ---
 
-## Step 6: Try Edit Mode (Auto-Accept)
+## Step 8: Try Edit Mode (Auto-Accept)
 **What we're doing:** Running Claude with automatic permission granting.  
 **Why:** This speeds up development when you trust Claude's actions.
 
@@ -210,7 +236,7 @@ claude --dangerously-skip-permissions
 
 ---
 
-## Step 7: Test Auto-Accept Mode
+## Step 9: Test Auto-Accept Mode
 **What we're doing:** Creating multiple files without interruption.  
 **Why:** See how much faster development is without permission prompts.
 
@@ -223,7 +249,7 @@ Notice Claude creates all files without asking for permission.
 
 ---
 
-## Step 8: Use Headless Mode for Scripts
+## Step 9: Use Headless Mode for Scripts
 **What we're doing:** Running Claude in non-interactive mode.  
 **Why:** Headless mode is perfect for automation and CI/CD pipelines.
 
@@ -236,7 +262,7 @@ Claude executes and returns results without entering interactive mode.
 
 ---
 
-## Step 9: Pipe Data to Claude
+## Step 10: Pipe Data to Claude
 **What we're doing:** Sending data directly to Claude via pipes.  
 **Why:** This enables powerful command-line integrations.
 
@@ -249,7 +275,7 @@ Claude will analyze and fix the code directly.
 
 ---
 
-## Step 10: Combine Modes Effectively
+## Step 11: Combine Modes Effectively
 **What we're doing:** Using different modes for a complete workflow.  
 **Why:** Different tasks benefit from different modes.
 
@@ -257,7 +283,9 @@ Claude will analyze and fix the code directly.
 1. Start with Plan Mode (`Shift+Tab Tab`) for architecture
 2. Switch to default mode for careful implementation
 3. Use headless mode (`-p`) for quick fixes
-4. Document your approach:
+4. Document your approach
+
+**Action:** In terminal, type:  
 ```
 Create a MODES.md file explaining when to use each Claude Code mode
 ```
