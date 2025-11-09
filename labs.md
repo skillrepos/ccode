@@ -19,105 +19,12 @@
 **Difficulty:** Beginner
 
 ## Lab Purpose
-Get familiar with Claude Code installation, authentication, and basic command-line interface. You'll learn how to start Claude Code, authenticate your account, and execute your first commands.
+Get familiar with Claude Code basic command-line interface. You'll learn how to execute your basic commands in Claude Code.
 
 <br><br>
 ---
 
-## Step 1: Verify Claude Code Installation
-**What we're doing:** Checking that Claude Code is properly installed in your environment.  
-**Why:** We need to ensure the tool is available before proceeding.
-
-**Action:** Open a terminal and type:
-```bash
-claude --version
-```
-
-You should see output like: `Claude Code v2.x.x`
-
-<br><br>
----
-
-## Step 2: Start Claude Code for the First Time
-**What we're doing:** Launching Claude Code in interactive mode.  
-**Why:** This is the primary way you'll interact with Claude for coding tasks.
-
-**Action:** In the terminal, type:
-```bash
-claude
-```
-
-You'll see a welcome message and an option to pick a color theme. To select a theme, you can type the corresponding number key on your keyboard or use the arrows to move up and down and hit *Enter* when you are on the choice you want.
-
-
-![startup](./images/ccode13.png?raw=true "Startup")
-
-<br><br>
----
-
-## Step 3: Authenticate Your Account
-**What we're doing:** Connecting Claude Code to your Anthropic account.  
-**Why:** Authentication enables full features and personalized settings.
-
-**Action:** When prompted, follow the authentication flow:
-1. For *Select login method:*, choose option 1 - *Claude account with subscription*
-
-![subscription](./images/ccode14.png?raw=true "Subscription")
-
-<br><br>
-
-2. Claude will display a URL and code. You can click on it to *Open* the URL. 
-
-![url popup](./images/ccode15.png?raw=true "URL popup")
-
-<br><br>
-
-3. On the next screen that is shown, click on the *Authorize* button to give Claude Code authorization to use your Claude chat account.
-
-![auth dialog](./images/ccode16.png?raw=true "auth dialog") 
-
-<br><br>
-
-4. **If you get an error on the next web page displayed** then go back to the codespace and copy the full URL from there.
-
-![backup method](./images/ccode17.png?raw=true "backup method") 
-
-<br><br>
-
-5. Eventually, you should see a screen with an authentication code. Click on the *Copy Code* link at the bottom to copy the authentication code.
-
-![authentication code](./images/ccode18.png?raw=true "authentication code") 
-
-<br><br>
-
-6. Go back to the codespace. In the area in the terminal under the URL, you should see a prompt like *Paste code here if prompted*. Click next to that and paste in the authentication code you copied in the previous step.
-
-![Paste code](./images/ccode19.png?raw=true "Paste code") 
-
-<br><br>
-
-7. After this, you should see an indication that login was successful
-
-![successful login](./images/ccode20.png?raw=true "Successful login") 
-
-<br><br>
-
-8. Answer *yes* to the questions about using the *recommended settings* and *if you trust the files in the folder*.
-   
-![recommended settings](./images/ccode21.png?raw=true "Recommended settings") 
-
-![trust files](./images/ccode22.png?raw=true "trust files") 
-
-<br><br>
-
-9. After this, you should be ready to use Claude Code!
-
-![ready to go](./images/ccode23.png?raw=true "Ready to go") 
-
-<br><br>
----
-
-## Step 4: Test Basic Interaction
+## Step 1: Test Basic Interaction
 **What we're doing:** Verifying Claude can respond to simple queries.  
 **Why:** This confirms the connection is working properly.
 
@@ -130,7 +37,7 @@ Claude should respond with information about its capabilities.
 
 ---
 
-## Step 5: Ask Claude to Explain a Code Snippet
+## Step 2: Ask Claude to Explain a Code Snippet
 **What we're doing:** Testing Claude's code understanding capabilities.  
 **Why:** Understanding code is a fundamental Claude Code feature.
 
@@ -143,7 +50,7 @@ Claude will explain the JavaScript array operation.
 
 ---
 
-## Step 6: Create Your First File with Claude
+## Step 3: Create Your First File with Claude
 **What we're doing:** Using Claude to generate a simple code file.  
 **Why:** File creation is a core feature for development workflows.
 
@@ -156,7 +63,7 @@ Claude will create the file and show you the content.
 
 ---
 
-## Step 7: View the Created File
+## Step 4: View the Created File
 **What we're doing:** Verifying the file was created successfully.  
 **Why:** Understanding where Claude saves files is important.
 
@@ -170,7 +77,7 @@ You should see your new file and its contents.
 
 ---
 
-## Step 8: Ask Claude to Run the File
+## Step 5: Ask Claude to Run the File
 **What we're doing:** Having Claude execute the code it created.  
 **Why:** Claude can run commands and show output directly.
 
@@ -183,7 +90,7 @@ You'll see the output: "Hello from Claude Code!"
 
 ---
 
-## Step 9: Use the Help Command
+## Step 6: Use the Help Command
 **What we're doing:** Exploring available slash commands.  
 **Why:** Slash commands provide quick access to common operations.
 
@@ -196,7 +103,7 @@ Review the list of available commands like /clear, /compact, etc.
 
 ---
 
-## Step 10: Exit and Resume
+## Step 7: Exit and Resume
 **What we're doing:** Learning how to properly exit and resume sessions.  
 **Why:** You'll often need to pause and continue work later.
 
@@ -214,3 +121,153 @@ Review the list of available commands like /clear, /compact, etc.
 - Created and executed code with Claude
 - Learned basic navigation and commands
 - Practiced session management
+
+
+
+# Lab 2: Working with Claude Code Modes
+**Difficulty:** Beginner
+
+## Lab Purpose
+Master Claude Code's different operating modes including default mode, plan mode, and auto-accept mode. Learn when and how to use each mode effectively for different development scenarios.
+
+---
+
+## Step 1: Understand Default Mode
+**What we're doing:** Starting Claude in its standard interactive mode.  
+**Why:** Default mode gives you full control with permission prompts for each action.
+
+**Action:** Start Claude normally:
+```bash
+claude
+```
+
+You're now in default mode where Claude asks permission before file changes.
+
+---
+
+## Step 2: Test Default Mode Permissions
+**What we're doing:** Creating a file to see permission prompts in action.  
+**Why:** Understanding permission flow helps you maintain control over changes.
+
+**Action:** Type:
+```
+Create a config.json file with database connection settings
+```
+
+Notice how Claude asks permission before creating the file. Type `y` to accept.
+
+---
+
+## Step 3: Activate Plan Mode
+**What we're doing:** Switching to Plan Mode for complex task planning.  
+**Why:** Plan Mode helps Claude think through multi-step tasks before executing.
+
+**Action:** Press `Shift+Tab` twice, then type:
+```
+Create a complete user authentication system with login, signup, and password reset
+```
+
+Claude will create a detailed plan before starting implementation.
+
+---
+
+## Step 4: Review and Modify the Plan
+**What we're doing:** Interacting with Claude's proposed plan.  
+**Why:** You can refine plans before execution to ensure desired outcomes.
+
+**Action:** After Claude presents the plan, type:
+```
+Good plan, but let's also include email verification in the signup flow
+```
+
+Claude will adjust the plan accordingly.
+
+---
+
+## Step 5: Clear the Conversation
+**What we're doing:** Using /clear to start fresh.  
+**Why:** Clearing context helps when switching between unrelated tasks.
+
+**Action:** Type:
+```
+/clear
+```
+
+Your conversation history is now cleared, giving you a clean slate.
+
+---
+
+## Step 6: Try Edit Mode (Auto-Accept)
+**What we're doing:** Running Claude with automatic permission granting.  
+**Why:** This speeds up development when you trust Claude's actions.
+
+**Action:** Exit Claude (`exit`), then restart with:
+```bash
+claude --dangerously-skip-permissions
+```
+
+⚠️ **Note:** Use with caution! Claude won't ask before making changes.
+
+---
+
+## Step 7: Test Auto-Accept Mode
+**What we're doing:** Creating multiple files without interruption.  
+**Why:** See how much faster development is without permission prompts.
+
+**Action:** Type:
+```
+Create a simple Express.js API with routes for users and products
+```
+
+Notice Claude creates all files without asking for permission.
+
+---
+
+## Step 8: Use Headless Mode for Scripts
+**What we're doing:** Running Claude in non-interactive mode.  
+**Why:** Headless mode is perfect for automation and CI/CD pipelines.
+
+**Action:** Exit Claude and run:
+```bash
+claude -p "List all JavaScript files in the current directory"
+```
+
+Claude executes and returns results without entering interactive mode.
+
+---
+
+## Step 9: Pipe Data to Claude
+**What we're doing:** Sending data directly to Claude via pipes.  
+**Why:** This enables powerful command-line integrations.
+
+**Action:** In terminal, type:
+```bash
+echo "function broken() { return }" | claude -p "Fix any syntax errors in this JavaScript"
+```
+
+Claude will analyze and fix the code directly.
+
+---
+
+## Step 10: Combine Modes Effectively
+**What we're doing:** Using different modes for a complete workflow.  
+**Why:** Different tasks benefit from different modes.
+
+**Action:** Try this workflow:
+1. Start with Plan Mode (`Shift+Tab Tab`) for architecture
+2. Switch to default mode for careful implementation
+3. Use headless mode (`-p`) for quick fixes
+4. Document your approach:
+```
+Create a MODES.md file explaining when to use each Claude Code mode
+```
+
+---
+
+## Lab Summary
+✅ You've successfully learned:
+- Default mode with permission prompts
+- Plan mode for complex task planning
+- Auto-accept mode for rapid development
+- Headless mode for automation
+- How to combine modes effectively
