@@ -37,25 +37,15 @@ Click here ------> [![Open in GitHub Codespaces](https://github.com/codespaces/b
 
 Then click on the option to create a new codespace.
 
-![Creating new codespace from button](./images/advk8s0.png?raw=true "Creating new codespace from button")
+![Creating new codespace from button](./images/ccode2.png?raw=true "Creating new codespace from button")
 
 **This will run for several minutes while it gets everything ready.**
 
 <br/><br/>
 
-##
 
-## 4. Open the labs doc. 
+## 4. Complete the startup/authentication steps in the file [STARTUP.md](./startup.md). 
 
-You can open the labs doc either in a separate browser tab/window via [Open Labs Document in Browser](https://github.com/skillrepos/adv-k8s-v2/blob/main/codespace-labs.md) and/or you can open the labs in the codespace itself. To open it in the codespace, follow the instructions below.
-
-After the codespace has started, you can close the *Welcome* doc by clicking on the X in its tab. Then open the labs document by going to the file tree on the left, find the file named **codespace-labs.md**, right-click on it, and open it with the **Preview** option.)
-
-![Labs doc preview in codespace](./images/advk8s7.png?raw=true "Labs doc preview in codespace")
-
-This will open it up in a tab above your terminal. Then you can follow along with the steps in the labs. 
-Any command in the gray boxes is either code intended to be run in the console or code to be updated in a file.
-
-Labs doc: [Claude Code labs](labs.md)
+Once the codespace is running, you will need to authenticate Claude Code in the codespace using your Claude account. Follow the steps in [STARTUP.md](./startup.md) to complete this task.
 
 
