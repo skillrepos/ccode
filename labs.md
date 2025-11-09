@@ -507,3 +507,159 @@ Read project-state.md and continue where we left off
 - Switching models with /model
 - Creating persistent memory with CLAUDE.md
 - Advanced context preservation techniques
+
+# Lab 4: Creating and Using Custom Commands
+**Duration:** 10-12 minutes  
+**Difficulty:** Intermediate
+
+## Lab Purpose
+Learn how to create custom slash commands to automate repetitive tasks and establish project-specific workflows. Build reusable commands that enhance your development productivity.
+
+---
+
+## Step 1: Create Commands Directory
+**What we're doing:** Setting up the folder structure for global and project-specific custom commands.  
+**Why:** Claude looks for custom commands in specific directories.
+
+**Action:** In terminal, create the directory:
+```bash
+mkdir -p ~/.claude/commands
+mkdir -p .claude/commands
+```
+
+---
+
+## Step 2: Create a Command Template
+**What we're doing:** Bringing over a template for future commands.  
+**Why:** Templates ensure consistency across team commands.
+
+**Action:** In terminal, copy the *extra/commands/test.md* file to ~/*.claude/commands/test.md*. This defines a new command that accepts a test type argument (unit, integration, or e2e) and generates appropriate tests. After copying it with the first command, open it up to review and understand the structure with the second command. You do not need to make any changes. Close when done.
+
+```bash
+cp extra/commands/template.md.example ~/.claude/commands/
+code extra/commands/template.md.example
+```
+
+----
+
+## Step 3: Add a New Global Command with Arguments
+**What we're doing:** Creating a command that accepts parameters.  
+**Why:** Parameterized commands are more flexible and reusable.
+
+**Action:** In terminal, copy the *extra/commands/test.md* file to *~/.claude/commands/test.md*. This defines a new command that accepts a test type argument (unit, integration, or e2e) and generates appropriate tests. After copying it with the first command, open it up to review and understand the structure with the second command. You do not need to make any changes. Close when done.
+
+```bash
+cp extra/commands/test.md ~/.claude/commands/
+code extra/commands/test.md
+```
+
+---
+
+## Step 4: Test Your Custom Command
+**What we're doing:** Executing the custom command we just created.  
+**Why:** Verifying commands work as expected before relying on them.
+
+**Action:** Type:
+```
+/test
+```
+
+Then try with arguments:
+```
+/test unit
+```
+
+---
+
+## Step 4: Add a Git Workflow Command
+**What we're doing:** Building a command for common git operations.  
+**Why:** Streamlining git workflows reduces context switching.
+
+
+**Action:** In terminal, copy the *extra/commands/commit.md* file to *~/.claude/commands/commit.md*. This defines a new command that stages changes, runs tests, and creates a *conventional commits* message for the commit. After copying it with the first command, open it up to review and understand the structure with the second command. You do not need to make any changes. Leave it open.
+
+```bash
+cp extra/commands/commit.md ~/.claude/commands/
+code extra/commands/commit.md
+```
+
+---
+
+## Step 5: Preview the file for the Git Workflow Command
+** What we're doing:** Previewing the command definition.
+** Why:** This version can be easier to read and understand.
+
+**Action:** In the tab at the top of the open *extra/commands/test.md*, right-click and select the *Open Preview* option. This will give you a markdown preview of the contents of the file.
+
+---
+
+## Step 6: Have Claude Code Create a Documentation Command
+**What we're doing:** Automating documentation generation.  
+**Why:** Consistent documentation improves code maintainability.
+
+**Action:** Start claude again and tell it to create this command with the following prompt:
+```
+Create .claude/commands/document.md with:
+---
+description: Generate comprehensive documentation
+---
+Analyze the file $ARGUMENTS and create:
+1. JSDoc/docstring comments
+2. README section explaining the module
+3. Usage examples
+4. API documentation if applicable
+```
+
+---
+
+## Step 7: Add a Project-Specific Refactoring Command
+**What we're doing:** Creating a command for code improvement.  
+**Why:** Systematic refactoring improves code quality.
+
+**Action:** In terminal, copy the *extra/commands/commit.md* file to *.claude/commands/commit.md*. This defines a new project-specific command that helps with refactoring. After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
+
+```bash
+cp extra/commands/refactor.md .claude/commands/
+code extra/commands/refactor.md
+```
+
+
+---
+
+
+## Step 8: List and Verify Commands
+**What we're doing:** Confirming all custom commands are recognized.  
+**Why:** Ensures Claude can discover and use your commands.
+
+**Action:** Type:
+```
+/help
+```
+
+Look for your custom commands marked with "(project)" in the list.
+
+---
+
+
+## Step 9: Chain Commands Together
+**What we're doing:** Using multiple commands in sequence.  
+**Why:** Command chaining creates powerful workflows.
+
+**Action:** Try this workflow:
+```
+1. /refactor index.js
+2. /test unit
+3. /document index.js
+4. /commit
+```
+
+---
+
+## Lab Summary
+✅ You've learned to:
+- Create custom slash commands
+- Use arguments in commands
+- Build project-specific workflows
+- Chain commands for complex tasks
+- Organize commands effectively
+
