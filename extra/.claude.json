@@ -1,7 +1,17 @@
 {
   "theme": "dark",
   "recommendedSettings": true,
-  "trustWorkspace": true
-  "hasCompletedOnboarding": true
-  "forceLoginMethod": "claudeai"
+  "trustWorkspace": true,
+  "hasCompletedOnboarding": true,
+  "forceLoginMethod": "claudeai",
+  "projects": {
+    "/workspaces/ccode": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true
+    }
+  }
 }
