@@ -595,8 +595,8 @@ mkdir -p .claude/commands
 **Action:** In terminal, copy the *extra/commands/test.md* file to ~/*.claude/commands/test.md*. This defines a new command that accepts a test type argument (unit, integration, or e2e) and generates appropriate tests. After copying it with the first command, open it up to review and understand the structure with the second command. You do not need to make any changes. Close when done.
 
 ```bash
-cp extra/commands/template.md.example ~/.claude/commands/
-code extra/commands/template.md.example
+cp extra/commands/test.md ~/.claude/commands/
+code extra/commands/test.md
 ```
 
 ----
@@ -631,7 +631,9 @@ Then try with arguments:
 ```
 
 
-![Test command](./images/ccode50.png?raw=true "Test command")
+![Test command](./images/ccode111.png?raw=true "Test command")
+
+**This step will take a long time to run. You do NOT need to wait for this to finish to continue. While this is running, you can open another terminal and proceed with the next step.**
 
 ---
 
@@ -650,10 +652,14 @@ code extra/commands/commit.md
 ---
 
 ## Step 5: Preview the file for the Git Workflow Command
-** What we're doing:** Previewing the command definition.
-** Why:** This version can be easier to read and understand.
+**What we're doing:** Previewing the command definition.
+**Why:** This version can be easier to read and understand.
 
 **Action:** In the tab at the top of the open *extra/commands/test.md*, right-click and select the *Open Preview* option. This will give you a markdown preview of the contents of the file.
+
+![Preview command](./images/ccode110.png?raw=true "Preview command")
+
+![Preview command](./images/ccode112.png?raw=true "Preview command")
 
 ---
 
@@ -661,7 +667,7 @@ code extra/commands/commit.md
 **What we're doing:** Automating documentation generation.  
 **Why:** Consistent documentation improves code maintainability.
 
-**Action:** Start claude again and tell it to create this command with the following prompt:
+**Action:** Start claude (if needed) and tell it to create this command with the following prompt:
 ```
 Create .claude/commands/document.md with:
 ---
@@ -698,7 +704,7 @@ code extra/commands/refactor.md
 **What we're doing:** Confirming all custom commands are recognized.  
 **Why:** Ensures Claude can discover and use your commands.
 
-**Action:** Type:
+**Action:** Exit Claude and start it again. Then type:
 ```
 /help
 ```
@@ -711,15 +717,15 @@ Look for your custom commands under the *custom-commands* option in the displaye
 ---
 
 
-## Step 9: Chain Commands Together
+## (Optional to do later) Chain Commands Together
 **What we're doing:** Using multiple commands in sequence.  
 **Why:** Command chaining creates powerful workflows.
 
 **Action:** Try this workflow:
 ```
-1. /refactor index.js
+1. /refactor user.js
 2. /test unit
-3. /document index.js
+3. /document user.js
 4. /commit
 ```
 
