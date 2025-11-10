@@ -99,23 +99,7 @@ You'll see the output: "Hello from Claude Code!"
 
 ---
 
-## Step 6: Use the Help Command
-**What we're doing:** Exploring available slash commands.  
-**Why:** Slash commands provide quick access to common operations.
-
-**Action:** Type:
-```
-/help
-```
-
-Review the list of available commands like /clear, /compact, etc. and use the *Tab* key to cycle through the categories. Use *Esc* to exit when done.
-
-
-![Help](./images/ccode90.png?raw=true "Help")
-
----
-
-## Step 7: Exit and Resume
+## Step 6: Exit and Resume
 **What we're doing:** Learning how to properly exit and resume sessions.  
 **Why:** You'll often need to pause and continue work later.
 
@@ -129,7 +113,7 @@ Review the list of available commands like /clear, /compact, etc. and use the *T
 
 ---
 
-## Step 8: Creating a second file
+## Step 7: Creating a second file
 **What we're doing:** Creating a second file for additional context.  
 **Why:** We want to learn more about resume.
 
@@ -145,7 +129,7 @@ Claude will create the file and show you the content in the diff above the termi
 
 ---
 
-## Step 9: Undo
+## Step 8: Undo
 **What we're doing:** Redoing our command.  
 **Why:** We want to learn how to do undo a request.
 
@@ -154,29 +138,11 @@ Claude will create the file and show you the content in the diff above the termi
 Create a simple goodbye.py file that prints "Goodbye from Claude Code!"
 ```
 
-Claude will create the file and show you the content in the diff above the terminal. Once Claude generates it and prompts whether to continue, his escape twice quickly (ESC, ESC) to get back to the previous state.
+Claude will create the file and show you the content in the diff above the terminal. Once Claude generates it and prompts whether to continue, select 1 to proceed.
 
 ---
 
-## Step 10: Rewind
-**What we're doing:** Learning how to rewind to a previous step.  
-**Why:** You may occasionally need to rewind to a previous step.
-
-**Action:** 
-1. Type `rewind` in the prompt.
-2. You'll see a list of previous actions. You can scroll through these using the up and down arrow keys.
-3. Up arrow to the second from the bottom that says *Create a simple goodbye.js file that prints "Goodbye from Claude Code!".
-4. Hit *Enter* and Claude will put you back to that context.
-
-![Rewind](./images/ccode93.png?raw=true "Rewind")
-
-You'll see a prompt to confirm the Rewind. After reading about the options, select the first one - *Restore code and conversation*. Hit *Enter* to select it.
-
-![Rewind](./images/ccode94.png?raw=true "Rewind")
-
----
-
-## Step 11: Exit
+## Step 9: Exit
 
 **Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
 
