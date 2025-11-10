@@ -752,7 +752,7 @@ Learn to create and use Agent Skills - modular capabilities that extend Claude's
 **What we're doing:** Learning the key differences between skills and slash commands.  
 **Why:** Skills are AI-invoked based on context, while commands are user-invoked.
 
-**Action:** Start Claude and ask:
+**Action:** In Claude, ask:
 ```
 Explain the difference between Agent Skills in .claude/skills/ and slash commands in .claude/commands/
 ```
@@ -765,11 +765,12 @@ Explain the difference between Agent Skills in .claude/skills/ and slash command
 **What we're doing:** Setting up the folder structure for Agent Skills.  
 **Why:** Skills need proper organization for Claude to discover them.
 
-**Action:** In terminal:
+**Action:** In a terminal:
 ```bash
 mkdir -p .claude/skills/api-tester/scripts
 mkdir -p .claude/skills/database-helper
 mkdir -p .claude/skills/code-quality
+mkdir -p .claude/agents
 ```
 
 ---
@@ -792,10 +793,6 @@ After copying it with the first command, open it up to review and understand the
 cp extra/skills/api-tester/SKILL.md .claude/skills/api-tester/
 code extra/skills/api-tester/SKILL.md
 ```
-
-## Examples
-- Test GET endpoint: curl -X GET "https://api.example.com/users"
-- Test POST with JSON: curl -X POST -H "Content-Type: application/json" -d '{"name":"test"}'
 
 ---
 
@@ -824,15 +821,21 @@ code extra/skills/api-tester/scripts/test-api.py
 **What we're doing:** Verifying Claude recognizes and uses the skill.  
 **Why:** Skills should activate automatically based on context.
 
-**Action:** Without mentioning the skill directly, ask:
+**Action:** Exit Claude and then start it again. Without mentioning the skill directly, ask:
 ```
 I need to test this API endpoint: https://jsonplaceholder.typicode.com/posts/1
 ```
 
-Claude should automatically use your api-tester skill.
+Claude may automatically use your api-tester skill, or...
 
 
 ![Testing skill activation](./images/ccode62.png?raw=true "Testing skill activation")
+
+... it may ask for approval. If it asks for approval, just use option 2 so it doesn't ask again.
+
+![Testing skill activation](./images/ccode113.png?raw=true "Testing skill activation")
+
+You can observe as it proceeds to use the new skill to test the API.
 
 ---
 
@@ -850,33 +853,11 @@ Create .claude/skills/database-helper/SKILL.md for:
 Include example queries and best practices
 ```
 
-Afterwards, you can look at the .claude/skills/database-helper/SKILL.md file if you want.
+**You do not need to wait till this is completed to proceed. You can switch to another terminal and go to step 7.**
 
 ---
 
-## Step 7: Add a Global Code Quality Skill
-**What we're doing:** Creating a comprehensive code analysis skill for all projects.  
-**Why:** Systematic code review improves project quality.
-
-**Action:** In terminal, copy the *extra/skills/code-quality/SKILL.md* file to  *~/.claude/skills/code-quality/SKILL.md*. This defines a new global skill that helps with ensuring code quality through: 
-
-- Linting rules for multiple languages
-- Security scanning patterns
-- Performance analysis
-- Complexity metrics
-- Refactoring suggestions
-
-After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
-
-```bash
-cp extra/skills/code-quality/SKILL.md ~/.claude/skills/code-quality/
-code extra/skills/code-quality/SKILL.md
-```
-
-
----
-
-## Step 8: Add Subagents
+## Step 7: Add Subagents
 **What we're doing:** Creating specialized subagents for focused tasks.  
 **Why:** Subagents handle specific responsibilities with dedicated context.
 
@@ -892,7 +873,7 @@ code extra/agents/test-runner.md
 
 ---
 
-## Step 9: Configure Hooks
+## Step 8: Configure Hooks
 **What we're doing:** Setting up automated actions at specific points.  
 **Why:** Hooks enforce standards and automate repetitive checks.
 
@@ -919,7 +900,7 @@ Create .claude/hooks.json with:
 
 ---
 
-## Step 10: Test the Complete System
+## Optional (to do when time allows and all other steps have completed): Test the Complete System
 **What we're doing:** Using skills, subagents, and hooks together.  
 **Why:** Real workflows combine multiple advanced features.
 
