@@ -321,7 +321,7 @@ Your conversation history is now cleared, giving you a clean slate.
 
 ---
 
-## Step 8: Try YOLO Mode (Auto-Accept)
+## Step 9: Try YOLO Mode (Auto-Accept)
 **What we're doing:** Running Claude with automatic permission granting.  
 **Why:** This speeds up development when you trust Claude's actions.
 
@@ -336,7 +336,7 @@ claude --dangerously-skip-permissions
 
 ---
 
-## Step 9: Test Auto-Accept Mode
+## Step 10: Test Auto-Accept Mode
 **What we're doing:** Creating multiple files without interruption.  
 **Why:** See how much faster development is without permission prompts.
 
@@ -351,7 +351,7 @@ Notice Claude creates all files without asking for permission.
 
 ---
 
-## Step 10: Use Headless Mode for Scripts
+## Step 11: Use Headless Mode for Scripts
 **What we're doing:** Running Claude in non-interactive mode.  
 **Why:** Headless mode is perfect for automation and CI/CD pipelines.
 
@@ -366,7 +366,7 @@ Claude executes and returns results without entering interactive mode.
 
 ---
 
-## Step 11: Pipe Data to Claude
+## Step 12: Pipe Data to Claude
 **What we're doing:** Sending data directly to Claude via pipes.  
 **Why:** This enables powerful command-line integrations.
 
@@ -422,7 +422,12 @@ claude
 /help
 ```
 
+This will bring up a set of *tabbed* output for help. Use the *tab* key to get to the *commands* section at the top. Then you can use the arrow keys to move up and down to see all the commands.
 Review the list including /clear, /compact, /rewind, /model, and others.
+
+![help to see commands](./images/ccode109.png?raw=true "help to see commands")
+
+Use *Esc* to exit when done.
 
 ---
 
@@ -430,7 +435,7 @@ Review the list including /clear, /compact, /rewind, /model, and others.
 **What we're doing:** Building up conversation history to practice management.  
 **Why:** We need content to demonstrate context management commands.
 
-**Action:** Have a multi-turn conversation:
+**Action:** Have a multi-turn conversation. Type each of the following into the prompt area one at a time:
 ```
 1. Create a user.js file with a User class
 2. Add methods for getName and setName  
@@ -502,7 +507,7 @@ Claude will summarize earlier parts while keeping specified information.
 /model
 ```
 
-Select a different model (e.g., switch from Opus to Sonnet or vice versa).
+Select a different model if you want or just leave it at the default. Opus is not recommended because it will use your rate limits faster.
 
 ![model](./images/ccode37.png?raw=true "model")
 
@@ -565,13 +570,13 @@ cat session-notes.md
 
 ---
 
-## Step 11: Advanced Context Trick
+## Step 11: (Optional if you have time) Advanced Context Trick
 **What we're doing:** Using external files to preserve complex context.  
 **Why:** This technique helps with very long projects.
 
 **Action:** Type:
 ```
-Save our complete implementation plan and progress to project-state.md, 
+Save our complete implementation plan and progress to project-state.md 
 ```
 
 ![project-state.md](./images/ccode45.png?raw=true "project-state.md")
