@@ -15,9 +15,6 @@
 ---
 
 # Lab 1: Introduction to Claude Code and Basic Setup
-**Duration:** 10-12 minutes  
-**Difficulty:** Beginner
-
 ## Lab Purpose
 Get familiar with Claude Code basic command-line interface. You'll learn how to execute your basic commands in Claude Code.
 
@@ -28,12 +25,14 @@ Get familiar with Claude Code basic command-line interface. You'll learn how to 
 **What we're doing:** Verifying Claude can respond to simple queries.  
 **Why:** This confirms the connection is working properly.
 
-**Action:** At the Claude prompt, type:
+**Action:** At the Claude prompt, type the prompt below and hit *Enter*. While that is running, hit *Ctrl+o* to have Claude show its thinking process.
 ```
 Hello Claude, can you tell me what you can help with?
 ```
 
-Claude should respond with information about its capabilities.
+Claude should respond with information about its capabilities preceded by its thinking process.
+
+![Initial prompt](./images/ccode84.png?raw=true "Initial prompt")
 
 ---
 
@@ -48,6 +47,8 @@ Explain this code: console.log([1,2,3].map(x => x * 2))
 
 Claude will explain the JavaScript array operation.
 
+![Initial prompt](./images/ccode85.png?raw=true "Initial prompt")
+
 ---
 
 ## Step 3: Create Your First File with Claude
@@ -59,7 +60,9 @@ Claude will explain the JavaScript array operation.
 Create a simple hello.js file that prints "Hello from Claude Code!"
 ```
 
-Claude will create the file and show you the content.
+Claude will create the file and show you the content in the diff above the terminal. You do not need to do anything in the diff area. Just select option 1 in the terminal where Claude is waiting.
+
+![Initial file creation](./images/ccode86.png?raw=true "Initial file creation")
 
 ---
 
@@ -67,7 +70,7 @@ Claude will create the file and show you the content.
 **What we're doing:** Verifying the file was created successfully.  
 **Why:** Understanding where Claude saves files is important.
 
-**Action:** In a new terminal tab (keep Claude running), type:
+**Action:** The file should be created and the diff closed. You can click on the file on the left to see the contents. Or, alternatively, in a new terminal tab (keep Claude running), type:
 ```bash
 ls -la
 cat hello.js
@@ -75,18 +78,24 @@ cat hello.js
 
 You should see your new file and its contents.
 
+![Initial file creation](./images/ccode87.png?raw=true "Initial file creation")
+
 ---
 
 ## Step 5: Ask Claude to Run the File
 **What we're doing:** Having Claude execute the code it created.  
 **Why:** Claude can run commands and show output directly.
 
-**Action:** Back in Claude, type:
+**Action:** Back in Claude, type the prompt below. You'll see the run started and then you'll be prompted for permission to proceed. Just select option 1.
 ```
 Run the hello.js file we just created
 ```
 
+![Run file](./images/ccode88.png?raw=true "Run file")
+
 You'll see the output: "Hello from Claude Code!"
+
+![Run file](./images/ccode89.png?raw=true "Run file")
 
 ---
 
@@ -99,7 +108,10 @@ You'll see the output: "Hello from Claude Code!"
 /help
 ```
 
-Review the list of available commands like /clear, /compact, etc.
+Review the list of available commands like /clear, /compact, etc. and use the *Tab* key to cycle through the categories. Use *Esc* to exit when done.
+
+
+![Help](./images/ccode90.png?raw=true "Help")
 
 ---
 
@@ -110,9 +122,60 @@ Review the list of available commands like /clear, /compact, etc.
 **Action:** 
 1. Type `exit` or press `Ctrl+D` to exit Claude
 2. Restart with: `claude --resume`
-3. Claude will restore your previous session context
+3. You'll see a list with your session. Just hit *Enter* to resume.
+4. Claude will restore your previous session context
+
+![Restore](./images/ccode90.png?raw=true "Restore")
 
 ---
+
+## Step 8: Creating a second file
+**What we're doing:** Creating a second file for additional context.  
+**Why:** We want to learn more about resume.
+
+**Action:** Type the following. When you are prompted to continue, select option 3 to tell Claude to do something different.
+```
+Create a simple goodbye.js file that prints "Goodbye from Claude Code!"
+```
+
+Claude will create the file and show you the content in the diff above the terminal. You do not need to do anything in the diff area. Just select option 3 in the terminal where Claude is waiting.
+
+![Do something different](./images/ccode92.png?raw=true "Do something different")
+
+
+---
+
+## Step 9: Undo
+**What we're doing:** Redoing our command.  
+**Why:** We want to learn how to do undo a request.
+
+**Action:** You'll see the previous rejected operation message above the prompt area. Use the <up arrow> key to bring up the last prompt. Change the name of the file in the prompt from *goodbye.js* to *goodbye.py* to create a Python file instead. Hit *Enter*.
+```
+Create a simple goodbye.py file that prints "Goodbye from Claude Code!"
+```
+
+Claude will create the file and show you the content in the diff above the terminal. Once Claude generates it and prompts whether to continue, his escape twice quickly (ESC, ESC) to get back to the previous state.
+
+---
+
+## Step 10: Rewind
+**What we're doing:** Learning how to rewind to a previous step.  
+**Why:** You may occasionally need to rewind to a previous step.
+
+**Action:** 
+1. Type `rewind` in the prompt.
+2. You'll see a list of previous actions. You can scroll through these using the up and down arrow keys.
+3. Up arrow to the second from the bottom that says *Create a simple goodbye.js file that prints "Goodbye from Claude Code!".
+4. Hit *Enter* and Claude will put you back to that context.
+
+![Rewind](./images/ccode93.png?raw=true "Rewind")
+
+You'll see a prompt to confirm the Rewind. After reading about the options, select the first one - *Restore code and conversation*. Hit *Enter* to select it.
+
+![Rewind](./images/ccode94.png?raw=true "Rewind")
+
+---
+
 
 ## Lab Summary
 ✅ You've successfully:
