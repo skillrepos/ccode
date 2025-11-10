@@ -251,7 +251,7 @@ Notice Claude creates all files without asking for permission.
 
 ---
 
-## Step 9: Use Headless Mode for Scripts
+## Step 10: Use Headless Mode for Scripts
 **What we're doing:** Running Claude in non-interactive mode.  
 **Why:** Headless mode is perfect for automation and CI/CD pipelines.
 
@@ -264,7 +264,7 @@ Claude executes and returns results without entering interactive mode.
 
 ---
 
-## Step 10: Pipe Data to Claude
+## Step 11: Pipe Data to Claude
 **What we're doing:** Sending data directly to Claude via pipes.  
 **Why:** This enables powerful command-line integrations.
 
@@ -277,7 +277,7 @@ Claude will analyze and fix the code directly.
 
 ---
 
-## Step 11: Combine Modes Effectively
+## Step 12: Combine Modes Effectively
 **What we're doing:** Using different modes for a complete workflow.  
 **Why:** Different tasks benefit from different modes.
 
