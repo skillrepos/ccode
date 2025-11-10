@@ -125,7 +125,7 @@ Review the list of available commands like /clear, /compact, etc. and use the *T
 3. You'll see a list with your session. Just hit *Enter* to resume.
 4. Claude will restore your previous session context
 
-![Restore](./images/ccode90.png?raw=true "Restore")
+![Restore](./images/ccode91.png?raw=true "Restore")
 
 ---
 
