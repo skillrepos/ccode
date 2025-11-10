@@ -19,7 +19,7 @@ You'll see a welcome message and the prompt.
 **What we're doing:** Running the */login* command in Claude Code.  
 **Why:** We haven't authenticated yet.
 
-**Action:** In Claude Code at the prompt, type:
+**Action:** Hit *Enter* to dismiss the welcome message. In Claude Code at the prompt, type:
 ```
 /login
 ```
