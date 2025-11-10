@@ -176,6 +176,13 @@ You'll see a prompt to confirm the Rewind. After reading about the options, sele
 
 ---
 
+## Step 11: Exit
+
+**Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
+
+```
+exit
+```
 
 ## Lab Summary
 ✅ You've successfully:
@@ -217,7 +224,7 @@ You're now in default mode where Claude asks permission before file changes.
 Create a config.json file with database connection settings
 ```
 
-Notice how Claude asks permission before creating the file. Type `y` to accept.
+Notice how Claude asks permission before creating the file as we've seen before. Type `1` to accept.
 
 
 ![Creating config.json](./images/ccode24.png?raw=true "Creating config.json")
@@ -230,7 +237,8 @@ Notice how Claude asks permission before creating the file. Type `y` to accept.
 
 **Action:** Press `Shift+Tab` until you see *Plan mode*
 
-<br><br>
+![Activating plan mode](./images/ccode96.png?raw=true "Activating plan mode")
+
 
 ---
 ## Step 4: Prompt for a complex task
@@ -240,10 +248,12 @@ Notice how Claude asks permission before creating the file. Type `y` to accept.
 **Action:** Type:
 
 ```
-Create a complete user authentication system with login, signup, and password reset
+Create a basic user profile page with fields for name, email, and profile picture upload. 
 ```
 
-Claude will create a detailed plan before starting implementation.
+![Planning](./images/ccode98.png?raw=true "Planning")
+
+Claude will start creating a detailed plan before starting implementation.
 
 ---
 
@@ -251,31 +261,56 @@ Claude will create a detailed plan before starting implementation.
 **What we're doing:**  Responding to questions from Claude
 **Why:** Claude needs our input on some things before proceeding.
 
-**Action:** Read any questions that come up and select number of answer to proceed.
+**Action:** Read any questions that come up and select number of answer to proceed if single option for answer. If you can select multiple options, use arrow keys and space/Enter to select options. Then move on to next question using right arrow. Answer all questions and then move to *Submit* and press *Enter*. 
 
-![Responding to questions](./images/ccode26.png?raw=true "Responding to questions")
-
-
-![Responding to questions](./images/ccode27.png?raw=true "Responding to questions")
+![Responding to questions](./images/ccode99.png?raw=true "Responding to questions")
 
 
-![Responding to questions](./images/ccode28.png?raw=true "Responding to questions")
+![Responding to questions](./images/ccode100.png?raw=true "Responding to questions")
+
 
 ---
 
-## Step 6: Review and Modify the Plan
+## Step 6: Review the Plan
 **What we're doing:** Interacting with Claude's proposed plan.  
 **Why:** You can review plans before execution to ensure desired outcomes.
 
-**Action:** After Claude presents the plan, select option 1 to proceed and auto-accept edits.
+**Action:** After Claude presents the plan, you could modify it if you wanted by selecting *CTRL+G*. 
+1. Go ahead and select that key sequence to bring the plan up in the editor.
+2. After you're done reviewing it, you can close the file.
+3. Then select option 1 to proceed and auto-accept edits.
 
-![Reviewing plan](./images/ccode29.png?raw=true "Reviewing plan")
+![Reviewing plan](./images/ccode102.png?raw=true "Reviewing plan")
+
+![Approving plan](./images/ccode101.png?raw=true "Approving plan")
+
+**Note that you are now in *accept edits on* mode, but the original task will still run under *plan* mode.**
 
 ---
 
-## Step 7: Clear the Conversation
+## Step 7: View to-do list
+**What we're doing:** Monitoring the progress through the to-do list.  
+**Why:** Helps you understand what is done and what is left to be done.
+
+**Action:** While Claude Code is doing the implementation, hit *CTRL+T* to see the current state of the to-do list.
+
+```
+ctrl+t
+```
+
+![Viewing to-do list](./images/ccode103.png?raw=true "Viewing to-do list")
+
+---
+
+## Step 8: When done, clear the Conversation
 **What we're doing:** Using /clear to start fresh.  
 **Why:** Clearing context helps when switching between unrelated tasks.
+
+After a few minutes, Claude Code will be done and provide you a summary. It may ask if you want it to do additional tasks, but you can just ignore those.
+
+![Plan completed](./images/ccode104.png?raw=true "Plan completed")
+
+Now, let's clear the context.
 
 **Action:** Type:
 ```
@@ -286,18 +321,18 @@ Your conversation history is now cleared, giving you a clean slate.
 
 ---
 
-## Step 8: Try Edit Mode (Auto-Accept)
+## Step 8: Try YOLO Mode (Auto-Accept)
 **What we're doing:** Running Claude with automatic permission granting.  
 **Why:** This speeds up development when you trust Claude's actions.
 
-**Action:** Exit Claude (`exit`), then restart with:
+**Action:** Exit Claude (`exit`), then restart with the command below and use option 2 to accept the risk:
 ```bash
 claude --dangerously-skip-permissions
 ```
 
 ⚠️ **Note:** Use with caution! Claude won't ask before making changes.
 
-![YOLO](./images/ccode32.png?raw=true "YOLO")
+![YOLO](./images/ccode105.png?raw=true "YOLO")
 
 ---
 
@@ -307,10 +342,12 @@ claude --dangerously-skip-permissions
 
 **Action:** Type:
 ```
-Create a simple Express.js API with routes for users and products
+Create a simple To-Do list app wtih functionality to add and delete tasks
 ```
 
 Notice Claude creates all files without asking for permission.
+
+![YOLO](./images/ccode106.png?raw=true "YOLO")
 
 ---
 
@@ -325,6 +362,8 @@ claude -p "List all JavaScript files in the current directory"
 
 Claude executes and returns results without entering interactive mode.
 
+![headless](./images/ccode107.png?raw=true "headless")
+
 ---
 
 ## Step 11: Pipe Data to Claude
@@ -338,24 +377,10 @@ echo "function broken() { return }" | claude -p "Fix any syntax errors in this J
 
 Claude will analyze and fix the code directly.
 
----
-
-## Step 12: Combine Modes Effectively
-**What we're doing:** Using different modes for a complete workflow.  
-**Why:** Different tasks benefit from different modes.
-
-**Action:** Try this workflow:
-1. Start with Plan Mode (`Shift+Tab Tab`) for architecture
-2. Switch to default mode for careful implementation
-3. Use headless mode (`-p`) for quick fixes
-4. Document your approach
-
-**Action:** In terminal, type:  
-```
-Create a MODES.md file explaining when to use each Claude Code mode
-```
+![headless](./images/ccode108.png?raw=true "headless")
 
 ---
+
 
 ## Lab Summary
 ✅ You've successfully learned:
