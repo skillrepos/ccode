@@ -77,7 +77,7 @@ You'll see a welcome message and the prompt.
 
 <br><br>
 
-### g. After this, you should see an indication that login was successful and you are ready to use Claude Code!
+### g. After this, you should see an indication that login was successful, press *Enter* and you are ready to use Claude Code!
 <br>
 
 ![successful login](./images/ccode83.png?raw=true "Successful login") 
