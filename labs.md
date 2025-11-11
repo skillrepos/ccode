@@ -940,15 +940,13 @@ Set up Claude Code's VS Code extension, configure team workflows, and establish 
 
 ---
 
-## Step 1: Install VS Code Extension
-**What we're doing:** Adding Claude Code directly to your IDE.  
+## Step 1: Open VS Code Extension
+**What we're doing:** Opening Claude Code directly in your IDE.  
 **Why:** The extension provides visual feedback and seamless integration.
 
-**Action:** In VS Code:
-1. Open Extensions panel (`Ctrl+Shift+X`)
-2. Search for "Claude Code"
-3. Install "Claude Code for VS Code" by Anthropic
-4. Reload VS Code if prompted
+**Action:** In the upper right of the main Codespace frame, find the orange Claude symbol and click on it to open the extension view:
+
+![Open view](./images/ccode114.png?raw=true "Open view")
 
 ---
 
@@ -957,21 +955,21 @@ Set up Claude Code's VS Code extension, configure team workflows, and establish 
 **Why:** Proper configuration improves the development experience.
 
 **Action:** Open VS Code settings:
-1. Click on the *gear* icon in the lower left of the Codespace interface and select *Settings* from the menu.
-2. Search for "Claude Code"
+1. **Click on** the *gear* icon in the lower left of the Codespace interface and select *Settings* from the menu.
+2. In the *Settings* tab in the editor, search for "Claude Code"
 3. Review the settings. You don't need to change anything.
 
+![Open Settings](./images/ccode115.png?raw=true "Open Settings")
+
+![Find Settings](./images/ccode116.png?raw=true "Find Settings")
 
 ---
 
-## Step 3: Open Claude in VS Code
-**What we're doing:** Starting Claude within the IDE interface.  
+## Step 3: Prompt with Implied Context
+**What we're doing:** Prompting Claude within the IDE interface.  
 **Why:** IDE integration provides better context awareness.
 
-**Action:** 
-1. Open the Claude Code sidebar (icon in activity bar)
-2. Click "Start New Chat"
-3. Type: `Hello Claude, what files are in my current workspace?`
+**Action:** Type: `Hello Claude, what files are in my current workspace?`
 
 ![Files in workspace](./images/ccode67.png?raw=true "Files in workspace")
 
@@ -983,12 +981,16 @@ Set up Claude Code's VS Code extension, configure team workflows, and establish 
 **Why:** Visual planning helps understand complex changes.
 
 **Action:** In the Claude sidebar:
-1. Click the "Extended Thinking" toggle
-2. Ask: `Plan a RESTful API for a blog system with posts, comments, and users`
-3. Watch Claude's thinking process in real-time
+1. Turn *Thinking* on by clicking on the small icon that looks like a clock in the bottom row of the chat input.
+2. Activate *Plan mode* by clicking on the *mode* setting in the lower left of the chat input section.
+3. Ask: `Plan a RESTful API for a blog system with posts, comments, and users`
+4. Watch Claude's thinking process in real-time
 
+![Plan blog API](./images/ccode119.png?raw=true "Plan blog API")
 
-![Plan blog API](./images/ccode69.png?raw=true "Plan blog API")
+![Plan blog API](./images/ccode118.png?raw=true "Plan blog API")
+
+This will likely take longer than you want to wait, so you can stop it after it runs for a bit by hitting the (now) square submit button or, if it is prompting you for input, just type "stop".
 
 ---
 
@@ -997,12 +999,16 @@ Set up Claude Code's VS Code extension, configure team workflows, and establish 
 **Why:** This speeds up iterative development significantly.
 
 **Action:** 
-1. In Claude sidebar, toggle "Auto-accept edits"
+1. Click on the *mode* setting in the lower left of the chat input section until it gets to "Edit automatically".
 2. Ask: `Create a simple Express server in server.js`
 3. Watch changes apply automatically in your editor
 
 
 ![Enable auto-accept edits](./images/ccode72.png?raw=true "Enable auto-accept edits")
+
+Even with *Edit automatically* set, Claude may still decide to create a plan first and have you approve it. If it does, and you're good with the plan, you can just click one of the *Yes* options.
+
+![Review plan](./images/ccode120.png?raw=true "Review plan")
 
 ---
 
@@ -1010,7 +1016,7 @@ Set up Claude Code's VS Code extension, configure team workflows, and establish 
 **What we're doing:** Setting up shared configuration for team consistency.  
 **Why:** Teams need standardized Claude Code settings.
 
-**Action:** Open a new chat. Then have Claude create:
+**Action:** Open a new chat session with the "+" sign in the upper right of the VS Code extension area. Then have Claude create:
 ```
 Create .claude/team-config.json with:
 {
@@ -1027,40 +1033,16 @@ Create .claude/team-config.json with:
 }
 ```
 
-![create team config](./images/ccode74.png?raw=true "Create team config")
+![create team config](./images/ccode121.png?raw=true "Create team config")
+
+You may be prompted to allow some accesses.
+
+![create team config](./images/ccode122.png?raw=true "Create team config")
+
 
 ---
 
-## Step 7: Set Up Git Integration
-**What we're doing:** Configuring Claude to work with version control.  
-**Why:** Git integration enables Claude to understand project history.
-
-**Action:** Initialize git and create a workflow:
-```
-git init
-Create .claude/commands/pr.md that:
-1. Creates a feature branch
-2. Makes changes
-3. Commits with conventional commit messages
-4. Pushes and creates a pull request description
-```
-
----
-
-## Step 8: Configure GitHub Integration
-**What we're doing:** Enabling Claude's GitHub app for PR reviews.  
-**Why:** Automated PR reviews catch issues early.
-
-**Action:** In Claude, type:
-```
-/install-github-app
-```
-
-Follow the prompts to connect your GitHub account (if available).
-
----
-
-## Step 9: Create Shared Knowledge Base
+## Step 7: Create Shared Knowledge Base
 **What we're doing:** Building documentation for team-wide Claude use.  
 **Why:** Shared knowledge improves team efficiency.
 
@@ -1077,28 +1059,7 @@ Create CLAUDE-TEAM.md with:
 
 ---
 
-## Step 10: Set Up MCP Servers
-**What we're doing:** Connecting external tools via Model Context Protocol.  
-**Why:** MCP extends Claude's capabilities with external services.
-
-**Action:** Create MCP configuration:
-```
-Create .claude/mcp.json with example configuration for:
-{
-  "servers": {
-    "github": {
-      "command": "mcp-server-github",
-      "args": ["--repo", "team/project"]
-    }
-  }
-}
-```
-
-Note: Actual MCP server setup requires additional installation.
-
----
-
-## Step 11: Document Team Workflow
+## Step 8: Document Team Workflow
 **What we're doing:** Creating a guide for team Claude Code usage.  
 **Why:** Clear workflows prevent confusion and ensure consistency.
 
@@ -1117,10 +1078,9 @@ Create CLAUDE-WORKFLOW.md documenting:
 
 ## Lab Summary
 ✅ You've accomplished:
-- VS Code extension installation and configuration
+- VS Code extension configuration
 - Visual Plan Mode and auto-accept features
 - Team configuration setup
-- Git and GitHub integration
 - Shared knowledge base creation
 - Workflow documentation
 
