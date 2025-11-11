@@ -323,7 +323,7 @@ claude --dangerously-skip-permissions
 ```
 If you don't see the mode as **bypass permissions on** mode, use `Shift+Tab` to change the mode until you see that.
 
-We also have an alias for this that you can use in the future `claude-yolo`.
+We also have an alias for this that you can use in the future `claude-yolo` if you are in a terminal other than the starting one.
 
 ⚠️ **Note:** Use with caution! Claude won't ask before making changes.
 
@@ -386,7 +386,7 @@ Claude will analyze and fix the code directly.
 - Plan mode for complex task planning
 - Auto-accept mode for rapid development
 - Headless mode for automation
-- How to combine modes effectively
+
 
 ---
 
