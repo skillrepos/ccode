@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 3.1 - 11/11/25
+## Revision 3.2 - 11/11/25
 
 <br><br>
 
@@ -66,7 +66,7 @@ Claude will explain the JavaScript array operation.
 Create a simple hello.js file that prints "Hello from Claude Code!"
 ```
 
-Claude will create the file and show you the content in the diff above the terminal. You do not need to do anything in the diff area. Just select option 1 in the terminal where Claude is waiting.
+Claude will create the file and *may* show you the content in the diff above the terminal. You do not need to do anything in the diff area. Just select option 1 in the terminal where Claude is waiting.
 
 ![Initial file creation](./images/ccode86.png?raw=true "Initial file creation")
 
