@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 2.0 - 11/10/25
+## Revision 2.0 - 11/11/25
 
 **Follow the startup instructions in the README.md file IF NOT ALREADY DONE!**
 
@@ -18,10 +18,10 @@
 ## Lab Purpose
 Get familiar with Claude Code basic command-line interface. You'll learn how to execute your basic commands in Claude Code.
 
-<br><br>
 ---
+<br><br>
 
-## Step 1: Test Basic Interaction
+## 1: Test Basic Interaction
 **What we're doing:** Verifying Claude can respond to simple queries.  
 **Why:** This confirms the connection is working properly.
 
@@ -34,9 +34,11 @@ Claude should respond with information about its capabilities preceded by its th
 
 ![Initial prompt](./images/ccode84.png?raw=true "Initial prompt")
 
----
 
-## Step 2: Ask Claude to Explain a Code Snippet
+---
+<br><br>
+
+## 2: Ask Claude to Explain a Code Snippet
 **What we're doing:** Testing Claude's code understanding capabilities.  
 **Why:** Understanding code is a fundamental Claude Code feature.
 
@@ -50,8 +52,9 @@ Claude will explain the JavaScript array operation.
 ![Initial prompt](./images/ccode85.png?raw=true "Initial prompt")
 
 ---
+<br><br>
 
-## Step 3: Create Your First File with Claude
+## 3: Create Your First File with Claude
 **What we're doing:** Using Claude to generate a simple code file.  
 **Why:** File creation is a core feature for development workflows.
 
@@ -65,8 +68,9 @@ Claude will create the file and show you the content in the diff above the termi
 ![Initial file creation](./images/ccode86.png?raw=true "Initial file creation")
 
 ---
+<br><br>
 
-## Step 4: View the Created File
+## 4: View the Created File
 **What we're doing:** Verifying the file was created successfully.  
 **Why:** Understanding where Claude saves files is important.
 
@@ -81,8 +85,9 @@ You should see your new file and its contents.
 ![Initial file creation](./images/ccode87.png?raw=true "Initial file creation")
 
 ---
+<br><br>
 
-## Step 5: Ask Claude to Run the File
+## 5: Ask Claude to Run the File
 **What we're doing:** Having Claude execute the code it created.  
 **Why:** Claude can run commands and show output directly.
 
@@ -98,8 +103,9 @@ You'll see the output: "Hello from Claude Code!"
 ![Run file](./images/ccode89.png?raw=true "Run file")
 
 ---
+<br><br>
 
-## Step 6: Exit and Resume
+## 6: Exit and Resume
 **What we're doing:** Learning how to properly exit and resume sessions.  
 **Why:** You'll often need to pause and continue work later.
 
@@ -112,8 +118,9 @@ You'll see the output: "Hello from Claude Code!"
 ![Restore](./images/ccode91.png?raw=true "Restore")
 
 ---
+<br><br>
 
-## Step 7: Creating a second file
+## 7: Creating a second file
 **What we're doing:** Creating a second file for additional context.  
 **Why:** We want to learn more about resume.
 
@@ -128,8 +135,9 @@ Claude will create the file and show you the content in the diff above the termi
 
 
 ---
+<br><br>
 
-## Step 8: Redo
+## 8: Redo
 **What we're doing:** Redoing our command.  
 **Why:** We want to learn how to do redo a request.
 
@@ -141,8 +149,9 @@ Create a simple goodbye.py file that prints "Goodbye from Claude Code!"
 Claude will create the file and show you the content in the diff above the terminal. Once Claude generates it and prompts whether to continue, select 1 to proceed.
 
 ---
+<br><br>
 
-## Step 9: Exit
+## 9: Exit
 
 **Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
 
@@ -158,6 +167,11 @@ exit
 - Learned basic navigation and commands
 - Practiced session management
 
+<br><br>
+---
+## END OF LAB
+---
+<br><br>
 
 
 # Lab 2: Working with Claude Code Modes
@@ -167,6 +181,7 @@ exit
 Master Claude Code's different operating modes including default mode, plan mode, and auto-accept mode. Learn when and how to use each mode effectively for different development scenarios.
 
 ---
+<br><br>
 
 ## Step 1: Understand Default Mode and Enable YOLO mode
 **What we're doing:** Starting Claude in its standard interactive mode but with support to use YOLO.  
