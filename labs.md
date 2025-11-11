@@ -144,7 +144,7 @@ Claude will create the file and show you the content in the diff above the termi
 **What we're doing:** Redoing our command.  
 **Why:** We want to learn how to do redo a request.
 
-**Action:** You'll see the previous rejected operation message above the prompt area. Use the <up arrow> key to bring up the last prompt. Change the name of the file in the prompt from *goodbye.js* to *goodbye.py* to create a Python file instead. Hit *Enter*.
+**Action:** You'll see the previous rejected operation message above the prompt area. Use the `up arrow` key to bring up the last prompt. Change the name of the file in the prompt from *goodbye.js* to *goodbye.py* to create a Python file instead. Hit *Enter*.
 ```
 Create a simple goodbye.py file that prints "Goodbye from Claude Code!"
 ```
