@@ -13,6 +13,7 @@
 
 
 ---
+<br><br>
 
 # Lab 1: Introduction to Claude Code and Basic Setup
 ## Lab Purpose
@@ -175,8 +176,6 @@ exit
 
 
 # Lab 2: Working with Claude Code Modes
-**Difficulty:** Beginner
-
 ## Lab Purpose
 Master Claude Code's different operating modes including default mode, plan mode, and auto-accept mode. Learn when and how to use each mode effectively for different development scenarios.
 
@@ -377,11 +376,13 @@ Claude will analyze and fix the code directly.
 
 ---
 
+<br><br>
+---
+## END OF LAB
+---
+<br><br>
 
 # Lab 3: Built-in Commands and Context Management
-**Duration:** 10-12 minutes  
-**Difficulty:** Intermediate
-
 ## Lab Purpose
 Master Claude Code's built-in slash commands for managing conversations, context, and memory. Learn how to effectively manage long coding sessions and optimize token usage.
 
@@ -586,10 +587,14 @@ Read project-state.md and continue where we left off
 - Creating persistent memory with CLAUDE.md
 - Advanced context preservation techniques
 
-# Lab 4: Creating and Using Custom Commands
-**Duration:** 10-12 minutes  
-**Difficulty:** Intermediate
 
+<br><br>
+---
+## END OF LAB
+---
+<br><br>
+
+# Lab 4: Creating and Using Custom Commands
 ## Lab Purpose
 Learn how to create custom slash commands to automate repetitive tasks and establish project-specific workflows. Build reusable commands that enhance your development productivity.
 
@@ -759,9 +764,13 @@ Look for your custom commands under the *custom-commands* option in the displaye
 - Organize commands effectively
 
 
-# Lab 5: Agent Skills and Advanced Features
-**Difficulty:** Advanced
+<br><br>
+---
+## END OF LAB
+---
+<br><br>
 
+# Lab 5: Agent Skills and Advanced Features
 ## Lab Purpose
 Learn to create and use Agent Skills - modular capabilities that extend Claude's functionality with specialized knowledge and scripts. Build skills for document processing, API integration, and domain-specific tasks.
 
@@ -951,9 +960,14 @@ Watch Claude use skills, potentially delegate to subagents, and apply hooks.
 - Combining advanced features
 
 
-# Lab 6: VS Code Integration and Team Collaboration
-**Difficulty:** Intermediate
+<br><br>
+---
+## END OF LAB
+---
+<br><br>
 
+
+# Lab 6: VS Code Integration and Team Collaboration
 ## Lab Purpose
 Set up Claude Code's VS Code extension, configure team workflows, and establish best practices for collaborative development with Claude Code.
 
@@ -1111,3 +1125,9 @@ Create CLAUDE-WORKFLOW.md documenting:
 - Build custom workflows for your team
 - Explore advanced hook configurations
 
+
+<br><br>
+---
+## END OF LAB
+---
+<br><br>
