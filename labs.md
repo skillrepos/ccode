@@ -168,13 +168,13 @@ Master Claude Code's different operating modes including default mode, plan mode
 
 ---
 
-## Step 1: Understand Default Mode
-**What we're doing:** Starting Claude in its standard interactive mode.  
+## Step 1: Understand Default Mode and Enable YOLO mode
+**What we're doing:** Starting Claude in its standard interactive mode but with support to use YOLO.  
 **Why:** Default mode gives you full control with permission prompts for each action.
 
-**Action:** Start Claude normally:
+**Action:** Start Claude with the flag to enable YOLO in the future:
 ```bash
-claude
+claude --allow-dangerously-skip-permissions 
 ```
 
 You're now in default mode where Claude asks permission before file changes.
@@ -292,13 +292,17 @@ Your conversation history is now cleared, giving you a clean slate.
 **Why:** This speeds up development when you trust Claude's actions.
 
 **Action:** Exit Claude (`exit`), then restart with the command below and use option 2 to accept the risk:
+
 ```bash
 claude --dangerously-skip-permissions
 ```
+Because we started claude with the option to use YOLO in step 1, when we start it with this flag, it starts up in **bypass permissions on** mode.
+
+We also have an alias for this that you can use in the future `claude-yolo`.
 
 ⚠️ **Note:** Use with caution! Claude won't ask before making changes.
 
-![YOLO](./images/ccode105.png?raw=true "YOLO")
+![YOLO](./images/ccode123.png?raw=true "YOLO")
 
 ---
 
