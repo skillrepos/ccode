@@ -35,7 +35,7 @@
 
   "postCreateCommand": "npm install -g @anthropic-ai/claude-code && cd task-api && npm install",
 
-  "postAttachCommand": "cp extra/.claude.json ~/ && echo alias claude-yolo=\"claude --dangerously-skip-permissions\" >> ~/.bash_aliases",
+  "postAttachCommand": "cp extra/.claude.json ~/ && echo alias claude-yolo=\\\"claude --dangerously-skip-permissions\\\" >> ~/.bash_aliases",
 
   "forwardPorts": [3000],
 
