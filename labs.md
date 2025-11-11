@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 3.0 - 11/11/25
+## Revision 3.1 - 11/11/25
 
 <br><br>
 
@@ -396,9 +396,9 @@ Claude will analyze and fix the code directly.
 ---
 <br><br>
 
----
-### NOTE: From here on, you can use the `claude --dangerously-skip-permissions` mode if you want to avoid having to respond to most prompts. For convenience, if working in the codespace, there is a shortcut alias for this setup:  `claude-yolo`.
----
+
+**NOTE:** From here on, you can use the `claude --dangerously-skip-permissions` mode if you want to avoid having to respond to most prompts. For convenience, if working in the codespace, there is a shortcut alias for this setup:  `claude-yolo`. You must be in a terminal other than the original one that you started with to use this.
+
 <br><br>
 
 # Lab 3: Built-in Commands and Context Management
