@@ -397,7 +397,7 @@ Claude will analyze and fix the code directly.
 <br><br>
 
 ---
-# NOTE: From here on, you can use the `claude --dangerously-skip-permissions` mode if you want to avoid having to respond to most prompts. For convenience, if working in the codespace, there is a shortcut alias for this setup:  `claude-yolo`.
+### NOTE: From here on, you can use the `claude --dangerously-skip-permissions` mode if you want to avoid having to respond to most prompts. For convenience, if working in the codespace, there is a shortcut alias for this setup:  `claude-yolo`.
 ---
 <br><br>
 
