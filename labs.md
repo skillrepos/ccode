@@ -184,13 +184,13 @@ Master Claude Code's different operating modes including default mode, plan mode
 ---
 <br><br>
 
-## 1: Understand Default Mode and Enable YOLO mode
-**What we're doing:** Starting Claude in its standard interactive mode but with support to use YOLO.  
+## 1: Understand Default Mode 
+**What we're doing:** Starting Claude in its standard interactive mode.  
 **Why:** Default mode gives you full control with permission prompts for each action.
 
-**Action:** Start Claude with the flag to enable YOLO in the future:
+**Action:** Start Claude:
 ```bash
-claude --allow-dangerously-skip-permissions 
+claude 
 ```
 
 You're now in default mode where Claude asks permission before file changes.
@@ -263,7 +263,7 @@ Claude will start creating a detailed plan before starting implementation.
 **What we're doing:** Interacting with Claude's proposed plan.  
 **Why:** You can review plans before execution to ensure desired outcomes.
 
-**Action:** After Claude presents the plan, you could modify it if you wanted by selecting *CTRL+G*. 
+**Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
 1. Go ahead and select that key sequence to bring the plan up in the editor.
 2. After you're done reviewing it, you can close the file.
 3. Then select option 1 to proceed and auto-accept edits.
@@ -281,7 +281,7 @@ Claude will start creating a detailed plan before starting implementation.
 **What we're doing:** Monitoring the progress through the to-do list.  
 **Why:** Helps you understand what is done and what is left to be done.
 
-**Action:** While Claude Code is doing the implementation, hit *CTRL+T* to see the current state of the to-do list.
+**Action:** While Claude Code is doing the implementation, hit `ctrl+t` to see the current state of the to-do list.
 
 ```
 ctrl+t
@@ -321,7 +321,7 @@ Your conversation history is now cleared, giving you a clean slate.
 ```bash
 claude --dangerously-skip-permissions
 ```
-Because we started claude with the option to use YOLO in step 1, when we start it with this flag, it starts up in **bypass permissions on** mode.
+If you don't see the mode as **bypass permissions on** mode, use `Shift+Tab` to change the mode until you see that.
 
 We also have an alias for this that you can use in the future `claude-yolo`.
 
