@@ -1,7 +1,9 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 2.0 - 11/11/25
+## Revision 3.0 - 11/11/25
+
+<br><br>
 
 **Follow the startup instructions in the README.md file IF NOT ALREADY DONE!**
 
@@ -182,7 +184,7 @@ Master Claude Code's different operating modes including default mode, plan mode
 ---
 <br><br>
 
-## Step 1: Understand Default Mode and Enable YOLO mode
+## 1: Understand Default Mode and Enable YOLO mode
 **What we're doing:** Starting Claude in its standard interactive mode but with support to use YOLO.  
 **Why:** Default mode gives you full control with permission prompts for each action.
 
@@ -194,8 +196,9 @@ claude --allow-dangerously-skip-permissions
 You're now in default mode where Claude asks permission before file changes.
 
 ---
+<br><br>
 
-## Step 2: Test Default Mode Permissions
+## 2: Test Default Mode Permissions
 **What we're doing:** Creating a file to see permission prompts in action.  
 **Why:** Understanding permission flow helps you maintain control over changes.
 
@@ -210,8 +213,9 @@ Notice how Claude asks permission before creating the file as we've seen before.
 ![Creating config.json](./images/ccode24.png?raw=true "Creating config.json")
 
 ---
+<br><br>
 
-## Step 3: Activate Plan Mode
+## 3: Activate Plan Mode
 **What we're doing:** Switching to Plan Mode for complex task planning.  
 **Why:** Plan Mode helps Claude think through multi-step tasks before executing.
 
@@ -221,7 +225,9 @@ Notice how Claude asks permission before creating the file as we've seen before.
 
 
 ---
-## Step 4: Prompt for a complex task
+<br><br>
+
+## 4: Prompt for a complex task
 **What we're doing:** Prompting Claude for complex task planning.  
 **Why:** Plan Mode helps Claude think through multi-step tasks before executing.
 
@@ -236,8 +242,9 @@ Create a basic user profile page with fields for name, email, and profile pictur
 Claude will start creating a detailed plan before starting implementation.
 
 ---
+<br><br>
 
-## Step 5: Respond to questions
+## 5: Respond to questions
 **What we're doing:**  Responding to questions from Claude
 **Why:** Claude needs our input on some things before proceeding.
 
@@ -250,8 +257,9 @@ Claude will start creating a detailed plan before starting implementation.
 
 
 ---
+<br><br>
 
-## Step 6: Review the Plan
+## 6: Review the Plan
 **What we're doing:** Interacting with Claude's proposed plan.  
 **Why:** You can review plans before execution to ensure desired outcomes.
 
@@ -267,8 +275,9 @@ Claude will start creating a detailed plan before starting implementation.
 **Note that you are now in *accept edits on* mode, but the original task will still run under *plan* mode.**
 
 ---
+<br><br>
 
-## Step 7: View to-do list
+## 7: View to-do list
 **What we're doing:** Monitoring the progress through the to-do list.  
 **Why:** Helps you understand what is done and what is left to be done.
 
@@ -281,8 +290,9 @@ ctrl+t
 ![Viewing to-do list](./images/ccode103.png?raw=true "Viewing to-do list")
 
 ---
+<br><br>
 
-## Step 8: When done, clear the Conversation
+## 8: When done, clear the Conversation
 **What we're doing:** Using /clear to start fresh.  
 **Why:** Clearing context helps when switching between unrelated tasks.
 
@@ -300,8 +310,9 @@ Now, let's clear the context.
 Your conversation history is now cleared, giving you a clean slate.
 
 ---
+<br><br>
 
-## Step 9: Try YOLO Mode (Auto-Accept)
+## 9: Try YOLO Mode (Auto-Accept)
 **What we're doing:** Running Claude with automatic permission granting.  
 **Why:** This speeds up development when you trust Claude's actions.
 
@@ -319,8 +330,9 @@ We also have an alias for this that you can use in the future `claude-yolo`.
 ![YOLO](./images/ccode123.png?raw=true "YOLO")
 
 ---
+<br><br>
 
-## Step 10: Test Auto-Accept Mode
+## 10: Test Auto-Accept Mode
 **What we're doing:** Creating multiple files without interruption.  
 **Why:** See how much faster development is without permission prompts.
 
@@ -334,8 +346,9 @@ Notice Claude creates all files without asking for permission.
 ![YOLO](./images/ccode106.png?raw=true "YOLO")
 
 ---
+<br><br>
 
-## Step 11: Use Headless Mode for Scripts
+## 11: Use Headless Mode for Scripts
 **What we're doing:** Running Claude in non-interactive mode.  
 **Why:** Headless mode is perfect for automation and CI/CD pipelines.
 
@@ -349,8 +362,9 @@ Claude executes and returns results without entering interactive mode.
 ![headless](./images/ccode107.png?raw=true "headless")
 
 ---
+<br><br>
 
-## Step 12: Pipe Data to Claude
+## 12: Pipe Data to Claude
 **What we're doing:** Sending data directly to Claude via pipes.  
 **Why:** This enables powerful command-line integrations.
 
@@ -364,7 +378,7 @@ Claude will analyze and fix the code directly.
 ![headless](./images/ccode108.png?raw=true "headless")
 
 ---
-
+<br><br>
 
 ## Lab Summary
 ✅ You've successfully learned:
@@ -382,13 +396,19 @@ Claude will analyze and fix the code directly.
 ---
 <br><br>
 
+---
+# NOTE: From here on, you can use the `claude --dangerously-skip-permissions` mode if you want to avoid having to respond to most prompts. For convenience, if working in the codespace, there is a shortcut alias for this setup:  `claude-yolo`.
+---
+<br><br>
+
 # Lab 3: Built-in Commands and Context Management
 ## Lab Purpose
 Master Claude Code's built-in slash commands for managing conversations, context, and memory. Learn how to effectively manage long coding sessions and optimize token usage.
 
 ---
+<br><br>
 
-## Step 1: Start Fresh with Claude
+## 1: Start Fresh with Claude
 **What we're doing:** Beginning a new Claude session to explore commands.  
 **Why:** Starting fresh ensures we have a clean context for learning.
 
@@ -398,8 +418,9 @@ claude
 ```
 
 ---
+<br><br>
 
-## Step 2: View Available Commands
+## 2: View Available Commands
 **What we're doing:** Discovering all built-in slash commands.  
 **Why:** Knowing available commands improves your workflow efficiency.
 
@@ -416,8 +437,9 @@ Review the list including /clear, /compact, /rewind, /model, and others.
 Use *Esc* to exit when done.
 
 ---
+<br><br>
 
-## Step 3: Create Some Context
+## 3: Create Some Context
 **What we're doing:** Building up conversation history to practice management.  
 **Why:** We need content to demonstrate context management commands.
 
@@ -432,8 +454,9 @@ Use *Esc* to exit when done.
 Let Claude complete each task to build up context.
 
 ---
+<br><br>
 
-## Step 4: Check Context Usage
+## 4: Check Context Usage
 **What we're doing:** Understanding how much context we're using.  
 **Why:** Managing context prevents hitting token limits in long sessions.
 
@@ -448,8 +471,9 @@ You'll see information about current token usage and remaining capacity.
 ![context command](./images/ccode33.png?raw=true "context command")
 
 ---
+<br><br>
 
-## Step 5: Compact the Conversation
+## 5: Compact the Conversation
 **What we're doing:** Condensing conversation history while preserving key information.  
 **Why:** Compacting extends how long you can work without losing context.
 
@@ -464,8 +488,9 @@ Claude will summarize earlier parts while keeping specified information.
 ![compact](./images/ccode36.png?raw=true "compact")
 
 ---
+<br><br>
 
-## Step 6: Use Rewind Feature
+## 6: Use Rewind Feature
 **What we're doing:** Rolling back to a previous state in the conversation.  
 **Why:** Rewind lets you undo mistakes or explore different approaches.
 
@@ -483,8 +508,9 @@ Claude will summarize earlier parts while keeping specified information.
 ![rewind](./images/ccode35.png?raw=true "rewind")
 
 ---
+<br><br>
 
-## Step 7: Switch Models
+## 7: Switch Models
 **What we're doing:** Changing between different Claude models.  
 **Why:** Different models offer various speed/capability trade-offs.
 
@@ -501,8 +527,9 @@ Select a different model if you want or just leave it at the default. Opus is no
 ![model](./images/ccode38.png?raw=true "model")
 
 ---
+<br><br>
 
-## Step 8: Create a Project Memory File
+## 8: Create a Project Memory File
 **What we're doing:** Setting up a CLAUDE.md file for project context.  
 **Why:** CLAUDE.md provides persistent project knowledge across sessions.
 
@@ -518,8 +545,9 @@ This file will be automatically read in future sessions.
 ![claude.md](./images/ccode40.png?raw=true "claude.md")
 
 ---
+<br><br>
 
-## Step 9: Test Memory Persistence
+## 9: Test Memory Persistence
 **What we're doing:** Verifying that Claude remembers project context.  
 **Why:** Persistent memory improves continuity across sessions.
 
@@ -533,8 +561,9 @@ Claude should recall information from the CLAUDE.md file.
 ![claude.md](./images/ccode42.png?raw=true "claude.md")
 
 ---
+<br><br>
 
-## Step 10: Create a Session Summary
+## 10: Create a Session Summary
 **What we're doing:** Documenting our work before ending the session.  
 **Why:** Summaries help you resume work effectively later.
 
@@ -555,8 +584,9 @@ cat session-notes.md
 ```
 
 ---
+<br><br>
 
-## Step 11: (Optional if you have time) Advanced Context Trick
+## 11: (Optional if you have time) Advanced Context Trick
 **What we're doing:** Using external files to preserve complex context.  
 **Why:** This technique helps with very long projects.
 
@@ -577,6 +607,7 @@ Read project-state.md and continue where we left off
 ![project-state.md](./images/ccode47.png?raw=true "project-state.md")
 
 ---
+<br><br>
 
 ## Lab Summary
 ✅ You've mastered:
@@ -599,8 +630,9 @@ Read project-state.md and continue where we left off
 Learn how to create custom slash commands to automate repetitive tasks and establish project-specific workflows. Build reusable commands that enhance your development productivity.
 
 ---
+<br><br>
 
-## Step 1: Create Commands Directory
+## 1: Create Commands Directory
 **What we're doing:** Setting up the folder structure for global and project-specific custom commands.  
 **Why:** Claude looks for custom commands in specific directories.
 
@@ -611,8 +643,9 @@ mkdir -p .claude/commands
 ```
 
 ---
+<br><br>
 
-## Step 2: Create a Command Template
+## 2: Create a Command Template
 **What we're doing:** Bringing over a template for future commands.  
 **Why:** Templates ensure consistency across team commands.
 
@@ -624,8 +657,9 @@ code extra/commands/test.md
 ```
 
 ----
+<br><br>
 
-## Step 3: Add a New Global Command with Arguments
+## 3: Add a New Global Command with Arguments
 **What we're doing:** Creating a command that accepts parameters.  
 **Why:** Parameterized commands are more flexible and reusable.
 
@@ -637,8 +671,9 @@ code extra/commands/test.md
 ```
 
 ---
+<br><br>
 
-## Step 4: Test Your Custom Command
+## 4: Test Your Custom Command
 **What we're doing:** Executing the custom command we just created.  
 **Why:** Verifying commands work as expected before relying on them.
 
@@ -660,8 +695,9 @@ Then try with arguments:
 **This step will take a long time to run. You do NOT need to wait for this to finish to continue. While this is running, you can open another terminal and proceed with the next step.**
 
 ---
+<br><br>
 
-## Step 4: Add a Git Workflow Command
+## 4: Add a Git Workflow Command
 **What we're doing:** Building a command for common git operations.  
 **Why:** Streamlining git workflows reduces context switching.
 
@@ -674,8 +710,9 @@ code extra/commands/commit.md
 ```
 
 ---
+<br><br>
 
-## Step 5: Preview the file for the Git Workflow Command
+## 5: Preview the file for the Git Workflow Command
 **What we're doing:** Previewing the command definition.
 **Why:** This version can be easier to read and understand.
 
@@ -686,8 +723,9 @@ code extra/commands/commit.md
 ![Preview command](./images/ccode112.png?raw=true "Preview command")
 
 ---
+<br><br>
 
-## Step 6: Have Claude Code Create a Documentation Command
+## 6: Have Claude Code Create a Documentation Command
 **What we're doing:** Automating documentation generation.  
 **Why:** Consistent documentation improves code maintainability.
 
@@ -708,8 +746,9 @@ Analyze the file $ARGUMENTS and create:
 ![Completed command](./images/ccode54.png?raw=true "Completed command")
 
 ---
+<br><br>
 
-## Step 7: Add a Project-Specific Refactoring Command
+## 7: Add a Project-Specific Refactoring Command
 **What we're doing:** Creating a command for code improvement.  
 **Why:** Systematic refactoring improves code quality.
 
@@ -720,11 +759,10 @@ cp extra/commands/refactor.md .claude/commands/
 code extra/commands/refactor.md
 ```
 
-
 ---
+<br><br>
 
-
-## Step 8: List and Verify Commands
+## 8: List and Verify Commands
 **What we're doing:** Confirming all custom commands are recognized.  
 **Why:** Ensures Claude can discover and use your commands.
 
@@ -739,7 +777,7 @@ Look for your custom commands under the *custom-commands* option in the displaye
 ![Showing custom commands](./images/ccode56.png?raw=true "Showing custom commands")
 
 ---
-
+<br><br>
 
 ## (Optional to do later) Chain Commands Together
 **What we're doing:** Using multiple commands in sequence.  
@@ -754,6 +792,7 @@ Look for your custom commands under the *custom-commands* option in the displaye
 ```
 
 ---
+<br><br>
 
 ## Lab Summary
 ✅ You've learned to:
@@ -775,8 +814,9 @@ Look for your custom commands under the *custom-commands* option in the displaye
 Learn to create and use Agent Skills - modular capabilities that extend Claude's functionality with specialized knowledge and scripts. Build skills for document processing, API integration, and domain-specific tasks.
 
 ---
+<br><br>
 
-## Step 1: Understand Skills vs Commands
+## 1: Understand Skills vs Commands
 **What we're doing:** Learning the key differences between skills and slash commands.  
 **Why:** Skills are AI-invoked based on context, while commands are user-invoked.
 
@@ -788,8 +828,9 @@ Explain the difference between Agent Skills in .claude/skills/ and slash command
 ![Explain difference](./images/ccode58.png?raw=true "Explain difference")
 
 ---
+<br><br>
 
-## Step 2: Create Skills Directory
+## 2: Create Skills Directory
 **What we're doing:** Setting up the folder structure for Agent Skills.  
 **Why:** Skills need proper organization for Claude to discover them.
 
@@ -802,8 +843,9 @@ mkdir -p .claude/agents
 ```
 
 ---
+<br><br>
 
-## Step 3: Add Your First Skill
+## 3: Add Your First Skill
 **What we're doing:** Adding a skill for API testing and documentation.  
 **Why:** Skills package expertise that Claude can use autonomously.
 
@@ -823,8 +865,9 @@ code extra/skills/api-tester/SKILL.md
 ```
 
 ---
+<br><br>
 
-## Step 4: Add Scripts to Your Skill
+## 4: Add Scripts to Your Skill
 **What we're doing:** Including executable scripts within a skill.  
 **Why:** Skills can bundle code for complex operations.
 
@@ -842,10 +885,10 @@ cp extra/skills/api-tester/scripts/test-api.py .claude/skills/api-tester/scripts
 code extra/skills/api-tester/scripts/test-api.py
 ```
 
-
 ---
+<br><br>
 
-## Step 5: Test Skill Activation
+## 5: Test Skill Activation
 **What we're doing:** Verifying Claude recognizes and uses the skill.  
 **Why:** Skills should activate automatically based on context.
 
@@ -866,8 +909,9 @@ Claude may automatically use your api-tester skill, or...
 You can observe as it proceeds to use the new skill to test the API.
 
 ---
+<br><br>
 
-## Step 6: Have Claude Create a Database Helper Skill
+## 6: Have Claude Create a Database Helper Skill
 **What we're doing:** Building a skill for database operations.  
 **Why:** Complex database tasks benefit from specialized instructions.
 
@@ -884,8 +928,9 @@ Include example queries and best practices
 **You do not need to wait till this is completed to proceed. You can switch to another terminal and go to step 7.**
 
 ---
+<br><br>
 
-## Step 7: Add Subagents
+## 7: Add Subagents
 **What we're doing:** Creating specialized subagents for focused tasks.  
 **Why:** Subagents handle specific responsibilities with dedicated context.
 
@@ -900,8 +945,9 @@ code extra/agents/test-runner.md
 ```
 
 ---
+<br><br>
 
-## Step 8: Configure Hooks
+## 8: Configure Hooks
 **What we're doing:** Setting up automated actions at specific points.  
 **Why:** Hooks enforce standards and automate repetitive checks.
 
@@ -927,6 +973,7 @@ Create .claude/hooks.json with:
 ![Configuring hooks](./images/ccode64.png?raw=true "Configuring hooks")
 
 ---
+<br><br>
 
 ## Optional (to do when time allows and all other steps have completed): Test the Complete System
 **What we're doing:** Using skills, subagents, and hooks together.  
@@ -950,6 +997,7 @@ Watch Claude use skills, potentially delegate to subagents, and apply hooks.
 ![Complete system](./images/ccode65.png?raw=true "Complete system")
 
 ---
+<br><br>
 
 ## Lab Summary
 ✅ You've mastered:
@@ -972,8 +1020,9 @@ Watch Claude use skills, potentially delegate to subagents, and apply hooks.
 Set up Claude Code's VS Code extension, configure team workflows, and establish best practices for collaborative development with Claude Code.
 
 ---
+<br><br>
 
-## Step 1: Open VS Code Extension
+## 1: Open VS Code Extension
 **What we're doing:** Opening Claude Code directly in your IDE.  
 **Why:** The extension provides visual feedback and seamless integration.
 
@@ -982,8 +1031,9 @@ Set up Claude Code's VS Code extension, configure team workflows, and establish 
 ![Open view](./images/ccode114.png?raw=true "Open view")
 
 ---
+<br><br>
 
-## Step 2: Review Extension Settings
+## 2: Review Extension Settings
 **What we're doing:** Reviewing the extension's settings.  
 **Why:** Proper configuration improves the development experience.
 
@@ -997,8 +1047,9 @@ Set up Claude Code's VS Code extension, configure team workflows, and establish 
 ![Find Settings](./images/ccode116.png?raw=true "Find Settings")
 
 ---
+<br><br>
 
-## Step 3: Prompt with Implied Context
+## 3: Prompt with Implied Context
 **What we're doing:** Prompting Claude within the IDE interface.  
 **Why:** IDE integration provides better context awareness.
 
@@ -1008,8 +1059,9 @@ Set up Claude Code's VS Code extension, configure team workflows, and establish 
 
 
 ---
+<br><br>
 
-## Step 4: Use Plan Mode in VS Code
+## 4: Use Plan Mode in VS Code
 **What we're doing:** Activating visual Plan Mode in the extension.  
 **Why:** Visual planning helps understand complex changes.
 
@@ -1026,8 +1078,9 @@ Set up Claude Code's VS Code extension, configure team workflows, and establish 
 This will likely take longer than you want to wait, so you can stop it after it runs for a bit by hitting the (now) square submit button or, if it is prompting you for input, just type "stop".
 
 ---
+<br><br>
 
-## Step 5: Enable Auto-Accept Edits
+## 5: Enable Auto-Accept Edits
 **What we're doing:** Allowing Claude to make changes without prompts.  
 **Why:** This speeds up iterative development significantly.
 
@@ -1044,8 +1097,9 @@ Even with *Edit automatically* set, Claude may still decide to create a plan fir
 ![Review plan](./images/ccode120.png?raw=true "Review plan")
 
 ---
+<br><br>
 
-## Step 6: Create Team Configuration
+## 6: Create Team Configuration
 **What we're doing:** Setting up shared configuration for team consistency.  
 **Why:** Teams need standardized Claude Code settings.
 
@@ -1072,10 +1126,10 @@ You may be prompted to allow some accesses.
 
 ![create team config](./images/ccode122.png?raw=true "Create team config")
 
-
 ---
+<br><br>
 
-## Step 7: Create Shared Knowledge Base
+## 7: Create Shared Knowledge Base
 **What we're doing:** Building documentation for team-wide Claude use.  
 **Why:** Shared knowledge improves team efficiency.
 
@@ -1091,8 +1145,9 @@ Create CLAUDE-TEAM.md with:
 ```
 
 ---
+<br><br>
 
-## Step 8: Document Team Workflow
+## 8: Document Team Workflow
 **What we're doing:** Creating a guide for team Claude Code usage.  
 **Why:** Clear workflows prevent confusion and ensure consistency.
 
@@ -1108,6 +1163,7 @@ Create CLAUDE-WORKFLOW.md documenting:
 ```
 
 ---
+<br><br>
 
 ## Lab Summary
 ✅ You've accomplished:
