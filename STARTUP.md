@@ -7,10 +7,10 @@
 claude
 ```
 
-You'll see a welcome message and the prompt.
+You'll see a welcome message and some update information.
 
 
-![startup](./images/ccode78.png?raw=true "Startup")
+![startup](./images/ccode179.png?raw=true "Startup")
 
 <br><br>
 ---
