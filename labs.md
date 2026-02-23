@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 3.2 - 11/11/25
+## Revision 4.2 - 02/23/26
 
 <br><br>
 
