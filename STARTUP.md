@@ -84,3 +84,22 @@ You'll see a welcome message and some update information.
 
 <br><br>
 
+## Step 4: Change the model
+**What we're doing:** Running the */model* command in Claude Code.  
+**Why:** Use a cheaper model since we're doing simple tasks.
+
+**Action:** In Claude Code at the prompt, type:
+```
+/model
+```
+In the list that comes up, type "3" or use the arrow keys to move the pointer to "3" and hit *Enter*.
+
+![login](./images/ccode181.png?raw=true "login")
+
+You should see an indicator that the model was set to *claude-sonnet-4-6*.
+
+<br><br>
+
+### You're now ready for the labs!
+
+<br><br>
