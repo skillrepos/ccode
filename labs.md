@@ -184,13 +184,13 @@ Master Claude Code's different operating modes including default mode, plan mode
 ---
 <br><br>
 
-## 1: Understand Default Mode 
-**What we're doing:** Starting Claude in its standard interactive mode.  
+## 1: Understand Default Mode 
+**What we're doing:** Starting Claude in its standard interactive mode.  
 **Why:** Default mode gives you full control with permission prompts for each action.
 
 **Action:** Start Claude:
 ```bash
-claude 
+claude 
 ```
 
 You're now in default mode where Claude asks permission before file changes.
@@ -199,7 +199,7 @@ You're now in default mode where Claude asks permission before file changes.
 <br><br>
 
 ## 2: Test Default Mode Permissions
-**What we're doing:** Creating a file to see permission prompts in action.  
+**What we're doing:** Creating a file to see permission prompts in action.  
 **Why:** Understanding permission flow helps you maintain control over changes.
 
 **Action:** Type:
@@ -216,7 +216,7 @@ Notice how Claude asks permission before creating the file as we've seen before.
 <br><br>
 
 ## 3: Activate Plan Mode
-**What we're doing:** Switching to Plan Mode for complex task planning.  
+**What we're doing:** Switching to Plan Mode for complex task planning.  
 **Why:** Plan Mode helps Claude think through multi-step tasks before executing.
 
 **Action:** Press `Shift+Tab` until you see *Plan mode*
@@ -228,13 +228,13 @@ Notice how Claude asks permission before creating the file as we've seen before.
 <br><br>
 
 ## 4: Prompt for a complex task
-**What we're doing:** Prompting Claude for complex task planning.  
+**What we're doing:** Prompting Claude for complex task planning.  
 **Why:** Plan Mode helps Claude think through multi-step tasks before executing.
 
 **Action:** Type:
 
 ```
-Create a basic user profile page with fields for name, email, and profile picture upload. 
+Create a basic user profile page with fields for name, email, and profile picture upload. 
 ```
 
 ![Planning](./images/ccode98.png?raw=true "Planning")
@@ -245,7 +245,7 @@ Claude will start creating a detailed plan before starting implementation.
 <br><br>
 
 ## 5: Respond to questions
-**What we're doing:**  Responding to questions from Claude
+**What we're doing:**  Responding to questions from Claude
 **Why:** Claude needs our input on some things before proceeding.
 
 **Action:** Read any questions that come up and select number of answer to proceed if single option for answer. (To save time and complexity, it is recommended to use the recommended/simplest option.) If you can select multiple options, use arrow keys and space/Enter to select options. Then move on to next question using right arrow. Answer all questions and then move to *Submit* and press *Enter*. If you want to see more of Claude's *thinking* during this process, press *ctrl+o".
@@ -260,10 +260,10 @@ Claude will start creating a detailed plan before starting implementation.
 <br><br>
 
 ## 6: Review the Plan
-**What we're doing:** Interacting with Claude's proposed plan.  
+**What we're doing:** Interacting with Claude's proposed plan.  
 **Why:** You can review plans before execution to ensure desired outcomes.
 
-**Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
+**Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
 1. Go ahead and select that key sequence to bring the plan up in the editor.
 2. (Optional) To see the preview version of the plan (if you're in VS Code, you can right-click and select *Open Preview*).
 3. After you're done reviewing it, you can close the file (close the original file if you also opened a preview version).
@@ -279,7 +279,7 @@ Claude will start creating a detailed plan before starting implementation.
 <br><br>
 
 ## 7: View to-do list
-**What we're doing:** Monitoring the progress through the to-do list.  
+**What we're doing:** Monitoring the progress through the to-do list.  
 **Why:** Helps you understand what is done and what is left to be done.
 
 **Action:** While Claude Code is doing the implementation, hit `ctrl+t` to see the current state of the to-do list.
@@ -294,7 +294,7 @@ ctrl+t
 <br><br>
 
 ## 8: When done, clear the Conversation
-**What we're doing:** Using /clear to start fresh.  
+**What we're doing:** Using /clear to start fresh.  
 **Why:** Clearing context helps when switching between unrelated tasks.
 
 After a few minutes, Claude Code will be done and provide you a summary. It may ask if you want it to do additional tasks, but you can just ignore those.
@@ -314,7 +314,7 @@ Your conversation history is now cleared, giving you a clean slate.
 <br><br>
 
 ## 9: Try YOLO Mode (Auto-Accept)
-**What we're doing:** Running Claude with automatic permission granting.  
+**What we're doing:** Running Claude with automatic permission granting.  
 **Why:** This speeds up development when you trust Claude's actions.
 
 **Action:** Exit Claude (`exit`), then restart with the command below and **use option 2** to accept the risk:
@@ -337,7 +337,7 @@ We also have an alias for this that you can use in the future `claude-yolo` if y
 <br><br>
 
 ## 10: Test Auto-Accept Mode
-**What we're doing:** Creating multiple files without interruption.  
+**What we're doing:** Creating multiple files without interruption.  
 **Why:** See how much faster development is without permission prompts.
 
 **Action:** Type:
@@ -353,7 +353,7 @@ Notice Claude creates all files without asking for permission.
 <br><br>
 
 ## 11: Use Headless Mode for Scripts
-**What we're doing:** Running Claude in non-interactive mode.  
+**What we're doing:** Running Claude in non-interactive mode.  
 **Why:** Headless mode is perfect for automation and CI/CD pipelines.
 
 **Action:** Exit Claude and run:
@@ -369,7 +369,7 @@ Claude executes and returns results without entering interactive mode.
 <br><br>
 
 ## 12: Pipe Data to Claude
-**What we're doing:** Sending data directly to Claude via pipes.  
+**What we're doing:** Sending data directly to Claude via pipes.  
 **Why:** This enables powerful command-line integrations.
 
 **Action:** In terminal, type:
@@ -399,7 +399,6 @@ Claude will analyze the code and reply as best it can, given the limited context
 ## END OF LAB
 ---
 <br><br>
-
 
 **NOTE:** From here on, you can use the `claude --dangerously-skip-permissions` mode if you want to avoid having to respond to most prompts. For convenience, if working in the codespace, there is a shortcut alias for this setup:  `claude-yolo`. You must be in a terminal other than the original one that you started with to use this.
 
