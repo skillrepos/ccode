@@ -552,6 +552,8 @@ Learn how to create custom slash commands to automate repetitive tasks and estab
 **What we're doing:** Setting up the folder structure for global and project-specific custom commands.  
 **Why:** Claude looks for custom commands in specific directories.
 
+> **Terminology note:** Commands are reusable prompts that run inline in the main conversation. Unlike agents (which run in their own context), a command is a predefined workflow anyone on the team can invoke with a single slash.
+
 **Action:** In terminal, create the directory:
 ```bash
 mkdir -p ~/.claude/commands
@@ -698,8 +700,8 @@ exit
 
 
 # Lab 5: Skills + Subagents 
-## Lab Purpose
-Build one practical Skill and a small subagent “team” (Planner + Test Runner) to see how delegation keeps work fast and clean.
+## Lab Purpose 
+Build one practical Skill and two specialist subagents (Planner + Test Runner) to see how delegation keeps work fast and clean.
 
 ---
 <br><br>
@@ -799,9 +801,11 @@ chmod +x .claude/skills/api-checker/scripts/check.py
 ---
 <br><br>
 
-## 4: Create Subagent #1 (planner)
+## 4: Create the Planner Agent
 **What we're doing:** Creating a “plan-first” helper.  
 **Why:** This keeps your main chat focused on decisions, not long plans.
+
+> **Terminology note:** The file in `.claude/agents/` defines an *agent configuration*. When Claude delegates to it during a conversation, it runs as a *subagent* — a separate context that does work and returns results to the main conversation.
 
 **Action:** Create `.claude/agents/planner.md`:
 
@@ -828,7 +832,7 @@ model: sonnet
 ---
 <br><br>
 
-## 5: Create Subagent #2 (test-runner)
+## 5: Create the Test-Runner Agent
 **What we're doing:** Creating a “run tests, summarize, propose minimal fix” helper.  
 **Why:** Subagents reduce context noise and speed up troubleshooting.
 
@@ -962,16 +966,21 @@ exit
 # Lab 6: Supervised Subagent Workflow + Plugin Packaging + VS Code
 ## Lab Purpose
 Turn your commands + agents + skills into a shareable "team kit," and practice a supervised delegation workflow where you orchestrate specialist subagents step by step.
+
 ---
 <br><br>
 ## 1: Add a Team Command: /ship
 **What we're doing:** Creating a standardized "ready to ship" checklist command.
-**Why:** Commands are reusable prompts that run inline in the main conversation. Unlike agents (which run in their own context), a command is a predefined workflow anyone on the team can invoke with a single slash.
+**Why:** To have a reusable standardized command that encompasses multiple functions.
+
 **Action:** Create `.claude/commands/ship.md`:
+
 ```
 code .claude/commands/ship.md
 ```
+
 **Action:** Copy/paste the following contents into the file and save it.
+
 ```md
 ---
 description: Ship checklist: review, tests, and summary
@@ -984,17 +993,21 @@ Do not edit files unless asked.
 ```
 ---
 <br><br>
+
 ## 2: Add the Reviewer Agent
 **What we're doing:** Adding a "review-only" specialist agent definition.
-**Why:** This agent is structurally restricted from editing files — not just told not to, but actually blocked from using Write and Edit tools. This is the difference between a prompt-level constraint (which Claude can override) and a tool-level constraint (which it cannot).
+**Why:** We want a reviewer as part of our workflow.
 
-> **Terminology note:** The file in `.claude/agents/` defines an *agent configuration*. When Claude delegates to it during a conversation, it runs as a *subagent* — a separate context that does work and returns results to the main conversation.
+> **Tooling note:** This agent is structurally restricted from editing files — not just told not to, but actually blocked from using Write and Edit tools. This is the difference between a prompt-level constraint (which Claude can override) and a tool-level constraint (which it cannot).
 
 **Action:** Create `.claude/agents/reviewer.md`:
+
 ```
 code .claude/agents/reviewer.md
 ```
+
 **Action:** Copy/paste the following contents into the file and save it.
+
 ```md
 ---
 name: reviewer
@@ -1009,25 +1022,33 @@ disallowedTools: Write, Edit
 ```
 
 > **What changed from Lab 5's agents?** Compare this to the planner agent you created in Lab 5. The planner says "Do not write or modify files" in its instructions — a prompt-level constraint. This reviewer goes further with `disallowedTools: Write, Edit`, which *enforces* the restriction at the tool level. Both approaches have their place: prompt constraints are flexible, tool constraints are guaranteed.
+
 ---
 <br><br>
+
 ## 3: Create the Plugin Manifest Folder
 **What we're doing:** Preparing a shareable plugin bundle.
 **Why:** Plugins are the packaging mechanism for distributing team assets (commands, agents, skills) so teammates can install them with a single command rather than copying files around.
+
 **Action:**
 ```bash
 mkdir -p .claude-plugin
 ```
 ---
 <br><br>
+
 ## 4: Create plugin.json
 **What we're doing:** Defining the plugin metadata and component paths.
 **Why:** Claude Code uses this manifest to discover and load plugin components. When someone installs your plugin, these paths tell Claude Code where to find the commands, agents, and skills you've bundled.
+
 **Action:** Create `.claude-plugin/plugin.json`:
+
 ```
 code .claude-plugin/plugin.json
 ```
+
 **Action:** Copy/paste the following contents into the file and save it.
+
 ```json
 {
   "name": "intro-claude-code-team-kit",
@@ -1040,25 +1061,59 @@ code .claude-plugin/plugin.json
 ```
 
 > **Key detail:** The `commands`, `agents`, and `skills` fields are top-level in `plugin.json` — there is no wrapper object around them. Paths are relative to the `plugin.json` file location.
+
 ---
 <br><br>
+
 ## 5: Start Claude Code and Verify Discovery
 **What we're doing:** Validating the repo has the expected structure.
 **Why:** Before running any workflows, confirm that Claude Code discovers all your assets — the new `/ship` command, the reviewer agent from this lab, plus the planner agent, test-runner agent, and api-checker skill from Lab 5.
-**Action:**
+**Action:** Start Claude Code
+
 ```bash
 claude
 ```
+
 Then run:
+
 ```
 /help
 ```
-Confirm you see `/ship` and your agents listed.
+
+Confirm you see `/ship` listed in the `custom-commands` section.
+
+![The /ship command is present](./images/ccode200.png?raw=true "The /ship command is present")
+
+
+Hit *Esc" to get out of that output. Then run: 
+
+```
+/agents
+```
+
+Confirm the `reviewer`, `planner`, and `test-runner` agents are shown.
+
+![Agents are present](./images/ccode201.png?raw=true "Agents are present")
+
+
+Hit *Esc" to get out of that output. Then run: 
+
+```
+/skills
+```
+
+Confirm the `api-checker` skill is shown in the `Project Skills` section.
+
+![Skill is  present](./images/ccode202.png?raw=true "Skill is present")
+
 ---
 <br><br>
+
+
 ## 6: Practice the Supervised Delegation Pattern (Plan → Implement → Review)
 **What we're doing:** Running a realistic delegation flow where *you* act as the supervisor, directing Claude to use the right subagent at each step.
 **Why:** This is how most people use subagents in practice — you decide what happens next, and subagents are your specialists. You control the workflow; they do the focused work.
+
 **Action:** In Claude, type:
 ```
 Use the planner subagent to propose a plan to add phoneNumber to User (optional field).
@@ -1068,37 +1123,64 @@ Review the plan. When you're satisfied, tell Claude to proceed:
 The plan looks good. Now implement the change minimally. Do not run tests yet.
 ```
 
+![Initial plan](./images/ccode203.png?raw=true "Initial plan")
+
+
+![Approved plan](./images/ccode204.png?raw=true "Approved plan")
+
 > **What's happening here:** You explicitly delegated the planning step to the planner subagent. Claude ran it in a separate context and returned the result to you. Then you — the supervisor — approved the plan and gave the next instruction. This is the "supervised delegation" pattern: the human decides the workflow, subagents do the specialized work.
 ---
 <br><br>
+
 ## 7: Delegate Review (Reviewer Subagent)
 **What we're doing:** Getting a review from the reviewer subagent, which is structurally unable to edit files.
 **Why:** Because the reviewer has `disallowedTools: Write, Edit` in its definition, you can trust that it will only analyze — never modify — your code. This keeps the review honest and the main conversation focused on your decisions about what to change.
+
 **Action:** In Claude, type:
 ```
 Use the reviewer subagent to review the change we just made.
 Return 3 risks, 3 tests to add, and 3 concrete patch suggestions.
 ```
 
+You should see in the results the 3 risks, 3 tests to add, and 3 patch suggestions we told the reviewer agent to output.
+
+![Start of reviewer output](./images/ccode205.png?raw=true "Start of reviewer output")
+
 > **What's happening here:** Claude delegates to the reviewer subagent, which runs with its own instructions and tool restrictions in a separate context. It returns structured output to the main conversation. You then decide which suggestions to act on.
+
+ 
 ---
 <br><br>
+
 ## 8: Run the Ship Checklist Command
 **What we're doing:** Running the `/ship` command you created in Step 1.
-**Why:** Notice the difference from Steps 6–7. The `/ship` command runs *inline* in the main conversation — it doesn't spawn a separate subagent context. It's a reusable prompt template, not a specialist. Commands and agents serve different purposes: commands standardize *what to do*, agents specialize *who does it*.
+**Why:** Execute the overall workflow.
+
+> **Note:** Notice the difference from Steps 6–7. The `/ship` command runs *inline* in the main conversation — it doesn't spawn a separate subagent context. It's a reusable prompt template, not a specialist. Commands and agents serve different purposes: commands standardize *what to do*, agents specialize *who does it*.
+
 **Action:** In Claude, run:
+
 ```
 /ship
 ```
-If tests run long, stop after you see them start and review the partial output.
+
+What you should see is the git info being gathered and the testing running. Then in the summary, you'll see what changed, the test results (1 will be failing), the "Risks" list and the suggested "Follow-ups".
+
+![Partial output of ship command](./images/ccode206.png?raw=true "Partial output of ship command")
+
 ---
 <br><br>
+
+
 ## 9: Open the VS Code Extension
 **What we're doing:** Switching to IDE workflow.
 **Why:** Many learners prefer IDE-first interaction.
+
 **Action:** Open the Claude Code VS Code extension (sidebar or toolbar icon).
+
 ---
 <br><br>
+
 ## 10: Run /ship from the Extension
 **What we're doing:** Using the same team kit inside the IDE.
 **Why:** Reinforces that repo-level assets (commands, agents, skills) work the same way whether you're in the terminal or VS Code. The extension automatically discovers everything in `.claude/`.
