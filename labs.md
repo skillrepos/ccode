@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 4.2 - 02/23/26
+## Revision 4.3 - 02/23/26
 
 <br><br>
 
@@ -52,7 +52,7 @@ Explain this code: console.log([1,2,3].map(x => x * 2))
 
 Claude will explain the JavaScript array operation.
 
-![Initial prompt](./images/ccode85.png?raw=true "Initial prompt")
+![Initial prompt](./images/ccode182.png?raw=true "Initial prompt")
 
 ---
 <br><br>
@@ -248,7 +248,7 @@ Claude will start creating a detailed plan before starting implementation.
 **What we're doing:**  Responding to questions from Claude
 **Why:** Claude needs our input on some things before proceeding.
 
-**Action:** Read any questions that come up and select number of answer to proceed if single option for answer. If you can select multiple options, use arrow keys and space/Enter to select options. Then move on to next question using right arrow. Answer all questions and then move to *Submit* and press *Enter*. 
+**Action:** Read any questions that come up and select number of answer to proceed if single option for answer. (To save time and complexity, it is recommended to use the recommended/simplest option.) If you can select multiple options, use arrow keys and space/Enter to select options. Then move on to next question using right arrow. Answer all questions and then move to *Submit* and press *Enter*. If you want to see more of Claude's *thinking* during this process, press *ctrl+o".
 
 ![Responding to questions](./images/ccode99.png?raw=true "Responding to questions")
 
@@ -265,12 +265,13 @@ Claude will start creating a detailed plan before starting implementation.
 
 **Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
 1. Go ahead and select that key sequence to bring the plan up in the editor.
-2. After you're done reviewing it, you can close the file.
-3. Then select option 1 to proceed and auto-accept edits.
+2. (Optional) To see the preview version of the plan (if you're in VS Code, you can right-click and select *Open Preview*).
+3. After you're done reviewing it, you can close the file (close the original file if you also opened a preview version).
+4. Then **select option 2** to proceed and auto-accept edits. (Re option 1: The amount of context isn't significant yet, so we'll clear it after this.)
 
 ![Reviewing plan](./images/ccode102.png?raw=true "Reviewing plan")
 
-![Approving plan](./images/ccode101.png?raw=true "Approving plan")
+![Approving plan](./images/ccode183.png?raw=true "Approving plan")
 
 **Note that you are now in *accept edits on* mode, but the original task will still run under *plan* mode.**
 
@@ -316,11 +317,14 @@ Your conversation history is now cleared, giving you a clean slate.
 **What we're doing:** Running Claude with automatic permission granting.  
 **Why:** This speeds up development when you trust Claude's actions.
 
-**Action:** Exit Claude (`exit`), then restart with the command below and use option 2 to accept the risk:
+**Action:** Exit Claude (`exit`), then restart with the command below and **use option 2** to accept the risk:
 
 ```bash
 claude --dangerously-skip-permissions
 ```
+
+![Accepting bypass mode](./images/ccode184.png?raw=true "Accepting bypass mode")
+
 If you don't see the mode as **bypass permissions on** mode, use `Shift+Tab` to change the mode until you see that.
 
 We also have an alias for this that you can use in the future `claude-yolo` if you are in a terminal other than the starting one.
@@ -338,12 +342,12 @@ We also have an alias for this that you can use in the future `claude-yolo` if y
 
 **Action:** Type:
 ```
-Create a simple To-Do list app wtih functionality to add and delete tasks
+Create a simple To-Do list app in javascript wtih functionality to add and delete tasks
 ```
 
 Notice Claude creates all files without asking for permission.
 
-![YOLO](./images/ccode106.png?raw=true "YOLO")
+![YOLO](./images/ccode185.png?raw=true "YOLO")
 
 ---
 <br><br>
@@ -359,7 +363,7 @@ claude -p "List all JavaScript files in the current directory"
 
 Claude executes and returns results without entering interactive mode.
 
-![headless](./images/ccode107.png?raw=true "headless")
+![headless](./images/ccode186.png?raw=true "headless")
 
 ---
 <br><br>
@@ -370,12 +374,12 @@ Claude executes and returns results without entering interactive mode.
 
 **Action:** In terminal, type:
 ```bash
-echo "function broken() { return }" | claude -p "Fix any syntax errors in this JavaScript"
+echo "function broken() { return }" | claude -p "Ensure this code reflects JavaScript best practices"
 ```
 
-Claude will analyze and fix the code directly.
+Claude will analyze the code and reply as best it can, given the limited context it has.
 
-![headless](./images/ccode108.png?raw=true "headless")
+![headless](./images/ccode187.png?raw=true "headless")
 
 ---
 <br><br>
