@@ -352,37 +352,7 @@ Notice Claude creates all files without asking for permission.
 ---
 <br><br>
 
-## 11: Use Headless Mode for Scripts
-**What we're doing:** Running Claude in non-interactive mode.  
-**Why:** Headless mode is perfect for automation and CI/CD pipelines.
 
-**Action:** Exit Claude and run:
-```bash
-claude -p "List all JavaScript files in the current directory"
-```
-
-Claude executes and returns results without entering interactive mode.
-
-![headless](./images/ccode186.png?raw=true "headless")
-
----
-<br><br>
-
-## 12: Pipe Data to Claude
-**What we're doing:** Sending data directly to Claude via pipes.  
-**Why:** This enables powerful command-line integrations.
-
-**Action:** In terminal, type:
-```bash
-echo "function broken() { return }" | claude -p "Ensure this code reflects JavaScript best practices"
-```
-
-Claude will analyze the code and reply as best it can, given the limited context it has.
-
-![headless](./images/ccode187.png?raw=true "headless")
-
----
-<br><br>
 
 ## Lab Summary
 ✅ You've successfully learned:
@@ -446,7 +416,7 @@ Use *Esc* to exit when done.
 **What we're doing:** Building up conversation history to practice management.  
 **Why:** We need content to demonstrate context management commands.
 
-**Action:** Have a multi-turn conversation. Type each of the following into the prompt area one at a time:
+**Action:** Have a multi-turn conversation. **Type each of the following into the prompt area one at a time and let each complete before entering the next one**:
 ```
 1. Create a user.js file with a User class
 2. Add methods for getName and setName  
@@ -510,107 +480,50 @@ Claude will summarize earlier parts while keeping specified information.
 
 ![rewind](./images/ccode35.png?raw=true "rewind")
 
----
-<br><br>
-
-## 7: Switch Models
-**What we're doing:** Changing between different Claude models.  
-**Why:** Different models offer various speed/capability trade-offs.
-
-**Action:** Type:
-```
-/model
-```
-
-Select a different model if you want or just leave it at the default. Opus is not recommended because it will use your rate limits faster.
-
-![model](./images/ccode37.png?raw=true "model")
-
-
-![model](./images/ccode38.png?raw=true "model")
+5. You should see the file and the conversatoin restored. You can just clear out any commands showing up in Claude.
 
 ---
 <br><br>
 
-## 8: Create a Project Memory File
+
+## 7: Create a project context file
 **What we're doing:** Setting up a CLAUDE.md file for project context.  
 **Why:** CLAUDE.md provides persistent project knowledge across sessions.
 
 **Action:** Type:
 ```
-Create a CLAUDE.md file documenting our User class project structure and testing approach
+/init
 ```
 
-This file will be automatically read in future sessions.
+This file will be automatically created and read in future sessions.
 
-![claude.md](./images/ccode39.png?raw=true "claude.md")
+![claude.md](./images/ccode188.png?raw=true "claude.md")
 
-![claude.md](./images/ccode40.png?raw=true "claude.md")
+Afterwards, you can take a look at the file by opening it up (with Preview via right-click if desired).
+
+![claude.md](./images/ccode189.png?raw=true "claude.md")
+
+You'll probably notice that it identifies custom slash commands, custom agents, and custom skills that we have in the `extra` directory. We'll do more with those later.
 
 ---
 <br><br>
 
-## 9: Test Memory Persistence
-**What we're doing:** Verifying that Claude remembers project context.  
-**Why:** Persistent memory improves continuity across sessions.
+## 8: Prove the project context file is used
+**What we're doing:** Resetting chat while keeping project guidance.  
+**Why:** Persistent memory improves continuity across sessions. Also shows difference between chat context and project files.
 
 **Action:**
 1. Type `/clear` to clear the conversation
-2. Ask: `What's the structure of our User class based on the CLAUDE.md?`
+2. Ask: `What are our project rules and what test command should I run after code edits?`
 
-Claude should recall information from the CLAUDE.md file.
+Claude should recall information from the CLAUDE.md file and display that info.
 
 
-![claude.md](./images/ccode42.png?raw=true "claude.md")
-
----
-<br><br>
-
-## 10: Create a Session Summary
-**What we're doing:** Documenting our work before ending the session.  
-**Why:** Summaries help you resume work effectively later.
-
-**Action:** Type:
-```
-Summarize what we've built today and save it to session-notes.md
-```
-
-![session-notes.md](./images/ccode43.png?raw=true "session-notes.md")
-
-![session-notes.md](./images/ccode44.png?raw=true "session-notes.md")
-
-![session-notes.md](./images/ccode45.png?raw=true "session-notes.md")
-
-Then verify with:
-```bash
-cat session-notes.md
-```
+![claude.md](./images/ccode191.png?raw=true "claude.md")
 
 ---
 <br><br>
 
-## 11: (Optional if you have time) Advanced Context Trick
-**What we're doing:** Using external files to preserve complex context.  
-**Why:** This technique helps with very long projects.
-
-**Action:** Type:
-```
-Save our complete implementation plan and progress to project-state.md 
-```
-
-![project-state.md](./images/ccode45.png?raw=true "project-state.md")
-
-**Action:** Type:
-```
-/clear
-Read project-state.md and continue where we left off
-```
-
-
-![project-state.md](./images/ccode47.png?raw=true "project-state.md")
-
----
-<br><br>
 
 ## Lab Summary
 ✅ You've mastered:
