@@ -508,7 +508,7 @@ You'll probably notice that it identifies custom slash commands, custom agents, 
 ---
 <br><br>
 
-## 8: Prove the project context file is used
+## 8: Demonstrate the project context file is used
 **What we're doing:** Resetting chat while keeping project guidance.  
 **Why:** Persistent memory improves continuity across sessions. Also shows difference between chat context and project files.
 
@@ -541,7 +541,7 @@ Claude should recall information from the CLAUDE.md file and display that info.
 ---
 <br><br>
 
-# Lab 4: Creating and Using Custom Commands
+# Lab 4: Custom Commands
 ## Lab Purpose
 Learn how to create custom slash commands to automate repetitive tasks and establish project-specific workflows. Build reusable commands that enhance your development productivity.
 
@@ -561,11 +561,11 @@ mkdir -p .claude/commands
 ---
 <br><br>
 
-## 2: Create a Command Template
-**What we're doing:** Bringing over a template for future commands.  
-**Why:** Templates ensure consistency across team commands.
+## 2: Add a Global Command from the Repo
+**What we're doing:** Installing an example command.
+**Why:** See an example of taking a properly formatted file and making it into a commands.
 
-**Action:** In terminal, copy the *extra/commands/test.md* file to ~/*.claude/commands/test.md*. This defines a new command that accepts a test type argument (unit, integration, or e2e) and generates appropriate tests. After copying it with the first command, open it up to review and understand the structure with the second command. You do not need to make any changes. Close when done.
+**Action:** In terminal, copy the *extra/commands/test.md* file to ~/*.claude/commands/test.md*. This defines a new command that accepts a test type argument (unit, integration, or e2e) and generates appropriate tests. After copying it with the first os command below, open it up to review and understand the structure with the second os command below. You do not need to make any changes. Close when done.
 
 ```bash
 cp extra/commands/test.md ~/.claude/commands/
@@ -575,21 +575,7 @@ code extra/commands/test.md
 ----
 <br><br>
 
-## 3: Add a New Global Command with Arguments
-**What we're doing:** Creating a command that accepts parameters.  
-**Why:** Parameterized commands are more flexible and reusable.
-
-**Action:** In terminal, copy the *extra/commands/test.md* file to *~/.claude/commands/test.md*. This defines a new command that accepts a test type argument (unit, integration, or e2e) and generates appropriate tests. After copying it with the first command, open it up to review and understand the structure with the second command. You do not need to make any changes. Close when done.
-
-```bash
-cp extra/commands/test.md ~/.claude/commands/
-code extra/commands/test.md
-```
-
----
-<br><br>
-
-## 4: Test Your Custom Command
+## 3: Test Your Custom Command
 **What we're doing:** Executing the custom command we just created.  
 **Why:** Verifying commands work as expected before relying on them.
 
@@ -600,94 +586,116 @@ code extra/commands/test.md
 
 ![Test command](./images/ccode49.png?raw=true "Test command")
 
-Then try with arguments:
-```
-/test unit
-```
+Hit *Enter*. Claude should prompt you for which type of test (as defined in the command's md file) to run. Select the entry for *unit* from the list.
 
+![Test command](./images/ccode192.png?raw=true "Test command")
 
-![Test command](./images/ccode111.png?raw=true "Test command")
-
-**This step will take a long time to run. You do NOT need to wait for this to finish to continue. While this is running, you can open another terminal and proceed with the next step.**
+**This step will take some time to run. You do NOT need to wait for this to finish to continue. While this is running, you can open another terminal and proceed with the next step.**
 
 ---
 <br><br>
 
-## 4: Add a Git Workflow Command
-**What we're doing:** Building a command for common git operations.  
-**Why:** Streamlining git workflows reduces context switching.
+## 4: Add a Project Command (Repo-Shared)
+**What we're doing:** Adding a command to the repository.  
+**Why:** This is how teams share workflows.
 
-
-**Action:** In terminal, copy the *extra/commands/commit.md* file to *~/.claude/commands/commit.md*. This defines a new command that stages changes, runs tests, and creates a *conventional commits* message for the commit. After copying it with the first command, open it up to review and understand the structure with the second command. You do not need to make any changes. Leave it open.
-
-```bash
-cp extra/commands/commit.md ~/.claude/commands/
-code extra/commands/commit.md
-```
-
----
-<br><br>
-
-## 5: Preview the file for the Git Workflow Command
-**What we're doing:** Previewing the command definition.
-**Why:** This version can be easier to read and understand.
-
-**Action:** In the tab at the top of the open *extra/commands/test.md*, right-click and select the *Open Preview* option. This will give you a markdown preview of the contents of the file.
-
-![Preview command](./images/ccode110.png?raw=true "Preview command")
-
-![Preview command](./images/ccode112.png?raw=true "Preview command")
-
----
-<br><br>
-
-## 6: Have Claude Code Create a Documentation Command
-**What we're doing:** Automating documentation generation.  
-**Why:** Consistent documentation improves code maintainability.
-
-**Action:** Start claude (if needed) and tell it to create this command with the following prompt:
-```
-Create .claude/commands/document.md with:
----
-description: Generate comprehensive documentation
----
-Analyze the file $ARGUMENTS and create:
-1. JSDoc/docstring comments
-2. README section explaining the module
-3. Usage examples
-4. API documentation if applicable
-```
-
-
-![Completed command](./images/ccode54.png?raw=true "Completed command")
-
----
-<br><br>
-
-## 7: Add a Project-Specific Refactoring Command
-**What we're doing:** Creating a command for code improvement.  
-**Why:** Systematic refactoring improves code quality.
-
-**Action:** In terminal, copy the *extra/commands/commit.md* file to *.claude/commands/commit.md*. This defines a new project-specific command that helps with refactoring. After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
-
+**Action:**
 ```bash
 cp extra/commands/refactor.md .claude/commands/
-code extra/commands/refactor.md
+code .claude/commands/refactor.md
 ```
 
 ---
 <br><br>
 
-## 8: List and Verify Commands
-**What we're doing:** Confirming all custom commands are recognized.  
-**Why:** Ensures Claude can discover and use your commands.
+## 5: Create a New Command: /doc
+**What we're doing:** Writing a small command from scratch.  
+**Why:** Students learn what a “good command” looks like.
 
-**Action:** Exit Claude and start it again. Then type:
+**Action:** Create `.claude/commands/doc.md` with the content below:
+```md
+---
+description: Generate concise module documentation
+---
+Given a file path in $ARGUMENTS:
+1) Add/refresh JSDoc comments
+2) Add a short README snippet (3-6 bullets) describing the module
+3) Provide a minimal usage example
+Keep changes small and do not refactor code.
+```
+
+**Make sure to save the file when done.**
+
+---
+<br><br>
+
+
+
+## 6: Review the /test output
+**What we're doing:** Reviewing output
+**Why:** To ensure our new command worked as expected
+
+**Action:** Switch back to the terminal session running the unit testing and review the output. You should see something like below:
+
+![Preview command](./images/ccode193.png?raw=true "Preview command")
+
+---
+<br><br>
+
+## 7: Use /doc
+**What we're doing:** Running our new command.  
+**Why:** Confirms custom commands work end-to-end.
+
+**Action:** In Claude:
+```
+/doc user.js
+```
+
+Approve changes if prompted.
+
+![Doc output](./images/ccode194.png?raw=true "Doc output")
+
+---
+<br><br>
+
+## 8: List Custom Commands
+**What we're doing:** Confirming command discovery.  
+**Why:** Quickly verify what's available.
+
+**Action:**
 ```
 /help
 ```
 
-Look for your custom commands under the *custom-commands* option in the displayed list. Use *Tab* to get to different sections.
+Then find the section that lists custom commands.
+
+
+![Viewing list of custom commands](./images/ccode195.png?raw=true "Viewing list of custom commands")
+
+---
+<br><br>
+
+## 9: Exit
+**Action:**
+```
+exit
+```
+
+---
+<br><br>
+
+## Lab Summary
+✅ You’ve learned to:
+- Install global commands and repo commands
+- Create your own command with frontmatter + instructions
+- Validate discovery via /help
+
+<br><br>
+---
+## END OF LAB
+---
+<br><br>
+
 
 
 ![Showing custom commands](./images/ccode56.png?raw=true "Showing custom commands")
