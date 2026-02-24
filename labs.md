@@ -698,40 +698,7 @@ exit
 
 
 
-![Showing custom commands](./images/ccode56.png?raw=true "Showing custom commands")
 
----
-<br><br>
-
-## (Optional to do later) Chain Commands Together
-**What we're doing:** Using multiple commands in sequence.  
-**Why:** Command chaining creates powerful workflows.
-
-**Action:** Try this workflow:
-```
-1. /refactor user.js
-2. /test unit
-3. /document user.js
-4. /commit
-```
-
----
-<br><br>
-
-## Lab Summary
-✅ You've learned to:
-- Create custom slash commands
-- Use arguments in commands
-- Build project-specific workflows
-- Chain commands for complex tasks
-- Organize commands effectively
-
-
-<br><br>
----
-## END OF LAB
----
-<br><br>
 
 # Lab 5: Agent Skills and Advanced Features
 ## Lab Purpose
