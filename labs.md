@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 4.3 - 02/23/26
+## Revision 4.4 - 02/24/26
 
 <br><br>
 
@@ -697,7 +697,7 @@ exit
 <br><br>
 
 
-# Lab 5: Skills + Subagents (Modern Claude Code)
+# Lab 5: Skills + Subagents 
 ## Lab Purpose
 Build one practical Skill and a small subagent “team” (Planner + Test Runner) to see how delegation keeps work fast and clean.
 
@@ -736,19 +736,23 @@ description: When the user asks to validate a REST endpoint, generate a curl tes
 ---
 
 ## Rules
+
 - Ask for the base URL if missing.
-- Use curl with -sS and show HTTP status.
-- If JSON, pretty-print with python -m json.tool when available.
+- Run `scripts/check.py <url>` to fetch the endpoint and get structured JSON output.
+- Parse the output: use `ok` for success/failure, `status` for HTTP code, `json` for the response body.
 - Keep output short: status, 3 key fields, and one recommendation.
 
 ## Example trigger
+
 User: "Can you validate GET /health on my service?"
 ```
+
+![Creating the skill](./images/ccode196.png?raw=true "Creating the skill")
 
 ---
 <br><br>
 
-## 3: Add a Script to the Skill
+## 3: Add the referenced script to the Skill
 **What we're doing:** Adding a deterministic helper.  
 **Why:** Scripts make results more predictable than pure prompting.
 
@@ -873,6 +877,18 @@ Please validate https://jsonplaceholder.typicode.com/posts/1 and summarize what 
 
 If Claude asks for approval to run scripts, approve it.
 
+(Optional: You can open the .claude/skills/api-checker/SKILL.md file to remember what it specifies.)
+
+What you should see in the output is that the skill was selected and loaded, then, per the skill instructions:
+
+- The supporting script was run
+- The status was reported
+- Key fields were listed
+- A recommendation was provided
+
+![Using the skill](./images/ccode197.png?raw=true "Using the skill")
+
+
 ---
 <br><br>
 
@@ -886,11 +902,21 @@ Use the planner subagent.
 We need to add input validation to the User class without changing public behavior.
 Return only the plan + risks.
 ```
+(Optional: You can open the .claude/agents/planner.md file to remember what it specifies.)
+
+What you should see after this runs is a plan produced by the agent that, per the planning agent spec:
+
+- Outputs a 5 step plan
+- Lists 3 risks
+
+
+![Using the planning subagent](./images/ccode198.png?raw=true "Using the planning subagent")
+
 
 ---
 <br><br>
 
-## 9: Use the Test-Runner Subagent (Tight Loop)
+## 9: Use the Test-Runner Subagent
 **What we're doing:** Delegating test execution + fix suggestion.  
 **Why:** This is the most common “AI teammate” workflow.
 
@@ -900,6 +926,13 @@ Use the test-runner subagent.
 Create one minimal failing test for invalid email handling in user.js, then propose the smallest fix.
 Stop after proposing the fix (do not implement yet).
 ```
+
+(Optional: You can open the .claude/agents/test-runner.md file to remember what it specifies.)
+
+What you should see after this runs is a failing email test added to user.test.js and a proposed fix.
+
+
+![Using the test-runner subagent](./images/ccode198.png?raw=true "Using the testrunner subagent")
 
 ---
 <br><br>
