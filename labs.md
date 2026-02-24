@@ -697,207 +697,227 @@ exit
 <br><br>
 
 
-
-
-
-# Lab 5: Agent Skills and Advanced Features
+# Lab 5: Skills + Subagents (Modern Claude Code)
 ## Lab Purpose
-Learn to create and use Agent Skills - modular capabilities that extend Claude's functionality with specialized knowledge and scripts. Build skills for document processing, API integration, and domain-specific tasks.
+Build one practical Skill and a small subagent “team” (Planner + Test Runner) to see how delegation keeps work fast and clean.
 
 ---
 <br><br>
 
-## 1: Understand Skills vs Commands
-**What we're doing:** Learning the key differences between skills and slash commands.  
-**Why:** Skills are AI-invoked based on context, while commands are user-invoked.
+## 1: Create the Project Structure
+**What we're doing:** Creating the folders used by Claude Code for skills and agents.  
+**Why:** Skills/subagents are file-system discoverable.
 
-**Action:** In Claude, ask:
-```
-Explain the difference between Agent Skills in .claude/skills/ and slash commands in .claude/commands/
-```
-
-![Explain difference](./images/ccode58.png?raw=true "Explain difference")
-
----
-<br><br>
-
-## 2: Create Skills Directory
-**What we're doing:** Setting up the folder structure for Agent Skills.  
-**Why:** Skills need proper organization for Claude to discover them.
-
-**Action:** In a terminal:
+**Action:**
 ```bash
-mkdir -p .claude/skills/api-tester/scripts
-mkdir -p .claude/skills/database-helper
-mkdir -p .claude/skills/code-quality
+mkdir -p .claude/skills/api-checker/scripts
 mkdir -p .claude/agents
 ```
 
 ---
 <br><br>
 
-## 3: Add Your First Skill
-**What we're doing:** Adding a skill for API testing and documentation.  
-**Why:** Skills package expertise that Claude can use autonomously.
+## 2: Create a Minimal Skill (api-checker)
+**What we're doing:** Writing a SKILL.md with a focused purpose.  
+**Why:** Skills help Claude apply repeatable expertise automatically.
 
-**Action:** In terminal, copy the *extra/skills/api-tester/SKILL.md* file to *.claude/skills/api-tester/SKILL.md*. This defines a new project-specific skill that helps with API testing and documentation by doing the following:
+**Action:** Create `.claude/skills/api-checker/SKILL.md`:
 
-1. Parse the API endpoint and method
-2. Construct appropriate headers and body
-3. Make the request using curl or fetch
-4. Validate response structure
-5. Generate documentation in OpenAPI format
+```
+code .claude/skills/api-checker/SKILL.md
+```
 
-After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
+**Action:** Copy/paste the following contents into the file and save it.
 
+```md
+---
+name: api-checker
+description: When the user asks to validate a REST endpoint, generate a curl test, run it, and summarize status + key fields.
+---
+
+## Rules
+- Ask for the base URL if missing.
+- Use curl with -sS and show HTTP status.
+- If JSON, pretty-print with python -m json.tool when available.
+- Keep output short: status, 3 key fields, and one recommendation.
+
+## Example trigger
+User: "Can you validate GET /health on my service?"
+```
+
+---
+<br><br>
+
+## 3: Add a Script to the Skill
+**What we're doing:** Adding a deterministic helper.  
+**Why:** Scripts make results more predictable than pure prompting.
+
+**Action:** Create `.claude/skills/api-checker/scripts/check.py`:
+
+```
+code .claude/skills/api-checker/scripts/check.py
+```
+
+**Action:** Copy/paste the following contents into the file and save it.
+
+
+```python
+#!/usr/bin/env python3
+import json, sys, urllib.request
+
+url = sys.argv[1] if len(sys.argv) > 1 else None
+if not url:
+    print("Usage: check.py <url>")
+    sys.exit(2)
+
+req = urllib.request.Request(url, headers={"Accept":"application/json"})
+try:
+    with urllib.request.urlopen(req, timeout=10) as r:
+        status = r.status
+        body = r.read().decode("utf-8", errors="replace")
+except Exception as e:
+    print(json.dumps({"ok": False, "error": str(e)}))
+    sys.exit(1)
+
+out = {"ok": 200 <= status < 300, "status": status}
+try:
+    out["json"] = json.loads(body)
+except Exception:
+    out["body_preview"] = body[:200]
+print(json.dumps(out))
+```
+
+Then make it executable:
 ```bash
-cp extra/skills/api-tester/SKILL.md .claude/skills/api-tester/
-code extra/skills/api-tester/SKILL.md
+chmod +x .claude/skills/api-checker/scripts/check.py
 ```
 
 ---
 <br><br>
 
-## 4: Add Scripts to Your Skill
-**What we're doing:** Including executable scripts within a skill.  
-**Why:** Skills can bundle code for complex operations.
+## 4: Create Subagent #1 (planner)
+**What we're doing:** Creating a “plan-first” helper.  
+**Why:** This keeps your main chat focused on decisions, not long plans.
 
-**Action:** In terminal, copy the *extra/skills/api-tester/scripts/test-api.py* file to *.claude/skills/api-tester/scripts/test-api.py*. This defines a new script helps with API testing by doing the following:
+**Action:** Create `.claude/agents/planner.md`:
 
-- Accepts URL and method as arguments
-- Makes HTTP requests
-- Validates JSON responses
-- Returns formatted results
+```
+code .claude/agents/planner.md
+```
 
-After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
+**Action:** Copy/paste the following contents into the file and save it.
 
+```md
+---
+name: planner
+description: Create a short implementation plan + risks. Do not edit files.
+model: sonnet
+---
+
+## Instructions
+- Ask 1-2 clarifying questions only if required.
+- Output a 5-step plan.
+- List 3 risks.
+- Do not write or modify files.
+```
+
+---
+<br><br>
+
+## 5: Create Subagent #2 (test-runner)
+**What we're doing:** Creating a “run tests, summarize, propose minimal fix” helper.  
+**Why:** Subagents reduce context noise and speed up troubleshooting.
+
+**Action:** Create `.claude/agents/test-runner.md`:
+
+```
+code .claude/agents/test-runner.md
+```
+
+**Action:** Copy/paste the following contents into the file and save it.
+
+
+```md
+---
+name: test-runner
+description: Run tests, summarize failures, propose minimal fixes.
+model: sonnet
+---
+
+## Instructions
+- Run the project test command (ask if unknown).
+- Summarize failures in 3 bullets.
+- Propose the smallest fix, then implement only if approved.
+```
+
+---
+<br><br>
+
+## 6: Start Claude Code
+**Action:**
 ```bash
-cp extra/skills/api-tester/scripts/test-api.py .claude/skills/api-tester/scripts/
-code extra/skills/api-tester/scripts/test-api.py
+claude
 ```
 
 ---
 <br><br>
 
-## 5: Test Skill Activation
-**What we're doing:** Verifying Claude recognizes and uses the skill.  
-**Why:** Skills should activate automatically based on context.
+## 7: Trigger the Skill (Without Naming It)
+**What we're doing:** Letting Claude choose the skill automatically.  
+**Why:** Skills are intended to be invoked based on context.
 
-**Action:** Exit Claude and then start it again. Without mentioning the skill directly, ask:
+**Action:** In Claude, type:
 ```
-I need to test this API endpoint: https://jsonplaceholder.typicode.com/posts/1
+Please validate https://jsonplaceholder.typicode.com/posts/1 and summarize what you find.
 ```
 
-Claude may automatically use your api-tester skill, or...
-
-
-![Testing skill activation](./images/ccode62.png?raw=true "Testing skill activation")
-
-... it may ask for approval. If it asks for approval, just use option 2 so it doesn't ask again.
-
-![Testing skill activation](./images/ccode113.png?raw=true "Testing skill activation")
-
-You can observe as it proceeds to use the new skill to test the API.
+If Claude asks for approval to run scripts, approve it.
 
 ---
 <br><br>
 
-## 6: Have Claude Create a Database Helper Skill
-**What we're doing:** Building a skill for database operations.  
-**Why:** Complex database tasks benefit from specialized instructions.
+## 8: Use the Planner Subagent
+**What we're doing:** Delegating planning to a subagent that cannot edit files.  
+**Why:** This is a safe and scalable “team” pattern.
 
-**Action:** In Claude code, give it the following prompt:
+**Action:** In Claude, type:
 ```
-Create .claude/skills/database-helper/SKILL.md for:
-- SQL query optimization
-- Migration generation
-- Schema documentation
-- Index recommendations
-Include example queries and best practices
-```
-
-**You do not need to wait till this is completed to proceed. You can switch to another terminal and go to step 7.**
-
----
-<br><br>
-
-## 7: Add Subagents
-**What we're doing:** Creating specialized subagents for focused tasks.  
-**Why:** Subagents handle specific responsibilities with dedicated context.
-
-**Action:** In terminal, copy the *extra/agents/test-runner.md* file to  *.claude/agents/test-runner.md*. This defines a new project-specific agent to help with running and fixing failing tests. 
-
-
-After copying it with the first command, open it up to review and understand the structure with the second command. You can close it when done.
-
-```bash
-cp extra/agents/test-runner.md .claude/agents/
-code extra/agents/test-runner.md
+Use the planner subagent.
+We need to add input validation to the User class without changing public behavior.
+Return only the plan + risks.
 ```
 
 ---
 <br><br>
 
-## 8: Configure Hooks
-**What we're doing:** Setting up automated actions at specific points.  
-**Why:** Hooks enforce standards and automate repetitive checks.
+## 9: Use the Test-Runner Subagent (Tight Loop)
+**What we're doing:** Delegating test execution + fix suggestion.  
+**Why:** This is the most common “AI teammate” workflow.
 
-**Action:** Create hooks configuration:
+**Action:** In Claude, type:
 ```
-Create .claude/hooks.json with:
-{
-  "preToolUse": [
-    {
-      "tool": "Edit",
-      "command": "echo 'Editing file: $FILE_PATH'"
-    }
-  ],
-  "postToolUse": [
-    {
-      "tool": "Write",
-      "command": "prettier --write $FILE_PATH"
-    }
-  ]
-}
+Use the test-runner subagent.
+Create one minimal failing test for invalid email handling in user.js, then propose the smallest fix.
+Stop after proposing the fix (do not implement yet).
 ```
-
-![Configuring hooks](./images/ccode64.png?raw=true "Configuring hooks")
 
 ---
 <br><br>
 
-## Optional (to do when time allows and all other steps have completed): Test the Complete System
-**What we're doing:** Using skills, subagents, and hooks together.  
-**Why:** Real workflows combine multiple advanced features.
-
-**Action:** Test with a complex request:
+## 10: Exit
+**Action:**
 ```
-Create a REST API for a todo application with:
-- CRUD endpoints
-- Input validation
-- Error handling
-- Tests
-- API documentation
+exit
 ```
-
-Watch Claude use skills, potentially delegate to subagents, and apply hooks.
-
-
-![Complete system](./images/ccode66.png?raw=true "Complete system")
-
-![Complete system](./images/ccode65.png?raw=true "Complete system")
 
 ---
 <br><br>
 
 ## Lab Summary
-✅ You've mastered:
-- Creating Agent Skills with SKILL.md
-- Adding scripts to skills
-- Building specialized subagents
-- Configuring hooks for automation
-- Combining advanced features
-
+✅ You’ve built and used:
+- A project Skill (SKILL.md + script)
+- Two subagents (planner + test-runner)
+- A safe delegation workflow (plan-first, test-first)
 
 <br><br>
 ---
@@ -906,175 +926,213 @@ Watch Claude use skills, potentially delegate to subagents, and apply hooks.
 <br><br>
 
 
-# Lab 6: VS Code Integration and Team Collaboration
+# Lab 6: Agent Team Workflow + Plugin Packaging + VS Code
 ## Lab Purpose
-Set up Claude Code's VS Code extension, configure team workflows, and establish best practices for collaborative development with Claude Code.
+Turn your commands + subagents + skills into a shareable “team kit,” and practice a lightweight supervisor workflow that mirrors real team usage.
 
 ---
 <br><br>
 
-## 1: Open VS Code Extension
-**What we're doing:** Opening Claude Code directly in your IDE.  
-**Why:** The extension provides visual feedback and seamless integration.
+## 1: Add a Team Command: /ship
+**What we're doing:** Creating a standardized “ready to ship” checklist.  
+**Why:** This is an easy, high-value team workflow.
 
-**Action:** In the upper right of the main Codespace frame, find the orange Claude symbol and click on it to open the extension view:
+**Action:** Create `.claude/commands/ship.md`:
 
-![Open view](./images/ccode114.png?raw=true "Open view")
-
----
-<br><br>
-
-## 2: Review Extension Settings
-**What we're doing:** Reviewing the extension's settings.  
-**Why:** Proper configuration improves the development experience.
-
-**Action:** Open VS Code settings:
-1. **Click on** the *gear* icon in the lower left of the Codespace interface and select *Settings* from the menu.
-2. In the *Settings* tab in the editor, search for "Claude Code"
-3. Review the settings. You don't need to change anything.
-
-![Open Settings](./images/ccode115.png?raw=true "Open Settings")
-
-![Find Settings](./images/ccode116.png?raw=true "Find Settings")
-
----
-<br><br>
-
-## 3: Prompt with Implied Context
-**What we're doing:** Prompting Claude within the IDE interface.  
-**Why:** IDE integration provides better context awareness.
-
-**Action:** Type: `Hello Claude, what files are in my current workspace?`
-
-![Files in workspace](./images/ccode67.png?raw=true "Files in workspace")
-
-
----
-<br><br>
-
-## 4: Use Plan Mode in VS Code
-**What we're doing:** Activating visual Plan Mode in the extension.  
-**Why:** Visual planning helps understand complex changes.
-
-**Action:** In the Claude sidebar:
-1. Turn *Thinking* on by clicking on the small icon that looks like a clock in the bottom row of the chat input.
-2. Activate *Plan mode* by clicking on the *mode* setting in the lower left of the chat input section.
-3. Ask: `Plan a RESTful API for a blog system with posts, comments, and users`
-4. Watch Claude's thinking process in real-time
-
-![Plan blog API](./images/ccode119.png?raw=true "Plan blog API")
-
-![Plan blog API](./images/ccode118.png?raw=true "Plan blog API")
-
-This will likely take longer than you want to wait, so you can stop it after it runs for a bit by hitting the (now) square submit button or, if it is prompting you for input, just type "stop".
-
----
-<br><br>
-
-## 5: Enable Auto-Accept Edits
-**What we're doing:** Allowing Claude to make changes without prompts.  
-**Why:** This speeds up iterative development significantly.
-
-**Action:** 
-1. Click on the *mode* setting in the lower left of the chat input section until it gets to "Edit automatically".
-2. Ask: `Create a simple Express server in server.js`
-3. Watch changes apply automatically in your editor
-
-
-![Enable auto-accept edits](./images/ccode72.png?raw=true "Enable auto-accept edits")
-
-Even with *Edit automatically* set, Claude may still decide to create a plan first and have you approve it. If it does, and you're good with the plan, you can just click one of the *Yes* options.
-
-![Review plan](./images/ccode120.png?raw=true "Review plan")
-
----
-<br><br>
-
-## 6: Create Team Configuration
-**What we're doing:** Setting up shared configuration for team consistency.  
-**Why:** Teams need standardized Claude Code settings.
-
-**Action:** Open a new chat session with the "+" sign in the upper right of the VS Code extension area. Then have Claude create:
 ```
-Create .claude/team-config.json with:
+code .claude/commands/ship.md
+```
+
+**Action:** Copy/paste the following contents into the file and save it.
+
+
+```md
+---
+description: Ship checklist: review, tests, and summary
+---
+Do the following in order:
+1) Summarize what changed (3 bullets) using git status/diff
+2) Run tests (ask for the command if unknown)
+3) List 3 risks and 3 follow-ups
+Do not edit files unless asked.
+```
+
+---
+<br><br>
+
+## 2: Add a Reviewer Subagent
+**What we're doing:** Adding a “review-only” specialist.  
+**Why:** Keeps reviews consistent and short.
+
+**Action:** Create `.claude/agents/reviewer.md`:
+
+
+```
+code .claude/agents/reviewer.md
+```
+
+**Action:** Copy/paste the following contents into the file and save it.
+
+
+```md
+---
+name: reviewer
+description: Review code changes for correctness, tests, and security. Do not edit files.
+model: sonnet
+---
+
+## Instructions
+- Review the diff and changed files.
+- Output: 3 risks, 3 tests to add, 3 patch suggestions.
+- Do not modify files.
+```
+
+---
+<br><br>
+
+## 3: Create the Plugin Manifest Folder
+**What we're doing:** Preparing a shareable plugin bundle.  
+**Why:** Plugins are the packaging mechanism for team distribution.
+
+**Action:**
+```bash
+mkdir -p .claude-plugin
+```
+
+---
+<br><br>
+
+## 4: Create plugin.json
+**What we're doing:** Defining the plugin metadata.  
+**Why:** Claude Code uses this manifest to load plugin components.
+
+**Action:** Create `.claude-plugin/plugin.json`:
+
+```
+code .claude-plugin/plugin.json
+```
+
+**Action:** Copy/paste the following contents into the file and save it.
+
+
+```json
 {
-  "projectName": "Team Training Project",
-  "defaultModel": "claude-sonnet-4-5",
-  "autoAccept": false,
-  "customCommands": ["review", "test", "deploy"],
-  "requiredSkills": ["api-tester", "code-quality"],
-  "codeStyle": {
-    "language": "javascript",
-    "formatter": "prettier",
-    "linter": "eslint"
+  "name": "intro-claude-code-team-kit",
+  "version": "0.1.0",
+  "description": "Intro workshop team kit: commands, subagents, and a skill.",
+  "components": {
+    "commands": ["../.claude/commands"],
+    "agents": ["../.claude/agents"],
+    "skills": ["../.claude/skills"]
   }
 }
 ```
 
-![create team config](./images/ccode121.png?raw=true "Create team config")
+---
+<br><br>
 
-You may be prompted to allow some accesses.
+## 5: Start Claude Code and Verify Discovery
+**What we're doing:** Validating the repo has the expected structure.  
+**Why:** Students should be able to confirm their setup quickly.
 
-![create team config](./images/ccode122.png?raw=true "Create team config")
+**Action:**
+```bash
+claude
+```
+
+Then run:
+```
+/help
+```
+
+Confirm you see `/ship` and your subagents listed.
 
 ---
 <br><br>
 
-## 7: Create Shared Knowledge Base
-**What we're doing:** Building documentation for team-wide Claude use.  
-**Why:** Shared knowledge improves team efficiency.
+## 6: Practice the “Supervisor” Pattern (Planner → Implement → Review)
+**What we're doing:** Running a realistic delegation flow.  
+**Why:** This is how people use “agent teams” in practice.
 
-**Action:** Create:
+**Action:** In Claude, type:
 ```
-Create CLAUDE-TEAM.md with:
-1. Project architecture overview
-2. API design patterns we follow
-3. Testing requirements
-4. Deployment process
-5. Common troubleshooting steps
-6. Links to important documentation
+We will do a supervised workflow:
+1) Use the planner subagent to propose a plan to add phoneNumber to User (optional field).
+2) I will approve the plan.
+3) Then implement the change minimally.
+Do not run tests yet.
+```
+
+Approve the plan (verbal approval) and let Claude implement.
+
+---
+<br><br>
+
+## 7: Delegate Review (Reviewer Subagent)
+**What we're doing:** Getting a review without edits.  
+**Why:** Keeps the main thread focused on decisions.
+
+**Action:** In Claude, type:
+```
+Use the reviewer subagent to review the change we just made.
+Return 3 risks, 3 tests to add, and 3 concrete patch suggestions.
 ```
 
 ---
 <br><br>
 
-## 8: Document Team Workflow
-**What we're doing:** Creating a guide for team Claude Code usage.  
-**Why:** Clear workflows prevent confusion and ensure consistency.
+## 8: Run the Ship Checklist Command
+**What we're doing:** Standardizing the final check.  
+**Why:** A command is an easy “team asset” that scales.
 
-**Action:** Create:
+**Action:** In Claude, run:
 ```
-Create CLAUDE-WORKFLOW.md documenting:
-1. When to use Claude vs manual coding
-2. Review process for Claude-generated code
-3. Testing requirements
-4. Skill creation approval process
-5. Best practices for prompting
-6. Security considerations
+/ship
 ```
+
+If tests run long, stop after you see them start and review the partial output.
+
+---
+<br><br>
+
+## 9: Open the VS Code Extension
+**What we're doing:** Switching to IDE workflow.  
+**Why:** Many learners prefer IDE-first interaction.
+
+**Action:** Open the Claude Code VS Code extension (sidebar or toolbar icon).
+
+---
+<br><br>
+
+## 10: Run /ship from the Extension
+**What we're doing:** Using the same team kit inside the IDE.  
+**Why:** Reinforces that repo assets work everywhere.
+
+**Action:** In the extension chat, run:
+```
+/ship
+```
+
+---
+<br><br>
+
+## 11: Exit
+**Action:** End any running sessions and close Claude Code.
 
 ---
 <br><br>
 
 ## Lab Summary
-✅ You've accomplished:
-- VS Code extension configuration
-- Visual Plan Mode and auto-accept features
-- Team configuration setup
-- Shared knowledge base creation
-- Workflow documentation
-
-**Congratulations!** You've completed all labs and are ready to use Claude Code effectively in your development workflow!
-
-## Next Steps
-- Practice creating project-specific skills
-- Experiment with MCP server integrations
-- Build custom workflows for your team
-- Explore advanced hook configurations
-
+✅ You’ve learned:
+- A practical supervisor workflow using subagents
+- How to create a shareable “team kit” (commands + agents + skills) via plugin.json
+- How to use the same workflows in terminal and VS Code
 
 <br><br>
 ---
 ## END OF LAB
 ---
 <br><br>
+
+
+
