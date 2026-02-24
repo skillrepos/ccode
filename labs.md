@@ -35,7 +35,7 @@ Hello Claude, can you tell me what you can help with?
 
 Claude should respond with information about its capabilities preceded by its thinking process.
 
-![Initial prompt](./images/ccode84.png?raw=true "Initial prompt")
+![Initial prompt](./images/ccode180.png?raw=true "Initial prompt")
 
 
 ---
