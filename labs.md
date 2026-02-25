@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 4.7 - 02/24/26
+## Revision 4.8 - 02/24/26
 
 <br><br>
 
@@ -9,9 +9,19 @@
 
 **Copy and paste may not work as expected if using the mouse. If not, use the keyboard shortcuts - *Ctrl+C/Cmd+C and Ctrl+V/Cmd+V*.**
 
-**Make sure you have the following ready to go.**
-- A user account on claude.ai for one of the paid plans
-- A GitHub userid on the public GitHub.com
+**If you haven't done so already, set your model to `Sonnet` instead of `Opus`.**
+
+> In Claude Code at the prompt, type:
+> ```
+> /model
+> ```
+> In the list that comes up, type "3" or use the arrow keys to move the pointer to "3" and hit *Enter*.
+>
+> ![set model](./images/ccode181.png?raw=true "set model")
+>
+> You should see an indicator that the model was set to *claude-sonnet-4-6*.
+
+<br><br>
 
 
 ---
