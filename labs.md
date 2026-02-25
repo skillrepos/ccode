@@ -1066,7 +1066,7 @@ mkdir -p .claude-plugin
 ---
 <br><br>
 
-## 5: Start Claude Code and Verify Discovery
+## 5: Start Claude Code and (optional) Verify Discovery
 **What we're doing:** Validating the repo has the expected structure.  
 **Why:** Before running any workflows, confirm that Claude Code discovers all your assets — the new `/ship` command, the reviewer agent from this lab, plus the planner agent, test-runner agent, and api-checker skill from Lab 5.
 
@@ -1141,7 +1141,6 @@ The plan looks good. Now implement the change minimally. Do not run tests yet.
 **Action:** In Claude, type:
 ```
 Use the reviewer subagent to review the change we just made.
-Return 3 risks, 3 tests to add, and 3 concrete patch suggestions.
 ```
 
 You should see in the results the 3 risks, 3 tests to add, and 3 patch suggestions we told the reviewer agent to output.
