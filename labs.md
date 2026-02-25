@@ -513,11 +513,9 @@ This file will be automatically created and read in future sessions.
 
 ![claude.md](./images/ccode188.png?raw=true "claude.md")
 
-Afterwards, you can take a look at the file by opening it up (with Preview via right-click if desired).
+Afterwards, you can take a look at the file by opening it up in an editor (you can use 'code' command if in VS Code or Codespace).
 
-![claude.md](./images/ccode189.png?raw=true "claude.md")
-
-You'll probably notice that it identifies custom slash commands, custom agents, and custom skills that we have in the `extra` directory. We'll do more with those later.
+You'll probably notice that it identifies custom slash commands, custom agents, and custom skills that we have in the `extra` directory. While it is finding those kind of files there, it is NOT registering them as something usable. It is just describing the file types.
 
 ---
 <br><br>
