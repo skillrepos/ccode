@@ -123,12 +123,10 @@ You'll see the output: "Hello from Claude Code!"
 **Why:** You'll often need to pause and continue work later.
 
 **Action:** 
-1. Type `exit` or press `Ctrl+D` to exit Claude
+1. Type `exit` to exit Claude
 2. Restart with: `claude --resume`
 3. You'll see a list with your session. Just hit *Enter* to resume.
 4. Claude will restore your previous session context
-
-![Restore](./images/ccode91.png?raw=true "Restore")
 
 ---
 <br><br>
