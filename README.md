@@ -23,15 +23,8 @@ If you would like to use the GitHub Codespace zero-install option that runs in a
 
 <br><br>
 
-## 3. If you want to install Claude Code on your local system (and are allowed to):
 
-Go to [Get Started](https://code.claude.com/docs/en/overview#get-started), choose the **Terminal** tab and proceed with installation for your desired platform.
-
-![Claude terminal setup](./images/ccode208.png?raw=true "Claude terminal setup")
-
-<br><br>
-
-## 4. Clone down the training repo locally from GitHub and open in your app or change into the cloned directory.
+## 3. Clone down the training repo locally from GitHub.
 
 ```
 git clone https://github.com/skillrepos/ccode
@@ -39,9 +32,19 @@ git clone https://github.com/skillrepos/ccode
 
 <br><br>
 
-## 5. Start Claude and authenticate as appropriate.
+## 4. If you want to install Claude Code on your local system (and are allowed to):
 
- If in the terminal integration, you can likely follow the directions in  [STARTUP.md](./STARTUP.md) to complete this task. Otherwise, consult the online documentation.
+Go to [Get Started](https://code.claude.com/docs/en/overview#get-started), choose the **Terminal** tab and proceed with installation for your desired platform.
+
+![Claude terminal setup](./images/ccode208.png?raw=true "Claude terminal setup")
+
+<br><br>
+
+
+
+## 5. Go to the cloned repo, start Claude and authenticate as appropriate.
+
+If in the terminal integration, change into your cloned directory and you can likely follow the directions in  [STARTUP.md](./STARTUP.md) to complete this task. Otherwise, consult the online documentation.
 
  <br><br>
 
