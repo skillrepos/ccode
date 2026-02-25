@@ -536,6 +536,16 @@ Claude should recall information from the CLAUDE.md file and display that info.
 ---
 <br><br>
 
+## 9: Exit
+
+**Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
+
+```
+exit
+```
+
+<br><br>
+
 
 ## Lab Summary
 ✅ You've mastered:
@@ -589,27 +599,7 @@ code extra/commands/test.md
 ----
 <br><br>
 
-## 3: Test Your Custom Command
-**What we're doing:** Executing the custom command we just created.  
-**Why:** Verifying commands work as expected before relying on them.
-
-**Action:** Type:
-```
-/test
-```
-
-![Test command](./images/ccode49.png?raw=true "Test command")
-
-Hit *Enter*. Claude should prompt you for which type of test (as defined in the command's md file) to run. Select the entry for *unit* from the list.
-
-![Test command](./images/ccode192.png?raw=true "Test command")
-
-**This step will take some time to run. You do NOT need to wait for this to finish to continue. While this is running, you can open another terminal and proceed with the next step.**
-
----
-<br><br>
-
-## 4: Add a Project Command (Repo-Shared)
+## 3: Add a Project Command (Repo-Shared)
 **What we're doing:** Adding a command to the repository.  
 **Why:** This is how teams share workflows.
 
@@ -622,7 +612,7 @@ code .claude/commands/refactor.md
 ---
 <br><br>
 
-## 5: Create a New Command: /doc
+## 4: Create a New Command: /doc
 **What we're doing:** Writing a small command from scratch.  
 **Why:** Students learn what a “good command” looks like.
 
@@ -643,9 +633,36 @@ Keep changes small and do not refactor code.
 ---
 <br><br>
 
+## 5: Restart Claude
+**What we're doing:** Restarting claude  
+**Why:** New commands are only picked up on restart.
+
+```
+claude
+```
+
+## 6: Test Your Custom Command
+**What we're doing:** Executing the custom command we just created.  
+**Why:** Verifying commands work as expected before relying on them.
+
+**Action:** Type:
+```
+/test
+```
+
+![Test command](./images/ccode49.png?raw=true "Test command")
+
+Hit *Enter*. Claude should prompt you for which type of test (as defined in the command's md file) to run. Select the entry for *unit* from the list.
+
+![Test command](./images/ccode192.png?raw=true "Test command")
+
+**This step will take some time to run. You do NOT need to wait for this to finish to continue. While this is running, you can open another terminal and proceed with the next step.**
+
+---
+<br><br>
 
 
-## 6: Review the /test output
+## 7: Review the /test output
 **What we're doing:** Reviewing output
 **Why:** To ensure our new command worked as expected
 
@@ -656,7 +673,7 @@ Keep changes small and do not refactor code.
 ---
 <br><br>
 
-## 7: Use /doc
+## 8: Use /doc
 **What we're doing:** Running our new command.  
 **Why:** Confirms custom commands work end-to-end.
 
