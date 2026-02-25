@@ -494,7 +494,7 @@ Claude will summarize earlier parts while keeping specified information.
 
 ![rewind](./images/ccode35.png?raw=true "rewind")
 
-5. You should see the file and the conversatoin restored. You can just clear out any commands showing up in Claude.
+5. You should see the file and the conversation restored. You can just clear out any commands showing up in Claude.
 
 ---
 <br><br>
