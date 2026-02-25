@@ -870,7 +870,7 @@ claude
 ---
 <br><br>
 
-## 7: Trigger the Skill (Without Naming It)
+## 7: Trigger the skill (Without Naming It)
 **What we're doing:** Letting Claude choose the skill automatically.  
 **Why:** Skills are intended to be invoked based on context.
 
@@ -970,7 +970,7 @@ Turn your commands + agents + skills into a shareable "team kit," and practice a
 ---
 <br><br>
 ## 1: Add a Team Command: /ship
-**What we're doing:** Creating a standardized "ready to ship" checklist command.
+**What we're doing:** Creating a standardized "ready to ship" checklist command.  
 **Why:** To have a reusable standardized command that encompasses multiple functions.
 
 **Action:** Create `.claude/commands/ship.md`:
@@ -995,7 +995,7 @@ Do not edit files unless asked.
 <br><br>
 
 ## 2: Add the Reviewer Agent
-**What we're doing:** Adding a "review-only" specialist agent definition.
+**What we're doing:** Adding a "review-only" specialist agent definition.  
 **Why:** We want a reviewer as part of our workflow.
 
 > **Tooling note:** This agent is structurally restricted from editing files — not just told not to, but actually blocked from using Write and Edit tools. This is the difference between a prompt-level constraint (which Claude can override) and a tool-level constraint (which it cannot).
@@ -1027,7 +1027,7 @@ disallowedTools: Write, Edit
 <br><br>
 
 ## 3: Create the Plugin Manifest Folder
-**What we're doing:** Preparing a shareable plugin bundle.
+**What we're doing:** Preparing a shareable plugin bundle.  
 **Why:** Plugins are the packaging mechanism for distributing team assets (commands, agents, skills) so teammates can install them with a single command rather than copying files around.
 
 **Action:**
@@ -1038,7 +1038,7 @@ mkdir -p .claude-plugin
 <br><br>
 
 ## 4: Create plugin.json
-**What we're doing:** Defining the plugin metadata and component paths.
+**What we're doing:** Defining the plugin metadata and component paths.  
 **Why:** Claude Code uses this manifest to discover and load plugin components. When someone installs your plugin, these paths tell Claude Code where to find the commands, agents, and skills you've bundled.
 
 **Action:** Create `.claude-plugin/plugin.json`:
@@ -1066,8 +1066,9 @@ code .claude-plugin/plugin.json
 <br><br>
 
 ## 5: Start Claude Code and Verify Discovery
-**What we're doing:** Validating the repo has the expected structure.
+**What we're doing:** Validating the repo has the expected structure.  
 **Why:** Before running any workflows, confirm that Claude Code discovers all your assets — the new `/ship` command, the reviewer agent from this lab, plus the planner agent, test-runner agent, and api-checker skill from Lab 5.
+
 **Action:** Start Claude Code
 
 ```bash
@@ -1111,7 +1112,7 @@ Confirm the `api-checker` skill is shown in the `Project Skills` section.
 
 
 ## 6: Practice the Supervised Delegation Pattern (Plan → Implement → Review)
-**What we're doing:** Running a realistic delegation flow where *you* act as the supervisor, directing Claude to use the right subagent at each step.
+**What we're doing:** Running a realistic delegation flow where *you* act as the supervisor, directing Claude to use the right subagent at each step.  
 **Why:** This is how most people use subagents in practice — you decide what happens next, and subagents are your specialists. You control the workflow; they do the focused work.
 
 **Action:** In Claude, type:
@@ -1133,7 +1134,7 @@ The plan looks good. Now implement the change minimally. Do not run tests yet.
 <br><br>
 
 ## 7: Delegate Review (Reviewer Subagent)
-**What we're doing:** Getting a review from the reviewer subagent, which is structurally unable to edit files.
+**What we're doing:** Getting a review from the reviewer subagent, which is structurally unable to edit files.  
 **Why:** Because the reviewer has `disallowedTools: Write, Edit` in its definition, you can trust that it will only analyze — never modify — your code. This keeps the review honest and the main conversation focused on your decisions about what to change.
 
 **Action:** In Claude, type:
@@ -1153,7 +1154,7 @@ You should see in the results the 3 risks, 3 tests to add, and 3 patch suggestio
 <br><br>
 
 ## 8: Run the Ship Checklist Command
-**What we're doing:** Running the `/ship` command you created in Step 1.
+**What we're doing:** Running the `/ship` command you created in Step 1.  
 **Why:** Execute the overall workflow.
 
 > **Note:** Notice the difference from Steps 6–7. The `/ship` command runs *inline* in the main conversation — it doesn't spawn a separate subagent context. It's a reusable prompt template, not a specialist. Commands and agents serve different purposes: commands standardize *what to do*, agents specialize *who does it*.
@@ -1172,18 +1173,21 @@ What you should see is the git info being gathered and the testing running. Then
 <br><br>
 
 
-## 9: Open the VS Code Extension
-**What we're doing:** Switching to IDE workflow.
+## 9: (OPTIONAL) Open the VS Code Extension
+**What we're doing:** Switching to IDE workflow.  
 **Why:** Many learners prefer IDE-first interaction.
 
 **Action:** Open the Claude Code VS Code extension (sidebar or toolbar icon).
 
+If you are prompted to log in, choose the "Claude.ai Subcription" option and follow the steps to authenticate.
+
 ---
 <br><br>
 
-## 10: Run /ship from the Extension
-**What we're doing:** Using the same team kit inside the IDE.
+## 10: (OPTIONAL) Run /ship from the Extension
+**What we're doing:** Using the same team kit inside the IDE.  
 **Why:** Reinforces that repo-level assets (commands, agents, skills) work the same way whether you're in the terminal or VS Code. The extension automatically discovers everything in `.claude/`.
+
 **Action:** In the extension chat, run:
 ```
 /ship
