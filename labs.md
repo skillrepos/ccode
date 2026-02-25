@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 4.9 - 02/24/26
+## Revision 5.0 - 02/25/26
 
 <br><br>
 
@@ -752,11 +752,7 @@ mkdir -p .claude/agents
 **What we're doing:** Writing a SKILL.md with a focused purpose.  
 **Why:** Skills help Claude apply repeatable expertise automatically.
 
-**Action:** Create `.claude/skills/api-checker/SKILL.md`:
-
-```
-code .claude/skills/api-checker/SKILL.md
-```
+**Action:** Create `.claude/skills/api-checker/SKILL.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -787,11 +783,7 @@ User: "Can you validate GET /health on my service?"
 **What we're doing:** Adding a deterministic helper.  
 **Why:** Scripts make results more predictable than pure prompting.
 
-**Action:** Create `.claude/skills/api-checker/scripts/check.py`:
-
-```
-code .claude/skills/api-checker/scripts/check.py
-```
+**Action:** Create `.claude/skills/api-checker/scripts/check.py`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -836,11 +828,7 @@ chmod +x .claude/skills/api-checker/scripts/check.py
 
 > **Terminology note:** The file in `.claude/agents/` defines an *agent configuration*. When Claude delegates to it during a conversation, it runs as a *subagent* — a separate context that does work and returns results to the main conversation.
 
-**Action:** Create `.claude/agents/planner.md`:
-
-```
-code .claude/agents/planner.md
-```
+**Action:** Create `.claude/agents/planner.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -865,11 +853,7 @@ model: sonnet
 **What we're doing:** Creating a “run tests, summarize, propose minimal fix” helper.  
 **Why:** Subagents reduce context noise and speed up troubleshooting.
 
-**Action:** Create `.claude/agents/test-runner.md`:
-
-```
-code .claude/agents/test-runner.md
-```
+**Action:** Create `.claude/agents/test-runner.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -1002,11 +986,7 @@ Turn your commands + agents + skills into a shareable "team kit," and practice a
 **What we're doing:** Creating a standardized "ready to ship" checklist command.  
 **Why:** To have a reusable standardized command that encompasses multiple functions.
 
-**Action:** Create `.claude/commands/ship.md`:
-
-```
-code .claude/commands/ship.md
-```
+**Action:** Create `.claude/commands/ship.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -1029,11 +1009,7 @@ Do not edit files unless asked.
 
 > **Tooling note:** This agent is structurally restricted from editing files — not just told not to, but actually blocked from using Write and Edit tools. This is the difference between a prompt-level constraint (which Claude can override) and a tool-level constraint (which it cannot).
 
-**Action:** Create `.claude/agents/reviewer.md`:
-
-```
-code .claude/agents/reviewer.md
-```
+**Action:** Create `.claude/agents/reviewer.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -1070,11 +1046,7 @@ mkdir -p .claude-plugin
 **What we're doing:** Defining the plugin metadata and component paths.  
 **Why:** Claude Code uses this manifest to discover and load plugin components. When someone installs your plugin, these paths tell Claude Code where to find the commands, agents, and skills you've bundled.
 
-**Action:** Create `.claude-plugin/plugin.json`:
-
-```
-code .claude-plugin/plugin.json
-```
+**Action:** Create `.claude-plugin/plugin.json`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
