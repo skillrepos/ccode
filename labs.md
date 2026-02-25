@@ -701,7 +701,7 @@ exit
 
 # Lab 5: Skills + Subagents 
 ## Lab Purpose 
-Build one practical Skill and two specialist subagents (Planner + Test Runner) to see how delegation keeps work fast and clean.
+Build one practical skill and two specialist subagents to see how delegation keeps work fast and clean.
 
 ---
 <br><br>
