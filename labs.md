@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 4.8 - 02/24/26
+## Revision 4.9 - 02/24/26
 
 <br><br>
 
@@ -360,7 +360,13 @@ Notice Claude creates all files without asking for permission.
 ---
 <br><br>
 
+## 11: Exit
 
+**Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
+
+```
+exit
+```
 
 ## Lab Summary
 ✅ You've successfully learned:
