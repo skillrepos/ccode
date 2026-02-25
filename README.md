@@ -14,7 +14,33 @@ You **must** have a paid claude account to use Claude Code.
 
 ![Claude signup](./images/ccode76.png?raw=true "Claude signup")
 
-## 2. Set codespace timeout
+
+## 2. Choose where you want to run Claude Code. 
+**Important note: Lab commands and screenshots reflect using terminal integration in Codespace/VS Code integration. Steps and functionality in other environments may vary!**
+
+If you would like to use the GitHub Codespace zero-install option that runs in a browser, skip to step 5.  Otherwise, continue with step 3.
+
+
+## 3. If you want to install Claude Code on your local system (and are allowed to):
+
+Go to [https://code.claude.com/docs/en/overview#get-started](https://code.claude.com/docs/en/overview#get-started) and choose your installation target.
+
+Proceed with installation.
+
+
+## 4. Clone down the training repo locally from GitHub and open in your app or change into the cloned directory.
+
+```
+git clone https://github.com/skillrepos/ccode
+```
+
+## 5. Start Claude and authenticate as appropriate.
+
+ If in the terminal or codespace or VS Code, you can follow the directions in  [STARTUP.md](./STARTUP.md) to complete this task. Otherwise, consult the online documentation.
+
+
+
+## 5. Set codespace timeout
 
 While logged in to GitHub, go to https://github.com/settings/codespaces.
 
@@ -28,7 +54,7 @@ Increase the default timeout value to 90 minutes and then select the *Save* butt
 
 <br><br>
 
-## 3. Create your own codespace to run the labs by clicking on the button below.
+## 4. Create your own codespace to run the labs by clicking on the button below.
 <br/><br/>
 
 Click here ------> [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/skillrepos/ccode?quickstart=1)
