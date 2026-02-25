@@ -416,7 +416,7 @@ claude
 /help
 ```
 
-This will bring up a set of *tabbed* output for help. Use the *tab* key to get to the *commands* section at the top. Then you can use the arrow keys to move up and down to see all the commands.
+Hit *Enter*. This will bring up a set of *tabbed* output for help. Use the *tab* key to get to the *commands* section at the top. Then you can use the arrow keys to move up and down to see all the commands.
 Review the list including /clear, /compact, /rewind, /model, and others.
 
 ![help to see commands](./images/ccode109.png?raw=true "help to see commands")
