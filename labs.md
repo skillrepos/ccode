@@ -663,10 +663,10 @@ Hit *Enter*. Claude should prompt you for which type of test (as defined in the 
 
 
 ## 7: Review the /test output
-**What we're doing:** Reviewing output
+**What we're doing:** Reviewing output  
 **Why:** To ensure our new command worked as expected
 
-**Action:** Switch back to the terminal session running the unit testing and review the output. You should see something like below:
+**Action:** Switch back to the terminal session running the unit testing and review the output. Provide approval if needed. You should see something like below:
 
 ![Preview command](./images/ccode193.png?raw=true "Preview command")
 
