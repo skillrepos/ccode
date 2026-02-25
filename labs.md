@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 5.0 - 02/25/26
+## Revision 5.2 - 02/25/26
 
 <br><br>
 
@@ -432,10 +432,25 @@ Use *Esc* to exit when done.
 
 **Action:** Have a multi-turn conversation. **Type each of the following into the prompt area one at a time and let each complete before entering the next one**:
 ```
-1. Create a user.js file with a User class
-2. Add methods for getName and setName  
-3. Add email validation to the User class
-4. Create a test file for the User class
+Create a user.js file with a User class
+```
+
+Wait for this to finish, then...
+
+```
+Add methods for getName and setName  
+```
+
+Wait for this to finish, then...
+
+```
+Add email validation to the User class
+```
+
+Wait for this to finish, then...
+
+```
+Create a test file for the User class
 ```
 
 Let Claude complete each task to build up context.
@@ -593,8 +608,10 @@ mkdir -p .claude/commands
 
 ```bash
 cp extra/commands/test.md ~/.claude/commands/
-code extra/commands/test.md
 ```
+
+open in an editor extra/commands/test.md
+
 
 ----
 <br><br>
@@ -606,8 +623,10 @@ code extra/commands/test.md
 **Action:**
 ```bash
 cp extra/commands/refactor.md .claude/commands/
-code .claude/commands/refactor.md
 ```
+
+open in an editor .claude/commands/refactor.md
+
 
 ---
 <br><br>
@@ -616,7 +635,10 @@ code .claude/commands/refactor.md
 **What we're doing:** Writing a small command from scratch.  
 **Why:** Students learn what a “good command” looks like.
 
-**Action:** Create `.claude/commands/doc.md` with the content below:
+> **Note:** For files in the remaining labs, while Claude is stopped, "Make a new file" means use whatever editor you have locally (or the `code` command in the codespace / VS Code ) to create the specified file and then paste the contents in it.  We are not using Claude to create these files.
+
+**Action:** Make a new file `.claude/commands/doc.md` with the content below:
+
 ```md
 ---
 description: Generate concise module documentation
@@ -656,7 +678,6 @@ Hit *Enter*. Claude should prompt you for which type of test (as defined in the 
 
 ![Test command](./images/ccode192.png?raw=true "Test command")
 
-**This step will take some time to run. You do NOT need to wait for this to finish to continue. While this is running, you can open another terminal and proceed with the next step.**
 
 ---
 <br><br>
@@ -689,7 +710,7 @@ Approve changes if prompted.
 ---
 <br><br>
 
-## 8: List Custom Commands
+## 9: List Custom Commands
 **What we're doing:** Confirming command discovery.  
 **Why:** Quickly verify what's available.
 
@@ -706,7 +727,7 @@ Hit Enter. Then find the section that lists custom commands.
 ---
 <br><br>
 
-## 9: Exit
+## 10: Exit
 **Action:**
 ```
 exit
@@ -752,7 +773,7 @@ mkdir -p .claude/agents
 **What we're doing:** Writing a SKILL.md with a focused purpose.  
 **Why:** Skills help Claude apply repeatable expertise automatically.
 
-**Action:** Create `.claude/skills/api-checker/SKILL.md`.
+**Action:** Make a new file `.claude/skills/api-checker/SKILL.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -783,7 +804,7 @@ User: "Can you validate GET /health on my service?"
 **What we're doing:** Adding a deterministic helper.  
 **Why:** Scripts make results more predictable than pure prompting.
 
-**Action:** Create `.claude/skills/api-checker/scripts/check.py`.
+**Action:** Make a new file `.claude/skills/api-checker/scripts/check.py`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -828,7 +849,7 @@ chmod +x .claude/skills/api-checker/scripts/check.py
 
 > **Terminology note:** The file in `.claude/agents/` defines an *agent configuration*. When Claude delegates to it during a conversation, it runs as a *subagent* — a separate context that does work and returns results to the main conversation.
 
-**Action:** Create `.claude/agents/planner.md`.
+**Action:** Make a new file `.claude/agents/planner.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -853,7 +874,7 @@ model: sonnet
 **What we're doing:** Creating a “run tests, summarize, propose minimal fix” helper.  
 **Why:** Subagents reduce context noise and speed up troubleshooting.
 
-**Action:** Create `.claude/agents/test-runner.md`.
+**Action:** Make a new file `.claude/agents/test-runner.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -949,7 +970,7 @@ Stop after proposing the fix (do not implement yet).
 What you should see after this runs is a failing email test added to user.test.js and a proposed fix.
 
 
-![Using the test-runner subagent](./images/ccode198.png?raw=true "Using the testrunner subagent")
+![Using the test-runner subagent](./images/ccode199.png?raw=true "Using the testrunner subagent")
 
 ---
 <br><br>
@@ -986,7 +1007,7 @@ Turn your commands + agents + skills into a shareable "team kit," and practice a
 **What we're doing:** Creating a standardized "ready to ship" checklist command.  
 **Why:** To have a reusable standardized command that encompasses multiple functions.
 
-**Action:** Create `.claude/commands/ship.md`.
+**Action:** Make a new file `.claude/commands/ship.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -1009,7 +1030,7 @@ Do not edit files unless asked.
 
 > **Tooling note:** This agent is structurally restricted from editing files — not just told not to, but actually blocked from using Write and Edit tools. This is the difference between a prompt-level constraint (which Claude can override) and a tool-level constraint (which it cannot).
 
-**Action:** Create `.claude/agents/reviewer.md`.
+**Action:** Make a new file `.claude/agents/reviewer.md`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -1046,7 +1067,7 @@ mkdir -p .claude-plugin
 **What we're doing:** Defining the plugin metadata and component paths.  
 **Why:** Claude Code uses this manifest to discover and load plugin components. When someone installs your plugin, these paths tell Claude Code where to find the commands, agents, and skills you've bundled.
 
-**Action:** Create `.claude-plugin/plugin.json`.
+**Action:** Make a new file `.claude-plugin/plugin.json`.
 
 **Action:** Copy/paste the following contents into the file and save it.
 
@@ -1197,10 +1218,13 @@ If you are prompted to log in, choose the "Claude.ai Subcription" option and fol
 
 ---
 <br><br>
+
 ## 11: Exit
 **Action:** End any running sessions and close Claude Code.
+
 ---
 <br><br>
+
 ## Lab Summary
 You've learned:
 - **Supervised delegation pattern:** You act as the orchestrator, directing Claude to use specialist subagents (planner, reviewer) at each step and making decisions between them.
