@@ -698,7 +698,7 @@ Approve changes if prompted.
 /help
 ```
 
-Then find the section that lists custom commands.
+Hit Enter. Then find the section that lists custom commands.
 
 
 ![Viewing list of custom commands](./images/ccode195.png?raw=true "Viewing list of custom commands")
