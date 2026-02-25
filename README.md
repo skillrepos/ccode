@@ -6,7 +6,7 @@ This 3-hour hands-on workshop teaches you how to leverage Claude Code's AI featu
 
 Prerequisites: Claude paid account.
 
-These instructions will guide you through configuring a GitHub Codespaces environment that you can use to do the labs.
+These instructions will guide you through configuring a Claude Code environment that you can use to do the labs.
 
 ## 1. If you don't already have a paid Claude account, sign up for one at [claude.ai](https://claude.ai). 
 
@@ -14,12 +14,14 @@ You **must** have a paid claude account to use Claude Code.
 
 ![Claude signup](./images/ccode76.png?raw=true "Claude signup")
 
+<br><br>
 
 ## 2. Choose where you want to run Claude Code. 
 **Important note: Lab commands and screenshots reflect using terminal integration in Codespace/VS Code integration. Steps and functionality in other environments may vary!**
 
 If you would like to use the GitHub Codespace zero-install option that runs in a browser, skip to step 6.  Otherwise, continue with step 3.
 
+<br><br>
 
 ## 3. If you want to install Claude Code on your local system (and are allowed to):
 
@@ -27,6 +29,7 @@ Go to [Get Started](https://code.claude.com/docs/en/overview#get-started), choos
 
 ![Claude terminal setup](./images/ccode208.png?raw=true "Claude terminal setup")
 
+<br><br>
 
 ## 4. Clone down the training repo locally from GitHub and open in your app or change into the cloned directory.
 
@@ -34,13 +37,20 @@ Go to [Get Started](https://code.claude.com/docs/en/overview#get-started), choos
 git clone https://github.com/skillrepos/ccode
 ```
 
+<br><br>
+
 ## 5. Start Claude and authenticate as appropriate.
 
  If in the terminal integration, you can likely follow the directions in  [STARTUP.md](./STARTUP.md) to complete this task. Otherwise, consult the online documentation.
 
-**STOP HERE if not using the GitHub Codespace environment.**
+ <br><br>
 
-**Directions for GitHub Codespace environment setup follow.**
+---
+> **STOP HERE if NOT using the GitHub Codespace environment.**
+
+> **Directions for GitHub Codespace environment setup follow.**
+---
+<br><br>
 
 ## 6. Set codespace timeout
 
