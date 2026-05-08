@@ -69,19 +69,22 @@ Set the environment variables that route Claude Code through HuggingFace's Infer
 **For this terminal session:**
 ```bash
 export ANTHROPIC_BASE_URL="https://router.huggingface.co"
-export ANTHROPIC_AUTH_TOKEN="hf_YOUR_TOKEN_HERE"
 export ANTHROPIC_API_KEY="hf_YOUR_TOKEN_HERE"
+unset ANTHROPIC_AUTH_TOKEN
 export ANTHROPIC_DEFAULT_SONNET_MODEL="Qwen/Qwen3-Coder"
 export ANTHROPIC_DEFAULT_HAIKU_MODEL="Qwen/Qwen3-Coder"
 export ANTHROPIC_DEFAULT_OPUS_MODEL="Qwen/Qwen3-Coder"
 ```
+
+> **Important:** Use `ANTHROPIC_API_KEY` only — do NOT also set `ANTHROPIC_AUTH_TOKEN`. If both are set, Claude Code shows an auth conflict warning. If you previously logged into Claude Code with a paid account, run `claude /logout` first to clear any stored credentials.
+
+When Claude Code starts, it may ask "Detected a custom API key — do you want to use this API key?" Select **Yes**.
 
 **To make it permanent**, add the above lines to your shell config:
 ```bash
 # For zsh (macOS default)
 cat >> ~/.zshrc << 'EOF'
 export ANTHROPIC_BASE_URL="https://router.huggingface.co"
-export ANTHROPIC_AUTH_TOKEN="hf_YOUR_TOKEN_HERE"
 export ANTHROPIC_API_KEY="hf_YOUR_TOKEN_HERE"
 export ANTHROPIC_DEFAULT_SONNET_MODEL="Qwen/Qwen3-Coder"
 export ANTHROPIC_DEFAULT_HAIKU_MODEL="Qwen/Qwen3-Coder"
@@ -464,6 +467,9 @@ No other changes needed.
 **Authentication error (HuggingFace):**
 Double-check your token value. Go to [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) and verify it's active and has Read access.
 
+**"Auth conflict" warning (HuggingFace):**
+This means both `ANTHROPIC_AUTH_TOKEN` and `ANTHROPIC_API_KEY` are set. For HuggingFace, only `ANTHROPIC_API_KEY` should be set. Run `unset ANTHROPIC_AUTH_TOKEN` and restart Claude Code. If you previously used a paid Claude account, also run `claude /logout` to clear stored credentials.
+
 **Rate limit hit (HuggingFace):**
 The free tier has usage limits. Wait a few minutes for limits to reset, or switch to a local option (B or C) as a fallback.
 
@@ -497,8 +503,8 @@ claude /login
 
 **Switch to HuggingFace:**
 ```bash
+unset ANTHROPIC_AUTH_TOKEN
 export ANTHROPIC_BASE_URL="https://router.huggingface.co"
-export ANTHROPIC_AUTH_TOKEN="hf_YOUR_TOKEN"
 export ANTHROPIC_API_KEY="hf_YOUR_TOKEN"
 export ANTHROPIC_DEFAULT_SONNET_MODEL="Qwen/Qwen3-Coder"
 ```
@@ -512,7 +518,7 @@ export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder"
 
 > **Tip**: Create shell aliases for quick switching:
 > ```bash
-> alias claude-hf='export ANTHROPIC_BASE_URL="https://router.huggingface.co" && export ANTHROPIC_AUTH_TOKEN="hf_YOUR_TOKEN" && export ANTHROPIC_API_KEY="hf_YOUR_TOKEN" && export ANTHROPIC_DEFAULT_SONNET_MODEL="Qwen/Qwen3-Coder"'
+> alias claude-hf='unset ANTHROPIC_AUTH_TOKEN && export ANTHROPIC_BASE_URL="https://router.huggingface.co" && export ANTHROPIC_API_KEY="hf_YOUR_TOKEN" && export ANTHROPIC_DEFAULT_SONNET_MODEL="Qwen/Qwen3-Coder"'
 > alias claude-local='export ANTHROPIC_AUTH_TOKEN="ollama" && export ANTHROPIC_BASE_URL="http://localhost:11434" && export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder"'
 > alias claude-cloud='unset ANTHROPIC_AUTH_TOKEN ANTHROPIC_BASE_URL ANTHROPIC_API_KEY ANTHROPIC_DEFAULT_SONNET_MODEL'
 > ```
