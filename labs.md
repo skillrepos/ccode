@@ -162,7 +162,56 @@ Claude will create the file and show you the content in the diff above the termi
 ---
 <br><br>
 
-## 9: Exit
+## 9: Use @ Mentions to Pull Context
+**What we're doing:** Using the @ shortcut to bring files into Claude's context on demand.  
+**Why:** @ mentions let you reference specific files, folders, or URLs without copy-pasting.
+
+**Action:** Type the following — notice the @ symbol before the filename:
+```
+What does @hello.js do? Can you add a timestamp to it?
+```
+
+Claude will pull hello.js into its context and explain it before making changes. You can also use @folder/ to reference entire directories and @https://url for web content.
+
+---
+<br><br>
+
+## 10: Try the # Memory and ! Bash Shortcuts
+**What we're doing:** Using keyboard shortcuts to create memories and run shell commands inline.  
+**Why:** These shortcuts speed up common operations without leaving Claude Code.
+
+**Action:** First, try the # shortcut to create a memory. Type:
+```
+# This project uses JavaScript and Python for demos
+```
+
+Claude will save this to your CLAUDE.md file as a persistent memory.
+
+Now try the ! shortcut to run a bash command directly:
+```
+! ls -la *.js *.py
+```
+
+This runs the shell command and shows output without a separate terminal.
+
+---
+<br><br>
+
+## 11: Explore the Codebase with Questions
+**What we're doing:** Asking Claude questions about the files we've created.  
+**Why:** Codebase exploration is one of Claude Code's most powerful everyday uses.
+
+**Action:** Type:
+```
+What files have we created so far? Summarize the purpose of each one and suggest an improvement.
+```
+
+Claude will scan the working directory, list the files, and provide analysis. This is how developers use Claude Code for orientation — jumping into a new codebase and asking "What does this project do?" or "How is this function used?"
+
+---
+<br><br>
+
+## 12: Exit
 
 **Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
 
@@ -177,6 +226,8 @@ exit
 - Created and executed code with Claude
 - Learned basic navigation and commands
 - Practiced session management
+- Used @ mentions, # memory, and ! bash shortcuts
+- Explored a codebase with natural language questions
 
 <br><br>
 ---
@@ -551,7 +602,59 @@ Claude should recall information from the CLAUDE.md file and display that info.
 ---
 <br><br>
 
-## 9: Exit
+## 9: View the Memory Hierarchy with /memory
+**What we're doing:** Visualizing how CLAUDE.md memory is organized across scopes.  
+**Why:** Understanding the memory hierarchy helps you structure project knowledge effectively.
+
+**Action:** Type:
+```
+/memory
+```
+
+You'll see a visualization of how memory is layered: enterprise (if applicable) → user-level → project-level. The CLAUDE.md file you just created with `/init` appears at the project level. Note that CLAUDE.md files in nested subdirectories are automatically pulled in too, and you can create a CLAUDE.local.md for personal overrides that don't get committed to git.
+
+---
+<br><br>
+
+## 10: Explore Git History with Claude
+**What we're doing:** Using Claude to analyze changes in the repository.  
+**Why:** Claude Code excels at navigating and explaining code history.
+
+**Action:** Type:
+```
+What changes have been made in this repo recently? Summarize the git log.
+```
+
+Claude will run git commands and summarize the commit history in natural language. This is a powerful pattern for onboarding — instead of reading through git logs manually, ask Claude to explain what changed and why.
+
+---
+<br><br>
+
+## 11: Try Headless Mode with Pipe Input
+**What we're doing:** Using Claude Code as a Unix utility with piped input.  
+**Why:** Headless/pipe mode lets you chain Claude into scripts and automation workflows.
+
+**Action:** Exit Claude first with `exit`, then run this in your regular terminal:
+```bash
+echo "What files are in this directory?" | claude -p
+```
+
+The `-p` flag runs Claude in print (headless) mode — it takes input from stdin, processes it, and outputs the result. No interactive session needed. This is how you integrate Claude into shell scripts, CI pipelines, and automated workflows.
+
+Now restart Claude for the next lab:
+```bash
+claude
+```
+
+Then immediately exit for a fresh start:
+```
+exit
+```
+
+---
+<br><br>
+
+## 12: Exit
 
 **Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
 
@@ -569,7 +672,9 @@ exit
 - Undoing changes with /rewind
 - Switching models with /model
 - Creating persistent memory with CLAUDE.md
-- Advanced context preservation techniques
+- Viewing memory hierarchy with /memory
+- Exploring git history with natural language
+- Using headless pipe mode for automation
 
 
 <br><br>
@@ -577,179 +682,7 @@ exit
 ## END OF LAB
 ---
 <br><br>
-
-# Lab 4: Custom Commands
-## Lab Purpose
-Learn how to create custom slash commands to automate repetitive tasks and establish project-specific workflows. Build reusable commands that enhance your development productivity.
-
----
-<br><br>
-
-## 1: Create Commands Directory
-**What we're doing:** Setting up the folder structure for global and project-specific custom commands.  
-**Why:** Claude looks for custom commands in specific directories.
-
-> **Terminology note:** Commands are reusable prompts that run inline in the main conversation. Unlike agents (which run in their own context), a command is a predefined workflow anyone on the team can invoke with a single slash.
-
-**Action:** In terminal, create the directory:
-```bash
-mkdir -p ~/.claude/commands
-mkdir -p .claude/commands
-```
-
----
-<br><br>
-
-## 2: Add a Global Command from the Repo
-**What we're doing:** Installing an example command.
-**Why:** See an example of taking a properly formatted file and making it into a commands.
-
-**Action:** In terminal, copy the *extra/commands/test.md* file to ~/*.claude/commands/test.md*. This defines a new command that accepts a test type argument (unit, integration, or e2e) and generates appropriate tests. After copying it with the first os command below, open it up to review and understand the structure with the second os command below. You do not need to make any changes. Close when done.
-
-```bash
-cp extra/commands/test.md ~/.claude/commands/
-```
-
-open in an editor extra/commands/test.md
-
-
-----
-<br><br>
-
-## 3: Add a Project Command (Repo-Shared)
-**What we're doing:** Adding a command to the repository.  
-**Why:** This is how teams share workflows.
-
-**Action:**
-```bash
-cp extra/commands/refactor.md .claude/commands/
-```
-
-open in an editor .claude/commands/refactor.md
-
-
----
-<br><br>
-
-## 4: Create a New Command: /doc
-**What we're doing:** Writing a small command from scratch.  
-**Why:** Students learn what a “good command” looks like.
-
-> **Note:** For files in the remaining labs, while Claude is stopped, "Make a new file" means use whatever editor you have locally (or the `code` command in the codespace / VS Code ) to create the specified file and then paste the contents in it.  We are not using Claude to create these files.
-
-**Action:** Make a new file `.claude/commands/doc.md` with the content below:
-
-```md
----
-description: Generate concise module documentation
----
-Given a file path in $ARGUMENTS:
-1) Add/refresh JSDoc comments
-2) Add a short README snippet (3-6 bullets) describing the module
-3) Provide a minimal usage example
-Keep changes small and do not refactor code.
-```
-
-**Make sure to save the file when done.**
-
----
-<br><br>
-
-## 5: Restart Claude
-**What we're doing:** Restarting claude  
-**Why:** New commands are only picked up on restart.
-
-```
-claude
-```
-
-## 6: Test Your Custom Command
-**What we're doing:** Executing the custom command we just created.  
-**Why:** Verifying commands work as expected before relying on them.
-
-**Action:** Type:
-```
-/test
-```
-
-![Test command](./images/ccode49.png?raw=true "Test command")
-
-Hit *Enter*. Claude should prompt you for which type of test (as defined in the command's md file) to run. Select the entry for *unit* from the list.
-
-![Test command](./images/ccode192.png?raw=true "Test command")
-
-
----
-<br><br>
-
-
-## 7: Review the /test output
-**What we're doing:** Reviewing output  
-**Why:** To ensure our new command worked as expected
-
-**Action:** Switch back to the terminal session running the unit testing and review the output. Provide approval if needed. You should see something like below:
-
-![Preview command](./images/ccode193.png?raw=true "Preview command")
-
----
-<br><br>
-
-## 8: Use /doc
-**What we're doing:** Running our new command.  
-**Why:** Confirms custom commands work end-to-end.
-
-**Action:** In Claude:
-```
-/doc user.js
-```
-
-Approve changes if prompted.
-
-![Doc output](./images/ccode194.png?raw=true "Doc output")
-
----
-<br><br>
-
-## 9: List Custom Commands
-**What we're doing:** Confirming command discovery.  
-**Why:** Quickly verify what's available.
-
-**Action:**
-```
-/help
-```
-
-Hit Enter. Then find the section that lists custom commands.
-
-
-![Viewing list of custom commands](./images/ccode195.png?raw=true "Viewing list of custom commands")
-
----
-<br><br>
-
-## 10: Exit
-**Action:**
-```
-exit
-```
-
----
-<br><br>
-
-## Lab Summary
-✅ You’ve learned to:
-- Install global commands and repo commands
-- Create your own command with frontmatter + instructions
-- Validate discovery via /help
-
-<br><br>
----
-## END OF LAB
----
-<br><br>
-
-
-# Lab 5: Skills + Subagents 
+# Lab 4: Skills + Subagents 
 ## Lab Purpose 
 Build one practical skill and two specialist subagents to see how delegation keeps work fast and clean.
 
@@ -997,7 +930,7 @@ exit
 <br><br>
 
 
-# Lab 6: Supervised Subagent Workflow + Plugin Packaging + VS Code
+# Lab 5: Supervised Subagent Workflow + Plugin Packaging + VS Code
 ## Lab Purpose
 Turn your commands + agents + skills into a shareable "team kit," and practice a supervised delegation workflow where you orchestrate specialist subagents step by step.
 
@@ -1047,7 +980,7 @@ disallowedTools: Write, Edit
 - Do not modify files.
 ```
 
-> **What changed from Lab 5's agents?** Compare this to the planner agent you created in Lab 5. The planner says "Do not write or modify files" in its instructions — a prompt-level constraint. This reviewer goes further with `disallowedTools: Write, Edit`, which *enforces* the restriction at the tool level. Both approaches have their place: prompt constraints are flexible, tool constraints are guaranteed.
+> **What changed from Lab 4's agents?** Compare this to the planner agent you created in Lab 4. The planner says "Do not write or modify files" in its instructions — a prompt-level constraint. This reviewer goes further with `disallowedTools: Write, Edit`, which *enforces* the restriction at the tool level. Both approaches have their place: prompt constraints are flexible, tool constraints are guaranteed.
 
 ---
 <br><br>
@@ -1089,7 +1022,7 @@ mkdir -p .claude-plugin
 
 ## 5: Start Claude Code and (optional) Verify Discovery
 **What we're doing:** Validating the repo has the expected structure.  
-**Why:** Before running any workflows, confirm that Claude Code discovers all your assets — the new `/ship` command, the reviewer agent from this lab, plus the planner agent, test-runner agent, and api-checker skill from Lab 5.
+**Why:** Before running any workflows, confirm that Claude Code discovers all your assets — the new `/ship` command, the reviewer agent from this lab, plus the planner agent, test-runner agent, and api-checker skill from Lab 4.
 
 **Action:** Start Claude Code
 
