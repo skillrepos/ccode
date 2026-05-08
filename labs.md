@@ -20,6 +20,8 @@
 > ![set model](./images/ccode181.png?raw=true "set model")
 >
 > You should see an indicator that the model was set to *claude-sonnet-4-6*.
+>
+> **Ollama users:** Skip this — your model is already set via environment variables. The `/model` menu will still show the standard Claude models even when connected to Ollama. To verify your active model, ask: `What model are you?`
 
 <br><br>
 

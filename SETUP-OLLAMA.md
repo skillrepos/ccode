@@ -166,7 +166,9 @@ In Claude Code, type a simple prompt to confirm everything is working:
 What model are you, and can you see the files in this directory?
 ```
 
-The model should identify itself and list files in the repo. If you get a connection error, make sure `ollama serve` is running in another terminal.
+The model should identify itself (e.g., "powered by qwen3-coder:30b") and list files in the repo. If you get a connection error, make sure `ollama serve` is running in another terminal.
+
+> **Note:** This prompt is the reliable way to confirm which model is running. The `/model` command will still show the standard Claude models (Opus, Sonnet, Haiku) even when connected to Ollama — that menu always displays the built-in list and does not reflect your environment variable overrides.
 
 <br><br>
 
@@ -182,7 +184,7 @@ Most lab steps work identically with Ollama. Below are the specific differences 
 ## General Notes (All Labs)
 
 - **Skip `/login`**: No authentication needed. If prompted, just proceed.
-- **The `/model` command**: When labs say "set your model to Sonnet," you can skip this — your model is already set via the environment variable. If you do run `/model`, you'll see your Ollama models listed instead of Claude models.
+- **The `/model` command**: When labs say "set your model to Sonnet," you can skip this — your model is already set via the environment variable. **Important:** If you run `/model`, it will still show the standard Claude models (Opus, Sonnet, Haiku) — not your Ollama models. This is expected. The `/model` menu always displays the built-in list regardless of backend. Your environment variables (`ANTHROPIC_DEFAULT_SONNET_MODEL`, etc.) override what actually runs, so the model shown in `/model` is effectively ignored. To confirm which model is actually being used, ask Claude: `What model are you?`
 - **Output quality**: Local models may produce slightly different (sometimes less polished) output than Claude Sonnet/Opus. The lab steps and concepts still apply — just expect some variation in the exact text Claude generates.
 - **Speed**: First response may be slow as the model loads into memory. Subsequent responses are faster.
 
