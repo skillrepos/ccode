@@ -98,7 +98,7 @@ In the list that comes up, type "3" or use the arrow keys to move the pointer to
 
 You should see an indicator that the model was set to *claude-sonnet-4-6*.
 
-> **Ollama users:** Skip this step. Your model is already set via environment variables. The `/model` menu will still show the standard Claude models (Opus, Sonnet, Haiku) even when connected to Ollama — this is expected. Your environment variables override what actually runs. To confirm your active model, ask: `What model are you?`
+> **Alternate setup users (HuggingFace/Ollama/llama.cpp):** Skip this step. Your model is already set via environment variables. The `/model` menu will still show the standard Claude models (Opus, Sonnet, Haiku) — this is expected. Your environment variables override what actually runs. To confirm your active model, check the **welcome banner** when Claude Code starts — it shows the real model name. See [SETUP-ALT.md](./SETUP-ALT.md) for details.
 
 <br><br>
 
