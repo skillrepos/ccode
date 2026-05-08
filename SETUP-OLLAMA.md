@@ -8,7 +8,7 @@ This guide lets you run all five workshop labs using **free, local models** via 
 
 > **What works:** All core Claude Code features — `/compact`, `/clear`, `/rewind`, `/help`, `/init`, plan mode, YOLO mode, skills, subagents, custom commands, plugins.
 >
-> **What's different:** Tool search is disabled (all tools load upfront), model selection via `/model` shows local models instead of Claude models, and output quality depends on the model you choose.
+> **What's different:** Tool search is disabled (all tools load upfront), the `/model` menu still shows Claude models but your local model is used regardless (see Step 5), and output quality depends on the model you choose.
 >
 > **What to expect:** Local models handle the labs well for learning purposes. For production coding work, Claude Sonnet/Opus will produce significantly better results on complex multi-file tasks.
 
@@ -52,21 +52,21 @@ ollama --version
 
 ## Step 2: Pull a Model
 
-We recommend **Qwen3 Coder 14B** as the best balance of quality and response speed for local use. Even on fast Apple Silicon MacBooks, larger models (30B+) can take 30–60 seconds per response, which makes the labs tedious.
+We recommend **Qwen 2.5 Coder 14B** as the best balance of coding quality and response speed for local use. The newer Qwen3-Coder only comes in 30B+ sizes, which takes 30–60 seconds per response even on fast Apple Silicon MacBooks — too slow for interactive lab work.
 
 **Recommended (requires ~8GB RAM, responds in seconds):**
 ```bash
-ollama pull qwen3-coder:14b
+ollama pull qwen2.5-coder:14b
 ```
 
 **Alternatives:**
 ```bash
 # Fastest, lowest resource usage (~4GB RAM) — good for older hardware
-ollama pull qwen3-coder:7b
+ollama pull qwen2.5-coder:7b
 
 # Highest quality but SLOW (~20GB RAM, 30-60s per response even on M3/M4 Macs)
 # Only use this if you have 64GB+ RAM and patience
-ollama pull qwen3-coder:30b
+ollama pull qwen3-coder
 ```
 
 Verify the model is available:
@@ -118,24 +118,24 @@ Set the environment variables that point Claude Code to your local Ollama server
 **For this terminal session:**
 ```bash
 export ANTHROPIC_BASE_URL="http://localhost:11434"
-export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder:14b"
-export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen3-coder:14b"
-export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen3-coder:14b"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen2.5-coder:14b"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen2.5-coder:14b"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen2.5-coder:14b"
 ```
 
 **To make it permanent**, add the above lines to your shell config:
 ```bash
 # For bash
 echo 'export ANTHROPIC_BASE_URL="http://localhost:11434"' >> ~/.bashrc
-echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder:14b"' >> ~/.bashrc
-echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen3-coder:14b"' >> ~/.bashrc
-echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen3-coder:14b"' >> ~/.bashrc
+echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen2.5-coder:14b"' >> ~/.bashrc
+echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen2.5-coder:14b"' >> ~/.bashrc
+echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen2.5-coder:14b"' >> ~/.bashrc
 
 # For zsh (macOS default)
 echo 'export ANTHROPIC_BASE_URL="http://localhost:11434"' >> ~/.zshrc
-echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder:14b"' >> ~/.zshrc
-echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen3-coder:14b"' >> ~/.zshrc
-echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen3-coder:14b"' >> ~/.zshrc
+echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen2.5-coder:14b"' >> ~/.zshrc
+echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen2.5-coder:14b"' >> ~/.zshrc
+echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen2.5-coder:14b"' >> ~/.zshrc
 ```
 
 > **Adjust model names** if you pulled a different model in Step 2. Use the exact name shown by `ollama list`.
@@ -160,7 +160,7 @@ cd ccode
 Before starting Claude Code, pre-load the model into memory so your first response is fast:
 
 ```bash
-ollama run qwen3-coder:14b ""
+ollama run qwen2.5-coder:14b ""
 ```
 
 This loads the model weights into RAM without generating output. You'll see it briefly think and then return to the prompt. Type `/bye` to exit the Ollama shell.
@@ -189,7 +189,7 @@ In Claude Code, type a simple prompt to confirm everything is working:
 What model are you, and can you see the files in this directory?
 ```
 
-The model should identify itself (e.g., "powered by qwen3-coder:14b") and list files in the repo. The response should come back within a few seconds if the warm-up step worked. If you get a connection error, make sure `ollama serve` is running in another terminal.
+The model should identify itself (e.g., "powered by qwen2.5-coder:14b") and list files in the repo. The response should come back within a few seconds if the warm-up step worked. If you get a connection error, make sure `ollama serve` is running in another terminal.
 
 > **Note:** This prompt is the reliable way to confirm which model is running. The `/model` command will still show the standard Claude models (Opus, Sonnet, Haiku) even when connected to Ollama — that menu always displays the built-in list and does not reflect your environment variable overrides.
 
@@ -209,7 +209,7 @@ Most lab steps work identically with Ollama. Below are the specific differences 
 - **Skip `/login`**: No authentication needed. If prompted, just proceed.
 - **The `/model` command**: When labs say "set your model to Sonnet," you can skip this — your model is already set via the environment variable. **Important:** If you run `/model`, it will still show the standard Claude models (Opus, Sonnet, Haiku) — not your Ollama models. This is expected. The `/model` menu always displays the built-in list regardless of backend. Your environment variables (`ANTHROPIC_DEFAULT_SONNET_MODEL`, etc.) override what actually runs, so the model shown in `/model` is effectively ignored. To confirm which model is actually being used, ask Claude: `What model are you?`
 - **Output quality**: Local models may produce slightly different (sometimes less polished) output than Claude Sonnet/Opus. The lab steps and concepts still apply — just expect some variation in the exact text Claude generates.
-- **Speed**: The first response after starting Ollama will be slow as the model loads into memory. Subsequent responses with `qwen3-coder:14b` should take just a few seconds. If every response takes 30+ seconds, you're likely running a model that's too large — switch to `14b`.
+- **Speed**: The first response after starting Ollama will be slow as the model loads into memory. Subsequent responses with `qwen2.5-coder:14b` should take just a few seconds. If every response takes 30+ seconds, you're likely running a model that's too large — switch to `14b`.
 
 <br>
 
@@ -247,7 +247,7 @@ This lab creates a skill (api-checker) and subagents (planner, test-runner). All
 - **Step 7 (Trigger the skill)**: The skill matching may be slightly less reliable with smaller models. If the model doesn't automatically pick up the skill, try being more explicit: "Use the api-checker skill to validate GET /health on my service."
 - **Steps 8-9 (Subagents)**: Subagent delegation works the same way. Each subagent gets its own context window running on your local model.
 
-> **Tip**: If a subagent seems stuck or produces poor results with `7b`, try upgrading to `qwen3-coder:14b`. For the most demanding agentic tasks, consider switching to Claude's API temporarily.
+> **Tip**: If a subagent seems stuck or produces poor results with `7b`, try upgrading to `qwen2.5-coder:14b`. For the most demanding agentic tasks, consider switching to Claude's API temporarily.
 
 <br>
 
@@ -269,7 +269,7 @@ This lab creates a skill (api-checker) and subagents (planner, test-runner). All
 Ollama server isn't running. Start it with `ollama serve` in a separate terminal.
 
 **Very slow responses (30-60+ seconds):**
-The 30B model is likely too large for interactive use on your hardware. Switch to `qwen3-coder:14b` — it responds in seconds on most modern machines while still handling the labs well. Update your environment variables and restart Claude Code. Note: the very first response after starting Ollama is always slower as the model loads into memory; subsequent prompts should be faster.
+The 30B model is likely too large for interactive use on your hardware. Switch to `qwen2.5-coder:14b` — it responds in seconds on most modern machines while still handling the labs well. Update your environment variables and restart Claude Code. Note: the very first response after starting Ollama is always slower as the model loads into memory; subsequent prompts should be faster.
 
 **"Model not found" error:**
 The model name in your environment variable doesn't match what Ollama has. Run `ollama list` and use the exact name shown.
@@ -303,14 +303,14 @@ claude /login
 **Switch back to Ollama:**
 ```bash
 export ANTHROPIC_BASE_URL="http://localhost:11434"
-export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder:14b"
-export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen3-coder:14b"
-export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen3-coder:14b"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen2.5-coder:14b"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen2.5-coder:14b"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen2.5-coder:14b"
 ```
 
 > **Tip**: Create shell aliases for quick switching:
 > ```bash
-> alias claude-local='export ANTHROPIC_BASE_URL="http://localhost:11434" && export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder:14b"'
+> alias claude-local='export ANTHROPIC_BASE_URL="http://localhost:11434" && export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen2.5-coder:14b"'
 > alias claude-cloud='unset ANTHROPIC_BASE_URL && unset ANTHROPIC_DEFAULT_SONNET_MODEL'
 > ```
 
@@ -324,7 +324,7 @@ When you're done with the workshop, you can free up the memory and disk space us
 
 **Unload the model from memory** (frees RAM/VRAM immediately):
 ```bash
-ollama stop qwen3-coder:14b
+ollama stop qwen2.5-coder:14b
 ```
 
 **Stop the Ollama server** (if you started it manually):
@@ -335,7 +335,7 @@ pkill ollama
 
 **Remove the model from disk** (optional — frees ~8-20GB depending on model):
 ```bash
-ollama rm qwen3-coder:14b
+ollama rm qwen2.5-coder:14b
 ```
 
 **Uninstall Ollama entirely** (optional):
