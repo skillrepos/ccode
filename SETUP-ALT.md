@@ -2,13 +2,16 @@
 
 ## Use Claude Code's agentic workflow for free
 
-This guide lets you run all five workshop labs **without a paid Claude/Anthropic account**. Three options are covered, from easiest to most advanced:
+This guide lets you run all five workshop labs **without a paid Claude/Anthropic account**. Four options are covered, from easiest to most advanced:
 
 | Option | Speed | Setup Time | Hardware Needs | Cost |
 |--------|-------|-----------|----------------|------|
-| **A. HuggingFace Inference** (recommended) | Fast (server-side GPUs) | ~5 minutes | Any laptop with internet | Free (with limits) |
-| **B. Ollama** (local) | Slow (15–60s/response) | ~15 minutes + download | 32GB+ RAM | Free |
-| **C. llama.cpp** (local, advanced) | Moderate (15–25% faster than Ollama) | ~20 minutes + build | 32GB+ RAM | Free |
+| **A. OpenRouter** (recommended) | Fast (cloud GPUs) | ~5 minutes | Any laptop with internet | Free (50 req/day); $10 one-time → 1,000/day |
+| **B. HuggingFace Inference** (fastest, limited free tier) | Very fast (2–5s) | ~5 minutes | Any laptop with internet | Free tier depletes quickly; PRO $9/month |
+| **C. Ollama** (local) | Slow (15–60s/response) | ~15 minutes + download | 32GB+ RAM | Free |
+| **D. llama.cpp** (local, advanced) | Moderate (15–25% faster than Ollama) | ~20 minutes + build | 32GB+ RAM | Free |
+
+> **Which should I pick?** For the workshop, **Option A (OpenRouter)** is the safest choice — 50 free requests/day is enough for most labs, and a one-time $10 credit purchase permanently unlocks 1,000 requests/day on free models. Option B (HuggingFace) delivers the fastest responses but its free tier may run out within minutes.
 
 <br>
 
@@ -23,35 +26,46 @@ This guide lets you run all five workshop labs **without a paid Claude/Anthropic
 ---
 ---
 
-# Option A: HuggingFace Inference Providers (Recommended)
+# Option A: OpenRouter (Recommended)
 
-Run open-source models on HuggingFace's cloud GPUs — no downloads, no hardware requirements, fast responses. This is the easiest and fastest free option.
+[OpenRouter](https://openrouter.ai) routes your requests to cloud-hosted open-source models — no downloads, no hardware requirements. Free tier allows 50 requests/day. A one-time $10 credit purchase permanently unlocks 1,000 free-model requests/day (the $10 is only spent on paid models, so free models stay free).
+
+> **Workshop tip:** 50 requests/day is tight because Claude Code makes multiple API calls per user prompt (tool calls, follow-ups). If you plan to complete all five labs in one sitting, the $10 credit purchase is recommended.
 
 <br>
 
 ---
 
-## A1: Create a HuggingFace Account
+## A1: Create an OpenRouter Account
 
-If you don't already have one, sign up for a free account at [huggingface.co/join](https://huggingface.co/join).
+Sign up at [openrouter.ai](https://openrouter.ai). You can sign in with Google, GitHub, or email.
 
 <br><br>
 
 ---
 
-## A2: Create an Access Token
+## A2: Create an API Key
 
-1. Go to [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
-2. Click **Create new token**
+1. Go to [openrouter.ai/keys](https://openrouter.ai/keys)
+2. Click **Create Key**
 3. Give it a name (e.g., "claude-code-workshop")
-4. Select **Read** access (that's all you need)
-5. Click **Create token** and copy the token value
+4. Copy the key value (starts with `sk-or-...`)
 
 <br><br>
 
 ---
 
-## A3: Install Claude Code
+## A3: (Optional) Purchase $10 in Credits
+
+Go to [openrouter.ai/credits](https://openrouter.ai/credits) and purchase $10 in credits. This is a **one-time purchase** (not a subscription) that permanently raises your free-model limit from 50 to 1,000 requests/day. The credits themselves are only consumed by paid models — free models cost nothing.
+
+Skip this step if you want to try the free tier first and upgrade later if needed.
+
+<br><br>
+
+---
+
+## A4: Install Claude Code
 
 If you haven't already:
 ```bash
@@ -62,56 +76,30 @@ npm install -g @anthropic-ai/claude-code
 
 ---
 
-## A4: Configure Claude Code to Use HuggingFace
+## A5: Log Out and Configure
 
-Set the environment variables that route Claude Code through HuggingFace's Inference Providers. Replace `hf_YOUR_TOKEN_HERE` with the token you created in step A2.
+If you've previously used Claude Code with a paid Anthropic account, log out first:
 
-**For this terminal session:**
 ```bash
-export ANTHROPIC_BASE_URL="https://router.huggingface.co"
-export ANTHROPIC_API_KEY="hf_YOUR_TOKEN_HERE"
+claude /logout
+```
+
+Then set the environment variables. Replace `sk-or-YOUR_KEY_HERE` with the key from step A2.
+
+```bash
+export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+export ANTHROPIC_API_KEY="sk-or-YOUR_KEY_HERE"
 unset ANTHROPIC_AUTH_TOKEN
-export ANTHROPIC_DEFAULT_SONNET_MODEL="Qwen/Qwen3-Coder"
-export ANTHROPIC_DEFAULT_HAIKU_MODEL="Qwen/Qwen3-Coder"
-export ANTHROPIC_DEFAULT_OPUS_MODEL="Qwen/Qwen3-Coder"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="nvidia/nemotron-3-super-120b-a12b:free"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="nvidia/nemotron-3-super-120b-a12b:free"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="nvidia/nemotron-3-super-120b-a12b:free"
 ```
 
-> **Important:** Use `ANTHROPIC_API_KEY` only — do NOT also set `ANTHROPIC_AUTH_TOKEN`. If both are set, Claude Code shows an auth conflict warning. If you previously logged into Claude Code with a paid account, run `claude /logout` first to clear any stored credentials.
+**To make it permanent**, add the above lines to your shell config (`~/.zshrc` or `~/.bashrc`).
 
-When Claude Code starts, it may ask "Detected a custom API key — do you want to use this API key?" Select **Yes**.
+> **Important:** The URL must be `https://openrouter.ai/api` — NOT `https://openrouter.ai/api/v1`. Claude Code appends `/v1/messages` automatically.
 
-**To make it permanent**, add the above lines to your shell config:
-```bash
-# For zsh (macOS default)
-cat >> ~/.zshrc << 'EOF'
-export ANTHROPIC_BASE_URL="https://router.huggingface.co"
-export ANTHROPIC_API_KEY="hf_YOUR_TOKEN_HERE"
-export ANTHROPIC_DEFAULT_SONNET_MODEL="Qwen/Qwen3-Coder"
-export ANTHROPIC_DEFAULT_HAIKU_MODEL="Qwen/Qwen3-Coder"
-export ANTHROPIC_DEFAULT_OPUS_MODEL="Qwen/Qwen3-Coder"
-EOF
-
-# For bash
-# Replace ~/.zshrc with ~/.bashrc in the command above
-```
-
-> **Other models you can try:** Replace `Qwen/Qwen3-Coder` with any model available on [HuggingFace Inference Providers](https://huggingface.co/docs/inference-providers/index), such as `THUDM/GLM-5.1` or `google/gemma-4`. Append `:fastest` or `:cheapest` to prefer faster or cheaper providers (e.g., `Qwen/Qwen3-Coder:fastest`).
-
-<br><br>
-
----
-
-## A5: Alternative — Use the Interactive Picker
-
-Instead of setting environment variables manually, HuggingFace offers an interactive CLI tool that lets you pick a model and provider:
-
-```bash
-pip install huggingface_hub
-huggingface-cli login
-hf claude
-```
-
-This launches an interactive picker where you select a model, then starts Claude Code with everything pre-configured.
+> **Other free models:** Browse at [openrouter.ai/models?pricing=free](https://openrouter.ai/models?pricing=free). Look for models with the `:free` suffix.
 
 <br><br>
 
@@ -134,37 +122,161 @@ cd ccode
 claude
 ```
 
-Check the **welcome banner** — it should show your HuggingFace model name (e.g., `Qwen/Qwen3-Coder`). Type a simple prompt to verify:
+When Claude Code asks **"Detected a custom API key — do you want to use this API key?"**, select **Yes**.
+
+Check the **welcome banner** — it should show your model name. Type a simple prompt to verify:
 
 ```
 Can you see the files in this directory? List them.
 ```
 
-Claude should respond in natural language within a few seconds. If you get a token/authentication error, double-check your `ANTHROPIC_AUTH_TOKEN` value.
+Claude should respond in natural language within a few seconds.
 
-> **Note:** If you ask "What model are you?", the model will likely claim to be Claude — this is because Claude Code's system prompt tells the model to act as Claude. The welcome banner is the actual indicator of which model is running.
+> **Note:** If you ask "What model are you?", the model may claim to be Claude — this is normal. The welcome banner is the reliable indicator of which model is running.
+
+<br><br>
+
+---
+
+## OpenRouter Free Tier Notes
+
+The free tier is 50 requests/day (20/minute). Note that Claude Code makes multiple API calls per user prompt due to tool use, so you may get roughly 10–15 user interactions before hitting the limit. Failed requests also count.
+
+If you hit the limit mid-lab, you can wait until the next day (limits reset daily) or purchase credits to unlock 1,000/day.
+
+Some Claude-specific features (like extended thinking mode) won't work since those are Anthropic-only. All standard Claude Code features (file editing, shell commands, skills, subagents) work normally.
+
+<br><br>
+
+---
+---
+
+# Option B: HuggingFace Inference Providers (Fastest Responses)
+
+Run open-source models on [HuggingFace's](https://huggingface.co) cloud GPUs — no downloads, no hardware requirements, 2–5 second responses. The fastest option, but the free tier is very limited (may deplete within a few queries). Best paired with a [HuggingFace PRO](https://huggingface.co/pricing) subscription ($9/month) for adequate usage.
+
+<br>
+
+---
+
+## B1: Create a HuggingFace Account
+
+If you don't already have one, sign up for a free account at [huggingface.co/join](https://huggingface.co/join).
 
 <br><br>
 
 ---
 
-## HuggingFace Free Tier Limits
+## B2: Create an Access Token
 
-The free tier includes monthly inference credits. If you hit rate limits during the labs:
-- Wait a few minutes and retry — limits often reset quickly
-- Consider upgrading to [HuggingFace PRO](https://huggingface.co/pricing) ($9/month) for 20x more credits
-- Switch to a local option (B or C below) as a fallback
+1. Go to [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
+2. Click **Create new token**
+3. Give it a name (e.g., "claude-code-workshop")
+4. Select **Read** access (that's all you need)
+5. Click **Create token** and copy the token value (starts with `hf_...`)
 
-For a typical 3-hour workshop, the free tier should be sufficient if you're not running excessive prompts outside the labs.
+<br><br>
+
+---
+
+## B3: Install Claude Code
+
+If you haven't already:
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+<br><br>
+
+---
+
+## B4: Log Out of Any Existing Claude Account
+
+If you've previously used Claude Code with a paid Anthropic account, you must sign out first — otherwise the stored credentials will conflict with the HuggingFace setup.
+
+```bash
+claude /logout
+```
+
+If you've never logged into Claude Code before, skip this step.
+
+<br><br>
+
+---
+
+## B5: Configure Claude Code to Use HuggingFace
+
+Set the environment variables that route Claude Code through HuggingFace's Inference Providers. Replace `hf_YOUR_TOKEN_HERE` with the token you created in step B2.
+
+```bash
+export ANTHROPIC_BASE_URL="https://router.huggingface.co"
+export ANTHROPIC_AUTH_TOKEN="hf_YOUR_TOKEN_HERE"
+export ANTHROPIC_API_KEY="hf_YOUR_TOKEN_HERE"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="zai-org/GLM-5.1"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="zai-org/GLM-5.1"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="zai-org/GLM-5.1"
+```
+
+**To make it permanent**, add the above lines to your shell config (`~/.zshrc` or `~/.bashrc`).
+
+> **Critical:** You must set **both** `ANTHROPIC_AUTH_TOKEN` **and** `ANTHROPIC_API_KEY` to your HuggingFace token. This is required for authentication to work correctly.
+
+> **Other models you can try:** Replace `zai-org/GLM-5.1` with any model available on [HuggingFace Inference Providers](https://huggingface.co/docs/inference-providers/index).
+
+<br><br>
+
+---
+
+## B6: Clone the Workshop Repo
+
+```bash
+git clone https://github.com/skillrepos/ccode
+cd ccode
+```
+
+<br><br>
+
+---
+
+## B7: Start Claude Code and Verify
+
+```bash
+claude
+```
+
+When Claude Code asks **"Detected a custom API key — do you want to use this API key?"**, select **No**. This ensures `ANTHROPIC_AUTH_TOKEN` handles authentication correctly.
+
+Check the **welcome banner** — it should show your model name (e.g., `zai-org/GLM-5.1[1m]`). Type a simple prompt to verify:
+
+```
+Can you see the files in this directory? List them.
+```
+
+Claude should respond in natural language within a few seconds.
+
+> **Note:** If you ask "What model are you?", the model may claim to be Claude or may correctly identify itself — this varies by model. The welcome banner is the reliable indicator of which model is running.
+
+<br><br>
+
+---
+
+## HuggingFace Free Tier Warning
+
+The free tier includes a small amount of monthly inference credits that **can deplete within just a few queries** when using larger models. If you hit the limit:
+- Upgrade to [HuggingFace PRO](https://huggingface.co/pricing) ($9/month) for 20x more credits
+- Switch to OpenRouter (Option A) as a fallback — the free tier is more generous
+- Switch to a local option (C or D)
+
+Some Claude-specific features (like extended thinking mode) won't work since those are Anthropic-only. All standard Claude Code features (file editing, shell commands, skills, subagents) work normally.
 
 <br><br>
 
 ---
 ---
 
-# Option B: Ollama (Local Models)
+# Option C: Ollama (Local Models)
 
-Run models entirely on your machine with no internet required after setup. Slower than HuggingFace but fully offline and private.
+Run models entirely on your machine with no internet required after setup. Slower but fully offline and private.
 
 <br>
 
@@ -180,7 +292,7 @@ Run models entirely on your machine with no internet required after setup. Slowe
 
 ---
 
-## B1: Install Ollama
+## C1: Install Ollama
 
 **macOS:**
 ```bash
@@ -203,7 +315,7 @@ ollama --version
 
 ---
 
-## B2: Quick Setup (Recommended)
+## C2: Quick Setup (Recommended)
 
 If you have Ollama v0.14.0+, this one command handles everything — pulls the model, sets environment variables, and starts Claude Code:
 
@@ -211,15 +323,15 @@ If you have Ollama v0.14.0+, this one command handles everything — pulls the m
 ollama launch claude --model qwen3-coder
 ```
 
-If it works, skip to **[B6: Clone the Workshop Repo](#b6-clone-the-workshop-repo)**.
+If it works, skip to **[C6: Clone the Workshop Repo](#c6-clone-the-workshop-repo)**.
 
-If `ollama launch` isn't available or you prefer manual setup, continue with B3 below.
+If `ollama launch` isn't available or you prefer manual setup, continue with C3 below.
 
 <br><br>
 
 ---
 
-## B3: Pull a Model
+## C3: Pull a Model
 
 Claude Code requires models that support its agentic tool-calling format. The following models are verified to work:
 
@@ -240,7 +352,7 @@ ollama pull glm-4.7
 
 ---
 
-## B4: Start the Ollama Server
+## C4: Start the Ollama Server
 
 Start the server with keep-alive set to prevent the model from being unloaded during idle time:
 
@@ -262,7 +374,7 @@ Leave this running in a separate terminal.
 
 ---
 
-## B5: Configure Claude Code
+## C5: Configure Claude Code
 
 **For this terminal session:**
 ```bash
@@ -279,7 +391,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen3-coder"
 
 ---
 
-## B6: Clone the Workshop Repo
+## C6: Clone the Workshop Repo
 
 ```bash
 git clone https://github.com/skillrepos/ccode
@@ -290,7 +402,7 @@ cd ccode
 
 ---
 
-## B7: Warm Up the Model
+## C7: Warm Up the Model
 
 Pre-load the model into memory so your first Claude Code response is faster:
 
@@ -304,7 +416,7 @@ Type `/bye` to exit the Ollama shell after the model loads.
 
 ---
 
-## B8: Start Claude Code and Verify
+## C8: Start Claude Code and Verify
 
 ```bash
 claude
@@ -323,7 +435,7 @@ Expect responses in 15–60 seconds. If you see raw JSON output instead of natur
 ---
 ---
 
-# Option C: llama.cpp (Local, Advanced)
+# Option D: llama.cpp (Local, Advanced)
 
 [llama.cpp](https://github.com/ggml-org/llama.cpp) is 15–25% faster than Ollama with 20% less memory usage, because it runs the inference engine directly without Ollama's Go wrapper overhead.
 
@@ -339,7 +451,7 @@ Same as Ollama: 32GB+ RAM, ~20GB disk, macOS/Linux/WSL2.
 
 ---
 
-## C1: Automated Setup
+## D1: Automated Setup
 
 A setup script is included that handles everything — OS detection, installation, model download, server startup, and Claude Code configuration:
 
@@ -360,7 +472,7 @@ claude
 
 ---
 
-## C2: Manual Setup
+## D2: Manual Setup
 
 **Install llama.cpp:**
 ```bash
@@ -411,7 +523,7 @@ Most lab steps work identically regardless of which option you chose. Below are 
 - **Skip `/login`**: No authentication needed. If prompted, just proceed.
 - **The `/model` command**: When labs say "set your model to Sonnet," skip this — your model is already set via environment variables. The `/model` menu always displays the built-in Claude model list regardless of backend. To confirm which model is running, check the **welcome banner** when Claude Code starts.
 - **Output quality**: Open models may produce slightly different (sometimes less polished) output than Claude Sonnet/Opus. The lab steps and concepts still apply — just expect some variation.
-- **Speed** (local options only): Expect responses in 15–60 seconds with `qwen3-coder`. HuggingFace Inference should respond in a few seconds.
+- **Speed**: Cloud options (OpenRouter, HuggingFace) respond in a few seconds. Local options (Ollama, llama.cpp) take 15–60 seconds with `qwen3-coder`.
 
 <br>
 
@@ -464,14 +576,26 @@ No other changes needed.
 
 # Troubleshooting
 
-**Authentication error (HuggingFace):**
-Double-check your token value. Go to [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) and verify it's active and has Read access.
+**Authentication error (OpenRouter):**
+Double-check your API key at [openrouter.ai/keys](https://openrouter.ai/keys). Make sure the key starts with `sk-or-`.
+
+**"Auth conflict" warning (OpenRouter):**
+For OpenRouter, only `ANTHROPIC_API_KEY` should be set. Run `unset ANTHROPIC_AUTH_TOKEN` and `claude /logout`, then restart Claude Code.
+
+**Rate limit hit (OpenRouter):**
+You've hit the 50 requests/day free tier limit. Purchase $10 in credits at [openrouter.ai/credits](https://openrouter.ai/credits) to permanently unlock 1,000/day. Or try a different free model — browse at [openrouter.ai/models?pricing=free](https://openrouter.ai/models?pricing=free).
+
+**Wrong API URL (OpenRouter):**
+The URL must be `https://openrouter.ai/api` — NOT `https://openrouter.ai/api/v1`. Claude Code appends the path automatically.
 
 **"Auth conflict" warning (HuggingFace):**
-This means both `ANTHROPIC_AUTH_TOKEN` and `ANTHROPIC_API_KEY` are set. For HuggingFace, only `ANTHROPIC_API_KEY` should be set. Run `unset ANTHROPIC_AUTH_TOKEN` and restart Claude Code. If you previously used a paid Claude account, also run `claude /logout` to clear stored credentials.
+You must set **both** `ANTHROPIC_AUTH_TOKEN` and `ANTHROPIC_API_KEY` to your HuggingFace token. If you were previously logged in with a paid account, run `claude /logout` first to clear stored credentials. When Claude Code asks "Detected a custom API key — do you want to use this API key?", select **No**.
 
-**Rate limit hit (HuggingFace):**
-The free tier has usage limits. Wait a few minutes for limits to reset, or switch to a local option (B or C) as a fallback.
+**HuggingFace retries / timeouts:**
+Make sure you're using a supported model like `zai-org/GLM-5.1`. Some models may time out on the free tier. Try again after a minute, or switch to OpenRouter (Option A) as a fallback.
+
+**Credits depleted (HuggingFace):**
+The free tier can deplete within just a few queries. Upgrade to [HuggingFace PRO](https://huggingface.co/pricing) ($9/month) for 20x more credits, or switch to OpenRouter (Option A).
 
 **Raw JSON output instead of natural language:**
 Your model doesn't support Claude Code's agentic tool-calling format. Use a recommended model (`qwen3-coder`, `glm-4.7`, `GLM-5.1`, `Gemma 4`). Older models like `qwen2.5-coder` are known to produce broken output.
@@ -480,7 +604,7 @@ Your model doesn't support Claude Code's agentic tool-calling format. Use a reco
 The server isn't running. Start it with `OLLAMA_KEEP_ALIVE=-1 ollama serve` in a separate terminal.
 
 **Very slow responses (local options):**
-This is expected with 30B models on consumer hardware. Make sure you started Ollama with `OLLAMA_KEEP_ALIVE=-1` and ran the warm-up step. If speed is unacceptable, switch to HuggingFace Inference (Option A).
+This is expected with 30B models on consumer hardware. Make sure you started Ollama with `OLLAMA_KEEP_ALIVE=-1` and ran the warm-up step. If speed is unacceptable, switch to a cloud option — OpenRouter (Option A) or HuggingFace (Option B).
 
 **"Unknown command" for `ollama launch`:**
 Your Ollama version is too old. Upgrade to v0.14.0 or later.
@@ -501,26 +625,45 @@ unset ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL ANTHROPIC_DEF
 claude /login
 ```
 
-**Switch to HuggingFace:**
+**Switch to OpenRouter:**
 ```bash
+claude /logout
 unset ANTHROPIC_AUTH_TOKEN
-export ANTHROPIC_BASE_URL="https://router.huggingface.co"
-export ANTHROPIC_API_KEY="hf_YOUR_TOKEN"
-export ANTHROPIC_DEFAULT_SONNET_MODEL="Qwen/Qwen3-Coder"
+export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+export ANTHROPIC_API_KEY="sk-or-YOUR_KEY"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="nvidia/nemotron-3-super-120b-a12b:free"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="nvidia/nemotron-3-super-120b-a12b:free"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="nvidia/nemotron-3-super-120b-a12b:free"
 ```
+When Claude Code asks about the detected API key, select **Yes**.
+
+**Switch to HuggingFace Inference:**
+```bash
+claude /logout
+export ANTHROPIC_BASE_URL="https://router.huggingface.co"
+export ANTHROPIC_AUTH_TOKEN="hf_YOUR_TOKEN"
+export ANTHROPIC_API_KEY="hf_YOUR_TOKEN"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="zai-org/GLM-5.1"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="zai-org/GLM-5.1"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="zai-org/GLM-5.1"
+```
+When Claude Code asks about the detected API key, select **No**.
 
 **Switch to Ollama:**
 ```bash
 export ANTHROPIC_AUTH_TOKEN="ollama"
 export ANTHROPIC_BASE_URL="http://localhost:11434"
 export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="qwen3-coder"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="qwen3-coder"
 ```
 
 > **Tip**: Create shell aliases for quick switching:
 > ```bash
-> alias claude-hf='unset ANTHROPIC_AUTH_TOKEN && export ANTHROPIC_BASE_URL="https://router.huggingface.co" && export ANTHROPIC_API_KEY="hf_YOUR_TOKEN" && export ANTHROPIC_DEFAULT_SONNET_MODEL="Qwen/Qwen3-Coder"'
+> alias claude-or='claude /logout && unset ANTHROPIC_AUTH_TOKEN && export ANTHROPIC_BASE_URL="https://openrouter.ai/api" && export ANTHROPIC_API_KEY="sk-or-YOUR_KEY" && export ANTHROPIC_DEFAULT_SONNET_MODEL="nvidia/nemotron-3-super-120b-a12b:free"'
+> alias claude-hf='claude /logout && export ANTHROPIC_BASE_URL="https://router.huggingface.co" && export ANTHROPIC_AUTH_TOKEN="hf_YOUR_TOKEN" && export ANTHROPIC_API_KEY="hf_YOUR_TOKEN" && export ANTHROPIC_DEFAULT_SONNET_MODEL="zai-org/GLM-5.1"'
 > alias claude-local='export ANTHROPIC_AUTH_TOKEN="ollama" && export ANTHROPIC_BASE_URL="http://localhost:11434" && export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder"'
-> alias claude-cloud='unset ANTHROPIC_AUTH_TOKEN ANTHROPIC_BASE_URL ANTHROPIC_API_KEY ANTHROPIC_DEFAULT_SONNET_MODEL'
+> alias claude-cloud='unset ANTHROPIC_AUTH_TOKEN ANTHROPIC_BASE_URL ANTHROPIC_API_KEY ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL ANTHROPIC_DEFAULT_OPUS_MODEL && claude /login'
 > ```
 
 <br><br>
@@ -529,8 +672,11 @@ export ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder"
 
 # Cleaning Up
 
-## HuggingFace
-No cleanup needed — nothing is installed locally. To revoke your token, go to [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens).
+## OpenRouter
+No cleanup needed — nothing is installed locally. To revoke your API key, go to [openrouter.ai/keys](https://openrouter.ai/keys). Remove the environment variables from your shell config (`~/.zshrc` or `~/.bashrc`) if you added them. Purchased credits remain in your account for future use.
+
+## HuggingFace Inference
+No cleanup needed — nothing is installed locally. To revoke your token, go to [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). Remove the environment variables from your shell config if you added them.
 
 ## Ollama
 
