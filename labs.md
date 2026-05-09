@@ -21,8 +21,6 @@
 >
 > You should see an indicator that the model was set to *claude-sonnet-4-6*.
 >
-> **Alternate setup users (HuggingFace/Ollama/llama.cpp):** Skip this — your model is already set via environment variables. The `/model` menu will still show the standard Claude models. To verify your active model, check the **welcome banner** when Claude Code starts — it shows the real model name. See [SETUP-ALT.md](./SETUP-ALT.md) for details.
-
 <br><br>
 
 

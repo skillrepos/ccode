@@ -4,15 +4,13 @@
 
 This 3-hour hands-on workshop teaches you how to leverage Claude Code's AI features to build applications faster and more efficiently. You'll learn essential AI-assisted development techniques through guided labs and practical exercises.
 
-Prerequisites: Claude paid account **OR** a free alternative using OpenRouter (recommended), HuggingFace Inference, Ollama, or llama.cpp with open-source models.
+Prerequisites: Claude paid account.
 
 These instructions will guide you through configuring a Claude Code environment that you can use to do the labs.
 
-> **Free alternative:** If you don't have a paid Claude account, see **[SETUP-ALT.md](./SETUP-ALT.md)** for complete setup instructions using free models via OpenRouter (recommended), HuggingFace Inference, Ollama, or llama.cpp.
-
 ## 1. If you don't already have a paid Claude account, sign up for one at [claude.ai](https://claude.ai). 
 
-You **must** have a paid claude account to use Claude Code.
+You **must** have a paid Claude account to use Claude Code.
 
 ![Claude signup](./images/ccode76.png?raw=true "Claude signup")
 
