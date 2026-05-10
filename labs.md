@@ -45,7 +45,7 @@ Hello Claude, can you tell me what you can help with?
 
 Claude should respond with information about its capabilities preceded by its thinking process.
 
-![Initial prompt](./images/ccode180.png?raw=true "Initial prompt")
+![Initial prompt](./images/ccode210.png?raw=true "Initial prompt")
 
 
 ---
@@ -62,7 +62,7 @@ Explain this code: console.log([1,2,3].map(x => x * 2))
 
 Claude will explain the JavaScript array operation.
 
-![Initial prompt](./images/ccode182.png?raw=true "Initial prompt")
+![Initial prompt](./images/ccode211.png?raw=true "Initial prompt")
 
 ---
 <br><br>
@@ -135,7 +135,7 @@ You'll see the output: "Hello from Claude Code!"
 **What we're doing:** Creating a second file for additional context.  
 **Why:** We want to learn more about resume.
 
-**Action:** Type the following. When you are prompted to continue, select option 3 to tell Claude to do something different.
+**Action:** Type the following. When you are prompted to continue, **select option 3 to tell Claude to do something different.**
 ```
 Create a simple goodbye.js file that prints "Goodbye from Claude Code!"
 ```
@@ -171,12 +171,17 @@ Claude will create the file and show you the content in the diff above the termi
 What does @hello.js do? Can you add a timestamp to it?
 ```
 
-Claude will pull hello.js into its context and explain it before making changes. You can also use @folder/ to reference entire directories and @https://url for web content.
+Claude will pull hello.js into its context and explain it before making changes. It will display the changes and ask for approval. You can just select the *Yes* option.
+
+![Ref file by mention](./images/ccode212.png?raw=true "Ref file by mention")
+
+
+**Note that you can also use @folder/ to reference entire directories and @https://url for web content.**
 
 ---
 <br><br>
 
-## 10: Try the # Memory and ! Bash Shortcuts
+## 10: Try the # Memory and Bash ! shortcuts
 **What we're doing:** Using keyboard shortcuts to create memories and run shell commands inline.  
 **Why:** These shortcuts speed up common operations without leaving Claude Code.
 
@@ -185,14 +190,20 @@ Claude will pull hello.js into its context and explain it before making changes.
 # This project uses JavaScript and Python for demos
 ```
 
-Claude will save this to your CLAUDE.md file as a persistent memory.
+Claude will save this to a MEMORY.md file as a persistent memory.
 
-Now try the ! shortcut to run a bash command directly:
+
+![Create memory](./images/ccode213.png?raw=true "Create memory")
+
+Now try the ! shortcut to run a bash command directly to look at the memory file that just got created:
 ```
-! ls -la *.js *.py
+! cat ~/.claude/projects/-workspaces-ccode/memory/MEMORY.md
 ```
 
 This runs the shell command and shows output without a separate terminal.
+
+![Shell command](./images/ccode214.png?raw=true "Shell command")
+
 
 ---
 <br><br>
@@ -207,6 +218,8 @@ What files have we created so far? Summarize the purpose of each one and suggest
 ```
 
 Claude will scan the working directory, list the files, and provide analysis. This is how developers use Claude Code for orientation — jumping into a new codebase and asking "What does this project do?" or "How is this function used?"
+
+![File info](./images/ccode215.png?raw=true "File info")
 
 ---
 <br><br>
