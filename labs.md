@@ -276,13 +276,13 @@ You're now in default mode where Claude asks permission before file changes.
 
 **Action:** Type:
 ```
-Create a config.json file with database connection settings
+Create a config.json file with database connection settings for Postgresql
 ```
 
 Notice how Claude asks permission before creating the file as we've seen before. Type `1` to accept.
 
 
-![Creating config.json](./images/ccode24.png?raw=true "Creating config.json")
+![Creating config.json](./images/ccode216.png?raw=true "Creating config.json")
 
 ---
 <br><br>
@@ -322,10 +322,10 @@ Claude will start creating a detailed plan before starting implementation.
 
 **Action:** Read any questions that come up and select number of answer to proceed if single option for answer. (To save time and complexity, it is recommended to use the recommended/simplest option.) If you can select multiple options, use arrow keys and space/Enter to select options. Then move on to next question using right arrow. Answer all questions and then move to *Submit* and press *Enter*. If you want to see more of Claude's *thinking* during this process, press *ctrl+o".
 
-![Responding to questions](./images/ccode99.png?raw=true "Responding to questions")
+![Responding to questions](./images/ccode217.png?raw=true "Responding to questions")
 
 
-![Responding to questions](./images/ccode100.png?raw=true "Responding to questions")
+![Responding to questions](./images/ccode218.png?raw=true "Responding to questions")
 
 
 ---
@@ -337,13 +337,13 @@ Claude will start creating a detailed plan before starting implementation.
 
 **Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
 1. Go ahead and select that key sequence to bring the plan up in the editor.
-2. (Optional) To see the preview version of the plan (if you're in VS Code, you can right-click and select *Open Preview*).
+2. (Optional) To see the markdown version of the plan (if you're in VS Code, you can right-click and select *Reopen Editor with ... Text Editor*).
 3. After you're done reviewing it, you can close the file (close the original file if you also opened a preview version).
-4. Then **select option 2** to proceed and auto-accept edits. (Re option 1: The amount of context isn't significant yet, so we'll clear it after this.)
+4. Then **select option 1** to proceed and auto-accept edits. 
 
 ![Reviewing plan](./images/ccode102.png?raw=true "Reviewing plan")
 
-![Approving plan](./images/ccode183.png?raw=true "Approving plan")
+![Approving plan](./images/ccode219.png?raw=true "Approving plan")
 
 **Note that you are now in *accept edits on* mode, but the original task will still run under *plan* mode.**
 
@@ -371,7 +371,7 @@ ctrl+t
 
 After a few minutes, Claude Code will be done and provide you a summary. It may ask if you want it to do additional tasks, but you can just ignore those.
 
-![Plan completed](./images/ccode104.png?raw=true "Plan completed")
+![Plan completed](./images/ccode220.png?raw=true "Plan completed")
 
 Now, let's clear the context.
 
@@ -419,7 +419,7 @@ Create a simple To-Do list app in javascript wtih functionality to add and delet
 
 Notice Claude creates all files without asking for permission.
 
-![YOLO](./images/ccode185.png?raw=true "YOLO")
+![YOLO](./images/ccode221.png?raw=true "YOLO")
 
 ---
 <br><br>
