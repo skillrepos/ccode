@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 5.2 - 02/25/26
+## Revision 5.3 - 05/10/26
 
 <br><br>
 
@@ -15,9 +15,9 @@
 > ```
 > /model
 > ```
-> In the list that comes up, type "3" or use the arrow keys to move the pointer to "3" and hit *Enter*.
+> In the list that comes up, type "2" or use the arrow keys to move the pointer to "2" and hit *Enter*. Also use the left/right arrow keys to set the thinking mode to *medium*.
 >
-> ![set model](./images/ccode181.png?raw=true "set model")
+> ![set model](./images/ccode209.png?raw=true "set model")
 >
 > You should see an indicator that the model was set to *claude-sonnet-4-6*.
 >
