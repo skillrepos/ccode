@@ -483,7 +483,7 @@ claude
 Hit *Enter*. This will bring up a set of *tabbed* output for help. Use the *tab* key to get to the *commands* section at the top. Then you can use the arrow keys to move up and down to see all the commands.
 Review the list including /clear, /compact, /rewind, /model, and others.
 
-![help to see commands](./images/ccode109.png?raw=true "help to see commands")
+![help to see commands](./images/ccode222.png?raw=true "help to see commands")
 
 Use *Esc* to exit when done.
 
@@ -494,7 +494,7 @@ Use *Esc* to exit when done.
 **What we're doing:** Building up conversation history to practice management.  
 **Why:** We need content to demonstrate context management commands.
 
-**Action:** Have a multi-turn conversation. **Type each of the following into the prompt area one at a time and let each complete before entering the next one**:
+**Action:** Have a multi-turn conversation. **Type each of the following into the prompt area one at a time and let each complete before entering the next one** (When prompted about accepting an edit, you can just choose to accept or accept all edits in the session.):
 ```
 Create a user.js file with a User class
 ```
@@ -519,6 +519,9 @@ Create a test file for the User class
 
 Let Claude complete each task to build up context.
 
+
+![help to see commands](./images/ccode223.png?raw=true "help to see commands")
+
 ---
 <br><br>
 
@@ -534,7 +537,7 @@ Let Claude complete each task to build up context.
 You'll see information about current token usage and remaining capacity.
 
 
-![context command](./images/ccode33.png?raw=true "context command")
+![context command](./images/ccode224.png?raw=true "context command")
 
 ---
 <br><br>
@@ -551,7 +554,7 @@ You'll see information about current token usage and remaining capacity.
 Claude will summarize earlier parts while keeping specified information.
 
 
-![compact](./images/ccode36.png?raw=true "compact")
+![compact](./images/ccode225.png?raw=true "compact")
 
 ---
 <br><br>
@@ -563,7 +566,7 @@ Claude will summarize earlier parts while keeping specified information.
 **Action:** 
 1. Ask Claude: `Delete the test file we created`
 2. After deletion, press `Esc` twice or type `/rewind`
-3. Select the point before deletion to restore by using the up and down arrow to navigate between the checkpoints listed.
+3. Select the point before deletion (the *compact*) to restore by using the up and down arrow to navigate between the checkpoints listed.
 
 
 ![rewind](./images/ccode34.png?raw=true "rewind")
@@ -590,7 +593,7 @@ Claude will summarize earlier parts while keeping specified information.
 
 This file will be automatically created and read in future sessions.
 
-![claude.md](./images/ccode188.png?raw=true "claude.md")
+![claude.md](./images/ccode226.png?raw=true "claude.md")
 
 Afterwards, you can take a look at the file by opening it up in an editor (you can use 'code' command if in VS Code or Codespace).
 
@@ -610,7 +613,7 @@ You'll probably notice that it identifies custom slash commands, custom agents, 
 Claude should recall information from the CLAUDE.md file and display that info.
 
 
-![claude.md](./images/ccode191.png?raw=true "claude.md")
+![claude.md](./images/ccode227.png?raw=true "claude.md")
 
 ---
 <br><br>
@@ -626,6 +629,8 @@ Claude should recall information from the CLAUDE.md file and display that info.
 
 You'll see a visualization of how memory is layered: enterprise (if applicable) → user-level → project-level. The CLAUDE.md file you just created with `/init` appears at the project level. Note that CLAUDE.md files in nested subdirectories are automatically pulled in too, and you can create a CLAUDE.local.md for personal overrides that don't get committed to git.
 
+![claude.md](./images/ccode228.png?raw=true "claude.md")
+
 ---
 <br><br>
 
@@ -639,6 +644,8 @@ What changes have been made in this repo recently? Summarize the git log.
 ```
 
 Claude will run git commands and summarize the commit history in natural language. This is a powerful pattern for onboarding — instead of reading through git logs manually, ask Claude to explain what changed and why.
+
+![claude.md](./images/ccode229.png?raw=true "claude.md")
 
 ---
 <br><br>
@@ -654,27 +661,9 @@ echo "What files are in this directory?" | claude -p
 
 The `-p` flag runs Claude in print (headless) mode — it takes input from stdin, processes it, and outputs the result. No interactive session needed. This is how you integrate Claude into shell scripts, CI pipelines, and automated workflows.
 
-Now restart Claude for the next lab:
-```bash
-claude
-```
-
-Then immediately exit for a fresh start:
-```
-exit
-```
+![claude.md](./images/ccode230.png?raw=true "claude.md")
 
 ---
-<br><br>
-
-## 12: Exit
-
-**Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
-
-```
-exit
-```
-
 <br><br>
 
 
