@@ -29,10 +29,13 @@
         "terminal.integrated.defaultProfile.linux": "bash",
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "workbench.startupEditor": "readme", 
-        // Open Markdown files in preview mode by default
+        "workbench.startupEditor": "readme",
+        // Open root Markdown files in preview and lab-created subdirectory Markdown files as text.
         "workbench.editorAssociations": {
-            "*.md": "vscode.markdown.preview.editor"
+          "**/.claude/skills/api-checker/*.md": "default",
+          "**/.claude/agents/*.md": "default",
+          "**/.claude/commands/*.md": "default",
+          "*.md": "vscode.markdown.preview.editor"
         }
       }
     }
