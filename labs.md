@@ -1043,7 +1043,7 @@ Then run:
 
 Confirm you see `/ship` listed in the `custom-commands` section.
 
-![The /ship command is present](./images/ccode200.png?raw=true "The /ship command is present")
+![The /ship command is present](./images/ccode234.png?raw=true "The /ship command is present")
 
 
 Hit *Esc" to get out of that output. Then run: 
@@ -1054,7 +1054,7 @@ Hit *Esc" to get out of that output. Then run:
 
 Confirm the `reviewer`, `planner`, and `test-runner` agents are shown.
 
-![Agents are present](./images/ccode201.png?raw=true "Agents are present")
+![Agents are present](./images/ccode235.png?raw=true "Agents are present")
 
 
 Hit *Esc" to get out of that output. Then run: 
@@ -1065,7 +1065,9 @@ Hit *Esc" to get out of that output. Then run:
 
 Confirm the `api-checker` skill is shown in the `Project Skills` section.
 
-![Skill is  present](./images/ccode202.png?raw=true "Skill is present")
+![Skill is  present](./images/ccode236.png?raw=true "Skill is present")
+
+Hit *Esc" to get out of that output.
 
 ---
 <br><br>
@@ -1079,15 +1081,17 @@ Confirm the `api-checker` skill is shown in the `Project Skills` section.
 ```
 Use the planner subagent to propose a plan to add phoneNumber to User (optional field).
 ```
+
+![Initial plan](./images/ccode237.png?raw=true "Initial plan")
+
 Review the plan. When you're satisfied, tell Claude to proceed:
+
 ```
 The plan looks good. Now implement the change minimally. Do not run tests yet.
 ```
+![Executing plan plan](./images/ccode204.png?raw=true "Executing plan")
 
-![Initial plan](./images/ccode203.png?raw=true "Initial plan")
-
-
-![Approved plan](./images/ccode204.png?raw=true "Approved plan")
+Approve as needed.
 
 > **What's happening here:** You explicitly delegated the planning step to the planner subagent. Claude ran it in a separate context and returned the result to you. Then you — the supervisor — approved the plan and gave the next instruction. This is the "supervised delegation" pattern: the human decides the workflow, subagents do the specialized work.
 ---
@@ -1102,12 +1106,13 @@ The plan looks good. Now implement the change minimally. Do not run tests yet.
 Use the reviewer subagent to review the change we just made.
 ```
 
-You should see in the results the 3 risks, 3 tests to add, and 3 patch suggestions we told the reviewer agent to output.
+You should see in the results the 3 risks, 3 tests to add, and 3 patch suggestions we told the reviewer agent to output. (If you don't see that, try running the command again.)
 
-![Start of reviewer output](./images/ccode205.png?raw=true "Start of reviewer output")
+![Start of reviewer output](./images/ccode239.png?raw=true "Start of reviewer output")
 
 > **What's happening here:** Claude delegates to the reviewer subagent, which runs with its own instructions and tool restrictions in a separate context. It returns structured output to the main conversation. You then decide which suggestions to act on.
 
+You can choose to proceed with all or some of the suggested changes.
  
 ---
 <br><br>
@@ -1126,7 +1131,7 @@ You should see in the results the 3 risks, 3 tests to add, and 3 patch suggestio
 
 What you should see is the git info being gathered and the testing running. Then in the summary, you'll see what changed, the test results (1 will be failing), the "Risks" list and the suggested "Follow-ups".
 
-![Partial output of ship command](./images/ccode206.png?raw=true "Partial output of ship command")
+![Partial output of ship command](./images/ccode240.png?raw=true "Partial output of ship command")
 
 ---
 <br><br>
