@@ -92,11 +92,11 @@ You'll see a welcome message and some update information.
 ```
 /model
 ```
-In the list that comes up, type "3" or use the arrow keys to move the pointer to "3" and hit *Enter*.
+In the list that comes up, type "2" or use the arrow keys to move the pointer to "2" and hit *Enter*. Also use the left/right arrow keys to change the effort to *Medium effort*.
 
-![login](./images/ccode181.png?raw=true "login")
+![login](./images/ccode209.png?raw=true "login")
 
-You should see an indicator that the model was set to *claude-sonnet-4-6*.
+You should see an indicator that the model was set to *Sonnet* with *medium* effort.
 
 <br><br>
 
