@@ -688,6 +688,8 @@ The `-p` flag runs Claude in print (headless) mode — it takes input from stdin
 ## Lab Purpose 
 Build one practical skill and two specialist subagents to see how delegation keeps work fast and clean.
 
+**NOTE: If using the codespace setup, you can use the `code` command to create/edit a file.**
+
 ---
 <br><br>
 
@@ -859,7 +861,7 @@ What you should see in the output is that the skill was selected and loaded, the
 - Key fields were listed
 - A recommendation was provided
 
-![Using the skill](./images/ccode197.png?raw=true "Using the skill")
+![Using the skill](./images/ccode231.png?raw=true "Using the skill")
 
 
 ---
@@ -902,10 +904,11 @@ Stop after proposing the fix (do not implement yet).
 
 (Optional: You can open the .claude/agents/test-runner.md file to remember what it specifies.)
 
+![Using the test-runner subagent](./images/ccode232.png?raw=true "Using the testrunner subagent")
+
 What you should see after this runs is a failing email test added to user.test.js and a proposed fix.
 
-
-![Using the test-runner subagent](./images/ccode199.png?raw=true "Using the testrunner subagent")
+![Using the test-runner subagent](./images/ccode233.png?raw=true "Using the testrunner subagent")
 
 ---
 <br><br>
