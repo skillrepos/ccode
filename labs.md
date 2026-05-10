@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 5.3 - 05/10/26
+## Revision 5.4 - 05/10/26
 
 <br><br>
 
@@ -260,9 +260,9 @@ Master Claude Code's different operating modes including default mode, plan mode
 **What we're doing:** Starting Claude in its standard interactive mode.  
 **Why:** Default mode gives you full control with permission prompts for each action.
 
-**Action:** Start Claude:
+**Action:** Start Claude with model Sonnet and medium effort (Note: You can use these command line options if you want for other places you start Claude in the labs.)
 ```bash
-claude 
+claude --model sonnet --effort medium
 ```
 
 You're now in default mode where Claude asks permission before file changes.
