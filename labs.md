@@ -175,6 +175,8 @@ Claude will pull hello.js into its context and explain it before making changes.
 
 ![Ref file by mention](./images/ccode212.png?raw=true "Ref file by mention")
 
+After this, there will probably be a suggestion in lighter ("ghost") text to run the file. If you'd like to execute that suggestion, you can just hit *Tab* and then return and approve the command.
+
 
 **Note that you can also use @folder/ to reference entire directories and @https://url for web content.**
 
