@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 5.5 - 05/18/26
+## Revision 5.6 - 05/18/26
 
 <br><br>
 
@@ -882,8 +882,8 @@ Return only the plan + risks.
 
 What you should see after this runs is a plan produced by the agent that, per the planning agent spec:
 
-- Outputs a 5 step plan
-- Lists 3 risks
+- Outputs a step-by-step plan
+- Lists several risks
 
 
 ![Using the planning subagent](./images/ccode198.png?raw=true "Using the planning subagent")
