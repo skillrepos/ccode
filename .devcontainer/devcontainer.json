@@ -24,7 +24,8 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-vscode.vscode-typescript-next",
-        "anthropic.claude-code"
+        "anthropic.claude-code",
+        "Anthropic.claude-code"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
@@ -61,3 +62,4 @@
     "source=${localEnv:HOME}/.anthropic,target=/home/node/.anthropic,type=bind,consistency=cached"
   ]
 }
+
