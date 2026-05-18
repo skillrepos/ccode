@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 5.6 - 05/18/26
+## Revision 5.7 - 05/18/26
 
 <br><br>
 
@@ -1107,7 +1107,7 @@ Approve as needed.
 Use the reviewer subagent to review the change we just made.
 ```
 
-You should see in the results the 3 risks, 3 tests to add, and 3 patch suggestions we told the reviewer agent to output. (If you don't see that, try running the command again.)
+You'll see output of the main agent interpreting the subagent output. If you want to see the results from the subagent (the 3 risks, 3 tests to add, and 3 patch suggestions we told the reviewer agent to output) you can expand the output with *ctrl+o* and look back up in the output. 
 
 ![Start of reviewer output](./images/ccode239.png?raw=true "Start of reviewer output")
 
