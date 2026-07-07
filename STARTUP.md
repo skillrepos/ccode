@@ -56,35 +56,42 @@ You'll see a welcome message and some update information.
 
 <br><br>
 
-### d. On the next screen that is shown, click on the *Authorize* button to give Claude Code authorization to use your Claude chat account.
+
+### d. You *may* have to sign in with your userid again and get a verification code to use before going to the next steps. If so, just follow the prompts and make sure to authenticate in the SAME browswer as the one where you opened the URL.
+
+![backup method](./images/ccode241.png?raw=true "backup method") 
+
+<br><br>
+
+### e. On the next screen that is shown, click on the *Authorize* button to give Claude Code authorization to use your Claude chat account.
 <br>
 
 ![auth dialog](./images/ccode16.png?raw=true "auth dialog") 
 
 <br><br>
 
-### e. Next, you should see a screen with an authentication code. Click on the *Copy Code* link at the bottom to copy the authentication code.
+### f. Next, you should see a screen with an authentication code. Click on the *Copy Code* link at the bottom to copy the authentication code.
 <br>
 
 ![authentication code](./images/ccode18.png?raw=true "authentication code") 
 
 <br><br>
 
-### f. Go back to the codespace. In the area in the terminal under the URL, you should see a prompt like *Paste code here if prompted*. Click next to that and paste in the authentication code you copied in the previous step.
+### g. Go back to the codespace. In the area in the terminal under the URL, you should see a prompt like *Paste code here if prompted*. Click next to that and paste in the authentication code you copied in the previous step.
 <br>
 
 ![Paste code](./images/ccode19.png?raw=true "Paste code") 
 
 <br><br>
 
-### g. After this, you should see an indication that login was successful, press *Enter* and you are ready to use Claude Code!
+### h. After this, you should see an indication that login was successful, press *Enter* and you are ready to use Claude Code!
 <br>
 
 ![successful login](./images/ccode83.png?raw=true "Successful login") 
 
 <br><br>
 
-## Step 4: Change the model
+## Step 4: Ensure the Sonnet model is selected
 **What we're doing:** Running the */model* command in Claude Code.  
 **Why:** Use a cheaper model since we're doing simple tasks.
 
@@ -92,9 +99,11 @@ You'll see a welcome message and some update information.
 ```
 /model
 ```
-In the list that comes up, use the arrow keys to move the pointer to the *Sonnet* entry (usually "2") and hit *Enter*. Also use the left/right arrow keys to change the effort to *Medium effort*. (The exact model versions listed may differ from the screenshot — pick the current Sonnet model.)
+In the list that comes up, if the default doesn't already have Sonnet selected, use the arrow keys to move the pointer to the *Sonnet* entry (usually "2") and hit *Enter*. 
 
-![login](./images/ccode209.png?raw=true "login")
+Separately, use the left/right arrow keys to change the effort to *Medium effort*. (The exact model versions listed may differ from the screenshot — pick the current Sonnet model.)
+
+![login](./images/ccode242.png?raw=true "login")
 
 You should see an indicator that the model was set to *Sonnet* with *medium* effort. Note: your `/model` selection is saved as the default for new sessions; press `s` in the model list to set it for the current session only.
 
