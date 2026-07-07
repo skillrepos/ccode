@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 5.9 - 07/07/26
+## Revision 6.0 - 07/07/26
 
 <br><br>
 
@@ -45,7 +45,7 @@ Get familiar with Claude Code basic command-line interface. You'll learn how to 
 Hello Claude, can you tell me what you can help with?
 ```
 
-Claude should respond with information about its capabilities preceded by its thinking process.
+Claude should respond with information about its capabilities.
 
 ![Initial prompt](./images/ccode210.png?raw=true "Initial prompt")
 
@@ -137,12 +137,12 @@ You'll see the output: "Hello from Claude Code!"
 **What we're doing:** Creating a second file for additional context.  
 **Why:** We want to learn more about resume.
 
-**Action:** Type the following. When you are prompted to continue, **select option 3 to tell Claude to do something different.**
+**Action:** Type the following. When you are prompted to continue, **select option 3 to tell Claude to not create the file.**
 ```
 Create a simple goodbye.js file that prints "Goodbye from Claude Code!"
 ```
 
-Claude will create the file and show you the content in the diff above the terminal. You do not need to do anything in the diff area. Just select option 3 in the terminal where Claude is waiting.
+If Claude shows you the content in the diff above the terminal, you do not need to do anything in the diff area. Just select option 3 in the terminal where Claude is waiting.
 
 ![Do something different](./images/ccode92.png?raw=true "Do something different")
 
@@ -184,30 +184,27 @@ After this, there will probably be a suggestion in lighter ("ghost") text to run
 ---
 <br><br>
 
-## 10: Try the # Memory and Bash ! shortcuts
-**What we're doing:** Using keyboard shortcuts to create memories and run shell commands inline.  
-**Why:** These shortcuts speed up common operations without leaving Claude Code.
-
-**Action:** First, try the # shortcut to create a memory. Type:
+## 10: Create a Memory and try the Bash ! shortcut
+**What we're doing:** Having Claude store a persistent memory, and running a shell command inline.  
+**Why:** Memories persist across sessions, and the ! shortcut speeds up common operations without leaving Claude Code.
+ 
+**Note:** Older versions of Claude Code had a `#` shortcut for creating memories. That shortcut has been discontinued — now you simply ask Claude to remember something in plain language.
+ 
+**Action:** First, create a memory. Type:
 ```
-# This project uses JavaScript and Python for demos
+Remember that this project uses JavaScript and Python for demos.
 ```
-
-Claude will save this to a MEMORY.md file as a persistent memory.
-
-
-![Create memory](./images/ccode213.png?raw=true "Create memory")
-
-Now try the ! shortcut to run a bash command directly to look at the memory file that just got created:
+ 
+Claude will save this as a persistent memory (in its auto-memory files and/or CLAUDE.md). You can see where memories live by typing `/memory` (use *Esc* to exit the view).
+ 
+Now try the ! shortcut to run a bash command directly to look for the memory file:
 ```
 ! cat ~/.claude/projects/-workspaces-ccode/memory/MEMORY.md
 ```
-
-This runs the shell command and shows output without a separate terminal.
-
-![Shell command](./images/ccode214.png?raw=true "Shell command")
-
-
+ 
+This runs the shell command and shows output without a separate terminal. (If that file doesn't exist, Claude stored the memory elsewhere — you can ask it: `Where did you save that memory?`)
+ 
+ 
 ---
 <br><br>
 
