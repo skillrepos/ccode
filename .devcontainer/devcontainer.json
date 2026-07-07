@@ -24,8 +24,7 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-vscode.vscode-typescript-next",
-        "anthropic.claude-code",
-        "Anthropic.claude-code"
+        "anthropic.claude-code"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
@@ -43,18 +42,11 @@
     }
   },
 
-  "postCreateCommand": "npm install -g @anthropic-ai/claude-code && cd task-api && npm install",
+  // npm install works inside this Node container; note Anthropic's recommended path for
+  // local installs is now the native installer: curl -fsSL https://claude.ai/install.sh | bash
+  "postCreateCommand": "npm install -g @anthropic-ai/claude-code",
 
   "postAttachCommand": "cp extra/.claude.json ~/ && echo alias claude-yolo=\\\"claude --dangerously-skip-permissions\\\" >> ~/.bash_aliases",
-
-  "forwardPorts": [3000],
-
-  "portsAttributes": {
-    "3000": {
-      "label": "Task API Server",
-      "onAutoForward": "notify"
-    }
-  },
 
   "remoteUser": "node",
 

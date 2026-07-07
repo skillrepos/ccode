@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 5.7 - 05/18/26
+## Revision 5.8 - 07/07/26
 
 <br><br>
 
@@ -19,7 +19,9 @@
 >
 > ![set model](./images/ccode209.png?raw=true "set model")
 >
-> You should see an indicator that the model was set to *claude-sonnet-4-6*.
+> You should see an indicator that the model was set to a *Sonnet* model (e.g., *claude-sonnet-4-6* or later — the exact version shown may be newer).
+>
+> **Note:** As of Claude Code 2.1.153, your `/model` selection is saved as the default for new sessions. To set a model for the current session only, press `s` in the model list.
 >
 <br><br>
 
@@ -125,7 +127,7 @@ You'll see the output: "Hello from Claude Code!"
 **Action:** 
 1. Type `exit` to exit Claude
 2. Restart with: `claude --resume`
-3. You'll see a list with your session. Just hit *Enter* to resume.
+3. You'll see a list with your session at the top. Just hit *Enter* to resume.
 4. Claude will restore your previous session context
 
 ---
@@ -337,7 +339,7 @@ Claude will start creating a detailed plan before starting implementation.
 **Why:** You can review plans before execution to ensure desired outcomes.
 
 **Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
-1. Go ahead and select that key sequence to bring the plan up in the editor.
+1. Go ahead and select that key sequence (ctrl+g) to bring the plan up in the editor.
 2. (Optional) To see the markdown version of the plan (if you're in VS Code, you can right-click and select *Reopen Editor with ... Text Editor*).
 3. After you're done reviewing it, you can close the file (close the original file if you also opened a preview version).
 4. Then **select option 1** to proceed and auto-accept edits. 
@@ -346,7 +348,7 @@ Claude will start creating a detailed plan before starting implementation.
 
 ![Approving plan](./images/ccode219.png?raw=true "Approving plan")
 
-**Note that you are now in *accept edits on* mode, but the original task will still run under *plan* mode.**
+**Note that you are now in a different mode, but the original task will still run under *plan* mode.**
 
 ---
 <br><br>
@@ -355,7 +357,7 @@ Claude will start creating a detailed plan before starting implementation.
 **What we're doing:** Monitoring the progress through the to-do list.  
 **Why:** Helps you understand what is done and what is left to be done.
 
-**Action:** While Claude Code is doing the implementation, hit `ctrl+t` to see the current state of the to-do list.
+**Action:** While Claude Code is doing the implementation, hit `ctrl+t` to see the current state of the to-do list. (If the implementation is already done, you can just skip this step and try it on a future implementation.)
 
 ```
 ctrl+t
@@ -386,7 +388,16 @@ Your conversation history is now cleared, giving you a clean slate.
 ---
 <br><br>
 
-## 9: Try YOLO Mode (Auto-Accept)
+## 9: Check Out Auto Mode
+**What we're doing:** Looking at the newer *Auto* permission mode.
+**Why:** Auto mode replaces many manual permission prompts with a background classifier that approves routine, safe actions and stops for risky ones. It sits between supervised editing and bypass permissions.
+
+**Action:** Press `Shift+Tab` repeatedly and watch the mode indicator cycle. Along with the modes we've used, you should see **auto mode**. The official mode set is now: *supervised editing* (default) → *accept edits* → *plan* → *auto* → *bypass permissions*. Stop cycling when you get back to your previous mode — we'll use bypass next.
+
+---
+<br><br>
+
+## 10: Try YOLO Mode (Auto-Accept)
 **What we're doing:** Running Claude with automatic permission granting.  
 **Why:** This speeds up development when you trust Claude's actions.
 
@@ -409,7 +420,7 @@ We also have an alias for this that you can use in the future `claude-yolo` if y
 ---
 <br><br>
 
-## 10: Test Auto-Accept Mode
+## 11: Test Auto-Accept Mode
 **What we're doing:** Creating multiple files without interruption.  
 **Why:** See how much faster development is without permission prompts.
 
@@ -425,7 +436,7 @@ Notice Claude creates all files without asking for permission.
 ---
 <br><br>
 
-## 11: Exit
+## 12: Exit
 
 **Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
 
@@ -435,10 +446,10 @@ exit
 
 ## Lab Summary
 ✅ You've successfully learned:
-- Default mode with permission prompts
+- Default (supervised editing) mode with permission prompts
 - Plan mode for complex task planning
-- Auto-accept mode for rapid development
-- Headless mode for automation
+- Auto mode's classifier-based permissions
+- Auto-accept and bypass modes for rapid development
 
 
 ---
@@ -535,7 +546,7 @@ Let Claude complete each task to build up context.
 /context
 ```
 
-You'll see information about current token usage and remaining capacity.
+Scroll back up to the start of the output. You'll see information about current token usage and remaining capacity.
 
 
 ![context command](./images/ccode224.png?raw=true "context command")
@@ -565,19 +576,19 @@ Claude will summarize earlier parts while keeping specified information.
 **Why:** Rewind lets you undo mistakes or explore different approaches.
 
 **Action:** 
-1. Ask Claude: `Delete the test file we created`
-2. After deletion, press `Esc` twice or type `/rewind`
-3. Select the point before deletion (the *compact*) to restore by using the up and down arrow to navigate between the checkpoints listed.
+a. Ask Claude: `Delete the test file we created`
+b. After deletion, press `Esc` twice or type `/rewind`
+c. Select the point before deletion (the *compact*) to restore **by using the up and down arrow to navigate between the checkpoints** listed and then press `Enter`.
 
 
 ![rewind](./images/ccode34.png?raw=true "rewind")
 
-4. Respond to the clarification question to restore both the code and the conversation.
+d. Respond to the clarification question to restore both the code and the conversation.
 
 
 ![rewind](./images/ccode35.png?raw=true "rewind")
 
-5. You should see the file and the conversation restored. You can just clear out any commands showing up in Claude.
+e. You should see the file and the conversation restored. You can use backspace or hit `Esc` twice to clear out any commands showing up in Claude.
 
 ---
 <br><br>
@@ -911,10 +922,12 @@ What you should see after this runs is a failing email test added to user.test.j
 
 ![Using the test-runner subagent](./images/ccode233.png?raw=true "Using the testrunner subagent")
 
+You can choose to accept the fix (make the edit) or not.
+
 ---
 <br><br>
 
-## 10: Exit
+## 10: Exit Claude Code
 **Action:**
 ```
 exit
@@ -1023,6 +1036,8 @@ mkdir -p .claude-plugin
 
 > **Key detail:** The `commands`, `agents`, and `skills` fields are top-level in `plugin.json` — there is no wrapper object around them. Paths are relative to the `plugin.json` file location.
 
+> **Newer shortcut (v2.1.157+):** `claude plugin init <name>` now scaffolds a plugin for you, and plugins placed in `.claude/skills` auto-load with no marketplace required. We build the manifest by hand here so you understand the pieces; for real projects, start with `claude plugin init`. Also useful: `/plugin list` shows installed plugins with their projected per-session token cost, and `defaultEnabled: false` in plugin.json ships a plugin disabled by default.
+
 ---
 <br><br>
 
@@ -1053,7 +1068,7 @@ Hit *Esc" to get out of that output. Then run:
 /agents
 ```
 
-Confirm the `reviewer`, `planner`, and `test-runner` agents are shown.
+Switch to the `Library` tab. Confirm the `reviewer`, `planner`, and `test-runner` agents are shown.
 
 ![Agents are present](./images/ccode235.png?raw=true "Agents are present")
 
@@ -1064,7 +1079,7 @@ Hit *Esc" to get out of that output. Then run:
 /skills
 ```
 
-Confirm the `api-checker` skill is shown in the `Project Skills` section.
+Confirm the `api-checker` skill is shown.
 
 ![Skill is  present](./images/ccode236.png?raw=true "Skill is present")
 
@@ -1113,7 +1128,7 @@ You'll see output of the main agent interpreting the subagent output. If you wan
 
 > **What's happening here:** Claude delegates to the reviewer subagent, which runs with its own instructions and tool restrictions in a separate context. It returns structured output to the main conversation. You then decide which suggestions to act on.
 
-You can choose to proceed with all or some of the suggested changes.
+You can choose to proceed with all or some of the suggested changes by responding in the Claude Code input.
  
 ---
 <br><br>
@@ -1177,12 +1192,19 @@ You've learned:
 - **Plugin packaging:** How to bundle commands, agents, and skills into a `plugin.json` manifest that teammates can install.
 - **Cross-environment consistency:** The same repo-level assets work in both the terminal and VS Code.
 
-> **Going further:** Claude Code also has an experimental **Agent Teams** feature for fully autonomous multi-agent coordination. With Agent Teams, a "team lead" agent spawns independent teammates that coordinate through shared task lists and direct messaging — no human orchestration needed between steps. Agent Teams require setting `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` and are architecturally different from the subagent delegation shown here: each teammate gets its own context window, and they can message each other directly. That's beyond the scope of this workshop, but worth exploring once you're comfortable with supervised delegation. See the [Agent Teams documentation](https://docs.anthropic.com/en/docs/claude-code/agent-teams) for details.
+> **Going further:** Claude Code also has an experimental **Agent Teams** feature for fully autonomous multi-agent coordination. With Agent Teams, a "team lead" agent spawns independent teammates that coordinate through shared task lists and direct messaging — no human orchestration needed between steps. Agent Teams remain experimental and disabled by default (enabled via the `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` setting or env var) and are architecturally different from the subagent delegation shown here: each teammate gets its own context window, and they can message each other directly. Note also that as of v2.1.172, regular subagents can spawn their own subagents up to 5 levels deep — so even without Agent Teams, delegation can go deeper than one level. That's beyond the scope of this workshop, but worth exploring once you're comfortable with supervised delegation. See the [Agent Teams documentation](https://code.claude.com/docs/en/agent-teams) for details.
 <br><br>
 ---
 ## END OF LAB
 ---
 <br><br>
+
+<p align="center">
+<b>For educational use only by the attendees of our workshops.</b>
+</p>
+<p align="center">
+<b>(c) 2026 Tech Skills Transformations and Brent C. Laster. All rights reserved.</b>
+</p>
 
 
 

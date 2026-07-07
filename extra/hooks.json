@@ -1,14 +1,27 @@
 {
-  "preToolUse": [
-    {
-      "tool": "Edit",
-      "command": "echo 'Editing file: $FILE_PATH'"
-    }
-  ],
-  "postToolUse": [
-    {
-      "tool": "Write",
-      "command": "prettier --write $FILE_PATH"
-    }
-  ]
+  "_comment": "Example hook config in the current settings.json format. Place under the 'hooks' key in .claude/settings.json. Updated 2026-07-07: migrated from the obsolete preToolUse/tool format.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"About to modify a file\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/format-file.sh"
+          }
+        ]
+      }
+    ]
+  }
 }

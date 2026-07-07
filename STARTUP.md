@@ -92,11 +92,11 @@ You'll see a welcome message and some update information.
 ```
 /model
 ```
-In the list that comes up, type "2" or use the arrow keys to move the pointer to "2" and hit *Enter*. Also use the left/right arrow keys to change the effort to *Medium effort*.
+In the list that comes up, use the arrow keys to move the pointer to the *Sonnet* entry (usually "2") and hit *Enter*. Also use the left/right arrow keys to change the effort to *Medium effort*. (The exact model versions listed may differ from the screenshot — pick the current Sonnet model.)
 
 ![login](./images/ccode209.png?raw=true "login")
 
-You should see an indicator that the model was set to *Sonnet* with *medium* effort.
+You should see an indicator that the model was set to *Sonnet* with *medium* effort. Note: your `/model` selection is saved as the default for new sessions; press `s` in the model list to set it for the current session only.
 
 <br><br>
 
