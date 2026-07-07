@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 5.8 - 07/07/26
+## Revision 5.9 - 07/07/26
 
 <br><br>
 
@@ -9,20 +9,20 @@
 
 **Copy and paste may not work as expected if using the mouse. If not, use the keyboard shortcuts - *Ctrl+C/Cmd+C and Ctrl+V/Cmd+V*.**
 
-**If you haven't done so already, set your model to `Sonnet` instead of `Opus`.**
+**If you haven't done so already, ensure your model is set to `Sonnet` instead of `Opus`.**
 
 > In Claude Code at the prompt, type:
 > ```
 > /model
 > ```
-> In the list that comes up, type "2" or use the arrow keys to move the pointer to "2" and hit *Enter*. Also use the left/right arrow keys to set the thinking mode to *medium*.
->
-> ![set model](./images/ccode209.png?raw=true "set model")
->
-> You should see an indicator that the model was set to a *Sonnet* model (e.g., *claude-sonnet-4-6* or later — the exact version shown may be newer).
->
-> **Note:** As of Claude Code 2.1.153, your `/model` selection is saved as the default for new sessions. To set a model for the current session only, press `s` in the model list.
->
+> In the list that comes up, if the default doesn't already have Sonnet selected, use the arrow keys to move the pointer to the *Sonnet* entry (usually "2") and hit *Enter*. 
+
+> Separately, use the left/right arrow keys to change the effort to *Medium effort*. (The exact model versions listed may differ from the screenshot — pick the current Sonnet model.)
+
+![login](./images/ccode242.png?raw=true "login")
+
+> You should see an indicator that the model was set to *Sonnet* with *medium* effort. Note: your `/model` selection is saved as the default for new sessions; press `s` in the model list to set it for the current session only.
+
 <br><br>
 
 
