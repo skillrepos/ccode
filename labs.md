@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.1 - 07/08/26
+## Revision 6.2 - 07/08/26
 
 <br><br>
 
@@ -265,99 +265,97 @@ Claude will scan the working directory, list the files, and provide analysis. Th
 
 # Lab 2: Working with Claude Code Modes
 ## Lab Purpose
-Master Claude Code's different operating modes including default mode, plan mode, and auto-accept mode. Learn when and how to use each mode effectively for different development scenarios.
-
+Master Claude Code's different operating modes including manual (default) mode, plan mode, and auto-accept mode. Learn when and how to use each mode effectively for different development scenarios.
+ 
 ---
 <br><br>
-
-## 1: Understand Default Mode 
-**What we're doing:** Starting Claude in its standard interactive mode.  
-**Why:** Default mode gives you full control with permission prompts for each action.
-
+ 
+## 1: Understand Manual (Default) Mode 
+**What we're doing:** Starting Claude in its standard interactive mode.  
+**Why:** Manual mode gives you full control with permission prompts for each action. (As of Claude Code v2.1.200, this mode — formerly labeled *default* — is shown as **manual** in the interface. It is still the default mode you start in, and its config value is still `default`.)
+ 
 **Action:** Start Claude with model Sonnet and medium effort (Note: You can use these command line options if you want for other places you start Claude in the labs.)
 ```bash
-claude --model sonnet --effort medium
+claude --model sonnet --effort medium
 ```
-
-You're now in default mode where Claude asks permission before file changes.
-
+ 
+You're now in manual mode (the default) where Claude asks permission before file changes.
+ 
 ---
 <br><br>
-
-## 2: Test Default Mode Permissions
-**What we're doing:** Creating a file to see permission prompts in action.  
+ 
+## 2: Test Manual Mode Permissions
+**What we're doing:** Creating a file to see permission prompts in action.  
 **Why:** Understanding permission flow helps you maintain control over changes.
-
+ 
 **Action:** Type:
 ```
 Create a config.json file with database connection settings for Postgresql
 ```
-
+ 
 Notice how Claude asks permission before creating the file as we've seen before. Type `1` to accept.
-
-
+ 
+ 
 ![Creating config.json](./images/ccode216.png?raw=true "Creating config.json")
-
+ 
 ---
 <br><br>
-
+ 
 ## 3: Activate Plan Mode
-**What we're doing:** Switching to Plan Mode for complex task planning.  
+**What we're doing:** Switching to Plan Mode for complex task planning.  
 **Why:** Plan Mode helps Claude think through multi-step tasks before executing.
-
+ 
 **Action:** Press `Shift+Tab` until you see *Plan mode*
-
+ 
 ![Activating plan mode](./images/ccode96.png?raw=true "Activating plan mode")
-
-
+ 
+ 
 ---
 <br><br>
-
+ 
 ## 4: Prompt for a complex task
-**What we're doing:** Prompting Claude for complex task planning.  
-
+**What we're doing:** Prompting Claude for complex task planning.  
 **Why:** Plan Mode helps Claude think through multi-step tasks before executing.
-
+ 
 **Action:** Type:
-
+ 
 ```
-Create a basic user profile page with fields for name, email, and profile picture upload. 
+Create a basic user profile page with fields for name, email, and profile picture upload. 
 ```
-
+ 
 ![Planning](./images/ccode98.png?raw=true "Planning")
-
+ 
 Claude will start creating a detailed plan before starting implementation.
-
+ 
 ---
 <br><br>
-
+ 
 ## 5: Respond to questions
-**What we're doing:**  Responding to questions from Claude
+**What we're doing:**  Responding to questions from Claude
 **Why:** Claude needs our input on some things before proceeding.
-
+ 
 **Action:** Read any questions that come up and select number of answer to proceed if single option for answer. (To save time and complexity, it is recommended to use the recommended/simplest option.) If you can select multiple options, use arrow keys and space/Enter to select options. Then move on to next question using right arrow. Answer all questions and then move to *Submit* and press *Enter*. If you want to see more of Claude's *thinking* during this process, press *ctrl+o".
-
+ 
 ![Responding to questions](./images/ccode217.png?raw=true "Responding to questions")
-
-
+ 
+ 
 ![Responding to questions](./images/ccode218.png?raw=true "Responding to questions")
-
-
+ 
+ 
 ---
 <br><br>
-
+ 
 ## 6: Review the Plan
 **What we're doing:** Interacting with Claude's proposed plan.  
 **Why:** You can review plans before execution to ensure desired outcomes.
-
-> ⚠️ **Known issue:** While the plan file is open, avoid scrolling or clicking in the Claude Code terminal panel — a current Claude Code bug can cause garbage characters (like `M^[[<35;86;12M`) to spill into the panel from mouse events. They're harmless. If you see them, close/save the plan file, then press `Esc` (or backspace) to clear any stray input; `ctrl+l` redraws the screen if the panel still looks scrambled.
  
 **Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
 1. Go ahead and select that key sequence (ctrl+g) to bring the plan up in the editor.
 2. (Optional) To see the markdown version of the plan (if you're in VS Code, you can right-click and select *Reopen Editor with ... Text Editor*).
 3. After you're done reviewing it, you can close the file (close the original file if you also opened a preview version).
-4. Then **select option 1** to proceed and auto-accept edits.
-   
+> ⚠️ **Known issue:** While the plan file is open, avoid scrolling or clicking in the Claude Code terminal panel — a current Claude Code bug can cause garbage characters (like `M^[[<35;86;12M`) to spill into the panel from mouse events. They're harmless. If you see them, close/save the plan file, then press `Esc` (or backspace) to clear any stray input; `ctrl+l` redraws the screen if the panel still looks scrambled.
+ 
+4. Then **select option 1** to proceed and auto-accept edits. 
 ![Reviewing plan](./images/ccode102.png?raw=true "Reviewing plan")
  
 ![Approving plan](./images/ccode219.png?raw=true "Approving plan")
@@ -404,9 +402,9 @@ Your conversation history is now cleared, giving you a clean slate.
  
 ## 9: Check Out Auto Mode
 **What we're doing:** Looking at the newer *Auto* permission mode.
-**Why:** Auto mode replaces many manual permission prompts with a background classifier that approves routine, safe actions and stops for risky ones. It sits between supervised editing and bypass permissions.
+**Why:** Auto mode replaces many permission prompts with a background classifier that approves routine, safe actions and stops for risky ones. It sits between manual mode and bypass permissions.
  
-**Action:** Press `Shift+Tab` repeatedly and watch the mode indicator cycle. Along with the modes we've used, you should see **auto mode**. The official mode set is now: *supervised editing* (default) → *accept edits* → *plan* → *auto* → *bypass permissions*. Stop cycling when you get back to your previous mode — we'll use bypass next.
+**Action:** Press `Shift+Tab` repeatedly and watch the mode indicator cycle: *manual* (the default) → *accept edits* → *plan* → *auto*. (The first time you select auto you may see a one-time opt-in prompt — you can accept it or back out.) *Bypass permissions* (YOLO) also joins the cycle when Claude was started with the bypass flag. Stop cycling when you get back to your previous mode — we'll use bypass next.
  
 ---
 <br><br>
@@ -460,7 +458,7 @@ exit
  
 ## Lab Summary
 ✅ You've successfully learned:
-- Default (supervised editing) mode with permission prompts
+- Manual (default) mode with permission prompts
 - Plan mode for complex task planning
 - Auto mode's classifier-based permissions
 - Auto-accept and bypass modes for rapid development
@@ -472,9 +470,8 @@ exit
 ---
 <br><br>
  
-
 **NOTE:** From here on, you can use the `claude --dangerously-skip-permissions` mode if you want to avoid having to respond to most prompts. For convenience, if working in the codespace, there is a shortcut alias for this setup:  `claude-yolo`. You must be in a terminal other than the original one that you started with to use this.
-
+ 
 <br><br>
 
 # Lab 3: Built-in Commands and Context Management
