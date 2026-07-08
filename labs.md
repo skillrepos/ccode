@@ -301,6 +301,7 @@ Notice how Claude asks permission before creating the file as we've seen before.
 
 ## 4: Prompt for a complex task
 **What we're doing:** Prompting Claude for complex task planning.  
+
 **Why:** Plan Mode helps Claude think through multi-step tasks before executing.
 
 **Action:** Type:
@@ -423,7 +424,7 @@ We also have an alias for this that you can use in the future `claude-yolo` if y
 
 **Action:** Type:
 ```
-Create a simple To-Do list app in javascript wtih functionality to add and delete tasks
+Create a simple To-Do list app in javascript with functionality to add and delete tasks
 ```
 
 Notice Claude creates all files without asking for permission.
