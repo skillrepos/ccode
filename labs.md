@@ -19,7 +19,7 @@
 
 > Separately, use the left/right arrow keys to change the effort to *Medium effort*. (The exact model versions listed may differ from the screenshot — pick the current Sonnet model.)
 
-![login](./images/ccode242.png?raw=true "login")
+![login](./images/cc4.png?raw=true "login")
 
 > You should see an indicator that the model was set to *Sonnet* with *medium* effort. Note: your `/model` selection is saved as the default for new sessions; press `s` in the model list to set it for the current session only.
 
@@ -47,7 +47,7 @@ Hello Claude, can you tell me what you can help with?
 
 Claude should respond with information about its capabilities.
 
-![Initial prompt](./images/ccode210.png?raw=true "Initial prompt")
+![Initial prompt](./images/cc5.png?raw=true "Initial prompt")
 
 
 ---
@@ -64,7 +64,7 @@ Explain this code: console.log([1,2,3].map(x => x * 2))
 
 Claude will explain the JavaScript array operation.
 
-![Initial prompt](./images/ccode211.png?raw=true "Initial prompt")
+![Initial prompt](./images/cc6.png?raw=true "Initial prompt")
 
 ---
 <br><br>
@@ -78,7 +78,7 @@ Claude will explain the JavaScript array operation.
 Create a simple hello.js file that prints "Hello from Claude Code!"
 ```
 
-Claude will create the file and *may* show you the content in the diff above the terminal. You do not need to do anything in the diff area. Just select option 1 in the terminal where Claude is waiting.
+Claude will create the file and *may* show you the content in the diff above the terminal (depending on if you're using an IDE)1. You do not need to do anything in the diff area. Just select option 1 in the terminal where Claude is waiting.
 
 ![Initial file creation](./images/ccode86.png?raw=true "Initial file creation")
 
@@ -103,19 +103,22 @@ You should see your new file and its contents.
 <br><br>
 
 ## 5: Ask Claude to Run the File
+
 **What we're doing:** Having Claude execute the code it created.  
 **Why:** Claude can run commands and show output directly.
+
+> **NOTE**: If you are not running this in the codespace, you will need `node` installed on your system.
 
 **Action:** Back in Claude, type the prompt below. You'll see the run started and then you'll be prompted for permission to proceed. Just select option 1.
 ```
 Run the hello.js file we just created
 ```
 
-![Run file](./images/ccode88.png?raw=true "Run file")
+![Run file](./images/cc7.png?raw=true "Run file")
 
 You'll see the output: "Hello from Claude Code!"
 
-![Run file](./images/ccode89.png?raw=true "Run file")
+![Run file](./images/cc8.png?raw=true "Run file")
 
 ---
 <br><br>
@@ -130,6 +133,8 @@ You'll see the output: "Hello from Claude Code!"
 3. You'll see a list with your session at the top. Just hit *Enter* to resume.
 4. Claude will restore your previous session context
 
+![Resuming](./images/cc9.png?raw=true "Resuming")
+
 ---
 <br><br>
 
@@ -142,9 +147,9 @@ You'll see the output: "Hello from Claude Code!"
 Create a simple goodbye.js file that prints "Goodbye from Claude Code!"
 ```
 
-If Claude shows you the content in the diff above the terminal, you do not need to do anything in the diff area. Just select option 3 in the terminal where Claude is waiting.
+(If Claude shows you the content in the diff above the terminal, you do not need to do anything in the diff area. Just select option 3 in the terminal where Claude is waiting.)
 
-![Do something different](./images/ccode92.png?raw=true "Do something different")
+![Selecting No](./images/cc10.png?raw=true "Selecting No")
 
 
 ---
@@ -159,7 +164,9 @@ If Claude shows you the content in the diff above the terminal, you do not need 
 Create a simple goodbye.py file that prints "Goodbye from Claude Code!"
 ```
 
-Claude will create the file and show you the content in the diff above the terminal. Once Claude generates it and prompts whether to continue, select 1 to proceed.
+![Redoing request](./images/cc11.png?raw=true "Redoing request")
+
+Approve with option 1.
 
 ---
 <br><br>
@@ -175,9 +182,12 @@ What does @hello.js do? Can you add a timestamp to it?
 
 Claude will pull hello.js into its context and explain it before making changes. It will display the changes and ask for approval. You can just select the *Yes* option.
 
-After this, there will probably be a suggestion in lighter ("ghost") text to run the file. If you'd like to execute that suggestion, you can just hit *Tab* and then return and approve the command.
+![Ref file by mention](./images/cc12.png?raw=true "Ref file by mention")
 
-![Ref file by mention](./images/ccode212.png?raw=true "Ref file by mention")
+After this, there will probably be a suggestion in lighter ("ghost") text to run the file. If you'd like to execute that suggestion, you can just hit *Tab* and then return and approve the command. (NOTE: This assumes `node` is available on your system if not running in the codespace.)
+
+
+
 
 **Note that you can also use @folder/ to reference entire directories and @https://url for web content.**
 
@@ -196,14 +206,18 @@ Remember that this project uses JavaScript and Python for demos.
 ```
  
 Claude will save this as a persistent memory (in its auto-memory files and/or CLAUDE.md). You can see where memories live by typing `/memory` (use *Esc* to exit the view).
+
+![Create a memory](./images/cc13.png?raw=true "Create a memory")
  
 Now try the ! shortcut to run a bash command directly to look for the memory file:
+
 ```
 ! cat ~/.claude/projects/-workspaces-ccode/memory/MEMORY.md
 ```
  
 This runs the shell command and shows output without a separate terminal. (If that file doesn't exist, Claude stored the memory elsewhere — you can ask it: `Where did you save that memory?`)
  
+![Viewing the memory](./images/cc14.png?raw=true "Viewing the memory")
  
 ---
 <br><br>
@@ -219,17 +233,17 @@ What files have we created so far? Summarize the purpose of each one and suggest
 
 Claude will scan the working directory, list the files, and provide analysis. This is how developers use Claude Code for orientation — jumping into a new codebase and asking "What does this project do?" or "How is this function used?"
 
-![File info](./images/ccode215.png?raw=true "File info")
+![File info](./images/cc15.png?raw=true "File info")
 
 ---
 <br><br>
 
 ## 12: Exit
 
-**Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
+**Action:** In prep for the next lab and a fresh start, type `/exit` to exit Claude Code.
 
 ```
-exit
+/exit
 ```
 
 ## Lab Summary
