@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.0 - 07/07/26
+## Revision 6.1 - 07/08/26
 
 <br><br>
 
@@ -333,130 +333,131 @@ Claude will start creating a detailed plan before starting implementation.
 <br><br>
 
 ## 6: Review the Plan
-**What we're doing:** Interacting with Claude's proposed plan.  
+**What we're doing:** Interacting with Claude's proposed plan.  
 **Why:** You can review plans before execution to ensure desired outcomes.
 
-**Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
+> ⚠️ **Known issue:** While the plan file is open, avoid scrolling or clicking in the Claude Code terminal panel — a current Claude Code bug can cause garbage characters (like `M^[[<35;86;12M`) to spill into the panel from mouse events. They're harmless. If you see them, close/save the plan file, then press `Esc` (or backspace) to clear any stray input; `ctrl+l` redraws the screen if the panel still looks scrambled.
+ 
+**Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
 1. Go ahead and select that key sequence (ctrl+g) to bring the plan up in the editor.
 2. (Optional) To see the markdown version of the plan (if you're in VS Code, you can right-click and select *Reopen Editor with ... Text Editor*).
 3. After you're done reviewing it, you can close the file (close the original file if you also opened a preview version).
-4. Then **select option 1** to proceed and auto-accept edits. 
-
+4. Then **select option 1** to proceed and auto-accept edits.
+   
 ![Reviewing plan](./images/ccode102.png?raw=true "Reviewing plan")
-
+ 
 ![Approving plan](./images/ccode219.png?raw=true "Approving plan")
-
+ 
 **Note that you are now in a different mode, but the original task will still run under *plan* mode.**
-
+ 
 ---
 <br><br>
-
+ 
 ## 7: View to-do list
-**What we're doing:** Monitoring the progress through the to-do list.  
+**What we're doing:** Monitoring the progress through the to-do list.  
 **Why:** Helps you understand what is done and what is left to be done.
-
+ 
 **Action:** While Claude Code is doing the implementation, hit `ctrl+t` to see the current state of the to-do list. (If the implementation is already done, you can just skip this step and try it on a future implementation.)
-
+ 
 ```
 ctrl+t
 ```
-
+ 
 ![Viewing to-do list](./images/ccode103.png?raw=true "Viewing to-do list")
-
+ 
 ---
 <br><br>
-
+ 
 ## 8: When done, clear the Conversation
-**What we're doing:** Using /clear to start fresh.  
+**What we're doing:** Using /clear to start fresh.  
 **Why:** Clearing context helps when switching between unrelated tasks.
-
+ 
 After a few minutes, Claude Code will be done and provide you a summary. It may ask if you want it to do additional tasks, but you can just ignore those.
-
+ 
 ![Plan completed](./images/ccode220.png?raw=true "Plan completed")
-
+ 
 Now, let's clear the context.
-
+ 
 **Action:** Type:
 ```
 /clear
 ```
-
+ 
 Your conversation history is now cleared, giving you a clean slate.
-
+ 
 ---
 <br><br>
-
+ 
 ## 9: Check Out Auto Mode
 **What we're doing:** Looking at the newer *Auto* permission mode.
 **Why:** Auto mode replaces many manual permission prompts with a background classifier that approves routine, safe actions and stops for risky ones. It sits between supervised editing and bypass permissions.
-
+ 
 **Action:** Press `Shift+Tab` repeatedly and watch the mode indicator cycle. Along with the modes we've used, you should see **auto mode**. The official mode set is now: *supervised editing* (default) → *accept edits* → *plan* → *auto* → *bypass permissions*. Stop cycling when you get back to your previous mode — we'll use bypass next.
-
+ 
 ---
 <br><br>
-
+ 
 ## 10: Try YOLO Mode (Auto-Accept)
-**What we're doing:** Running Claude with automatic permission granting.  
+**What we're doing:** Running Claude with automatic permission granting.  
 **Why:** This speeds up development when you trust Claude's actions.
-
+ 
 **Action:** Exit Claude (`exit`), then restart with the command below and **use option 2** to accept the risk:
-
+ 
 ```bash
 claude --dangerously-skip-permissions
 ```
-
+ 
 ![Accepting bypass mode](./images/ccode184.png?raw=true "Accepting bypass mode")
-
+ 
 If you don't see the mode as **bypass permissions on** mode, use `Shift+Tab` to change the mode until you see that.
-
+ 
 We also have an alias for this that you can use in the future `claude-yolo` if you are in a terminal other than the starting one.
-
+ 
 ⚠️ **Note:** Use with caution! Claude won't ask before making changes.
-
+ 
 ![YOLO](./images/ccode123.png?raw=true "YOLO")
-
+ 
 ---
 <br><br>
-
+ 
 ## 11: Test Auto-Accept Mode
-**What we're doing:** Creating multiple files without interruption.  
+**What we're doing:** Creating multiple files without interruption.  
 **Why:** See how much faster development is without permission prompts.
-
+ 
 **Action:** Type:
 ```
-Create a simple To-Do list app in javascript with functionality to add and delete tasks
+Create a simple To-Do list app in javascript wtih functionality to add and delete tasks
 ```
-
+ 
 Notice Claude creates all files without asking for permission.
-
+ 
 ![YOLO](./images/ccode221.png?raw=true "YOLO")
-
+ 
 ---
 <br><br>
-
+ 
 ## 12: Exit
-
+ 
 **Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
-
+ 
 ```
 exit
 ```
-
+ 
 ## Lab Summary
 ✅ You've successfully learned:
 - Default (supervised editing) mode with permission prompts
 - Plan mode for complex task planning
 - Auto mode's classifier-based permissions
 - Auto-accept and bypass modes for rapid development
-
-
 ---
-
+ 
 <br><br>
 ---
 ## END OF LAB
 ---
 <br><br>
+ 
 
 **NOTE:** From here on, you can use the `claude --dangerously-skip-permissions` mode if you want to avoid having to respond to most prompts. For convenience, if working in the codespace, there is a shortcut alias for this setup:  `claude-yolo`. You must be in a terminal other than the original one that you started with to use this.
 
@@ -538,56 +539,58 @@ Let Claude complete each task to build up context.
 ## 4: Check Context Usage
 **What we're doing:** Understanding how much context we're using.  
 **Why:** Managing context prevents hitting token limits in long sessions.
-
+ 
 **Action:** Type:
 ```
 /context
 ```
-
+ 
 Scroll back up to the start of the output. You'll see information about current token usage and remaining capacity.
-
-
+ 
+ 
 ![context command](./images/ccode224.png?raw=true "context command")
-
+ 
 ---
 <br><br>
-
+ 
 ## 5: Compact the Conversation
 **What we're doing:** Condensing conversation history while preserving key information.  
 **Why:** Compacting extends how long you can work without losing context.
-
+ 
 **Action:** Type:
 ```
 /compact Keep the User class implementation details and test structure
 ```
-
+ 
 Claude will summarize earlier parts while keeping specified information.
-
-
+ 
+ 
 ![compact](./images/ccode225.png?raw=true "compact")
-
+ 
 ---
 <br><br>
-
+ 
 ## 6: Use Rewind Feature
 **What we're doing:** Rolling back to a previous state in the conversation.  
 **Why:** Rewind lets you undo mistakes or explore different approaches.
-
+ 
 **Action:** 
-a. Ask Claude: `Delete the test file we created`
-b. After deletion, press `Esc` twice or type `/rewind`
-c. Select the point before deletion (the *compact*) to restore **by using the up and down arrow to navigate between the checkpoints** listed and then press `Enter`.
-
-
+a. Ask Claude to make a change we'll want to undo: `Remove the email validation from the User class in user.js`
+b. After the edit completes, press `Esc` twice (with an empty prompt) or type `/rewind`
+c. Select the point before the change (the *compact*) **by using the up and down arrow to navigate between the checkpoints** listed and then press `Enter`.
+ 
+ 
 ![rewind](./images/ccode34.png?raw=true "rewind")
-
-d. Respond to the clarification question to restore both the code and the conversation.
-
-
+ 
+d. From the action menu, choose **Restore code and conversation** to revert both. (Notice the other options: restore conversation only, restore code only, and the *Summarize from/up to here* options that compress parts of the conversation instead of reverting anything.)
+ 
+ 
 ![rewind](./images/ccode35.png?raw=true "rewind")
-
-e. You should see the file and the conversation restored. You can use backspace or hit `Esc` twice to clear out any commands showing up in Claude.
-
+ 
+e. You should see the code and the conversation restored — open user.js to confirm the email validation is back. You can use backspace or hit `Esc` twice to clear out any commands showing up in Claude.
+ 
+> **Why an edit and not a delete?** Checkpointing only tracks changes made with Claude's file-editing tools (Write/Edit). When Claude deletes a file, it uses a bash command (`rm`) — and bash changes are NOT tracked: the checkpoint list will show "No code changes" for that step, and the rewind menu itself warns *"Rewinding does not affect files edited manually or via bash."* (A deleted file may still come back after a code restore — but only because Claude created it earlier in the session, so a snapshot exists. Don't rely on that.) An edit gives a clean, tracked diff — notice the checkpoint list shows something like `user.js +1 -12`. And keep using git for real version history.
+ 
 ---
 <br><br>
 
@@ -904,33 +907,33 @@ What you should see after this runs is a plan produced by the agent that, per th
 ## 9: Use the Test-Runner Subagent
 **What we're doing:** Delegating test execution + fix suggestion.  
 **Why:** This is the most common “AI teammate” workflow.
-
+ 
 **Action:** In Claude, type:
 ```
 Use the test-runner subagent.
 Create one minimal failing test for invalid email handling in user.js, then propose the smallest fix.
 Stop after proposing the fix (do not implement yet).
 ```
-
+ 
 (Optional: You can open the .claude/agents/test-runner.md file to remember what it specifies.)
-
+ 
 ![Using the test-runner subagent](./images/ccode232.png?raw=true "Using the testrunner subagent")
-
+ 
 What you should see after this runs is a failing email test added to user.test.js and a proposed fix.
-
+ 
 ![Using the test-runner subagent](./images/ccode233.png?raw=true "Using the testrunner subagent")
-
+ 
 You can choose to accept the fix (make the edit) or not.
-
+ 
 ---
 <br><br>
-
+ 
 ## 10: Exit Claude Code
 **Action:**
 ```
 exit
 ```
-
+ 
 ---
 <br><br>
 
@@ -1016,11 +1019,11 @@ mkdir -p .claude-plugin
 ## 4: Create plugin.json
 **What we're doing:** Defining the plugin metadata and component paths.  
 **Why:** Claude Code uses this manifest to discover and load plugin components. When someone installs your plugin, these paths tell Claude Code where to find the commands, agents, and skills you've bundled.
-
+ 
 **Action:** Make a new file `.claude-plugin/plugin.json`.
-
+ 
 **Action:** Copy/paste the following contents into the file and save it.
-
+ 
 ```json
 {
   "name": "intro-claude-code-team-kit",
@@ -1031,106 +1034,105 @@ mkdir -p .claude-plugin
   "skills": "../.claude/skills"
 }
 ```
-
+ 
 > **Key detail:** The `commands`, `agents`, and `skills` fields are top-level in `plugin.json` — there is no wrapper object around them. Paths are relative to the `plugin.json` file location.
-
+ 
 > **Newer shortcut (v2.1.157+):** `claude plugin init <name>` now scaffolds a plugin for you, and plugins placed in `.claude/skills` auto-load with no marketplace required. We build the manifest by hand here so you understand the pieces; for real projects, start with `claude plugin init`. Also useful: `/plugin list` shows installed plugins with their projected per-session token cost, and `defaultEnabled: false` in plugin.json ships a plugin disabled by default.
-
+ 
 ---
 <br><br>
-
+ 
 ## 5: Start Claude Code and (optional) Verify Discovery
 **What we're doing:** Validating the repo has the expected structure.  
 **Why:** Before running any workflows, confirm that Claude Code discovers all your assets — the new `/ship` command, the reviewer agent from this lab, plus the planner agent, test-runner agent, and api-checker skill from Lab 4.
-
+ 
 **Action:** Start Claude Code
-
+ 
 ```bash
 claude
 ```
-
+ 
 Then run:
-
+ 
 ```
 /help
 ```
-
+ 
 Confirm you see `/ship` listed in the `custom-commands` section.
-
+ 
 ![The /ship command is present](./images/ccode234.png?raw=true "The /ship command is present")
-
-
+ 
+ 
 Hit *Esc" to get out of that output. Then run: 
-
+ 
 ```
 /agents
 ```
-
+ 
 Switch to the `Library` tab. Confirm the `reviewer`, `planner`, and `test-runner` agents are shown.
-
+ 
 ![Agents are present](./images/ccode235.png?raw=true "Agents are present")
-
-
+ 
+ 
 Hit *Esc" to get out of that output. Then run: 
-
+ 
 ```
 /skills
 ```
-
+ 
 Confirm the `api-checker` skill is shown.
-
+ 
 ![Skill is  present](./images/ccode236.png?raw=true "Skill is present")
-
+ 
 Hit *Esc" to get out of that output.
-
+ 
 ---
 <br><br>
-
-
+ 
+ 
 ## 6: Practice the Supervised Delegation Pattern (Plan → Implement → Review)
 **What we're doing:** Running a realistic delegation flow where *you* act as the supervisor, directing Claude to use the right subagent at each step.  
 **Why:** This is how most people use subagents in practice — you decide what happens next, and subagents are your specialists. You control the workflow; they do the focused work.
-
+ 
 **Action:** In Claude, type:
 ```
 Use the planner subagent to propose a plan to add phoneNumber to User (optional field).
 ```
-
+ 
 ![Initial plan](./images/ccode237.png?raw=true "Initial plan")
-
+ 
 Review the plan. When you're satisfied, tell Claude to proceed:
-
+ 
 ```
 The plan looks good. Now implement the change minimally. Do not run tests yet.
 ```
 ![Executing plan plan](./images/ccode204.png?raw=true "Executing plan")
-
+ 
 Approve as needed.
-
+ 
 > **What's happening here:** You explicitly delegated the planning step to the planner subagent. Claude ran it in a separate context and returned the result to you. Then you — the supervisor — approved the plan and gave the next instruction. This is the "supervised delegation" pattern: the human decides the workflow, subagents do the specialized work.
 ---
 <br><br>
-
+ 
 ## 7: Delegate Review (Reviewer Subagent)
 **What we're doing:** Getting a review from the reviewer subagent, which is structurally unable to edit files.  
 **Why:** Because the reviewer has `disallowedTools: Write, Edit` in its definition, you can trust that it will only analyze — never modify — your code. This keeps the review honest and the main conversation focused on your decisions about what to change.
-
+ 
 **Action:** In Claude, type:
 ```
 Use the reviewer subagent to review the change we just made.
 ```
-
+ 
 You'll see output of the main agent interpreting the subagent output. If you want to see the results from the subagent (the 3 risks, 3 tests to add, and 3 patch suggestions we told the reviewer agent to output) you can expand the output with *ctrl+o* and look back up in the output. 
-
+ 
 ![Start of reviewer output](./images/ccode239.png?raw=true "Start of reviewer output")
-
+ 
 > **What's happening here:** Claude delegates to the reviewer subagent, which runs with its own instructions and tool restrictions in a separate context. It returns structured output to the main conversation. You then decide which suggestions to act on.
-
+ 
 You can choose to proceed with all or some of the suggested changes by responding in the Claude Code input.
  
 ---
 <br><br>
-
 ## 8: Run the Ship Checklist Command
 **What we're doing:** Running the `/ship` command you created in Step 1.  
 **Why:** Execute the overall workflow.
