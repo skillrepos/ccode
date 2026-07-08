@@ -49,6 +49,7 @@ Claude should respond with information about its capabilities.
 
 ![Initial prompt](./images/cc5.png?raw=true "Initial prompt")
 
+> **Note:** In the hint line under the input area you'll see *"? for shortcuts · ← for agents"*. Pressing the **left arrow** with an empty input opens **Agent View** — a full-screen dashboard for managing multiple background sessions (a research preview; also reachable via `claude agents`). If you land there by accident, just press `Esc` to return — nothing is lost and no sessions are stopped. We won't use Agent View in this workshop, but it's how you'd run several Claude sessions in parallel.
 
 ---
 <br><br>
