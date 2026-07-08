@@ -532,7 +532,7 @@ Create a test file for the User class
 Let Claude complete each task to build up context.
 
 
-![help to see commands](./images/ccode223.png?raw=true "help to see commands")
+![help to see commands](./images/cc21.png?raw=true "help to see commands")
 
 ---
 <br><br>
@@ -549,7 +549,16 @@ Let Claude complete each task to build up context.
 Scroll back up to the start of the output. You'll see information about current token usage and remaining capacity.
  
  
-![context command](./images/ccode224.png?raw=true "context command")
+![context command](./images/cc22.png?raw=true "context command")
+
+You can also try the `all` option to see more details.
+
+```
+/context all
+```
+
+![context all](./images/cc23.png?raw=true "context all")
+
  
 ---
 <br><br>
@@ -576,21 +585,34 @@ Claude will summarize earlier parts while keeping specified information.
 **Why:** Rewind lets you undo mistakes or explore different approaches.
  
 **Action:** 
-a. Ask Claude to make a change we'll want to undo: `Remove the email validation from the User class in user.js`
+a. Ask Claude to make a change we'll want to undo: 
+
+```
+Remove the email validation from the User class in user.js
+```
+
+![compact](./images/cc24.png?raw=true "compact")
+
 b. After the edit completes, press `Esc` twice (with an empty prompt) or type `/rewind`
-c. Select the point before the change (the *compact*) **by using the up and down arrow to navigate between the checkpoints** listed and then press `Enter`.
+
+c. Each entry in the list restores to the point *before* that message. So **select the *Remove the email validation...* entry** (use the up/down arrows) and press `Enter`. Notice the tracked change shown under it (something like `2 files changed +6 -10`).
+ 
+![rewind](./images/cc25.png?raw=true "rewind")
+ 
+> **Note:** You may see one or two */compact* entries in the list, labeled *No code changes* and/or *⚠ No code restore*. The first is the compact command you typed; the second is the compaction boundary, where only the conversation (not code) can be restored. Don't select those — pick the entry for the change you want to undo.
  
  
-![rewind](./images/ccode34.png?raw=true "rewind")
+![rewind](./images/cc26.png?raw=true "rewind")
  
-d. From the action menu, choose **Restore code and conversation** to revert both. (Notice the other options: restore conversation only, restore code only, and the *Summarize from/up to here* options that compress parts of the conversation instead of reverting anything.)
+d. From the action menu, choose **Restore code and conversation** to revert both. 
  
+![rewind](./images/cc27.png?raw=true "rewind")
  
-![rewind](./images/ccode35.png?raw=true "rewind")
+e. Open user.js to confirm the email validation is back. You can use backspace or hit `Esc` twice to clear out any commands showing up in Claude.
+
+![rewind](./images/cc28.png?raw=true "rewind")
  
-e. You should see the code and the conversation restored — open user.js to confirm the email validation is back. You can use backspace or hit `Esc` twice to clear out any commands showing up in Claude.
- 
-> **Why an edit and not a delete?** Checkpointing only tracks changes made with Claude's file-editing tools (Write/Edit). When Claude deletes a file, it uses a bash command (`rm`) — and bash changes are NOT tracked: the checkpoint list will show "No code changes" for that step, and the rewind menu itself warns *"Rewinding does not affect files edited manually or via bash."* (A deleted file may still come back after a code restore — but only because Claude created it earlier in the session, so a snapshot exists. Don't rely on that.) An edit gives a clean, tracked diff — notice the checkpoint list shows something like `user.js +1 -12`. And keep using git for real version history.
+> Remember from the slides: only file-tool edits are checkpointed — bash changes (`rm`, `mv`) show *No code changes* and can't be restored. Use git for real version history.
  
 ---
 <br><br>
@@ -607,11 +629,11 @@ e. You should see the code and the conversation restored — open user.js to con
 
 This file will be automatically created and read in future sessions.
 
-![claude.md](./images/ccode226.png?raw=true "claude.md")
+![claude.md](./images/cc29.png?raw=true "claude.md")
 
 Afterwards, you can take a look at the file by opening it up in an editor (you can use 'code' command if in VS Code or Codespace).
 
-You'll probably notice that it identifies custom slash commands, custom agents, and custom skills that we have in the `extra` directory. While it is finding those kind of files there, it is NOT registering them as something usable. It is just describing the file types.
+![claude.md](./images/cc30.png?raw=true "claude.md")
 
 ---
 <br><br>
@@ -627,12 +649,28 @@ You'll probably notice that it identifies custom slash commands, custom agents, 
 Claude should recall information from the CLAUDE.md file and display that info.
 
 
-![claude.md](./images/ccode227.png?raw=true "claude.md")
+![context from CLAUDE.md](./images/cc31.png?raw=true "context from CLAUDE.md")
 
 ---
 <br><br>
 
-## 9: View the Memory Hierarchy with /memory
+## 9: Explore Git History with Claude
+**What we're doing:** Using Claude to analyze changes in the repository.  
+**Why:** Claude Code excels at navigating and explaining code history.
+
+**Action:** Type:
+```
+What changes have been made in this repo recently? Summarize the git log.
+```
+
+Claude will run git commands and summarize the commit history in natural language. This is a powerful pattern for onboarding — instead of reading through git logs manually, ask Claude to explain what changed and why.
+
+![claude.md](./images/cc32.png?raw=true "claude.md")
+
+---
+<br><br>
+
+## 10: View the Memory Hierarchy with /memory
 **What we're doing:** Visualizing how CLAUDE.md memory is organized across scopes.  
 **Why:** Understanding the memory hierarchy helps you structure project knowledge effectively.
 
@@ -645,21 +683,7 @@ You'll see a visualization of how memory is layered: enterprise (if applicable) 
 
 ![claude.md](./images/ccode228.png?raw=true "claude.md")
 
----
-<br><br>
-
-## 10: Explore Git History with Claude
-**What we're doing:** Using Claude to analyze changes in the repository.  
-**Why:** Claude Code excels at navigating and explaining code history.
-
-**Action:** Type:
-```
-What changes have been made in this repo recently? Summarize the git log.
-```
-
-Claude will run git commands and summarize the commit history in natural language. This is a powerful pattern for onboarding — instead of reading through git logs manually, ask Claude to explain what changed and why.
-
-![claude.md](./images/ccode229.png?raw=true "claude.md")
+Use `Esc` to exit the list.  (**NOTE**: If you see garbage characters in the terminal when trying to exit the list, you can use `Ctrl + C` as a brute force way to exit.)
 
 ---
 <br><br>
@@ -668,14 +692,14 @@ Claude will run git commands and summarize the commit history in natural languag
 **What we're doing:** Using Claude Code as a Unix utility with piped input.  
 **Why:** Headless/pipe mode lets you chain Claude into scripts and automation workflows.
 
-**Action:** Exit Claude first with `exit`, then run this in your regular terminal:
+**Action:** If still in Claude, exit Claude first with `/exit`, then run this in your regular terminal:
 ```bash
 echo "What files are in this directory?" | claude -p
 ```
 
 The `-p` flag runs Claude in print (headless) mode — it takes input from stdin, processes it, and outputs the result. No interactive session needed. This is how you integrate Claude into shell scripts, CI pipelines, and automated workflows.
 
-![claude.md](./images/ccode230.png?raw=true "claude.md")
+![claude.md](./images/cc33.png?raw=true "claude.md")
 
 ---
 <br><br>
