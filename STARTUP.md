@@ -7,10 +7,10 @@
 claude
 ```
 
-You'll see a welcome message and some update information.
+You may see a welcome message and some update information.
 
 
-![startup](./images/ccode179.png?raw=true "Startup")
+![startup](./images/cc1.png?raw=true "Startup")
 
 <br><br>
 ---
@@ -19,12 +19,12 @@ You'll see a welcome message and some update information.
 **What we're doing:** Running the */login* command in Claude Code.  
 **Why:** We haven't authenticated yet.
 
-**Action:** Hit *Enter* to dismiss the welcome message. In Claude Code at the prompt, type:
+**Action:** Hit *Enter* to dismiss the welcome message if needed. In Claude Code at the prompt, type:
 ```
 /login
 ```
 
-![login](./images/ccode79.png?raw=true "login")
+![login](./images/cc2.png?raw=true "login")
 
 <br><br>
 
@@ -35,7 +35,7 @@ You'll see a welcome message and some update information.
 
 **Action:** When prompted, follow the authentication flow:
 
-### a. For *Select login method:*, choose option 1 - *Claude account with subscription*
+### a. For *Select login method:*, choose option 1 (either type "1" or select the line and hit "Enter") - *Claude account with subscription*
 <br>
 
 ![subscription](./images/ccode80.png?raw=true "Subscription")
@@ -57,9 +57,9 @@ You'll see a welcome message and some update information.
 <br><br>
 
 
-### d. You *may* have to sign in with your userid again and get a verification code to use before going to the next steps. If so, just follow the prompts and make sure to authenticate in the SAME browswer as the one where you opened the URL.
+### d. You *may* have to sign in with your userid again and get a verification code to use before going to the next steps. If so, just follow the prompts and make sure to authenticate in the SAME browser as the one where you opened the URL.
 
-![backup method](./images/ccode241.png?raw=true "backup method") 
+![login](./images/cc3.png?raw=true "login") 
 
 <br><br>
 
@@ -103,9 +103,9 @@ In the list that comes up, if the default doesn't already have Sonnet selected, 
 
 Separately, use the left/right arrow keys to change the effort to *Medium effort*. (The exact model versions listed may differ from the screenshot — pick the current Sonnet model.)
 
-![login](./images/ccode242.png?raw=true "login")
+![model selection](./images/cc4.png?raw=true "model selection")
 
-You should see an indicator that the model was set to *Sonnet* with *medium* effort. Note: your `/model` selection is saved as the default for new sessions; press `s` in the model list to set it for the current session only.
+You should see an indicator that the model was set to *Sonnet* with *medium* effort. Note: your `/model` selection is saved as the default for new sessions; hit `Enter` in the model list to set it as your default.
 
 <br><br>
 
