@@ -296,7 +296,7 @@ Create a config.json file with database connection settings for Postgresql
 Notice how Claude asks permission before creating the file as we've seen before. Type `1` to accept.
  
  
-![Creating config.json](./images/ccode216.png?raw=true "Creating config.json")
+![Creating config.json](./images/cc16.png?raw=true "Creating config.json")
  
 ---
 <br><br>
@@ -334,7 +334,7 @@ Claude will start creating a detailed plan before starting implementation.
 **What we're doing:**  Responding to questions from Claude
 **Why:** Claude needs our input on some things before proceeding.
  
-**Action:** Read any questions that come up and select number of answer to proceed if single option for answer. (To save time and complexity, it is recommended to use the recommended/simplest option.) If you can select multiple options, use arrow keys and space/Enter to select options. Then move on to next question using right arrow. Answer all questions and then move to *Submit* and press *Enter*. If you want to see more of Claude's *thinking* during this process, press *ctrl+o".
+**Action:** Read any questions that come up and select number of answer to proceed if single option for answer. (To save time and complexity, it is recommended to use the recommended/simplest option.) If you can select multiple options, use arrow keys and space/Enter to select options. Then, if there are multiple questions, move on to next question using right arrow. Answer all questions (if there are multiple, move to *Submit*) and press *Enter*. 
  
 ![Responding to questions](./images/ccode217.png?raw=true "Responding to questions")
  
@@ -349,38 +349,27 @@ Claude will start creating a detailed plan before starting implementation.
 **What we're doing:** Interacting with Claude's proposed plan.  
 **Why:** You can review plans before execution to ensure desired outcomes.
  
-**Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
-1. Go ahead and select that key sequence (ctrl+g) to bring the plan up in the editor.
-2. (Optional) To see the markdown version of the plan (if you're in VS Code, you can right-click and select *Reopen Editor with ... Text Editor*).
-3. After you're done reviewing it, you can close the file (close the original file if you also opened a preview version).
+**Action:** Review the plan.
+
+You'll see the plan presented in the top section of the output area (above the question about proceeding). You can scroll in that area to see the full plan and/or use `Ctrl + o` to see details. (If you use Ctrl + o to see the details, use the same keys again to toggle back.)
+
+![Reviewing plan](./images/cc18.png?raw=true "Reviewing plan")
+
+You could also use `Ctrl + g` to see/edit the plan in an editor, but this can be problematic due to the issue noted below.
+
 > ⚠️ **Known issue:** While the plan file is open, avoid scrolling or clicking in the Claude Code terminal panel — a current Claude Code bug can cause garbage characters (like `M^[[<35;86;12M`) to spill into the panel from mouse events. They're harmless. If you see them, close/save the plan file, then press `Esc` (or backspace) to clear any stray input; `ctrl+l` redraws the screen if the panel still looks scrambled.
  
-4. Then **select option 1** to proceed and auto-accept edits. 
-![Reviewing plan](./images/ccode102.png?raw=true "Reviewing plan")
+Then **select option 1** to proceed and auto-accept edits. 
  
-![Approving plan](./images/ccode219.png?raw=true "Approving plan")
+![Approving plan](./images/cc19.png?raw=true "Approving plan")
  
-**Note that you are now in a different mode, but the original task will still run under *plan* mode.**
- 
----
-<br><br>
- 
-## 7: View to-do list
-**What we're doing:** Monitoring the progress through the to-do list.  
-**Why:** Helps you understand what is done and what is left to be done.
- 
-**Action:** While Claude Code is doing the implementation, hit `ctrl+t` to see the current state of the to-do list. (If the implementation is already done, you can just skip this step and try it on a future implementation.)
- 
-```
-ctrl+t
-```
- 
-![Viewing to-do list](./images/ccode103.png?raw=true "Viewing to-do list")
+**Note that you are now in a different mode (auto mode).**
  
 ---
 <br><br>
  
-## 8: When done, clear the Conversation
+ 
+## 7: When done, clear the Conversation
 **What we're doing:** Using /clear to start fresh.  
 **Why:** Clearing context helps when switching between unrelated tasks.
  
@@ -400,7 +389,7 @@ Your conversation history is now cleared, giving you a clean slate.
 ---
 <br><br>
  
-## 9: Check Out Auto Mode
+## 8: Check Out Auto Mode
 **What we're doing:** Looking at the newer *Auto* permission mode.
 **Why:** Auto mode replaces many permission prompts with a background classifier that approves routine, safe actions and stops for risky ones. It sits between manual mode and bypass permissions.
  
@@ -409,11 +398,11 @@ Your conversation history is now cleared, giving you a clean slate.
 ---
 <br><br>
  
-## 10: Try YOLO Mode (Auto-Accept)
+## 9: Try YOLO Mode (Auto-Accept)
 **What we're doing:** Running Claude with automatic permission granting.  
 **Why:** This speeds up development when you trust Claude's actions.
  
-**Action:** Exit Claude (`exit`), then restart with the command below and **use option 2** to accept the risk:
+**Action:** Exit Claude (`/exit`), then restart with the command below and **use option 2** to accept the risk:
  
 ```bash
 claude --dangerously-skip-permissions
@@ -432,7 +421,7 @@ We also have an alias for this that you can use in the future `claude-yolo` if y
 ---
 <br><br>
  
-## 11: Test Auto-Accept Mode
+## 10: Test Auto-Accept Mode
 **What we're doing:** Creating multiple files without interruption.  
 **Why:** See how much faster development is without permission prompts.
  
@@ -443,17 +432,17 @@ Create a simple To-Do list app in javascript wtih functionality to add and delet
  
 Notice Claude creates all files without asking for permission.
  
-![YOLO](./images/ccode221.png?raw=true "YOLO")
+![YOLO](./images/cc20.png?raw=true "YOLO")
  
 ---
 <br><br>
  
-## 12: Exit
+## 11: Exit
  
 **Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
  
 ```
-exit
+/exit
 ```
  
 ## Lab Summary
