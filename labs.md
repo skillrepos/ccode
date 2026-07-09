@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.2 - 07/08/26
+## Revision 6.2 - 07/09/26
 
 <br><br>
 
@@ -736,6 +736,9 @@ Build one practical skill and two specialist subagents to see how delegation kee
 **Why:** Skills/subagents are file-system discoverable.
 
 **Action:**
+
+(Do this from the starting `ccode` directory.)
+
 ```bash
 mkdir -p .claude/skills/api-checker/scripts
 mkdir -p .claude/agents
@@ -748,29 +751,35 @@ mkdir -p .claude/agents
 **What we're doing:** Writing a SKILL.md with a focused purpose.  
 **Why:** Skills help Claude apply repeatable expertise automatically.
 
-**Action:** Make a new file `.claude/skills/api-checker/SKILL.md`.
+**Action:** Create the skill file for the skill.
 
-**Action:** Copy/paste the following contents into the file and save it.
+(Do this from the starting `ccode` directory.)
+
+```bash
+code .claude/skills/api-checker/SKILL.md  (or whatever command you use to create/edit a new file)
+```
+
+**Action:** Copy/paste the following contents into the file and save it. (In the codespace, you can use `Ctrl + S` on Windows or `CMD + S` on Mac to save.)
 
 ```md
 ---
 name: api-checker
-description: When the user asks to validate a REST endpoint, generate a curl test, run it, and summarize status + key fields.
+description: Use whenever the user asks to validate, check, or test a REST endpoint or API URL. Always run scripts/check.py (instead of fetching directly) to get structured results, and summarize status + key fields.
 ---
-
+ 
 ## Rules
-
+ 
 - Ask for the base URL if missing.
 - Run `scripts/check.py <url>` to fetch the endpoint and get structured JSON output.
 - Parse the output: use `ok` for success/failure, `status` for HTTP code, `json` for the response body.
 - Keep output short: status, 3 key fields, and one recommendation.
-
+ 
 ## Example trigger
-
+ 
 User: "Can you validate GET /health on my service?"
 ```
 
-![Creating the skill](./images/ccode196.png?raw=true "Creating the skill")
+![Creating the skill](./images/cc35.png?raw=true "Creating the skill")
 
 ---
 <br><br>
@@ -882,24 +891,29 @@ claude
 ## 7: Trigger the skill (Without Naming It)
 **What we're doing:** Letting Claude choose the skill automatically.  
 **Why:** Skills are intended to be invoked based on context.
-
+ 
 **Action:** In Claude, type:
 ```
 Please validate https://jsonplaceholder.typicode.com/posts/1 and summarize what you find.
 ```
-
+ 
 If Claude asks for approval to run scripts, approve it.
-
+ 
 (Optional: You can open the .claude/skills/api-checker/SKILL.md file to remember what it specifies.)
-
+ 
 What you should see in the output is that the skill was selected and loaded, then, per the skill instructions:
-
-- The supporting script was run
+ 
+- The supporting script was run (look for `scripts/check.py` in the output — not a plain `Fetch(...)` call)
 - The status was reported
 - Key fields were listed
 - A recommendation was provided
-
 ![Using the skill](./images/ccode231.png?raw=true "Using the skill")
+ 
+> **If Claude answered directly instead** (you see `Fetch(https://...)` rather than the skill loading and check.py running): skills are *model-invoked* — Claude matches your request against skill descriptions and decides, so for simple requests it may reach for its built-in fetch instead. This is normal and a useful lesson: description wording matters. To guarantee the skill runs, name it: `Use the api-checker skill to validate https://jsonplaceholder.typicode.com/posts/1` — then compare the output.
+ 
+ 
+---
+<br><br>
 
 
 ---
@@ -923,7 +937,7 @@ What you should see after this runs is a plan produced by the agent that, per th
 - Lists several risks
 
 
-![Using the planning subagent](./images/ccode198.png?raw=true "Using the planning subagent")
+![Using the planning subagent](./images/cc37.png?raw=true "Using the planning subagent")
 
 
 ---
@@ -944,7 +958,7 @@ Stop after proposing the fix (do not implement yet).
  
 ![Using the test-runner subagent](./images/ccode232.png?raw=true "Using the testrunner subagent")
  
-What you should see after this runs is a failing email test added to user.test.js and a proposed fix.
+This may take a while to run and require approvals along the way. What you should see after this runs is a failing email test added to user.test.js and a proposed fix.
  
 ![Using the test-runner subagent](./images/ccode233.png?raw=true "Using the testrunner subagent")
  
@@ -1021,8 +1035,11 @@ disallowedTools: Write, Edit
 ---
 ## Instructions
 - Review the diff and changed files.
-- Output: 3 risks, 3 tests to add, 3 patch suggestions.
 - Do not modify files.
+- Return your results in EXACTLY this format so they can be relayed verbatim:
+  RISKS: (3 bullets)
+  TESTS TO ADD: (3 bullets)
+  PATCH SUGGESTIONS: (3 bullets)
 ```
 
 > **What changed from Lab 4's agents?** Compare this to the planner agent you created in Lab 4. The planner says "Do not write or modify files" in its instructions — a prompt-level constraint. This reviewer goes further with `disallowedTools: Write, Edit`, which *enforces* the restriction at the tool level. Both approaches have their place: prompt constraints are flexible, tool constraints are guaranteed.
@@ -1085,18 +1102,20 @@ Then run:
  
 Confirm you see `/ship` listed in the `custom-commands` section.
  
-![The /ship command is present](./images/ccode234.png?raw=true "The /ship command is present")
+![The /ship command is present](./images/cc38.png?raw=true "The /ship command is present")
  
  
-Hit *Esc" to get out of that output. Then run: 
+Hit *Esc" to get out of that output. Next, verify the agents. The old `/agents` wizard has been removed from Claude Code — agents are now managed as plain files (or by asking Claude to create/update them for you). So use the `!` bash shortcut you learned in Lab 1 to list them:
  
 ```
-/agents
+! ls .claude/agents/*
 ```
- 
-Switch to the `Library` tab. Confirm the `reviewer`, `planner`, and `test-runner` agents are shown.
- 
-![Agents are present](./images/ccode235.png?raw=true "Agents are present")
+
+![The /ship command is present](./images/cc39.png?raw=true "The /ship command is present")
+
+(The trailing `/*` matters. While you type a *partial* path that matches real files, Claude Code shows a suggested path on a plain line near the input — it's subtle, just a line of text like `.claude/agents/`, easy to miss — and **while that suggestion is showing, *Enter* is silently ignored**. A complete path ends the suggestion, so `/*` or a plain trailing slash (`ls .claude/agents/`) lets *Enter* work normally; `Esc` also clears the suggestion if you see it.)
+
+Confirm `planner.md`, `test-runner.md`, and `reviewer.md` are shown. (You can also just ask Claude: `What subagents are available in this project?`)
  
  
 Hit *Esc" to get out of that output. Then run: 
@@ -1107,7 +1126,7 @@ Hit *Esc" to get out of that output. Then run:
  
 Confirm the `api-checker` skill is shown.
  
-![Skill is  present](./images/ccode236.png?raw=true "Skill is present")
+![Skill is  present](./images/cc40.png?raw=true "Skill is present")
  
 Hit *Esc" to get out of that output.
  
@@ -1124,7 +1143,7 @@ Hit *Esc" to get out of that output.
 Use the planner subagent to propose a plan to add phoneNumber to User (optional field).
 ```
  
-![Initial plan](./images/ccode237.png?raw=true "Initial plan")
+![Initial plan](./images/cc41.png?raw=true "Initial plan")
  
 Review the plan. When you're satisfied, tell Claude to proceed:
  
@@ -1145,12 +1164,14 @@ Approve as needed.
  
 **Action:** In Claude, type:
 ```
-Use the reviewer subagent to review the change we just made.
+Use the reviewer subagent to review the change we just made. Show me its RISKS, TESTS TO ADD, and PATCH SUGGESTIONS sections verbatim.
 ```
  
-You'll see output of the main agent interpreting the subagent output. If you want to see the results from the subagent (the 3 risks, 3 tests to add, and 3 patch suggestions we told the reviewer agent to output) you can expand the output with *ctrl+o* and look back up in the output. 
+The reviewer may run as a **backgrounded agent** — you'll see something like *"Backgrounded agent (↓ to manage · ctrl+o to expand)"* and a short wait while it works. When it finishes, the main agent reports the results.
  
-![Start of reviewer output](./images/ccode239.png?raw=true "Start of reviewer output")
+**What you should see:** the RISKS / TESTS TO ADD / PATCH SUGGESTIONS sections from the reviewer. Note that the main agent *interprets* subagent output — without the "verbatim" request in the prompt it will often summarize and re-organize the findings in its own words. To see the subagent's own transcript, press *ctrl+o* and scroll back up (or press ↓ to open the agent manager and peek at it).
+ 
+![Start of reviewer output](./images/cc43.png?raw=true "Start of reviewer output")
  
 > **What's happening here:** Claude delegates to the reviewer subagent, which runs with its own instructions and tool restrictions in a separate context. It returns structured output to the main conversation. You then decide which suggestions to act on.
  
@@ -1158,6 +1179,7 @@ You can choose to proceed with all or some of the suggested changes by respondin
  
 ---
 <br><br>
+
 ## 8: Run the Ship Checklist Command
 **What we're doing:** Running the `/ship` command you created in Step 1.  
 **Why:** Execute the overall workflow.
@@ -1170,9 +1192,11 @@ You can choose to proceed with all or some of the suggested changes by respondin
 /ship
 ```
 
-What you should see is the git info being gathered and the testing running. Then in the summary, you'll see what changed, the test results (1 will be failing), the "Risks" list and the suggested "Follow-ups".
+Claude will run a few shell commands — these appear **collapsed** (e.g., *"Ran 2 shell commands"*; press `ctrl+o` if you want to see the actual git status/diff and test commands). Then you'll get a numbered summary: **1.** what changed, **2.** the test results (a failing test may appear), **3.** the "Risks" list, and **4.** the suggested "Follow-ups".
 
-![Partial output of ship command](./images/ccode240.png?raw=true "Partial output of ship command")
+(The screenshot below is shown with the shell commands by pressing `ctrl + o`.)
+
+![Partial output of ship command](./images/cc44.png?raw=true "Partial output of ship command")
 
 ---
 <br><br>
@@ -1184,7 +1208,7 @@ What you should see is the git info being gathered and the testing running. Then
 
 **Action:** Open the Claude Code VS Code extension (sidebar or toolbar icon).
 
-If you are prompted to log in, choose the "Claude.ai Subcription" option and follow the steps to authenticate.
+You will likely need to login, via the same `/login` command as you originally used and again choosing the "Claude.ai Subcription" option and following the steps to authenticate.
 
 ---
 <br><br>
