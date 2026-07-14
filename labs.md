@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.4 - 07/14/26
+## Revision 6.5 - 07/14/26
 
 <br><br>
 
@@ -935,6 +935,7 @@ What you should see after this runs is a plan produced by the agent that, per th
 
 ![Using the planning subagent](./images/cc37.png?raw=true "Using the planning subagent")
 
+You can ignore any suggestions for further actions from Claude.
 
 ---
 <br><br>
@@ -966,7 +967,7 @@ You can choose to accept the fix (make the edit) or not.
 ## 10: Exit Claude Code
 **Action:**
 ```
-exit
+/exit
 ```
  
 ---
