@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.3 - 07/14/26
+## Revision 6.4 - 07/14/26
 
 <br><br>
 
@@ -636,7 +636,11 @@ Afterwards, you can take a look at the file by opening it up in an editor (you c
 
 **Action:**
 1. Type `/clear` to clear the conversation
-2. Ask: `What are our project rules and what test command should I run after code edits?`
+2. Ask:
+   
+```
+What are our project rules and what test command should I run after code edits?`
+```
 
 Claude should recall information from the CLAUDE.md file and display that info.
 
@@ -662,7 +666,7 @@ Claude will run git commands and summarize the commit history in natural languag
 ---
 <br><br>
 
-## 10: View the Memory Hierarchy with /memory
+## 10: (Optional) If you didn't do it earlier, view the Memory Hierarchy with /memory
 **What we're doing:** Visualizing how CLAUDE.md memory is organized across scopes.  
 **Why:** Understanding the memory hierarchy helps you structure project knowledge effectively.
 
