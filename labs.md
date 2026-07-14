@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.2 - 07/09/26
+## Revision 6.3 - 07/14/26
 
 <br><br>
 
@@ -413,7 +413,7 @@ claude --dangerously-skip-permissions
  
 If you don't see the mode as **bypass permissions on** mode, use `Shift+Tab` to change the mode until you see that.
  
-We also have an alias for this that you can use in the future `claude-yolo` if you are in a terminal other than the starting one.
+If you're using the codespace, we also have an alias for this that you can use in the future `claude-yolo` if you are in a terminal other than the starting one.
  
 ⚠️ **Note:** Use with caution! Claude won't ask before making changes.
  
@@ -550,14 +550,6 @@ Scroll back up to the start of the output. You'll see information about current 
  
  
 ![context command](./images/cc22.png?raw=true "context command")
-
-You can also try the `all` option to see more details.
-
-```
-/context all
-```
-
-![context all](./images/cc23.png?raw=true "context all")
 
  
 ---
