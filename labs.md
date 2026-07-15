@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.5 - 07/14/26
+## Revision 6.6 - 07/14/26
 
 <br><br>
 
@@ -1102,7 +1102,7 @@ Confirm you see `/ship` listed in the `custom-commands` section.
 ![The /ship command is present](./images/cc38.png?raw=true "The /ship command is present")
  
  
-Hit *Esc" to get out of that output. Next, verify the agents. The old `/agents` wizard has been removed from Claude Code — agents are now managed as plain files (or by asking Claude to create/update them for you). So use the `!` bash shortcut you learned in Lab 1 to list them:
+Hit *Esc" to get out of that output. Next, verify the agents. Agents are managed as plain files (or by asking Claude to create/update them for you). So use the `!` bash shortcut you learned in Lab 1 to list them:
  
 ```
 ! ls .claude/agents/*
@@ -1110,7 +1110,6 @@ Hit *Esc" to get out of that output. Next, verify the agents. The old `/agents` 
 
 ![The /ship command is present](./images/cc39.png?raw=true "The /ship command is present")
 
-(The trailing `/*` matters. While you type a *partial* path that matches real files, Claude Code shows a suggested path on a plain line near the input — it's subtle, just a line of text like `.claude/agents/`, easy to miss — and **while that suggestion is showing, *Enter* is silently ignored**. A complete path ends the suggestion, so `/*` or a plain trailing slash (`ls .claude/agents/`) lets *Enter* work normally; `Esc` also clears the suggestion if you see it.)
 
 Confirm `planner.md`, `test-runner.md`, and `reviewer.md` are shown. (You can also just ask Claude: `What subagents are available in this project?`)
  
