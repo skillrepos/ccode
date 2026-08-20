@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.19 - 08/17/26
+## Revision 6.21 - 08/20/26
 
 <br><br>
 
@@ -15,13 +15,17 @@
 > ```
 > /model
 > ```
-> In the list that comes up, type "2" or use the arrow keys to move the pointer to "2" and hit *Enter*. Also use the left/right arrow keys to set the thinking mode to *medium*.
+> In the list that comes up, use the arrow keys to move the pointer to the **Sonnet** entry and hit *Enter*. (Select it *by name* rather than by number — the list now also contains Opus 5 and, for some accounts, Fable 5, so the position of Sonnet varies.) Also use the **left/right arrow keys** to set the **effort level** to *medium*.
 >
 > ![set model](./images/ccode209.png?raw=true "set model")
 >
-> You should see an indicator that the model was set to a *Sonnet* model (e.g., *claude-sonnet-4-6* or later — the exact version shown may be newer).
+> You should see an indicator that the model was set to a *Sonnet* model (currently *claude-sonnet-5*) with *medium* effort.
 >
 > **Note:** As of Claude Code 2.1.153, your `/model` selection is saved as the default for new sessions. To set a model for the current session only, press `s` in the model list.
+>
+> **Why Sonnet?** The picker shows each model's price per million tokens. Sonnet 5 is $2 in / $10 out, Opus 5 is $5 / $25, and Fable 5 is $10 / $50. Sonnet is the right default for everyday coding; save the heavier models for genuinely hard problems.
+>
+> **What is "effort"?** Effort is the reasoning dial (`low`, `medium`, `high`, `xhigh`, `max`; `high` is the default). It replaced the old "think"/"think hard" prompt phrases — those are now just ordinary words in your prompt. The one keyword still recognized is `ultrathink`, which asks for deeper reasoning on a single turn without changing your session setting.
 >
 <br><br>
 
@@ -255,7 +259,7 @@ exit
 
 # Lab 2: Working with Claude Code Modes
 ## Lab Purpose
-Master Claude Code's operating modes — auto mode (the default since August 14, 2026), manual mode, plan mode, and bypass. Learn when and how to use each mode effectively for different development scenarios.
+Master Claude Code's operating modes — auto mode (the default since August 14, 2026), manual mode, plan mode, and bypass. Learn when and how to use each mode effectively, and how a `/permissions` deny rule enforces a boundary that no mode can override.
 
 ---
 <br><br>
@@ -270,6 +274,8 @@ claude --model sonnet --effort medium
 ```
 
 Look at the status bar just under the prompt box. You will most likely see `⏵⏵ auto mode on`. If you are on an Enterprise plan or a Console API key, you may see `⏸ manual mode on` instead — both are fine, and the rest of this lab works either way.
+
+> **Also starts in manual:** headless runs (`claude -p`), the Agent SDK, Bedrock/Vertex/Foundry sessions, and — worth knowing — **your very first session right after installing or upgrading** Claude Code. The auto default needs Claude Code v2.1.228 or later (v2.1.233+ on native Windows).
 
 **Action:** Press `Shift+Tab` **once**. From auto mode the first press always lands on manual. Confirm the status bar now reads `⏸ manual mode on` before moving on.
 
@@ -363,17 +369,23 @@ Claude will start creating a detailed plan before starting implementation.
 ---
 <br><br>
 
-## 7: View to-do list
-**What we're doing:** Monitoring the progress through the to-do list.  
-**Why:** Helps you understand what is done and what is left to be done.
+## 7: Watch the Work in Progress
+**What we're doing:** Following along while Claude implements the plan.
+**Why:** On long tasks you want to see what Claude is doing without interrupting it.
 
-**Action:** While Claude Code is doing the implementation, hit `ctrl+t` to see the current state of the to-do list. (If the implementation is already done, you can just skip this step and try it on a future implementation.)
+**Action:** While Claude Code is working, press `ctrl+o` to expand the transcript and watch the steps and reasoning scroll by. Press `ctrl+o` again to collapse it.
 
 ```
-ctrl+t
+ctrl+o
 ```
 
-![Viewing to-do list](./images/ccode103.png?raw=true "Viewing to-do list")
+> **What happened to the to-do list?** Older Claude Code versions kept a running to-do list you could pop up with `ctrl+t`. As of **v2.1.233 (August 14, 2026)** the to-do/task-tracking tools were **removed from the newer models** — Sonnet 5, Opus 4.8, Fable 5 and later — because those models plan well enough without them. So on the Sonnet 5 model we selected, `ctrl+t` shows nothing. You can still try it; an empty panel is the expected result, not a bug.
+>
+> If you want the to-do list back, start Claude with the tools re-enabled:
+> ```bash
+> CLAUDE_CODE_ENABLE_TODO_TOOLS=1 claude
+> ```
+> This is a good example of why it pays to skim the [changelog](https://code.claude.com/docs/en/changelog) — Claude Code ships changes several times a week.
 
 ---
 <br><br>
@@ -402,16 +414,48 @@ Your conversation history is now cleared, giving you a clean slate.
 **What we're doing:** Going back to the *Auto* permission mode you started the lab in.
 **Why:** Auto mode is where Claude Code now starts on Pro, Max, and Team plans. Instead of asking you, a background classifier reviews each risky action and approves or blocks it. Routine work — reading files, editing inside your project, installing declared dependencies — never reaches the classifier at all.
 
-**Action:** Press `Shift+Tab` and watch the mode indicator cycle. Starting from manual the cycle runs *manual* → *accept edits* → *plan* → *auto*. (From auto, the very first press always takes you straight back to *manual*.) *Bypass permissions* (YOLO) also joins the cycle when Claude was started with the bypass flag. Stop when the status bar reads `⏵⏵ auto mode on`.
+**Action:** Press `Shift+Tab` and watch the mode indicator cycle. Starting from manual the cycle runs *manual* → *accept edits* → *plan* → *auto*. (From auto, the very first press always takes you straight back to *manual*.) Optional modes slot in **after *plan***: if Claude was started with the bypass flag, *bypass permissions* (YOLO) comes first and *auto* stays last. Stop when the status bar reads `⏵⏵ auto mode on`.
 
 > **What the classifier stops.** Blocked by default: `curl | bash`, force pushes, `git reset --hard`, production deploys, mass deletion, printing live credentials. Allowed by default: local edits in your working directory, installing dependencies from your lockfile, read-only HTTP, and pushing to any branch of the repo you're working in. If it blocks something 3 times in a row (or 20 times in a session), auto mode pauses and Claude Code starts prompting you again. Blocked actions are listed in `/permissions` under **Recently denied**, where `r` retries with a manual approval.
 
 ---
 <br><br>
 
-## 10: Try YOLO Mode (Bypass Permissions)
-**What we're doing:** Running Claude with all permission checks skipped.
-**Why:** Auto mode already removes most prompts, but a classifier still reviews risky actions. Bypass removes even that — nothing is checked at all. It is a step *down* in oversight from auto mode, meant for throwaway sandboxes like this Codespace.
+## 10: Set a Guardrail That Outlives the Conversation
+**What we're doing:** Adding a **deny rule** with `/permissions`.
+**Why:** This is the most important idea in the lab. In auto mode a classifier decides. You can also just *tell* Claude a boundary in chat — "don't push until I review" — and the classifier will honor it. But that sentence lives in your **conversation transcript**, so `/compact`, `/clear`, or a fresh session drops it silently. A deny rule is **configuration**, not conversation: it survives all of that, and it blocks in *every* mode.
+
+**Action:** In Claude Code, type:
+```
+/permissions
+```
+
+Look around before changing anything. Rules are grouped as **Allow**, **Ask**, and **Deny**, and there is a **Recently denied** tab — that is where auto mode's blocked actions land, and pressing `r` on an entry retries it with a manual approval.
+
+**Action:** Add this rule to the **Deny** list:
+```
+Bash(git push *)
+```
+
+Then press `Esc` to close the dialog.
+
+> **Rule syntax:** `Tool` or `Tool(specifier)`. A `*` matches any run of characters, spaces included — so `Bash(git push *)` catches `git push origin main`. `Bash(git push:*)` is an equivalent way to write a trailing wildcard. Claude Code saves the rule to `.claude/settings.local.json` at the repo root, so it applies to future sessions in this project too.
+
+**Action:** Now test it. Type:
+```
+Push our changes to origin.
+```
+
+Claude is blocked before it can even try — no prompt, no classifier judgment call, no negotiation.
+
+> **If the dialog gives you trouble**, you get the same result by putting the rule in `.claude/settings.local.json` under `permissions.deny`. The change applies on Claude's next request, without a restart.
+
+---
+<br><br>
+
+## 11: Try YOLO Mode — and Watch the Deny Rule Hold
+**What we're doing:** Running Claude with all permission checks skipped, then re-testing the guardrail.
+**Why:** Auto mode still has a classifier reviewing risky actions. Bypass removes even that — nothing is checked at all. It is a step *down* in oversight from auto mode, meant for throwaway sandboxes like this Codespace. But a deny rule still wins, and that is the point.
 
 **Action:** Exit Claude (`exit`), then restart with the command below and **use option 2** to accept the risk:
 
@@ -421,29 +465,27 @@ claude --dangerously-skip-permissions
 
 ![Accepting bypass mode](./images/ccode184.png?raw=true "Accepting bypass mode")
 
-If you don't see the mode as **bypass permissions on** mode, use `Shift+Tab` to change the mode until you see that.
-
-We also have an alias for this that you can use in the future `claude-yolo` if you are in a terminal other than the starting one.
+If you don't see **bypass permissions on**, use `Shift+Tab` until you do. (There is also a `claude-yolo` alias in this Codespace for future use — from a terminal other than the original one.)
 
 ⚠️ **Note:** Use with caution! Claude won't ask before making changes.
 
 ![YOLO](./images/ccode123.png?raw=true "YOLO")
 
----
-<br><br>
-
-## 11: Test Auto-Accept Mode
-**What we're doing:** Creating multiple files without interruption.  
-**Why:** See how much faster development is without permission prompts.
-
-**Action:** Type:
+**Action:** Confirm nothing gets in your way now. Type:
 ```
-Create a simple To-Do list app in javascript wtih functionality to add and delete tasks
+Create a simple To-Do list app in javascript with functionality to add and delete tasks
 ```
 
-Notice Claude creates all files without asking for permission.
+Claude creates all the files without asking for anything.
 
 ![YOLO](./images/ccode221.png?raw=true "YOLO")
+
+**Action:** Now try the denied command again:
+```
+Push our changes to origin.
+```
+
+Still blocked — in the *least* restrictive mode Claude Code has. **Deny rules apply in every mode, including bypass.** Modes decide how much Claude asks you; deny rules decide what is off the table regardless.
 
 ---
 <br><br>
@@ -462,6 +504,8 @@ exit
 - Manual mode (config value `default`) with a permission prompt for every action
 - Plan mode for complex task planning
 - Accept-edits and bypass modes, and when each is appropriate
+- **Deny rules vs. conversation:** a boundary you type in chat lives in the transcript and can be compacted away; a `/permissions` deny rule is configuration and holds in every mode, bypass included
+- Why headless runs (`claude -p`) still start in manual mode
 
 
 ---
@@ -562,6 +606,8 @@ Scroll back up to the start of the output. You'll see information about current 
 
 
 ![context command](./images/ccode224.png?raw=true "context command")
+
+> **Related:** `/context` answers "what is in my context window right now?". Its companion is **`/usage`** (the older `/cost` is now just an alias for it), which answers "what have I spent?" — tokens and cost for the session, plus how much of your plan's limit you've used. Try `/usage` now; it's the command to reach for when you're wondering whether to drop from Opus down to Sonnet.
 
 ---
 <br><br>
@@ -687,6 +733,12 @@ echo "What files are in this directory?" | claude -p
 
 The `-p` flag runs Claude in print (headless) mode — it takes input from stdin, processes it, and outputs the result. No interactive session needed. This is how you integrate Claude into shell scripts, CI pipelines, and automated workflows.
 
+> **Note:** headless runs do **not** inherit the auto mode default — `claude -p` always starts in **manual** mode. That matters for automation: since there is no one there to answer a prompt, you pre-approve exactly what the run may do with `--allowedTools`, or lock it down with `--permission-mode dontAsk`. For example:
+> ```bash
+> claude -p "run the test suite and summarize failures" --permission-mode dontAsk --allowedTools "Bash(npm test)" "Read"
+> ```
+> Add `--output-format json` when a script needs to parse the result rather than read it.
+
 ![claude.md](./images/ccode230.png?raw=true "claude.md")
 
 ---
@@ -698,7 +750,7 @@ The `-p` flag runs Claude in print (headless) mode — it takes input from stdin
 - Using /help to discover commands
 - Managing context with /compact
 - Undoing changes with /rewind
-- Switching models with /model
+- Checking spend with /context and /usage
 - Creating persistent memory with CLAUDE.md
 - Viewing memory hierarchy with /memory
 - Exploring git history with natural language
@@ -811,6 +863,8 @@ chmod +x .claude/skills/api-checker/scripts/check.py
 **Why:** This keeps your main chat focused on decisions, not long plans.
 
 > **Terminology note:** The file in `.claude/agents/` defines an *agent configuration*. When Claude delegates to it during a conversation, it runs as a *subagent* — a separate context that does work and returns results to the main conversation.
+
+> **About `model:`** The field takes a family alias (`sonnet`, `opus`, `haiku`, `fable`), a full model name such as `claude-sonnet-5`, or `inherit` to use whatever the main conversation is on. Aliases are the safer choice — they keep pointing at the current version as models are released. Only `name` and `description` are actually required; everything else is optional.
 
 **Action:** Make a new file `.claude/agents/planner.md`.
 
@@ -1081,7 +1135,7 @@ Confirm you see `/ship` listed in the `custom-commands` section.
 ![The /ship command is present](./images/ccode234.png?raw=true "The /ship command is present")
 
 
-Hit *Esc" to get out of that output. Next, verify the agents. The old `/agents` wizard has been removed from Claude Code — agents are now managed as plain files (or by asking Claude to create/update them for you). So use the `!` bash shortcut you learned in Lab 1 to list them (the input turns pink when it starts with `!`):
+Hit *Esc" to get out of that output. Next, verify the agents. The `/agents` **wizard** was removed in v2.1.198 — running `/agents` today just prints a reminder that agents are plain files you (or Claude) edit under `.claude/agents/`. So use the `!` bash shortcut you learned in Lab 1 to list them (the input turns pink when it starts with `!`):
 
 ```
 ! ls .claude/agents/*
@@ -1098,7 +1152,7 @@ Hit *Esc" to get out of that output. Then run:
 /skills
 ```
 
-Confirm the `api-checker` skill is shown.
+Confirm the `api-checker` skill is shown. (If `/skills` isn't available in your build, `/context` also lists the skills loaded in the session, and `! ls .claude/skills/*` works the same way it did for the agents.)
 
 ![Skill is  present](./images/ccode236.png?raw=true "Skill is present")
 
@@ -1213,7 +1267,7 @@ You've learned:
 - **Plugin packaging:** How to bundle commands, agents, and skills into a `plugin.json` manifest that teammates can install.
 - **Cross-environment consistency:** The same repo-level assets work in both the terminal and VS Code.
 
-> **Going further:** Claude Code also has an experimental **Agent Teams** feature for fully autonomous multi-agent coordination. With Agent Teams, a "team lead" agent spawns independent teammates that coordinate through shared task lists and direct messaging — no human orchestration needed between steps. Agent Teams remain experimental and disabled by default (enabled via the `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` setting or env var) and are architecturally different from the subagent delegation shown here: each teammate gets its own context window, and they can message each other directly. Note also that as of v2.1.172, regular subagents can spawn their own subagents up to 5 levels deep — so even without Agent Teams, delegation can go deeper than one level. That's beyond the scope of this workshop, but worth exploring once you're comfortable with supervised delegation. See the [Agent Teams documentation](https://code.claude.com/docs/en/agent-teams) for details.
+> **Going further:** Claude Code also has an experimental **Agent Teams** feature for fully autonomous multi-agent coordination. With Agent Teams, a "team lead" agent spawns independent teammates that coordinate through shared task lists and direct messaging — no human orchestration needed between steps. Agent Teams remain experimental and disabled by default (enabled via the `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` setting or env var) and are architecturally different from the subagent delegation shown here: each teammate gets its own context window, and they can message each other directly. Note also that regular subagents can spawn their own subagents — as of v2.1.219 up to **3 levels** deep by default (tunable with `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`; set it to `1` to turn nesting off) — so even without Agent Teams, delegation can go deeper than one level. That's beyond the scope of this workshop, but worth exploring once you're comfortable with supervised delegation. See the [Agent Teams documentation](https://code.claude.com/docs/en/agent-teams) for details.
 <br><br>
 ---
 ## END OF LAB
