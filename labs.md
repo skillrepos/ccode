@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.21 - 08/20/26
+## Revision 6.22 - 08/20/26
 
 <br><br>
 
@@ -9,7 +9,7 @@
 
 **Copy and paste may not work as expected if using the mouse. If not, use the keyboard shortcuts - *Ctrl+C/Cmd+C and Ctrl+V/Cmd+V*.**
 
-**If you haven't done so already, set your model to `Sonnet` instead of `Opus`.**
+**ONLY If you haven't done so already, set your model to `Sonnet` instead of `Opus`.**
 
 > In Claude Code at the prompt, type:
 > ```
@@ -23,7 +23,7 @@
 >
 > **Note:** As of Claude Code 2.1.153, your `/model` selection is saved as the default for new sessions. To set a model for the current session only, press `s` in the model list.
 >
-> **Why Sonnet?** The picker shows each model's price per million tokens. Sonnet 5 is $2 in / $10 out, Opus 5 is $5 / $25, and Fable 5 is $10 / $50. Sonnet is the right default for everyday coding; save the heavier models for genuinely hard problems.
+> **Why Sonnet?** Sonnet is cheaper and is the right default for everyday coding; save the heavier models for genuinely hard problems.
 >
 > **What is "effort"?** Effort is the reasoning dial (`low`, `medium`, `high`, `xhigh`, `max`; `high` is the default). It replaced the old "think"/"think hard" prompt phrases — those are now just ordinary words in your prompt. The one keyword still recognized is `ultrathink`, which asks for deeper reasoning on a single turn without changing your session setting.
 >
