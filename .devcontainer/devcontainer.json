@@ -44,9 +44,9 @@
 
   // npm install works inside this Node container; note Anthropic's recommended path for
   // local installs is now the native installer: curl -fsSL https://claude.ai/install.sh | bash
-  "postCreateCommand": "npm install -g @anthropic-ai/claude-code && cp -n extra/.claude.json ~/ ; grep -qs claude-yolo ~/.bash_aliases || echo 'alias claude-yolo=\"claude --dangerously-skip-permissions\"' >> ~/.bash_aliases",
+  "postCreateCommand": "npm install -g @anthropic-ai/claude-code && cp -n extra/.claude.json ~/ ; grep -qs claude-yolo ~/.bash_aliases || echo 'alias claude-yolo=\"claude --dangerously-skip-permissions\"' >> ~/.bash_aliases ; cp -f extra/claude-ide-port.sh ~/.claude-ide-port.sh ; grep -qs claude-ide-port ~/.bashrc || echo '. ~/.claude-ide-port.sh' >> ~/.bashrc",
 
-  "postAttachCommand": "cp -n extra/.claude.json ~/ ; grep -qs claude-yolo ~/.bash_aliases || echo 'alias claude-yolo=\"claude --dangerously-skip-permissions\"' >> ~/.bash_aliases",
+  "postAttachCommand": "cp -n extra/.claude.json ~/ ; grep -qs claude-yolo ~/.bash_aliases || echo 'alias claude-yolo=\"claude --dangerously-skip-permissions\"' >> ~/.bash_aliases ; cp -f extra/claude-ide-port.sh ~/.claude-ide-port.sh ; grep -qs claude-ide-port ~/.bashrc || echo '. ~/.claude-ide-port.sh' >> ~/.bashrc",
 
   "remoteUser": "node",
 
