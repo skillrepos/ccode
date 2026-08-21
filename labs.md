@@ -246,25 +246,21 @@ exit
 
 # Lab 2: Working with Claude Code Modes
 ## Lab Purpose
-Auto (default since August 14, 2026), manual, plan, and bypass modes — plus a `/permissions` deny rule no mode overrides.
+Further explore auto, manual, plan, and bypass modes — plus a `/permissions` deny rule no mode overrides.
 
 ---
 <br><br>
 
-## 1: See Which Mode You Start In, Then Switch to Manual
-**What we're doing:** Checking the start mode, then going manual.  
-**Why:** Since **August 14, 2026** auto is the default on Pro, Max, and Team plans: a classifier approves routine actions instead of prompting you.
+## 1: Start Claude in a specific mode
+**What we're doing:** Starting in manual mode  
+**Why:** Use command line option to get to a particular mode.
 
-**Action:** Start Claude with Sonnet and medium effort:
+**Action:** Start Claude with non-default mode.
 ```bash
-claude --model sonnet --effort medium
+claude --permission-mode manual
 ```
 
-The status bar should read `⏵⏵ auto mode on` (Enterprise plans and Console API keys show `⏸ manual mode on` — either works). Manual is labeled **manual** as of v2.1.200; config value `default`.
-
-> **Also manual:** headless (`claude -p`), the Agent SDK, Bedrock/Vertex/Foundry, and your first session after install or upgrade. Auto needs v2.1.228+ (v2.1.233+ native Windows).
-
-**Action:** Press `Shift+Tab` **once** — from auto it lands on manual. Confirm `⏸ manual mode on`.
+**Action:**  Confirm status bar shows `⏸ manual mode on`.
 
 ---
 <br><br>
@@ -278,7 +274,7 @@ The status bar should read `⏵⏵ auto mode on` (Enterprise plans and Console A
 Create a config.json file with database connection settings for Postgresql
 ```
 
-Claude asks first; type `1` to accept.
+Claude asks first whether you want to create it; type `1` to accept.
 
 > Created without asking? Still in auto — `Shift+Tab` to `⏸ manual mode on` and retry.
 
@@ -312,6 +308,10 @@ Create a basic user profile page with fields for name, email, and profile pictur
 
 ![Planning](./images/ccode98.png?raw=true "Planning")
 
+While this is running, type `Ctrl+o` to see the larger "thinking" process that Claude is using. When done viewing that, type `Ctrl+o` again to get back to the normal view.
+
+![Thinking process](./images/ccode246.png?raw=true "Thinking process")
+
 ---
 <br><br>
 
@@ -338,46 +338,24 @@ Create a basic user profile page with fields for name, email, and profile pictur
 
 **Action:** 
 1. Press `ctrl+g` to open the plan in the editor. Plans live in `~/.claude/plans/`, outside this folder, so VS Code may ask *"Do you want to allow untrusted files in this workspace?"* — choose **Open**.
-2. (Optional) In VS Code: right-click, *Reopen Editor with ... Text Editor*, for markdown.
+2. (Optional) In VS Code if you want to see the source of the markdown: right-click, *Reopen Editor with ... Text Editor*, for markdown.
 3. Close the file(s) when done.
 
 > ⚠️ **Known issue:** with the plan file open, don't scroll or click in the Claude Code panel — mouse events spill harmless garbage (`M^[[<35;86;12M`). `Esc` clears stray input; `ctrl+l` redraws.
 
-4. **Select option 1** — **"Yes, and use auto mode"** when auto is available, else **"Yes, auto-accept edits"**. Option 2: **"Yes, manually approve edits"**.
+4. **Select option 1** — **"Yes, and use auto mode"** when auto is available, else **"Yes, auto-accept edits"**.
+   
+![Reviewing plan](./images/ccode247.png?raw=true "Reviewing plan")
 
-![Reviewing plan](./images/ccode102.png?raw=true "Reviewing plan")
-
-![Approving plan](./images/ccode219.png?raw=true "Approving plan")
-
-**You are now in a different mode, but this task finishes under *plan* mode.**
 
 ---
 <br><br>
 
-## 7: Watch the Work in Progress
-**What we're doing:** Watching the work.
-**Why:** See steps without interrupting.
-
-**Action:** Press `ctrl+o` to expand the transcript, again to collapse.
-
-```
-ctrl+o
-```
-
-> **About `ctrl+t`:** as of **v2.1.233 (August 14, 2026)** to-do/task-tracking tools are removed from newer models (Sonnet 5, Opus 4.8, Fable 5+), so an empty panel is expected, not a bug. To get it back:
-> ```bash
-> CLAUDE_CODE_ENABLE_TODO_TOOLS=1 claude
-> ```
-> Claude Code ships weekly — skim the [changelog](https://code.claude.com/docs/en/changelog).
-
----
-<br><br>
-
-## 8: When done, clear the Conversation
+## 7: When done, clear the Conversation
 **What we're doing:** Clearing context.  
 **Why:** Do this before an unrelated task.
 
-Claude finishes with a summary; ignore offers of more work.
+Claude finishes with a summary.
 
 ![Plan completed](./images/ccode220.png?raw=true "Plan completed")
 
@@ -389,36 +367,44 @@ Claude finishes with a summary; ignore offers of more work.
 ---
 <br><br>
 
-## 9: Return to Auto Mode — the Default
-**What we're doing:** Returning to *auto*.
-**Why:** The classifier vets risky actions; routine work (reads, in-project edits, declared installs) never reaches it.
 
-**Action:** `Shift+Tab` cycles *manual* → *accept edits* → *plan* → *auto* (from auto, the first press returns to *manual*). Optional modes slot in after *plan*: with the bypass flag, *bypass permissions* (YOLO) comes first, *auto* last. Stop at `⏵⏵ auto mode on`.
-
-> **Classifier blocks:** `curl | bash`, force pushes, `git reset --hard`, prod deploys, mass deletion, printing live credentials. **Allows:** local edits, lockfile installs, read-only HTTP, pushes to your repo. 3 blocks in a row (or 20 a session) pauses auto mode. Denials → `/permissions` **Recently denied**; `r` retries with manual approval.
-
----
-<br><br>
-
-## 10: Set a Guardrail That Outlives the Conversation
+## 8: Set a Guardrail with Permissions That Outlives the Conversation
 **What we're doing:** Adding a **deny rule**.
-**Why:** A boundary typed in chat dies with `/compact`, `/clear`, or a new session; a deny rule is configuration and blocks in *every* mode.
+**Why:** Normal restrictions typed in chat die with `/compact`, `/clear`, or a new session; But we can add a restriction as a deny rule in Claude's configuration. It will be enforced in *every* mode.
 
 **Action:** Type:
 ```
 /permissions
 ```
 
-Rules are grouped **Allow**, **Ask**, and **Deny**.
+On the screen, you will see categories in the row that starts with `Permissions`. Primary rules are grouped into categories of **Allow**, **Ask**, and **Deny**. We'll add one to the **Deny** list.
 
-**Action:** Add this to the **Deny** list. Claude Code then asks **where to save the rule** — take the default, **1. Project settings (local)**. Press `Esc` when done:
+**Action:** Use the `Tab` or `arrow` keys to highlight the `Ask` category. Select `1` to Add a new rule. 
+
+![Deny category](./images/ccode250.png?raw=true "Deny category")
+
+On the next screen, let's enter a rule to restrict Git pushes. Enter the text below in the box.
+
 ```
 Bash(git push *)
 ```
 
+![Deny category](./images/ccode252.png?raw=true "Deny category")
+
+
+Hit `Enter` to submit. Claude Code then asks **where to save the rule** — take the default, **1. Project settings (local)**. 
+
+![Entering rule](./images/ccode253.png?raw=true "Entering rule")
+
+Press `Esc` to get out of the rule entry section.
+
 > **Rule syntax:** `Tool` or `Tool(specifier)`; `*` matches anything, spaces included, so `Bash(git push *)` catches `git push origin main` (`Bash(git push:*)` is equivalent). Rules save to `.claude/settings.local.json` at the repo root, covering future sessions.
 
-**Action:** Give the push something to do — otherwise Claude just reports there is nothing to push and the rule never fires. In a **second terminal**, run:
+## 9: Test the rule
+**What we're doing:** Testing the **deny rule**.
+**Why:** To prove that it works.
+
+**Action:** In a **separate terminal**, run:
 ```bash
 git add -A && git commit -m "lab work"
 ```
@@ -428,24 +414,26 @@ git add -A && git commit -m "lab work"
 Push our changes to origin.
 ```
 
-Claude is blocked before it can try — no prompt, no classifier.
+Claude is blocked before it can try.
+
+![Entering rule](./images/ccode254.png?raw=true "Entering rule")
 
 > **If the dialog misbehaves**, add the rule to `.claude/settings.local.json` under `permissions.deny`; it applies on the next request, no restart.
 
 ---
 <br><br>
 
-## 11: Try YOLO Mode — and Watch the Deny Rule Hold
+## 10: Try YOLO Mode — and Watch the Deny Rule Hold
 **What we're doing:** Skipping all checks, then re-testing the guardrail.
 **Why:** Bypass removes even the classifier — the deny rule still wins.
 
-**Action:** Exit Claude (`exit`), restart as below, **option 2** to accept the risk:
+**Action:** Exit Claude (`exit`), then restart it as below. Make sure to pick **option 2** when prompted to accept the risk:
 
 ```bash
 claude --dangerously-skip-permissions
 ```
 
-![Accepting bypass mode](./images/ccode184.png?raw=true "Accepting bypass mode")
+![Accepting bypass mode](./images/ccode255.png?raw=true "Accepting bypass mode")
 
 If you don't see **bypass permissions on**, `Shift+Tab` until you do. (The `claude-yolo` alias does the same, from a second terminal.)
 
