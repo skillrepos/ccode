@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.27 - 08/21/26
+## Revision 6.28 - 08/21/26
 
 <br><br>
 
@@ -462,7 +462,7 @@ Claude creates every file without asking.
 Push our changes to origin.
 ```
 
-You'll be prompted to push and you can try, but it should still be blocked. The point is that **deny rules apply in every mode, including bypass.** Modes decide how much Claude asks; deny rules decide what is off-limits.
+You'll be prompted to push — that prompt is **Claude's own** judgment about a consequential action, not the guardrail; bypass silences the permission system's questions, not Claude's. A deny rule never offers you a **Yes**, so go ahead and choose it: the push is still blocked. The point is that **deny rules apply in every mode, including bypass.** Modes decide how much Claude asks; deny rules decide what is off-limits.
 
 ![Push denied](./images/ccode256.png?raw=true "Push denied")
 
@@ -717,10 +717,12 @@ echo "What files are in this directory?" | claude -p
 
 `-p` is print (headless) mode: stdin in, result out, no session.
 
-> **Note:** headless runs start in **manual** mode, not auto. Nobody is there to answer prompts, so pre-approve with `--allowedTools` or lock down with `--permission-mode dontAsk`:
+> **Note:** headless runs start in **manual** mode, not auto. Nobody is there to answer prompts, so pre-approve with `--allowedTools`, or lock down with `--permission-mode dontAsk` — which never prompts at all and denies anything you did not pre-approve. Try it:
 > ```bash
-> claude -p "run the test suite and summarize failures" --permission-mode dontAsk --allowedTools "Bash(npm test)" "Read"
+> claude -p "run the test suite and summarize failures" --permission-mode dontAsk --allowedTools "Bash(node --test *)" "Read"
 > ```
+> **The allow rule must match the command Claude actually runs, not the one you had in mind.** There is no `package.json` in this repo, so Claude reaches for `node --test`. An allow rule of `Bash(npm test)` would not match it, and because `dontAsk` never prompts you would just get *"I don't have permission to run Bash commands"* with no hint as to why. That mismatch is the most common headless mistake.
+>
 > Add `--output-format json` for scripts that parse the result.
 
 ![claude.md](./images/ccode230.png?raw=true "claude.md")
