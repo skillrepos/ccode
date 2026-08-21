@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.24 - 08/20/26
+## Revision 6.25 - 08/21/26
 
 <br><br>
 
@@ -44,7 +44,7 @@ Get familiar with the Claude Code CLI and its basic commands.
 **What we're doing:** Sending a first prompt.  
 **Why:** Confirms the connection works.
 
-**Action:** Type this, then hit *Ctrl+o* to show Claude's thinking.
+**Action:** Type this, then hit `Enter`.
 ```
 Hello Claude, can you tell me what you can help with?
 ```
@@ -80,7 +80,7 @@ Explain this code: console.log([1,2,3].map(x => x * 2))
 Create a simple hello.js file that prints "Hello from Claude Code!"
 ```
 
-> **Mode note:** if the status bar reads `⏵⏵ auto mode on`, Claude may create the file without asking. Since **August 14, 2026** Claude Code starts in **auto mode** (Pro, Max, Team plans), where a background classifier approves routine actions. Lab 2 covers the modes.
+> **NOTE:** Notice the status bar reads `⏵⏵ auto mode on`. In this mode, Claude will create the file without asking. Claude Code starts in **auto mode** (Pro, Max, Team plans), where a background classifier approves routine actions. Lab 2 covers the modes.
 
 ![Initial file creation](./images/ccode86.png?raw=true "Initial file creation")
 
@@ -122,7 +122,7 @@ Output: "Hello from Claude Code!"
 
 ## 6: Exit and Resume
 **What we're doing:** Exiting and resuming.  
-**Why:** You'll pause and continue later.
+**Why:** Demonstrate resume of previous session.
 
 **Action:** 
 1. Type `exit` to exit Claude
@@ -139,12 +139,12 @@ Output: "Hello from Claude Code!"
 
 **Action:** First press `Shift+Tab` once, until the status bar reads `⏸ manual mode on`. Rejecting only exists when Claude asks, and auto mode does not ask.
 
-**Action:** Now type this, then **select option 3 to tell Claude to do something different.**
+**Action:** Now type this, then **select option 3 to tell Claude not to create the file.**
 ```
 Create a simple goodbye.js file that prints "Goodbye from Claude Code!"
 ```
 
-![Do something different](./images/ccode92.png?raw=true "Do something different")
+![Do something different](./images/ccode244.png?raw=true "Do something different")
 
 
 ---
@@ -154,7 +154,7 @@ Create a simple goodbye.js file that prints "Goodbye from Claude Code!"
 **What we're doing:** Resubmitting a fixed prompt.  
 **Why:** This is how you correct a request.
 
-**Action:** Press `up arrow`, change *goodbye.js* to *goodbye.py*, hit *Enter*, then select 1.
+**Action:** Press `up arrow`, **change *goodbye.`js`* to *goodbye.`py`*,** hit *Enter*, then select option 1 to confirm creating it.
 ```
 Create a simple goodbye.py file that prints "Goodbye from Claude Code!"
 ```
@@ -166,7 +166,7 @@ Create a simple goodbye.py file that prints "Goodbye from Claude Code!"
 **What we're doing:** Pulling a file in with @.  
 **Why:** @ references files, folders, or URLs directly.
 
-**Action:** Type this; approve the changes when asked (you are still in manual mode from Step 7).
+**Action:** Type this; approve the edit (change) when asked (you are still in manual mode from Step 7).
 ```
 What does @hello.js do? Can you add a timestamp to it?
 ```
@@ -175,7 +175,7 @@ If ghost text suggests running the file, hit *Tab*, *Enter*, and approve.
 
 ![Ref file by mention](./images/ccode212.png?raw=true "Ref file by mention")
 
-**Also: `@folder/` for directories, `@https://url` for web content.**
+**Also, you can use `@folder/` for directories, `@https://url` for web content.**
 
 ---
 <br><br>
@@ -184,7 +184,7 @@ If ghost text suggests running the file, hit *Tab*, *Enter*, and approve.
 **What we're doing:** Saving a memory; running a shell command inline.  
 **Why:** Memories persist; `!` runs shell commands in place.
 
-**Note:** Create memories by asking Claude in plain language — there is no `#` shortcut.
+**Note:** Create memories by asking Claude in plain language.
 
 **Action:** Type this, approving the write when asked (you are still in manual mode):
 ```
@@ -197,6 +197,8 @@ Claude stores it persistently (auto-memory files and/or CLAUDE.md); `/memory` sh
 ```
 ! cat ~/.claude/projects/-workspaces-ccode/memory/MEMORY.md
 ```
+
+![Memory file](./images/ccode245.png?raw=true "Memory file")
 
 (If *Enter* does nothing, press `Esc` to clear the suggested-path line, then *Enter*. If the file is missing, ask Claude where the memory went.)
 
