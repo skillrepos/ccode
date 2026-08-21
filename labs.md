@@ -717,15 +717,14 @@ echo "What files are in this directory?" | claude -p
 
 `-p` is print (headless) mode: stdin in, result out, no session.
 
-> **Note:** headless runs start in **manual** mode, not auto. Nobody is there to answer prompts, so pre-approve with `--allowedTools`, or lock down with `--permission-mode dontAsk` — which never prompts at all and denies anything you did not pre-approve. Try it:
-> ```bash
-> claude -p "run the test suite and summarize failures" --permission-mode dontAsk --allowedTools "Bash(node --test *)" "Read"
-> ```
-> **The allow rule must match the command Claude actually runs, not the one you had in mind.** There is no `package.json` in this repo, so Claude reaches for `node --test`. An allow rule of `Bash(npm test)` would not match it, and because `dontAsk` never prompts you would just get *"I don't have permission to run Bash commands"* with no hint as to why. That mismatch is the most common headless mistake.
->
+**Note:** headless runs start in **manual** mode, not auto. Nobody is there to answer prompts, so pre-approve with `--allowedTools`, or lock down with `--permission-mode dontAsk` — which never prompts at all and denies anything you did not pre-approve. Try it:
+```bash
+claude -p "run the test suite and summarize failures" --permission-mode dontAsk --allowedTools "Bash(node --test *)" "Read"
+```
+
 > Add `--output-format json` for scripts that parse the result.
 
-![claude.md](./images/ccode230.png?raw=true "claude.md")
+![claude.md](./images/ccode266.png?raw=true "claude.md")
 
 ---
 <br><br>
