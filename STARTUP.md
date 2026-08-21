@@ -7,9 +7,11 @@
 claude
 ```
 
-> **Why a new terminal?** VS Code gives a terminal its environment only at the moment that terminal is created, and the terminal the codespace opens for you is created *before* the Claude Code extension finishes starting up. A terminal opened after that point picks up what Claude Code needs to show its side-by-side diff view inside the editor. If you forget, the labs still work — you will just see proposed file changes in the terminal instead of in an editor tab.
+> **Why a new terminal?** VS Code gives a terminal its environment only at the moment that terminal is created, and the terminal the codespace opens for you may be created *before* the Claude Code extension finishes starting up. A terminal opened after that point reliably picks up what Claude Code needs to show its side-by-side diff view inside the editor. If you forget, the labs still work.
 
 You may see a welcome message and some update information.
+
+> **First run:** Claude Code may ask *"Try the new fullscreen renderer?"*. Choose **2. Not now** — the screenshots in these labs show the standard view.
 
 
 ![startup](./images/cc1.png?raw=true "Startup")

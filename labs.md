@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.22 - 08/20/26
+## Revision 6.24 - 08/20/26
 
 <br><br>
 
@@ -15,17 +15,17 @@
 > ```
 > /model
 > ```
-> In the list that comes up, use the arrow keys to move the pointer to the **Sonnet** entry and hit *Enter*. (Select it *by name* rather than by number — the list now also contains Opus 5 and, for some accounts, Fable 5, so the position of Sonnet varies.) Also use the **left/right arrow keys** to set the **effort level** to *medium*.
+> Arrow to the **Sonnet** entry and hit *Enter*. Select it *by name* — the list also contains Opus 5 and, for some accounts, Fable 5, so Sonnet's position varies. Use the **left/right arrow keys** to set the **effort level** to *medium*.
 >
 > ![set model](./images/ccode209.png?raw=true "set model")
 >
-> You should see an indicator that the model was set to a *Sonnet* model (currently *claude-sonnet-5*) with *medium* effort.
+> You should see the model set to a *Sonnet* model (currently *claude-sonnet-5*) with *medium* effort.
 >
-> **Note:** As of Claude Code 2.1.153, your `/model` selection is saved as the default for new sessions. To set a model for the current session only, press `s` in the model list.
+> **Note:** As of Claude Code 2.1.153, your `/model` selection is saved as the default for new sessions. Press `s` in the model list to set a model for the current session only.
 >
-> **Why Sonnet?** Sonnet is cheaper and is the right default for everyday coding; save the heavier models for genuinely hard problems.
+> **Why Sonnet?** It is cheaper and the right default for everyday coding; save the heavier models for genuinely hard problems.
 >
-> **What is "effort"?** Effort is the reasoning dial (`low`, `medium`, `high`, `xhigh`, `max`; `high` is the default). It replaced the old "think"/"think hard" prompt phrases — those are now just ordinary words in your prompt. The one keyword still recognized is `ultrathink`, which asks for deeper reasoning on a single turn without changing your session setting.
+> **What is "effort"?** The reasoning dial (`low`, `medium`, `high`, `xhigh`, `max`; `high` is the default). Phrases like "think hard" are ordinary words in your prompt; the one keyword Claude still recognizes is `ultrathink`, which asks for deeper reasoning on a single turn without changing your session setting.
 >
 <br><br>
 
@@ -35,40 +35,36 @@
 
 # Lab 1: Introduction to Claude Code and Basic Setup
 ## Lab Purpose
-Get familiar with Claude Code basic command-line interface. You'll learn how to execute your basic commands in Claude Code.
+Get familiar with the Claude Code CLI and its basic commands.
 
 ---
 <br><br>
 
 ## 1: Test Basic Interaction
-**What we're doing:** Verifying Claude can respond to simple queries.  
-**Why:** This confirms the connection is working properly.
+**What we're doing:** Sending a first prompt.  
+**Why:** Confirms the connection works.
 
-**Action:** At the Claude prompt, type the prompt below and hit *Enter*. While that is running, hit *Ctrl+o* to have Claude show its thinking process.
+**Action:** Type this, then hit *Ctrl+o* to show Claude's thinking.
 ```
 Hello Claude, can you tell me what you can help with?
 ```
 
-Claude should respond with information about its capabilities preceded by its thinking process.
-
 ![Initial prompt](./images/ccode210.png?raw=true "Initial prompt")
 
-> **Note:** In the hint line under the input area you'll see *"? for shortcuts · ← for agents"*. Pressing the **left arrow** with an empty input opens **Agent View** — a full-screen dashboard for managing multiple background sessions (a research preview; also reachable via `claude agents`). If you land there by accident, just press `Esc` to return — nothing is lost and no sessions are stopped. We won't use Agent View in this workshop, but it's how you'd run several Claude sessions in parallel.
+> **Note:** The **left arrow** on an empty input opens **Agent View**, a dashboard for parallel sessions (research preview; also `claude agents`). `Esc` returns.
 
 
 ---
 <br><br>
 
 ## 2: Ask Claude to Explain a Code Snippet
-**What we're doing:** Testing Claude's code understanding capabilities.  
-**Why:** Understanding code is a fundamental Claude Code feature.
+**What we're doing:** Explaining code.  
+**Why:** Code understanding is a core feature.
 
-**Action:** Type the following:
+**Action:** Type:
 ```
 Explain this code: console.log([1,2,3].map(x => x * 2))
 ```
-
-Claude will explain the JavaScript array operation.
 
 ![Initial prompt](./images/ccode211.png?raw=true "Initial prompt")
 
@@ -76,17 +72,15 @@ Claude will explain the JavaScript array operation.
 <br><br>
 
 ## 3: Create Your First File with Claude
-**What we're doing:** Using Claude to generate a simple code file.  
-**Why:** File creation is a core feature for development workflows.
+**What we're doing:** Generating a file.  
+**Why:** File creation drives most workflows.
 
-**Action:** Type:
+**Action:** Type this. In auto mode Claude creates the file directly; if it does ask, select option 1 (you can ignore the diff above the terminal).
 ```
 Create a simple hello.js file that prints "Hello from Claude Code!"
 ```
 
-Claude will create the file and *may* show you the content in the diff above the terminal. You do not need to do anything in the diff area. Just select option 1 in the terminal where Claude is waiting.
-
-> **Mode note:** if the status bar under your prompt reads `⏵⏵ auto mode on`, Claude may create the file without asking — that is expected. Since **August 14, 2026** Claude Code starts in **auto mode** on Pro, Max, and Team plans, where a background classifier approves routine actions instead of prompting you. Lab 2 covers the modes in full.
+> **Mode note:** if the status bar reads `⏵⏵ auto mode on`, Claude may create the file without asking. Since **August 14, 2026** Claude Code starts in **auto mode** (Pro, Max, Team plans), where a background classifier approves routine actions. Lab 2 covers the modes.
 
 ![Initial file creation](./images/ccode86.png?raw=true "Initial file creation")
 
@@ -94,16 +88,14 @@ Claude will create the file and *may* show you the content in the diff above the
 <br><br>
 
 ## 4: View the Created File
-**What we're doing:** Verifying the file was created successfully.  
-**Why:** Understanding where Claude saves files is important.
+**What we're doing:** Checking the file.  
+**Why:** Know where Claude saves things.
 
-**Action:** The file should be created and the diff closed. You can click on the file on the left to see the contents. Or, alternatively, in a new terminal tab (keep Claude running), type:
+**Action:** Click the file on the left, or in a new terminal tab, type:
 ```bash
 ls -la
 cat hello.js
 ```
-
-You should see your new file and its contents.
 
 ![Initial file creation](./images/ccode87.png?raw=true "Initial file creation")
 
@@ -111,17 +103,17 @@ You should see your new file and its contents.
 <br><br>
 
 ## 5: Ask Claude to Run the File
-**What we're doing:** Having Claude execute the code it created.  
-**Why:** Claude can run commands and show output directly.
+**What we're doing:** Running the code.  
+**Why:** Claude runs commands and shows output.
 
-**Action:** Back in Claude, type the prompt below. You'll see the run start. If Claude asks permission to proceed, select option 1 — in auto mode it will simply run.
+**Action:** Type this; if asked, select option 1.
 ```
 Run the hello.js file we just created
 ```
 
 ![Run file](./images/ccode88.png?raw=true "Run file")
 
-You'll see the output: "Hello from Claude Code!"
+Output: "Hello from Claude Code!"
 
 ![Run file](./images/ccode89.png?raw=true "Run file")
 
@@ -129,28 +121,28 @@ You'll see the output: "Hello from Claude Code!"
 <br><br>
 
 ## 6: Exit and Resume
-**What we're doing:** Learning how to properly exit and resume sessions.  
-**Why:** You'll often need to pause and continue work later.
+**What we're doing:** Exiting and resuming.  
+**Why:** You'll pause and continue later.
 
 **Action:** 
 1. Type `exit` to exit Claude
 2. Restart with: `claude --resume`
-3. You'll see a list with your session at the top. Just hit *Enter* to resume.
-4. Claude will restore your previous session context
+3. Hit *Enter* on your session at the top of the list
+4. Claude restores your previous context
 
 ---
 <br><br>
 
 ## 7: Creating a second file
-**What we're doing:** Creating a second file for additional context.  
-**Why:** We want to learn more about resume.
+**What we're doing:** Rejecting a change.  
+**Why:** It sets up the redo next.
 
-**Action:** Type the following. When you are prompted to continue, **select option 3 to tell Claude to do something different.**
+**Action:** First press `Shift+Tab` once, until the status bar reads `⏸ manual mode on`. Rejecting only exists when Claude asks, and auto mode does not ask.
+
+**Action:** Now type this, then **select option 3 to tell Claude to do something different.**
 ```
 Create a simple goodbye.js file that prints "Goodbye from Claude Code!"
 ```
-
-Claude will create the file and show you the content in the diff above the terminal. You do not need to do anything in the diff area. Just select option 3 in the terminal where Claude is waiting.
 
 ![Do something different](./images/ccode92.png?raw=true "Do something different")
 
@@ -159,73 +151,67 @@ Claude will create the file and show you the content in the diff above the termi
 <br><br>
 
 ## 8: Redo
-**What we're doing:** Redoing our command.  
-**Why:** We want to learn how to do redo a request.
+**What we're doing:** Resubmitting a fixed prompt.  
+**Why:** This is how you correct a request.
 
-**Action:** You'll see the previous rejected operation message above the prompt area. Use the `up arrow` key to bring up the last prompt. Change the name of the file in the prompt from *goodbye.js* to *goodbye.py* to create a Python file instead. Hit *Enter*.
+**Action:** Press `up arrow`, change *goodbye.js* to *goodbye.py*, hit *Enter*, then select 1.
 ```
 Create a simple goodbye.py file that prints "Goodbye from Claude Code!"
 ```
-
-Claude will create the file and show you the content in the diff above the terminal. Once Claude generates it and prompts whether to continue, select 1 to proceed.
 
 ---
 <br><br>
 
 ## 9: Use @ Mentions to Pull Context
-**What we're doing:** Using the @ shortcut to bring files into Claude's context on demand.  
-**Why:** @ mentions let you reference specific files, folders, or URLs without copy-pasting.
+**What we're doing:** Pulling a file in with @.  
+**Why:** @ references files, folders, or URLs directly.
 
-**Action:** Type the following — notice the @ symbol before the filename:
+**Action:** Type this; approve the changes when asked (you are still in manual mode from Step 7).
 ```
 What does @hello.js do? Can you add a timestamp to it?
 ```
 
-Claude will pull hello.js into its context and explain it before making changes. It will display the changes and ask for approval. You can just select the *Yes* option.
-
-After this, there will probably be a suggestion in lighter ("ghost") text to run the file. If you'd like to execute that suggestion, you can just hit *Tab* and then return and approve the command.
+If ghost text suggests running the file, hit *Tab*, *Enter*, and approve.
 
 ![Ref file by mention](./images/ccode212.png?raw=true "Ref file by mention")
 
-**Note that you can also use @folder/ to reference entire directories and @https://url for web content.**
+**Also: `@folder/` for directories, `@https://url` for web content.**
 
 ---
 <br><br>
 
 ## 10: Create a Memory and try the Bash ! shortcut
-**What we're doing:** Having Claude store a persistent memory, and running a shell command inline.  
-**Why:** Memories persist across sessions, and the ! shortcut speeds up common operations without leaving Claude Code.
+**What we're doing:** Saving a memory; running a shell command inline.  
+**Why:** Memories persist; `!` runs shell commands in place.
 
-**Note:** Older versions of Claude Code had a `#` shortcut for creating memories. That shortcut has been discontinued — now you simply ask Claude to remember something in plain language.
+**Note:** Create memories by asking Claude in plain language — there is no `#` shortcut.
 
-**Action:** First, create a memory. Type:
+**Action:** Type this, approving the write when asked (you are still in manual mode):
 ```
 Remember that this project uses JavaScript and Python for demos.
 ```
 
-Claude will save this as a persistent memory (in its auto-memory files and/or CLAUDE.md). You can see where memories live by typing `/memory` (use *Esc* to exit the view).
+Claude stores it persistently (auto-memory files and/or CLAUDE.md); `/memory` shows where.
 
-Now try the ! shortcut to run a bash command directly to look for the memory file. Starting the input with `!` makes the line run as a shell command — the input turns pink to show it. Type:
+**Action:** An input starting with `!` runs as a shell command (it turns pink). Type:
 ```
 ! cat ~/.claude/projects/-workspaces-ccode/memory/MEMORY.md
 ```
 
-This runs the shell command and shows output without a separate terminal. (If *Enter* seems to do nothing, look for a subtle suggested-path line near the input — while it's showing, *Enter* is silently ignored; press `Esc` once to clear it, then *Enter*. If the file doesn't exist, Claude stored the memory elsewhere — you can ask it: `Where did you save that memory?`)
+(If *Enter* does nothing, press `Esc` to clear the suggested-path line, then *Enter*. If the file is missing, ask Claude where the memory went.)
 
 
 ---
 <br><br>
 
 ## 11: Explore the Codebase with Questions
-**What we're doing:** Asking Claude questions about the files we've created.  
-**Why:** Codebase exploration is one of Claude Code's most powerful everyday uses.
+**What we're doing:** Asking about our files.  
+**Why:** Exploration is Claude Code's most common use.
 
 **Action:** Type:
 ```
 What files have we created so far? Summarize the purpose of each one and suggest an improvement.
 ```
-
-Claude will scan the working directory, list the files, and provide analysis. This is how developers use Claude Code for orientation — jumping into a new codebase and asking "What does this project do?" or "How is this function used?"
 
 ![File info](./images/ccode215.png?raw=true "File info")
 
@@ -234,7 +220,7 @@ Claude will scan the working directory, list the files, and provide analysis. Th
 
 ## 12: Exit
 
-**Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
+**Action:** Type `exit` to exit Claude Code before the next lab.
 
 ```
 exit
@@ -242,13 +228,12 @@ exit
 
 ## Lab Summary
 ✅ You've successfully:
-- Verified Claude Code installation
-- Authenticated your account
+- Verified installation and authentication
 - Created and executed code with Claude
 - Learned basic navigation and commands
-- Practiced session management
+- Practiced session management (`exit`, `--resume`, redo)
 - Used @ mentions, persistent memories, and the ! bash shortcut
-- Explored a codebase with natural language questions
+- Explored a codebase with natural language questions — how you orient in any new project
 
 <br><br>
 ---
@@ -259,43 +244,41 @@ exit
 
 # Lab 2: Working with Claude Code Modes
 ## Lab Purpose
-Master Claude Code's operating modes — auto mode (the default since August 14, 2026), manual mode, plan mode, and bypass. Learn when and how to use each mode effectively, and how a `/permissions` deny rule enforces a boundary that no mode can override.
+Auto (default since August 14, 2026), manual, plan, and bypass modes — plus a `/permissions` deny rule no mode overrides.
 
 ---
 <br><br>
 
 ## 1: See Which Mode You Start In, Then Switch to Manual
-**What we're doing:** Checking the permission mode Claude Code starts in, then moving to manual.  
-**Why:** As of **August 14, 2026**, Claude Code starts in **auto mode** by default on Pro, Max, and Team plans — a background classifier approves routine actions instead of prompting you. Manual mode is still there, but it is now something you choose rather than where you land. (Manual is labeled **manual** in the interface as of v2.1.200; its config value is still `default`.)
+**What we're doing:** Checking the start mode, then going manual.  
+**Why:** Since **August 14, 2026** auto is the default on Pro, Max, and Team plans: a classifier approves routine actions instead of prompting you.
 
-**Action:** Start Claude with model Sonnet and medium effort (Note: You can use these command line options if you want for other places you start Claude in the labs.)
+**Action:** Start Claude with Sonnet and medium effort:
 ```bash
 claude --model sonnet --effort medium
 ```
 
-Look at the status bar just under the prompt box. You will most likely see `⏵⏵ auto mode on`. If you are on an Enterprise plan or a Console API key, you may see `⏸ manual mode on` instead — both are fine, and the rest of this lab works either way.
+The status bar should read `⏵⏵ auto mode on` (Enterprise plans and Console API keys show `⏸ manual mode on` — either works). Manual is labeled **manual** as of v2.1.200; config value `default`.
 
-> **Also starts in manual:** headless runs (`claude -p`), the Agent SDK, Bedrock/Vertex/Foundry sessions, and — worth knowing — **your very first session right after installing or upgrading** Claude Code. The auto default needs Claude Code v2.1.228 or later (v2.1.233+ on native Windows).
+> **Also manual:** headless (`claude -p`), the Agent SDK, Bedrock/Vertex/Foundry, and your first session after install or upgrade. Auto needs v2.1.228+ (v2.1.233+ native Windows).
 
-**Action:** Press `Shift+Tab` **once**. From auto mode the first press always lands on manual. Confirm the status bar now reads `⏸ manual mode on` before moving on.
-
-You're now in manual mode, where Claude asks permission before file changes.
+**Action:** Press `Shift+Tab` **once** — from auto it lands on manual. Confirm `⏸ manual mode on`.
 
 ---
 <br><br>
 
 ## 2: Test Manual Mode Permissions
-**What we're doing:** Creating a file to see permission prompts in action.  
-**Why:** Understanding permission flow helps you maintain control over changes.
+**What we're doing:** Triggering a prompt.  
+**Why:** Permission prompts keep you in control.
 
 **Action:** Type:
 ```
 Create a config.json file with database connection settings for Postgresql
 ```
 
-Notice how Claude asks permission before creating the file. Type `1` to accept.
+Claude asks first; type `1` to accept.
 
-> If Claude created the file without asking, you are still in auto mode — press `Shift+Tab` until the status bar reads `⏸ manual mode on` and try the prompt again.
+> Created without asking? Still in auto — `Shift+Tab` to `⏸ manual mode on` and retry.
 
 
 ![Creating config.json](./images/ccode216.png?raw=true "Creating config.json")
@@ -304,10 +287,10 @@ Notice how Claude asks permission before creating the file. Type `1` to accept.
 <br><br>
 
 ## 3: Activate Plan Mode
-**What we're doing:** Switching to Plan Mode for complex task planning.  
-**Why:** Plan Mode helps Claude think through multi-step tasks before executing.
+**What we're doing:** Entering Plan Mode.  
+**Why:** It thinks through multi-step tasks first.
 
-**Action:** Press `Shift+Tab` until you see *Plan mode*
+**Action:** `Shift+Tab` until you see *Plan mode*
 
 ![Activating plan mode](./images/ccode96.png?raw=true "Activating plan mode")
 
@@ -316,8 +299,8 @@ Notice how Claude asks permission before creating the file. Type `1` to accept.
 <br><br>
 
 ## 4: Prompt for a complex task
-**What we're doing:** Prompting Claude for complex task planning.  
-**Why:** Plan Mode helps Claude think through multi-step tasks before executing.
+**What we're doing:** Giving Claude a big task.  
+**Why:** Plan first, implement second.
 
 **Action:** Type:
 
@@ -327,16 +310,16 @@ Create a basic user profile page with fields for name, email, and profile pictur
 
 ![Planning](./images/ccode98.png?raw=true "Planning")
 
-Claude will start creating a detailed plan before starting implementation.
-
 ---
 <br><br>
 
 ## 5: Respond to questions
-**What we're doing:**  Responding to questions from Claude
-**Why:** Claude needs our input on some things before proceeding.
+**What we're doing:**  Answering Claude's questions
+**Why:** It needs input to proceed.
 
-**Action:** Read any questions that come up and select number of answer to proceed if single option for answer. (To save time and complexity, it is recommended to use the recommended/simplest option.) If you can select multiple options, use arrow keys and space/Enter to select options. Then move on to next question using right arrow. Answer all questions and then move to *Submit* and press *Enter*. If you want to see more of Claude's *thinking* during this process, press *ctrl+o".
+> **May not happen:** Claude often goes straight to the plan. If it does, skip to Step 6 — nothing is wrong.
+
+**Action:** *If Claude asks*, answer each question (simplest option saves time): a number for single answers; arrows plus space/Enter for multi-select, right arrow for the next; finish on *Submit*.
 
 ![Responding to questions](./images/ccode217.png?raw=true "Responding to questions")
 
@@ -348,116 +331,113 @@ Claude will start creating a detailed plan before starting implementation.
 <br><br>
 
 ## 6: Review the Plan
-**What we're doing:** Interacting with Claude's proposed plan.  
-**Why:** You can review plans before execution to ensure desired outcomes.
+**What we're doing:** Reviewing the plan.  
+**Why:** Catch problems before execution.
 
-**Action:** After Claude presents the plan, you could modify it if you wanted by selecting `ctrl+g`. 
-1. Go ahead and select that key sequence (ctrl+g) to bring the plan up in the editor.
-2. (Optional) To see the markdown version of the plan (if you're in VS Code, you can right-click and select *Reopen Editor with ... Text Editor*).
-3. After you're done reviewing it, you can close the file (close the original file if you also opened a preview version).
+**Action:** 
+1. Press `ctrl+g` to open the plan in the editor. Plans live in `~/.claude/plans/`, outside this folder, so VS Code may ask *"Do you want to allow untrusted files in this workspace?"* — choose **Open**.
+2. (Optional) In VS Code: right-click, *Reopen Editor with ... Text Editor*, for markdown.
+3. Close the file(s) when done.
 
-> ⚠️ **Known issue:** While the plan file is open, avoid scrolling or clicking in the Claude Code terminal panel — a current Claude Code bug can cause garbage characters (like `M^[[<35;86;12M`) to spill into the panel from mouse events. They're harmless. If you see them, close/save the plan file, then press `Esc` (or backspace) to clear any stray input; `ctrl+l` redraws the screen if the panel still looks scrambled.
+> ⚠️ **Known issue:** with the plan file open, don't scroll or click in the Claude Code panel — mouse events spill harmless garbage (`M^[[<35;86;12M`). `Esc` clears stray input; `ctrl+l` redraws.
 
-4. Then **select option 1** to proceed. Note the wording of that first option: it now reads **"Yes, and use auto mode"** when auto mode is available (it reads "Yes, auto-accept edits" when it is not). Option 2 is **"Yes, manually approve edits"** if you would rather keep reviewing each change. 
+4. **Select option 1** — **"Yes, and use auto mode"** when auto is available, else **"Yes, auto-accept edits"**. Option 2: **"Yes, manually approve edits"**.
 
 ![Reviewing plan](./images/ccode102.png?raw=true "Reviewing plan")
 
 ![Approving plan](./images/ccode219.png?raw=true "Approving plan")
 
-**Note that you are now in a different mode, but the original task will still run under *plan* mode.**
+**You are now in a different mode, but this task finishes under *plan* mode.**
 
 ---
 <br><br>
 
 ## 7: Watch the Work in Progress
-**What we're doing:** Following along while Claude implements the plan.
-**Why:** On long tasks you want to see what Claude is doing without interrupting it.
+**What we're doing:** Watching the work.
+**Why:** See steps without interrupting.
 
-**Action:** While Claude Code is working, press `ctrl+o` to expand the transcript and watch the steps and reasoning scroll by. Press `ctrl+o` again to collapse it.
+**Action:** Press `ctrl+o` to expand the transcript, again to collapse.
 
 ```
 ctrl+o
 ```
 
-> **What happened to the to-do list?** Older Claude Code versions kept a running to-do list you could pop up with `ctrl+t`. As of **v2.1.233 (August 14, 2026)** the to-do/task-tracking tools were **removed from the newer models** — Sonnet 5, Opus 4.8, Fable 5 and later — because those models plan well enough without them. So on the Sonnet 5 model we selected, `ctrl+t` shows nothing. You can still try it; an empty panel is the expected result, not a bug.
->
-> If you want the to-do list back, start Claude with the tools re-enabled:
+> **About `ctrl+t`:** as of **v2.1.233 (August 14, 2026)** to-do/task-tracking tools are removed from newer models (Sonnet 5, Opus 4.8, Fable 5+), so an empty panel is expected, not a bug. To get it back:
 > ```bash
 > CLAUDE_CODE_ENABLE_TODO_TOOLS=1 claude
 > ```
-> This is a good example of why it pays to skim the [changelog](https://code.claude.com/docs/en/changelog) — Claude Code ships changes several times a week.
+> Claude Code ships weekly — skim the [changelog](https://code.claude.com/docs/en/changelog).
 
 ---
 <br><br>
 
 ## 8: When done, clear the Conversation
-**What we're doing:** Using /clear to start fresh.  
-**Why:** Clearing context helps when switching between unrelated tasks.
+**What we're doing:** Clearing context.  
+**Why:** Do this before an unrelated task.
 
-After a few minutes, Claude Code will be done and provide you a summary. It may ask if you want it to do additional tasks, but you can just ignore those.
+Claude finishes with a summary; ignore offers of more work.
 
 ![Plan completed](./images/ccode220.png?raw=true "Plan completed")
-
-Now, let's clear the context.
 
 **Action:** Type:
 ```
 /clear
 ```
 
-Your conversation history is now cleared, giving you a clean slate.
-
 ---
 <br><br>
 
 ## 9: Return to Auto Mode — the Default
-**What we're doing:** Going back to the *Auto* permission mode you started the lab in.
-**Why:** Auto mode is where Claude Code now starts on Pro, Max, and Team plans. Instead of asking you, a background classifier reviews each risky action and approves or blocks it. Routine work — reading files, editing inside your project, installing declared dependencies — never reaches the classifier at all.
+**What we're doing:** Returning to *auto*.
+**Why:** The classifier vets risky actions; routine work (reads, in-project edits, declared installs) never reaches it.
 
-**Action:** Press `Shift+Tab` and watch the mode indicator cycle. Starting from manual the cycle runs *manual* → *accept edits* → *plan* → *auto*. (From auto, the very first press always takes you straight back to *manual*.) Optional modes slot in **after *plan***: if Claude was started with the bypass flag, *bypass permissions* (YOLO) comes first and *auto* stays last. Stop when the status bar reads `⏵⏵ auto mode on`.
+**Action:** `Shift+Tab` cycles *manual* → *accept edits* → *plan* → *auto* (from auto, the first press returns to *manual*). Optional modes slot in after *plan*: with the bypass flag, *bypass permissions* (YOLO) comes first, *auto* last. Stop at `⏵⏵ auto mode on`.
 
-> **What the classifier stops.** Blocked by default: `curl | bash`, force pushes, `git reset --hard`, production deploys, mass deletion, printing live credentials. Allowed by default: local edits in your working directory, installing dependencies from your lockfile, read-only HTTP, and pushing to any branch of the repo you're working in. If it blocks something 3 times in a row (or 20 times in a session), auto mode pauses and Claude Code starts prompting you again. Blocked actions are listed in `/permissions` under **Recently denied**, where `r` retries with a manual approval.
+> **Classifier blocks:** `curl | bash`, force pushes, `git reset --hard`, prod deploys, mass deletion, printing live credentials. **Allows:** local edits, lockfile installs, read-only HTTP, pushes to your repo. 3 blocks in a row (or 20 a session) pauses auto mode. Denials → `/permissions` **Recently denied**; `r` retries with manual approval.
 
 ---
 <br><br>
 
 ## 10: Set a Guardrail That Outlives the Conversation
-**What we're doing:** Adding a **deny rule** with `/permissions`.
-**Why:** This is the most important idea in the lab. In auto mode a classifier decides. You can also just *tell* Claude a boundary in chat — "don't push until I review" — and the classifier will honor it. But that sentence lives in your **conversation transcript**, so `/compact`, `/clear`, or a fresh session drops it silently. A deny rule is **configuration**, not conversation: it survives all of that, and it blocks in *every* mode.
+**What we're doing:** Adding a **deny rule**.
+**Why:** A boundary typed in chat dies with `/compact`, `/clear`, or a new session; a deny rule is configuration and blocks in *every* mode.
 
-**Action:** In Claude Code, type:
+**Action:** Type:
 ```
 /permissions
 ```
 
-Look around before changing anything. Rules are grouped as **Allow**, **Ask**, and **Deny**, and there is a **Recently denied** tab — that is where auto mode's blocked actions land, and pressing `r` on an entry retries it with a manual approval.
+Rules are grouped **Allow**, **Ask**, and **Deny**.
 
-**Action:** Add this rule to the **Deny** list:
+**Action:** Add this to the **Deny** list. Claude Code then asks **where to save the rule** — take the default, **1. Project settings (local)**. Press `Esc` when done:
 ```
 Bash(git push *)
 ```
 
-Then press `Esc` to close the dialog.
+> **Rule syntax:** `Tool` or `Tool(specifier)`; `*` matches anything, spaces included, so `Bash(git push *)` catches `git push origin main` (`Bash(git push:*)` is equivalent). Rules save to `.claude/settings.local.json` at the repo root, covering future sessions.
 
-> **Rule syntax:** `Tool` or `Tool(specifier)`. A `*` matches any run of characters, spaces included — so `Bash(git push *)` catches `git push origin main`. `Bash(git push:*)` is an equivalent way to write a trailing wildcard. Claude Code saves the rule to `.claude/settings.local.json` at the repo root, so it applies to future sessions in this project too.
+**Action:** Give the push something to do — otherwise Claude just reports there is nothing to push and the rule never fires. In a **second terminal**, run:
+```bash
+git add -A && git commit -m "lab work"
+```
 
-**Action:** Now test it. Type:
+**Action:** Back in Claude, test the rule. Type:
 ```
 Push our changes to origin.
 ```
 
-Claude is blocked before it can even try — no prompt, no classifier judgment call, no negotiation.
+Claude is blocked before it can try — no prompt, no classifier.
 
-> **If the dialog gives you trouble**, you get the same result by putting the rule in `.claude/settings.local.json` under `permissions.deny`. The change applies on Claude's next request, without a restart.
+> **If the dialog misbehaves**, add the rule to `.claude/settings.local.json` under `permissions.deny`; it applies on the next request, no restart.
 
 ---
 <br><br>
 
 ## 11: Try YOLO Mode — and Watch the Deny Rule Hold
-**What we're doing:** Running Claude with all permission checks skipped, then re-testing the guardrail.
-**Why:** Auto mode still has a classifier reviewing risky actions. Bypass removes even that — nothing is checked at all. It is a step *down* in oversight from auto mode, meant for throwaway sandboxes like this Codespace. But a deny rule still wins, and that is the point.
+**What we're doing:** Skipping all checks, then re-testing the guardrail.
+**Why:** Bypass removes even the classifier — the deny rule still wins.
 
-**Action:** Exit Claude (`exit`), then restart with the command below and **use option 2** to accept the risk:
+**Action:** Exit Claude (`exit`), restart as below, **option 2** to accept the risk:
 
 ```bash
 claude --dangerously-skip-permissions
@@ -465,34 +445,34 @@ claude --dangerously-skip-permissions
 
 ![Accepting bypass mode](./images/ccode184.png?raw=true "Accepting bypass mode")
 
-If you don't see **bypass permissions on**, use `Shift+Tab` until you do. (There is also a `claude-yolo` alias in this Codespace for future use — from a terminal other than the original one.)
+If you don't see **bypass permissions on**, `Shift+Tab` until you do. (The `claude-yolo` alias does the same, from a second terminal.)
 
-⚠️ **Note:** Use with caution! Claude won't ask before making changes.
+⚠️ **Note:** Use with caution — Claude won't ask before changing anything. Save it for throwaway sandboxes like this Codespace.
 
 ![YOLO](./images/ccode123.png?raw=true "YOLO")
 
-**Action:** Confirm nothing gets in your way now. Type:
+**Action:** Type:
 ```
 Create a simple To-Do list app in javascript with functionality to add and delete tasks
 ```
 
-Claude creates all the files without asking for anything.
+Claude creates every file without asking.
 
 ![YOLO](./images/ccode221.png?raw=true "YOLO")
 
-**Action:** Now try the denied command again:
+**Action:** Now retry the denied command:
 ```
 Push our changes to origin.
 ```
 
-Still blocked — in the *least* restrictive mode Claude Code has. **Deny rules apply in every mode, including bypass.** Modes decide how much Claude asks you; deny rules decide what is off the table regardless.
+Still blocked in the *least* restrictive mode: **deny rules apply in every mode, including bypass.** Modes decide how much Claude asks; deny rules decide what is off-limits.
 
 ---
 <br><br>
 
 ## 12: Exit
 
-**Action:** In prep for the next lab and a fresh start, type `exit` to exit Claude Code.
+**Action:** Type `exit` to exit Claude Code before the next lab.
 
 ```
 exit
@@ -500,12 +480,11 @@ exit
 
 ## Lab Summary
 ✅ You've successfully learned:
-- Auto mode — the default since August 14, 2026 — and its background classifier
-- Manual mode (config value `default`) with a permission prompt for every action
-- Plan mode for complex task planning
-- Accept-edits and bypass modes, and when each is appropriate
-- **Deny rules vs. conversation:** a boundary you type in chat lives in the transcript and can be compacted away; a `/permissions` deny rule is configuration and holds in every mode, bypass included
-- Why headless runs (`claude -p`) still start in manual mode
+- Auto mode (default since August 14, 2026) and its classifier
+- Manual mode (config value `default`), prompting every action
+- Plan mode, accept-edits, and bypass
+- **Deny rules beat modes:** chat boundaries compact away; a deny rule is configuration and holds everywhere, bypass included
+- Why headless (`claude -p`) starts manual
 
 
 ---
@@ -516,20 +495,20 @@ exit
 ---
 <br><br>
 
-**NOTE:** From here on, auto mode already handles most prompts for you. If you want *zero* interruptions, you can use the `claude --dangerously-skip-permissions` mode. For convenience, if working in the codespace, there is a shortcut alias for this setup:  `claude-yolo`. You must be in a terminal other than the original one that you started with to use this.
+**NOTE:** Auto mode handles most prompts from here; `claude --dangerously-skip-permissions` (or the codespace `claude-yolo` alias, second terminal) removes all interruptions.
 
 <br><br>
 
 # Lab 3: Built-in Commands and Context Management
 ## Lab Purpose
-Master Claude Code's built-in slash commands for managing conversations, context, and memory. Learn how to effectively manage long coding sessions and optimize token usage.
+Master the slash commands for conversation, context, and memory.
 
 ---
 <br><br>
 
 ## 1: Start Fresh with Claude
-**What we're doing:** Beginning a new Claude session to explore commands.  
-**Why:** Starting fresh ensures we have a clean context for learning.
+**What we're doing:** Starting a new session.  
+**Why:** A clean context.
 
 **Action:** Start Claude:
 ```bash
@@ -540,53 +519,47 @@ claude
 <br><br>
 
 ## 2: View Available Commands
-**What we're doing:** Discovering all built-in slash commands.  
-**Why:** Knowing available commands improves your workflow efficiency.
+**What we're doing:** Listing slash commands.  
+**Why:** Knowing what exists speeds you up.
 
 **Action:** Type:
 ```
 /help
 ```
 
-Hit *Enter*. This will bring up a set of *tabbed* output for help. Use the *tab* key to get to the *commands* section at the top. Then you can use the arrow keys to move up and down to see all the commands.
-Review the list including /clear, /compact, /rewind, /model, and others.
+*Tab* to the *commands* section, arrow through the list — note /clear, /compact, /rewind, /model. *Esc* exits.
 
 ![help to see commands](./images/ccode222.png?raw=true "help to see commands")
-
-Use *Esc* to exit when done.
 
 ---
 <br><br>
 
 ## 3: Create Some Context
-**What we're doing:** Building up conversation history to practice management.  
-**Why:** We need content to demonstrate context management commands.
+**What we're doing:** Building conversation history.  
+**Why:** We need content to manage.
 
-**Action:** Have a multi-turn conversation. **Type each of the following into the prompt area one at a time and let each complete before entering the next one** (When prompted about accepting an edit, you can just choose to accept or accept all edits in the session.):
+**Action:** Enter these one at a time, accepting edits:
 ```
 Create a user.js file with a User class
 ```
 
-Wait for this to finish, then...
+Then...
 
 ```
 Add methods for getName and setName  
 ```
 
-Wait for this to finish, then...
+Then...
 
 ```
 Add email validation to the User class
 ```
 
-Wait for this to finish, then...
+Then...
 
 ```
 Create a test file for the User class
 ```
-
-Let Claude complete each task to build up context.
-
 
 ![help to see commands](./images/ccode223.png?raw=true "help to see commands")
 
@@ -594,35 +567,33 @@ Let Claude complete each task to build up context.
 <br><br>
 
 ## 4: Check Context Usage
-**What we're doing:** Understanding how much context we're using.  
-**Why:** Managing context prevents hitting token limits in long sessions.
+**What we're doing:** Checking context use.  
+**Why:** Avoid token limits mid-session.
 
 **Action:** Type:
 ```
 /context
 ```
 
-Scroll back up to the start of the output. You'll see information about current token usage and remaining capacity.
-
+Scroll up for token usage and remaining capacity.
 
 ![context command](./images/ccode224.png?raw=true "context command")
 
-> **Related:** `/context` answers "what is in my context window right now?". Its companion is **`/usage`** (the older `/cost` is now just an alias for it), which answers "what have I spent?" — tokens and cost for the session, plus how much of your plan's limit you've used. Try `/usage` now; it's the command to reach for when you're wondering whether to drop from Opus down to Sonnet.
+> **Related:** `/context` shows what is in the context window now; **`/usage`** (`/cost` is an alias) shows what you have spent — session tokens, cost, and share of your plan's limit. Try `/usage` too.
 
 ---
 <br><br>
 
 ## 5: Compact the Conversation
-**What we're doing:** Condensing conversation history while preserving key information.  
-**Why:** Compacting extends how long you can work without losing context.
+**What we're doing:** Condensing history.  
+**Why:** It extends how long you can work.
 
 **Action:** Type:
 ```
 /compact Keep the User class implementation details and test structure
 ```
 
-Claude will summarize earlier parts while keeping specified information.
-
+Claude summarizes earlier turns, keeping what you named.
 
 ![compact](./images/ccode225.png?raw=true "compact")
 
@@ -630,60 +601,55 @@ Claude will summarize earlier parts while keeping specified information.
 <br><br>
 
 ## 6: Use Rewind Feature
-**What we're doing:** Rolling back to a previous state in the conversation.  
-**Why:** Rewind lets you undo mistakes or explore different approaches.
+**What we're doing:** Rolling back.  
+**Why:** Undo mistakes safely.
 
 **Action:** 
 a. Ask Claude to make a change we'll want to undo: `Remove the email validation from the User class in user.js`
-b. After the edit completes, press `Esc` twice (with an empty prompt) or type `/rewind`
-c. **Select the *Remove the email validation...* entry** (up/down arrows) and press `Enter` — each entry restores to the point *before* that message. Skip the */compact* entries; as covered in the slides, code can't be restored at the compaction boundary.
-
+b. Then type `/rewind`. (`Esc` twice also works, but only on a truly empty prompt — greyed-out suggestion text counts as not empty.)
+c. **Select the *Remove the email validation...* entry** and press `Enter` — entries restore to the point *before* that message. Skip */compact* entries: code can't be restored there.
 
 ![rewind](./images/ccode34.png?raw=true "rewind")
 
-d. From the action menu, choose **Restore code and conversation**.
-
+d. Choose **Restore code and conversation**.
 
 ![rewind](./images/ccode35.png?raw=true "rewind")
 
-e. Open user.js to confirm the email validation is back. Use backspace to clear any restored prompt text from the input before continuing.
+e. Open user.js to confirm the validation is back; backspace clears restored text.
 
-> Remember from the slides: only file-tool edits are checkpointed — bash changes (`rm`, `mv`) show *No code changes* and can't be restored. Use git for real version history.
+> Only file-tool edits are checkpointed — bash changes (`rm`, `mv`) show *No code changes*. Use git for real version history.
 
 ---
 <br><br>
 
 
 ## 7: Create a project context file
-**What we're doing:** Setting up a CLAUDE.md file for project context.  
-**Why:** CLAUDE.md provides persistent project knowledge across sessions.
+**What we're doing:** Generating a CLAUDE.md.  
+**Why:** It carries project knowledge forward.
 
 **Action:** Type:
 ```
 /init
 ```
 
-This file will be automatically created and read in future sessions.
+Claude creates CLAUDE.md and reads it in future sessions; open it in an editor (`code` in VS Code / Codespaces).
 
 ![claude.md](./images/ccode226.png?raw=true "claude.md")
 
-Afterwards, you can take a look at the file by opening it up in an editor (you can use 'code' command if in VS Code or Codespace).
-
-You'll probably notice that it identifies custom slash commands, custom agents, and custom skills that we have in the `extra` directory. While it is finding those kind of files there, it is NOT registering them as something usable. It is just describing the file types.
+It lists custom commands, agents, and skills in `extra`, describing the file types — not registering them.
 
 ---
 <br><br>
 
 ## 8: Demonstrate the project context file is used
-**What we're doing:** Resetting chat while keeping project guidance.  
-**Why:** Persistent memory improves continuity across sessions. Also shows difference between chat context and project files.
+**What we're doing:** Clearing chat, keeping project guidance.  
+**Why:** Project files outlive conversation context.
 
 **Action:**
 1. Type `/clear` to clear the conversation
 2. Ask: `What are our project rules and what test command should I run after code edits?`
 
-Claude should recall information from the CLAUDE.md file and display that info.
-
+Claude answers from CLAUDE.md.
 
 ![claude.md](./images/ccode227.png?raw=true "claude.md")
 
@@ -691,15 +657,15 @@ Claude should recall information from the CLAUDE.md file and display that info.
 <br><br>
 
 ## 9: View the Memory Hierarchy with /memory
-**What we're doing:** Visualizing how CLAUDE.md memory is organized across scopes.  
-**Why:** Understanding the memory hierarchy helps you structure project knowledge effectively.
+**What we're doing:** Viewing memory scopes.  
+**Why:** The hierarchy decides where knowledge goes.
 
 **Action:** Type:
 ```
 /memory
 ```
 
-You'll see a visualization of how memory is layered: enterprise (if applicable) → user-level → project-level. The CLAUDE.md file you just created with `/init` appears at the project level. Note that CLAUDE.md files in nested subdirectories are automatically pulled in too, and you can create a CLAUDE.local.md for personal overrides that don't get committed to git.
+Memory layers enterprise (if applicable) → user → project, your new CLAUDE.md at project level. Nested CLAUDE.md files load automatically; CLAUDE.local.md holds uncommitted personal overrides.
 
 ![claude.md](./images/ccode228.png?raw=true "claude.md")
 
@@ -707,15 +673,13 @@ You'll see a visualization of how memory is layered: enterprise (if applicable) 
 <br><br>
 
 ## 10: Explore Git History with Claude
-**What we're doing:** Using Claude to analyze changes in the repository.  
-**Why:** Claude Code excels at navigating and explaining code history.
+**What we're doing:** Analyzing repo changes.  
+**Why:** Faster than reading git logs.
 
 **Action:** Type:
 ```
 What changes have been made in this repo recently? Summarize the git log.
 ```
-
-Claude will run git commands and summarize the commit history in natural language. This is a powerful pattern for onboarding — instead of reading through git logs manually, ask Claude to explain what changed and why.
 
 ![claude.md](./images/ccode229.png?raw=true "claude.md")
 
@@ -723,21 +687,21 @@ Claude will run git commands and summarize the commit history in natural languag
 <br><br>
 
 ## 11: Try Headless Mode with Pipe Input
-**What we're doing:** Using Claude Code as a Unix utility with piped input.  
-**Why:** Headless/pipe mode lets you chain Claude into scripts and automation workflows.
+**What we're doing:** Piping input in.  
+**Why:** It chains Claude into scripts and CI.
 
-**Action:** Exit Claude first with `exit`, then run this in your regular terminal:
+**Action:** Exit Claude, then run this in your terminal:
 ```bash
 echo "What files are in this directory?" | claude -p
 ```
 
-The `-p` flag runs Claude in print (headless) mode — it takes input from stdin, processes it, and outputs the result. No interactive session needed. This is how you integrate Claude into shell scripts, CI pipelines, and automated workflows.
+`-p` is print (headless) mode: stdin in, result out, no session.
 
-> **Note:** headless runs do **not** inherit the auto mode default — `claude -p` always starts in **manual** mode. That matters for automation: since there is no one there to answer a prompt, you pre-approve exactly what the run may do with `--allowedTools`, or lock it down with `--permission-mode dontAsk`. For example:
+> **Note:** headless runs start in **manual** mode, not auto. Nobody is there to answer prompts, so pre-approve with `--allowedTools` or lock down with `--permission-mode dontAsk`:
 > ```bash
 > claude -p "run the test suite and summarize failures" --permission-mode dontAsk --allowedTools "Bash(npm test)" "Read"
 > ```
-> Add `--output-format json` when a script needs to parse the result rather than read it.
+> Add `--output-format json` for scripts that parse the result.
 
 ![claude.md](./images/ccode230.png?raw=true "claude.md")
 
@@ -747,14 +711,14 @@ The `-p` flag runs Claude in print (headless) mode — it takes input from stdin
 
 ## Lab Summary
 ✅ You've mastered:
-- Using /help to discover commands
-- Managing context with /compact
-- Undoing changes with /rewind
-- Checking spend with /context and /usage
-- Creating persistent memory with CLAUDE.md
-- Viewing memory hierarchy with /memory
-- Exploring git history with natural language
-- Using headless pipe mode for automation
+- /help to discover commands
+- /compact to manage context
+- /rewind to undo changes
+- /context and /usage to check spend
+- CLAUDE.md for persistent memory
+- /memory for the hierarchy
+- Git history in natural language
+- Headless pipe mode for automation
 
 
 <br><br>
@@ -764,7 +728,7 @@ The `-p` flag runs Claude in print (headless) mode — it takes input from stdin
 <br><br>
 # Lab 4: Skills + Subagents 
 ## Lab Purpose 
-Build one practical skill and two specialist subagents to see how delegation keeps work fast and clean.
+Build a skill and two specialist subagents, and see how delegation keeps work fast and clean.
 
 **NOTE: If using the codespace setup, you can use the `code` command to create/edit a file.**
 
@@ -772,8 +736,8 @@ Build one practical skill and two specialist subagents to see how delegation kee
 <br><br>
 
 ## 1: Create the Project Structure
-**What we're doing:** Creating the folders used by Claude Code for skills and agents.  
-**Why:** Skills/subagents are file-system discoverable.
+**What we're doing:** Creating the skill and agent folders.  
+**Why:** Both are discovered from the file system.
 
 **Action:**
 ```bash
@@ -785,12 +749,10 @@ mkdir -p .claude/agents
 <br><br>
 
 ## 2: Create a Minimal Skill (api-checker)
-**What we're doing:** Writing a SKILL.md with a focused purpose.  
-**Why:** Skills help Claude apply repeatable expertise automatically.
+**What we're doing:** Writing a SKILL.md.  
+**Why:** Skills apply repeatable expertise automatically.
 
-**Action:** Make a new file `.claude/skills/api-checker/SKILL.md`.
-
-**Action:** Copy/paste the following contents into the file and save it.
+**Action:** Create `.claude/skills/api-checker/SKILL.md` with these contents:
 
 ```md
 ---
@@ -816,12 +778,10 @@ User: "Can you validate GET /health on my service?"
 <br><br>
 
 ## 3: Add the referenced script to the Skill
-**What we're doing:** Adding a deterministic helper.  
-**Why:** Scripts make results more predictable than pure prompting.
+**What we're doing:** Adding a helper script.  
+**Why:** Scripts are more predictable than prompting.
 
-**Action:** Make a new file `.claude/skills/api-checker/scripts/check.py`.
-
-**Action:** Copy/paste the following contents into the file and save it.
+**Action:** Create `.claude/skills/api-checker/scripts/check.py` with these contents:
 
 
 ```python
@@ -850,7 +810,7 @@ except Exception:
 print(json.dumps(out))
 ```
 
-Then make it executable:
+Make it executable:
 ```bash
 chmod +x .claude/skills/api-checker/scripts/check.py
 ```
@@ -860,15 +820,13 @@ chmod +x .claude/skills/api-checker/scripts/check.py
 
 ## 4: Create the Planner Agent
 **What we're doing:** Creating a “plan-first” helper.  
-**Why:** This keeps your main chat focused on decisions, not long plans.
+**Why:** It keeps your main chat on decisions, not long plans.
 
-> **Terminology note:** The file in `.claude/agents/` defines an *agent configuration*. When Claude delegates to it during a conversation, it runs as a *subagent* — a separate context that does work and returns results to the main conversation.
+> **Terminology:** the file in `.claude/agents/` is an *agent configuration*; when Claude delegates to it, it runs as a *subagent* — a separate context that returns results to the main conversation.
 
-> **About `model:`** The field takes a family alias (`sonnet`, `opus`, `haiku`, `fable`), a full model name such as `claude-sonnet-5`, or `inherit` to use whatever the main conversation is on. Aliases are the safer choice — they keep pointing at the current version as models are released. Only `name` and `description` are actually required; everything else is optional.
+> **The `model:` field** takes a family alias (`sonnet`, `opus`, `haiku`, `fable`), a full name like `claude-sonnet-5`, or `inherit` (follow the main conversation). Aliases are safer: they track the current version. Only `name` and `description` are required.
 
-**Action:** Make a new file `.claude/agents/planner.md`.
-
-**Action:** Copy/paste the following contents into the file and save it.
+**Action:** Create `.claude/agents/planner.md` with these contents:
 
 ```md
 ---
@@ -888,12 +846,10 @@ model: sonnet
 <br><br>
 
 ## 5: Create the Test-Runner Agent
-**What we're doing:** Creating a “run tests, summarize, propose minimal fix” helper.  
-**Why:** Subagents reduce context noise and speed up troubleshooting.
+**What we're doing:** Creating a test-runner helper.  
+**Why:** Subagents cut context noise and speed troubleshooting.
 
-**Action:** Make a new file `.claude/agents/test-runner.md`.
-
-**Action:** Copy/paste the following contents into the file and save it.
+**Action:** Create `.claude/agents/test-runner.md` with these contents:
 
 
 ```md
@@ -922,49 +878,40 @@ claude
 <br><br>
 
 ## 7: Trigger the skill (Without Naming It)
-**What we're doing:** Letting Claude choose the skill automatically.  
-**Why:** Skills are intended to be invoked based on context.
+**What we're doing:** Letting Claude pick the skill.  
+**Why:** Skills are invoked from context.
 
-**Action:** In Claude, type:
+**Action:** Type:
 ```
 Please validate https://jsonplaceholder.typicode.com/posts/1 and summarize what you find.
 ```
 
-If Claude asks for approval to run scripts, approve it.
+Approve script execution if asked. You should see the skill load and, per its instructions:
 
-(Optional: You can open the .claude/skills/api-checker/SKILL.md file to remember what it specifies.)
-
-What you should see in the output is that the skill was selected and loaded, then, per the skill instructions:
-
-- The supporting script was run (look for `scripts/check.py` in the output — not a plain `Fetch(...)` call)
-- The status was reported
-- Key fields were listed
-- A recommendation was provided
+- The script run (`scripts/check.py` in the output — not a plain `Fetch(...)` call)
+- The status reported
+- Key fields listed
+- A recommendation
 
 ![Using the skill](./images/ccode231.png?raw=true "Using the skill")
 
-> **If Claude answered directly instead** (you see `Fetch(https://...)` rather than the skill loading and check.py running): skills are *model-invoked* — Claude matches your request against skill descriptions and decides, so for simple requests it may reach for its built-in fetch instead. This is normal and a useful lesson: description wording matters. To guarantee the skill runs, name it: `Use the api-checker skill to validate https://jsonplaceholder.typicode.com/posts/1` — then compare the output.
+> **If you see `Fetch(https://...)` instead:** skills are *model-invoked* — Claude matches your request against skill descriptions, so on simple requests it may use built-in fetch. Description wording matters. To force it, name the skill: `Use the api-checker skill to validate https://jsonplaceholder.typicode.com/posts/1`.
 
 
 ---
 <br><br>
 
 ## 8: Use the Planner Subagent
-**What we're doing:** Delegating planning to a subagent that cannot edit files.  
-**Why:** This is a safe and scalable “team” pattern.
+**What we're doing:** Delegating planning to a subagent that can't edit files.  
+**Why:** A safe, scalable “team” pattern.
 
-**Action:** In Claude, type:
+**Action:** Type:
 ```
 Use the planner subagent.
 We need to add input validation to the User class without changing public behavior.
 Return only the plan + risks.
 ```
-(Optional: You can open the .claude/agents/planner.md file to remember what it specifies.)
-
-What you should see after this runs is a plan produced by the agent that, per the planning agent spec:
-
-- Outputs a step-by-step plan
-- Lists several risks
+You should get a step-by-step plan plus risks, per the agent spec.
 
 
 ![Using the planning subagent](./images/ccode198.png?raw=true "Using the planning subagent")
@@ -974,25 +921,23 @@ What you should see after this runs is a plan produced by the agent that, per th
 <br><br>
 
 ## 9: Use the Test-Runner Subagent
-**What we're doing:** Delegating test execution + fix suggestion.  
-**Why:** This is the most common “AI teammate” workflow.
+**What we're doing:** Delegating test execution and a fix suggestion.  
+**Why:** The most common “AI teammate” workflow.
 
-**Action:** In Claude, type:
+**Action:** Type:
 ```
 Use the test-runner subagent.
 Create one minimal failing test for invalid email handling in user.js, then propose the smallest fix.
 Stop after proposing the fix (do not implement yet).
 ```
 
-(Optional: You can open the .claude/agents/test-runner.md file to remember what it specifies.)
-
 ![Using the test-runner subagent](./images/ccode232.png?raw=true "Using the testrunner subagent")
 
-What you should see after this runs is a failing email test added to user.test.js and a proposed fix.
+You should get a failing email test in user.test.js and a proposed fix.
 
 ![Using the test-runner subagent](./images/ccode233.png?raw=true "Using the testrunner subagent")
 
-You can choose to accept the fix (make the edit) or not.
+Accept the fix or not, your call.
 
 ---
 <br><br>
@@ -1021,17 +966,15 @@ exit
 
 # Lab 5: Supervised Subagent Workflow + Plugin Packaging + VS Code
 ## Lab Purpose
-Turn your commands + agents + skills into a shareable "team kit," and practice a supervised delegation workflow where you orchestrate specialist subagents step by step.
+Package your commands, agents, and skills as a shareable "team kit," and orchestrate specialist subagents step by step.
 
 ---
 <br><br>
 ## 1: Add a Team Command: /ship
-**What we're doing:** Creating a standardized "ready to ship" checklist command.  
-**Why:** To have a reusable standardized command that encompasses multiple functions.
+**What we're doing:** Creating a ship checklist command.  
+**Why:** One reusable command covering several steps.
 
-**Action:** Make a new file `.claude/commands/ship.md`.
-
-**Action:** Copy/paste the following contents into the file and save it.
+**Action:** Create `.claude/commands/ship.md` with these contents:
 
 ```md
 ---
@@ -1047,14 +990,10 @@ Do not edit files unless asked.
 <br><br>
 
 ## 2: Add the Reviewer Agent
-**What we're doing:** Adding a "review-only" specialist agent definition.  
-**Why:** We want a reviewer as part of our workflow.
+**What we're doing:** Adding a review-only specialist agent.  
+**Why:** The workflow needs a reviewer.
 
-> **Tooling note:** This agent is structurally restricted from editing files — not just told not to, but actually blocked from using Write and Edit tools. This is the difference between a prompt-level constraint (which Claude can override) and a tool-level constraint (which it cannot).
-
-**Action:** Make a new file `.claude/agents/reviewer.md`.
-
-**Action:** Copy/paste the following contents into the file and save it.
+**Action:** Create `.claude/agents/reviewer.md` with these contents:
 
 ```md
 ---
@@ -1072,14 +1011,14 @@ disallowedTools: Write, Edit
   PATCH SUGGESTIONS: (3 bullets)
 ```
 
-> **What changed from Lab 4's agents?** Compare this to the planner agent you created in Lab 4. The planner says "Do not write or modify files" in its instructions — a prompt-level constraint. This reviewer goes further with `disallowedTools: Write, Edit`, which *enforces* the restriction at the tool level. Both approaches have their place: prompt constraints are flexible, tool constraints are guaranteed.
+> **Prompt vs. tool constraint:** Lab 4's planner is *told* not to edit; this reviewer is *blocked* from Write and Edit by `disallowedTools`. Claude can override a prompt constraint, never a tool one.
 
 ---
 <br><br>
 
 ## 3: Create the Plugin Manifest Folder
 **What we're doing:** Preparing a shareable plugin bundle.  
-**Why:** Plugins are the packaging mechanism for distributing team assets (commands, agents, skills) so teammates can install them with a single command rather than copying files around.
+**Why:** Plugins let teammates install your commands, agents, and skills in one command.
 
 **Action:**
 ```bash
@@ -1089,12 +1028,10 @@ mkdir -p .claude-plugin
 <br><br>
 
 ## 4: Create plugin.json
-**What we're doing:** Defining the plugin metadata and component paths.  
-**Why:** Claude Code uses this manifest to discover and load plugin components. When someone installs your plugin, these paths tell Claude Code where to find the commands, agents, and skills you've bundled.
+**What we're doing:** Defining plugin metadata and component paths.  
+**Why:** The manifest says where the bundled components live.
 
-**Action:** Make a new file `.claude-plugin/plugin.json`.
-
-**Action:** Copy/paste the following contents into the file and save it.
+**Action:** Create `.claude-plugin/plugin.json` with these contents:
 
 ```json
 {
@@ -1107,18 +1044,18 @@ mkdir -p .claude-plugin
 }
 ```
 
-> **Key detail:** The `commands`, `agents`, and `skills` fields are top-level in `plugin.json` — there is no wrapper object around them. Paths are relative to the `plugin.json` file location.
+> **Key detail:** `commands`, `agents`, and `skills` are top-level fields (no wrapper object); paths are relative to `plugin.json`.
 
-> **Newer shortcut (v2.1.157+):** `claude plugin init <name>` now scaffolds a plugin for you, and plugins placed in `.claude/skills` auto-load with no marketplace required. We build the manifest by hand here so you understand the pieces; for real projects, start with `claude plugin init`. Also useful: `/plugin list` shows installed plugins with their projected per-session token cost, and `defaultEnabled: false` in plugin.json ships a plugin disabled by default.
+> **Shortcut (v2.1.157+):** `claude plugin init <name>` scaffolds a plugin; plugins in `.claude/skills` auto-load with no marketplace. `/plugin list` shows installed plugins with projected per-session token cost; `defaultEnabled: false` ships one disabled.
 
 ---
 <br><br>
 
 ## 5: Start Claude Code and (optional) Verify Discovery
-**What we're doing:** Validating the repo has the expected structure.  
-**Why:** Before running any workflows, confirm that Claude Code discovers all your assets — the new `/ship` command, the reviewer agent from this lab, plus the planner agent, test-runner agent, and api-checker skill from Lab 4.
+**What we're doing:** Checking asset discovery.  
+**Why:** `/ship`, the reviewer, and Lab 4's assets should all appear.
 
-**Action:** Start Claude Code
+**Action:** Start Claude Code:
 
 ```bash
 claude
@@ -1130,50 +1067,50 @@ Then run:
 /help
 ```
 
-Confirm you see `/ship` listed in the `custom-commands` section.
+Confirm `/ship` appears under `custom-commands`.
 
 ![The /ship command is present](./images/ccode234.png?raw=true "The /ship command is present")
 
 
-Hit *Esc" to get out of that output. Next, verify the agents. The `/agents` **wizard** was removed in v2.1.198 — running `/agents` today just prints a reminder that agents are plain files you (or Claude) edit under `.claude/agents/`. So use the `!` bash shortcut you learned in Lab 1 to list them (the input turns pink when it starts with `!`):
+*Esc* exits. Next, the agents: `/agents` only prints a reminder that agents are plain files under `.claude/agents/` (its wizard was removed in v2.1.198), so list them with the `!` shortcut from Lab 1:
 
 ```
 ! ls .claude/agents/*
 ```
 
-(The trailing `/*` matters. While you type a *partial* path that matches real files, Claude Code shows a suggested path on a plain line near the input — it's subtle, just a line of text like `.claude/agents/`, easy to miss — and **while that suggestion is showing, *Enter* is silently ignored**. A complete path ends the suggestion, so `/*` or a plain trailing slash (`ls .claude/agents/`) lets *Enter* work normally; `Esc` also clears the suggestion if you see it.)
+(The trailing `/*` matters: a partial path shows a subtle suggested-path line, and **while it shows, *Enter* is ignored**. A complete path ends it, as does `Esc`.)
 
-Confirm `planner.md`, `test-runner.md`, and `reviewer.md` are shown. (You can also just ask Claude: `What subagents are available in this project?`)
+Confirm `planner.md`, `test-runner.md`, and `reviewer.md` appear. (Or ask: `What subagents are available in this project?`)
 
 
-Hit *Esc" to get out of that output. Then run: 
+*Esc* exits. Then run: 
 
 ```
 /skills
 ```
 
-Confirm the `api-checker` skill is shown. (If `/skills` isn't available in your build, `/context` also lists the skills loaded in the session, and `! ls .claude/skills/*` works the same way it did for the agents.)
+Confirm `api-checker` is listed. (No `/skills` in your build? `/context` lists loaded skills, and `! ls .claude/skills/*` works too.)
 
 ![Skill is  present](./images/ccode236.png?raw=true "Skill is present")
 
-Hit *Esc" to get out of that output.
+*Esc* exits.
 
 ---
 <br><br>
 
 
 ## 6: Practice the Supervised Delegation Pattern (Plan → Implement → Review)
-**What we're doing:** Running a realistic delegation flow where *you* act as the supervisor, directing Claude to use the right subagent at each step.  
-**Why:** This is how most people use subagents in practice — you decide what happens next, and subagents are your specialists. You control the workflow; they do the focused work.
+**What we're doing:** Delegating with you as supervisor.  
+**Why:** You drive the workflow; subagents do focused work.
 
-**Action:** In Claude, type:
+**Action:** Type:
 ```
 Use the planner subagent to propose a plan to add phoneNumber to User (optional field).
 ```
 
 ![Initial plan](./images/ccode237.png?raw=true "Initial plan")
 
-Review the plan. When you're satisfied, tell Claude to proceed:
+Review the plan, then tell Claude to proceed:
 
 ```
 The plan looks good. Now implement the change minimally. Do not run tests yet.
@@ -1182,45 +1119,43 @@ The plan looks good. Now implement the change minimally. Do not run tests yet.
 
 Approve as needed.
 
-> **What's happening here:** You explicitly delegated the planning step to the planner subagent. Claude ran it in a separate context and returned the result to you. Then you — the supervisor — approved the plan and gave the next instruction. This is the "supervised delegation" pattern: the human decides the workflow, subagents do the specialized work.
+> **Supervised delegation:** the planner ran in its own context and returned a result; you approved and gave the next instruction.
 ---
 <br><br>
 
 ## 7: Delegate Review (Reviewer Subagent)
-**What we're doing:** Getting a review from the reviewer subagent, which is structurally unable to edit files.  
-**Why:** Because the reviewer has `disallowedTools: Write, Edit` in its definition, you can trust that it will only analyze — never modify — your code. This keeps the review honest and the main conversation focused on your decisions about what to change.
+**What we're doing:** Getting a review from the reviewer.  
+**Why:** `disallowedTools: Write, Edit` means it can only analyze, never modify.
 
-**Action:** In Claude, type:
+**Action:** Type:
 ```
 Use the reviewer subagent to review the change we just made. Show me its RISKS, TESTS TO ADD, and PATCH SUGGESTIONS sections verbatim.
 ```
 
-The reviewer may run as a **backgrounded agent** — you'll see something like *"Backgrounded agent (↓ to manage · ctrl+o to expand)"* and a short wait while it works. When it finishes, the main agent reports the results.
+The reviewer may run as a **backgrounded agent** (*"Backgrounded agent (↓ to manage · ctrl+o to expand)"*), then the main agent reports.
 
-**What you should see:** the RISKS / TESTS TO ADD / PATCH SUGGESTIONS sections from the reviewer. Note that the main agent *interprets* subagent output — without the "verbatim" request in the prompt it will often summarize and re-organize the findings in its own words. To see the subagent's own transcript, press *ctrl+o* and scroll back up (or press ↓ to open the agent manager and peek at it).
+Expect the RISKS / TESTS TO ADD / PATCH SUGGESTIONS sections. The main agent *interprets* subagent output — without "verbatim" it summarizes in its own words. For the subagent's transcript, press *ctrl+o* and scroll up (or ↓ for the agent manager).
 
 ![Start of reviewer output](./images/ccode239.png?raw=true "Start of reviewer output")
 
-> **What's happening here:** Claude delegates to the reviewer subagent, which runs with its own instructions and tool restrictions in a separate context. It returns structured output to the main conversation. You then decide which suggestions to act on.
-
-You can choose to proceed with all or some of the suggested changes by responding in the Claude Code input.
+You decide which suggestions to act on.
  
 ---
 <br><br>
 
 ## 8: Run the Ship Checklist Command
-**What we're doing:** Running the `/ship` command you created in Step 1.  
-**Why:** Execute the overall workflow.
+**What we're doing:** Running the `/ship` command from Step 1.  
+**Why:** Execute the whole checklist at once.
 
-> **Note:** Notice the difference from Steps 6–7. The `/ship` command runs *inline* in the main conversation — it doesn't spawn a separate subagent context. It's a reusable prompt template, not a specialist. Commands and agents serve different purposes: commands standardize *what to do*, agents specialize *who does it*.
+> **Note:** unlike Steps 6–7, `/ship` runs *inline* — a reusable prompt template, not a specialist. Commands standardize *what to do*; agents specialize *who does it*.
 
-**Action:** In Claude, run:
+**Action:** Run:
 
 ```
 /ship
 ```
 
-Claude will run a few shell commands — these appear **collapsed** (e.g., *"Ran 2 shell commands"*; press `ctrl+o` if you want to see the actual git status/diff and test commands). Then you'll get a numbered summary: **1.** what changed, **2.** the test results (a failing test may appear), **3.** the "Risks" list, and **4.** the suggested "Follow-ups".
+Shell commands appear **collapsed** (`ctrl+o` expands them), then a numbered summary: changes, test results (a failure may appear), risks, follow-ups.
 
 ![Partial output of ship command](./images/ccode240.png?raw=true "Partial output of ship command")
 
@@ -1229,19 +1164,19 @@ Claude will run a few shell commands — these appear **collapsed** (e.g., *"Ran
 
 
 ## 9: (OPTIONAL) Open the VS Code Extension
-**What we're doing:** Switching to IDE workflow.  
-**Why:** Many learners prefer IDE-first interaction.
+**What we're doing:** Switching to the IDE.  
+**Why:** Many people prefer working IDE-first.
 
-**Action:** Open the Claude Code VS Code extension (sidebar or toolbar icon).
+**Action:** Open the Claude Code VS Code extension (sidebar or toolbar).
 
-If you are prompted to log in, choose the "Claude.ai Subcription" option and follow the steps to authenticate.
+If prompted to log in, choose "Claude.ai Subcription" and authenticate.
 
 ---
 <br><br>
 
 ## 10: (OPTIONAL) Run /ship from the Extension
-**What we're doing:** Using the same team kit inside the IDE.  
-**Why:** Reinforces that repo-level assets (commands, agents, skills) work the same way whether you're in the terminal or VS Code. The extension automatically discovers everything in `.claude/`.
+**What we're doing:** Using the team kit in the IDE.  
+**Why:** The extension discovers everything in `.claude/`.
 
 **Action:** In the extension chat, run:
 ```
@@ -1254,20 +1189,20 @@ If you are prompted to log in, choose the "Claude.ai Subcription" option and fol
 <br><br>
 
 ## 11: Exit
-**Action:** End any running sessions and close Claude Code.
+**Action:** End running sessions and close Claude Code.
 
 ---
 <br><br>
 
 ## Lab Summary
 You've learned:
-- **Supervised delegation pattern:** You act as the orchestrator, directing Claude to use specialist subagents (planner, reviewer) at each step and making decisions between them.
-- **Prompt constraints vs. tool constraints:** The planner uses prompt instructions ("do not edit files") while the reviewer uses `disallowedTools: Write, Edit` for structural enforcement. Both are valid; tool constraints are stronger.
-- **Commands vs. agents:** Commands (`/ship`) are reusable prompts that run inline. Agents are specialists that run in their own subagent context and return results.
-- **Plugin packaging:** How to bundle commands, agents, and skills into a `plugin.json` manifest that teammates can install.
-- **Cross-environment consistency:** The same repo-level assets work in both the terminal and VS Code.
+- **Supervised delegation:** you orchestrate specialist subagents step by step.
+- **Prompt vs. tool constraints:** telling an agent not to edit is weaker than `disallowedTools`.
+- **Commands vs. agents:** `/ship` runs inline; agents run in their own context.
+- **Plugin packaging:** bundling commands, agents, and skills in `plugin.json`.
+- **Cross-environment consistency:** the same repo assets work in terminal and VS Code.
 
-> **Going further:** Claude Code also has an experimental **Agent Teams** feature for fully autonomous multi-agent coordination. With Agent Teams, a "team lead" agent spawns independent teammates that coordinate through shared task lists and direct messaging — no human orchestration needed between steps. Agent Teams remain experimental and disabled by default (enabled via the `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` setting or env var) and are architecturally different from the subagent delegation shown here: each teammate gets its own context window, and they can message each other directly. Note also that regular subagents can spawn their own subagents — as of v2.1.219 up to **3 levels** deep by default (tunable with `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`; set it to `1` to turn nesting off) — so even without Agent Teams, delegation can go deeper than one level. That's beyond the scope of this workshop, but worth exploring once you're comfortable with supervised delegation. See the [Agent Teams documentation](https://code.claude.com/docs/en/agent-teams) for details.
+> **Going further:** experimental **Agent Teams** let a "team lead" spawn teammates that coordinate through shared task lists and direct messages, each with its own context and no human between steps; disabled by default (`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS`). Subagents can spawn subagents too — since v2.1.219, **3 levels** deep (`CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`; `1` disables nesting). See the [Agent Teams docs](https://code.claude.com/docs/en/agent-teams).
 <br><br>
 ---
 ## END OF LAB
