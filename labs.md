@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.26 - 08/21/26
+## Revision 6.27 - 08/21/26
 
 <br><br>
 
@@ -528,7 +528,7 @@ claude
 /help
 ```
 
-*Tab* to the *commands* section, arrow through the list — note /clear, /compact, /rewind, /model. *Esc* exits.
+*Tab* to the *commands* section, arrow through the list — note /clear, /compact, /rewind, /model. Use *Esc* to exit from the help section.
 
 ![help to see commands](./images/ccode222.png?raw=true "help to see commands")
 
@@ -580,7 +580,18 @@ Scroll up for token usage and remaining capacity.
 
 ![context command](./images/ccode224.png?raw=true "context command")
 
-> **Related:** `/context` shows what is in the context window now; **`/usage`** (`/cost` is an alias) shows what you have spent — session tokens, cost, and share of your plan's limit. Try `/usage` too.
+
+**Action:** Try `/usage` too. Type the command below. Use `Esc` to exit the usage screen.
+
+```
+/usage
+```
+
+
+![context command](./images/ccode257.png?raw=true "context command")
+
+
+> **Note:** `/context` shows what is in the context window now; **`/usage`** (`/cost` is an alias) shows what you have spent — session tokens, cost, and share of your plan's limit.
 
 ---
 <br><br>
@@ -594,7 +605,7 @@ Scroll up for token usage and remaining capacity.
 /compact Keep the User class implementation details and test structure
 ```
 
-Claude summarizes earlier turns, keeping what you named.
+Claude summarizes earlier turns, keeping what you named. (This may take awhile to run.)
 
 ![compact](./images/ccode225.png?raw=true "compact")
 
@@ -606,17 +617,26 @@ Claude summarizes earlier turns, keeping what you named.
 **Why:** Undo mistakes safely.
 
 **Action:** 
-a. Ask Claude to make a change we'll want to undo: `Remove the email validation from the User class in user.js`
-b. Then type `/rewind`. (`Esc` twice also works, but only on a truly empty prompt — greyed-out suggestion text counts as not empty.)
+a. Ask Claude to make a change we'll want to undo: 
+
+```
+Remove the email validation from the User class in user.js
+```
+
+![Remove email validation](./images/ccode258.png?raw=true "Remove email validation")
+
+b. Then type `/rewind`. (`Esc` twice also works on an empty prompt.)
 c. **Select the *Remove the email validation...* entry** and press `Enter` — entries restore to the point *before* that message. Skip */compact* entries: code can't be restored there.
 
-![rewind](./images/ccode34.png?raw=true "rewind")
+![rewind](./images/ccode259.png?raw=true "rewind")
 
 d. Choose **Restore code and conversation**.
 
-![rewind](./images/ccode35.png?raw=true "rewind")
+![rewind](./images/ccode260.png?raw=true "rewind")
 
-e. Open user.js to confirm the validation is back; backspace clears restored text.
+e. This will put you back to the point before you ran the command to remove the validation. Open user.js to confirm the validation is back.
+
+![restored content](./images/ccode261.png?raw=true "restored content")
 
 > Only file-tool edits are checkpointed — bash changes (`rm`, `mv`) show *No code changes*. Use git for real version history.
 
@@ -633,11 +653,10 @@ e. Open user.js to confirm the validation is back; backspace clears restored tex
 /init
 ```
 
-Claude creates CLAUDE.md and reads it in future sessions; open it in an editor (`code` in VS Code / Codespaces).
+Claude creates CLAUDE.md and reads it in future sessions; open it in an editor. (You can select it from the file list or use the `code CLAUDE.md` command from a terminal if in VS Code).
 
-![claude.md](./images/ccode226.png?raw=true "claude.md")
+![claude.md](./images/ccode262.png?raw=true "claude.md")
 
-It lists custom commands, agents, and skills in `extra`, describing the file types — not registering them.
 
 ---
 <br><br>
@@ -652,7 +671,7 @@ It lists custom commands, agents, and skills in `extra`, describing the file typ
 
 Claude answers from CLAUDE.md.
 
-![claude.md](./images/ccode227.png?raw=true "claude.md")
+![claude.md](./images/ccode263.png?raw=true "claude.md")
 
 ---
 <br><br>
@@ -668,7 +687,7 @@ Claude answers from CLAUDE.md.
 
 Memory layers enterprise (if applicable) → user → project, your new CLAUDE.md at project level. Nested CLAUDE.md files load automatically; CLAUDE.local.md holds uncommitted personal overrides.
 
-![claude.md](./images/ccode228.png?raw=true "claude.md")
+![claude.md](./images/ccode264.png?raw=true "claude.md")
 
 ---
 <br><br>
