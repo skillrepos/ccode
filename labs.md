@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.25 - 08/21/26
+## Revision 6.26 - 08/21/26
 
 <br><br>
 
@@ -423,9 +423,9 @@ Claude is blocked before it can try.
 ---
 <br><br>
 
-## 10: Try YOLO Mode — and Watch the Deny Rule Hold
-**What we're doing:** Skipping all checks, then re-testing the guardrail.
-**Why:** Bypass removes even the classifier — the deny rule still wins.
+## 10: Try YOLO Mode
+**What we're doing:** Trying out the bypass-permissions mode.
+**Why:** Understanding the value and risk of bypass-permissions.
 
 **Action:** Exit Claude (`exit`), then restart it as below. Make sure to pick **option 2** when prompted to accept the risk:
 
@@ -450,15 +450,26 @@ Claude creates every file without asking.
 
 ![YOLO](./images/ccode221.png?raw=true "YOLO")
 
+<br><br>
+
+
+## 11: Compare how deny rules function in YOLO mode
+**What we're doing:** Re-testing the guardrail in YOLO mode.
+**Why:** Bypass removes even the classifier — the deny rule still wins.
+
 **Action:** Now retry the denied command:
 ```
 Push our changes to origin.
 ```
 
-Still blocked in the *least* restrictive mode: **deny rules apply in every mode, including bypass.** Modes decide how much Claude asks; deny rules decide what is off-limits.
+You'll be prompted to push and you can try, but it should still be blocked. The point is that **deny rules apply in every mode, including bypass.** Modes decide how much Claude asks; deny rules decide what is off-limits.
+
+![Push denied](./images/ccode256.png?raw=true "Push denied")
 
 ---
 <br><br>
+
+
 
 ## 12: Exit
 
