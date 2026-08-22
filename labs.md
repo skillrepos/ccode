@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.28 - 08/21/26
+## Revision 6.29 - 08/22/26
 
 <br><br>
 
@@ -773,7 +773,7 @@ mkdir -p .claude/agents
 **What we're doing:** Writing a SKILL.md.  
 **Why:** Skills apply repeatable expertise automatically.
 
-**Action:** Create `.claude/skills/api-checker/SKILL.md` with these contents:
+**Action:** Create `.claude/skills/api-checker/SKILL.md` with the contents below. Save it when done. (**NOTE:** If you are working in the codespace, you can use the `code` command to open an a new file. And use 'Cmd+S` or `Ctrl+S` to save it.)
 
 ```md
 ---
@@ -954,7 +954,7 @@ Stop after proposing the fix (do not implement yet).
 
 ![Using the test-runner subagent](./images/ccode232.png?raw=true "Using the testrunner subagent")
 
-You should get a failing email test in user.test.js and a proposed fix.
+This will take a while to complete. But, once the background processing finishes, you should get a failing email test in user.test.js and a proposed fix.
 
 ![Using the test-runner subagent](./images/ccode233.png?raw=true "Using the testrunner subagent")
 
