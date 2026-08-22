@@ -1090,10 +1090,10 @@ Then run:
 
 Confirm `/ship` appears under `custom-commands`.
 
-![The /ship command is present](./images/ccode234.png?raw=true "The /ship command is present")
+![The /ship command is present](./images/ccode267.png?raw=true "The /ship command is present")
 
 
-*Esc* exits. Next, the agents: `/agents` only prints a reminder that agents are plain files under `.claude/agents/` (its wizard was removed in v2.1.198), so list them with the `!` shortcut from Lab 1:
+*Esc* exits. Next, let's look at the agents: you can either list them with the `!` shortcut from Lab 1:
 
 ```
 ! ls .claude/agents/*
@@ -1101,10 +1101,19 @@ Confirm `/ship` appears under `custom-commands`.
 
 (The trailing `/*` matters: a partial path shows a subtle suggested-path line, and **while it shows, *Enter* is ignored**. A complete path ends it, as does `Esc`.)
 
-Confirm `planner.md`, `test-runner.md`, and `reviewer.md` appear. (Or ask: `What subagents are available in this project?`)
+Confirm `planner.md`, `test-runner.md`, and `reviewer.md` appear. 
+
+Or, you can ask Claude:
+
+```
+What subagents are available in this project?
+```
+
+![Listing out agents](./images/ccode268.png?raw=true "Listing out agents")
 
 
-*Esc* exits. Then run: 
+
+Next, let's look at the skills. Run: 
 
 ```
 /skills
@@ -1112,7 +1121,7 @@ Confirm `planner.md`, `test-runner.md`, and `reviewer.md` appear. (Or ask: `What
 
 Confirm `api-checker` is listed. (No `/skills` in your build? `/context` lists loaded skills, and `! ls .claude/skills/*` works too.)
 
-![Skill is  present](./images/ccode236.png?raw=true "Skill is present")
+![Skill is  present](./images/ccode269.png?raw=true "Skill is present")
 
 *Esc* exits.
 
@@ -1136,9 +1145,8 @@ Review the plan, then tell Claude to proceed:
 ```
 The plan looks good. Now implement the change minimally. Do not run tests yet.
 ```
-![Executing plan plan](./images/ccode204.png?raw=true "Executing plan")
+![Executing plan plan](./images/ccode270.png?raw=true "Executing plan")
 
-Approve as needed.
 
 > **Supervised delegation:** the planner ran in its own context and returned a result; you approved and gave the next instruction.
 ---
@@ -1191,6 +1199,8 @@ Shell commands appear **collapsed** (`ctrl+o` expands them), then a numbered sum
 **Action:** Open the Claude Code VS Code extension (sidebar or toolbar).
 
 If prompted to log in, choose "Claude.ai Subcription" and authenticate.
+
+![Opening extension](./images/ccode272.png?raw=true "Opening extension")
 
 ---
 <br><br>
