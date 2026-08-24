@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.29 - 08/22/26
+## Revision 6.31 - 08/24/26
 
 <br><br>
 
@@ -27,6 +27,12 @@
 >
 > **What is "effort"?** The reasoning dial (`low`, `medium`, `high`, `xhigh`, `max`; `high` is the default). Phrases like "think hard" are ordinary words in your prompt; the one keyword Claude still recognizes is `ultrathink`, which asks for deeper reasoning on a single turn without changing your session setting.
 >
+<br><br>
+
+**These labs assume `⏵⏵ auto mode on` — STARTUP.md Step 5.**
+
+> Check the bottom-left of the prompt; if it reads `⏸ manual mode on` — which is where a brand-new Codespace starts — press **Shift+Tab** until it reads *auto mode on*. Lab 2 explores all of the modes.
+
 <br><br>
 
 
@@ -80,7 +86,7 @@ Explain this code: console.log([1,2,3].map(x => x * 2))
 Create a simple hello.js file that prints "Hello from Claude Code!"
 ```
 
-> **NOTE:** Notice the status bar reads `⏵⏵ auto mode on`. In this mode, Claude will create the file without asking. Claude Code starts in **auto mode** (Pro, Max, Team plans), where a background classifier approves routine actions. Lab 2 covers the modes.
+> **NOTE:** The status bar should read `⏵⏵ auto mode on` — in this mode Claude creates the file without asking, because a background classifier approves routine actions. Claude Code starts in auto mode on Pro, Max and Team plans, **except on the very first session after a fresh install** (a brand-new Codespace counts), which starts in manual. If yours reads `⏸ manual mode on`, press **Shift+Tab** until it reads *auto mode on*. Lab 2 covers the modes.
 
 ![Initial file creation](./images/ccode86.png?raw=true "Initial file creation")
 
@@ -137,7 +143,7 @@ Output: "Hello from Claude Code!"
 **What we're doing:** Rejecting a change.  
 **Why:** It sets up the redo next.
 
-**Action:** First press `Shift+Tab` once, until the status bar reads `⏸ manual mode on`. Rejecting only exists when Claude asks, and auto mode does not ask.
+**Action:** First press `Shift+Tab` until the status bar reads `⏸ manual mode on` — one press from auto mode; the cycle is auto → manual → accept edits → plan. Rejecting only exists when Claude asks, and auto mode does not ask.
 
 **Action:** Now type this, then **select option 3 to tell Claude not to create the file.**
 ```
@@ -639,6 +645,8 @@ e. This will put you back to the point before you ran the command to remove the 
 ![restored content](./images/ccode261.png?raw=true "restored content")
 
 > Only file-tool edits are checkpointed — bash changes (`rm`, `mv`) show *No code changes*. Use git for real version history.
+
+> **That one-line summary you keep seeing:** step away from the terminal for a few minutes during a lab and Claude Code greets you on return with a **session recap** — one line on where you left off. It is written in the background while you are away, needs at least three turns in the session, and never appears twice in a row. Ask for it any time with `/recap`. Unlike `/compact` it changes nothing — it *appends* a summary instead of replacing your history, so it costs you neither context nor your prompt cache. Turn it off with `/config` → **Session recap**.
 
 ---
 <br><br>
