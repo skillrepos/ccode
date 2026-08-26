@@ -82,6 +82,10 @@ Then click on the option to create a new codespace.
 
 **This will run for several minutes while it gets everything ready.**
 
+When prompted about trusting the folder, select `Trust Folder & Continue`.
+
+![Trust folder](./images/ccode273.png?raw=true "Trust folder")
+
 <br/><br/>
 
 
