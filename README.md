@@ -19,7 +19,7 @@ You **must** have a paid Claude account to use Claude Code.
 ## 2. Choose where you want to run Claude Code. 
 **Important note: Lab commands and screenshots reflect using terminal integration in Codespace/VS Code integration. Steps and functionality in other environments may vary!**
 
-If you would like to use the GitHub Codespace zero-install option that runs in a browser, skip to step 6.  Otherwise, continue with step 3.
+**If you would like to use the GitHub Codespace zero-install option that runs in a browser, skip to step 7**.  Otherwise, continue with step 3.
 
 <br><br>
 
@@ -41,8 +41,11 @@ Go to [Get Started](https://code.claude.com/docs/en/overview#get-started), choos
 <br><br>
 
 
+## 5. Since you're not using the Codespace, you will need a version of `node` installed and available on your system to allow Claude to complete a few steps. 
 
-## 5. Go to the cloned repo, start Claude and authenticate as appropriate.
+This is not required for successful completion of the workshop though.
+
+## 6. Go to the cloned repo, start Claude and authenticate as appropriate.
 
 If in the terminal integration, change into your cloned directory and you can likely follow the directions in  [STARTUP.md](./STARTUP.md) to complete this task. Otherwise, consult the online documentation.
 
@@ -55,7 +58,7 @@ If in the terminal integration, change into your cloned directory and you can li
 ---
 <br><br>
 
-## 6. Set codespace timeout
+## 7. Set codespace timeout
 
 While logged in to GitHub, go to https://github.com/settings/codespaces.
 
@@ -69,7 +72,7 @@ Increase the default timeout value to 90 minutes and then select the *Save* butt
 
 <br><br>
 
-## 7. Create your own codespace to run the labs by clicking on the button below.
+## 8. Create your own codespace to run the labs by clicking on the button below.
 <br/><br/>
 
 Click here ------> [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/skillrepos/ccode?quickstart=1)
@@ -88,7 +91,7 @@ When prompted about trusting the folder, select `Trust Folder & Continue`.
 
 <br/><br/>
 
-## 8. Start Claude Code and authenticate
+## 9. Start Claude Code and authenticate
 
 Ignore any `Welcome` screens in the codespace that offer to get Claude Code started. Now, complete the startup/authentication steps in the file [STARTUP.md](./STARTUP.md). You must do the steps in STARTUP.md to be able to do the labs.
 
