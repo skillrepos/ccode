@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.34 - 08/26/26
+## Revision 6.35 - 08/26/26
 
 <br><br>
 
@@ -834,7 +834,7 @@ User: "Can you validate GET /health on my service?"
 ---
 <br><br>
 
-## 3: Add the referenced script to the Skill
+## 3: The SKILL.md file needs a script: `scripts/check.py`. Add the referenced script to the Skill 
 **What we're doing:** Adding a helper script.  
 **Why:** Scripts are more predictable than prompting.
 
@@ -883,7 +883,7 @@ chmod +x .claude/skills/api-checker/scripts/check.py
 
 > **The `model:` field** takes a family alias (`sonnet`, `opus`, `haiku`, `fable`), a full name like `claude-sonnet-5`, or `inherit` (follow the main conversation). Aliases are safer: they track the current version. Only `name` and `description` are required.
 
-**Action:** Create `.claude/agents/planner.md` with these contents:
+**Action:** Create `.claude/agents/planner.md` with these contents and **save** it:
 
 ```md
 ---
@@ -906,7 +906,7 @@ model: sonnet
 **What we're doing:** Creating a test-runner helper.  
 **Why:** Subagents cut context noise and speed troubleshooting.
 
-**Action:** Create `.claude/agents/test-runner.md` with these contents:
+**Action:** Create `.claude/agents/test-runner.md` with these contents and **save** it:
 
 
 ```md
@@ -1031,7 +1031,7 @@ Package your commands, agents, and skills as a shareable "team kit," and orchest
 **What we're doing:** Creating a ship checklist command.  
 **Why:** One reusable command covering several steps.
 
-**Action:** Create `.claude/commands/ship.md` with these contents:
+**Action:** Create `.claude/commands/ship.md` with these contents and **save** it:
 
 ```md
 ---
@@ -1050,7 +1050,7 @@ Do not edit files unless asked.
 **What we're doing:** Adding a review-only specialist agent.  
 **Why:** The workflow needs a reviewer.
 
-**Action:** Create `.claude/agents/reviewer.md` with these contents:
+**Action:** Create `.claude/agents/reviewer.md` with these contents and **save** it:
 
 ```md
 ---
@@ -1088,7 +1088,7 @@ mkdir -p .claude-plugin
 **What we're doing:** Defining plugin metadata and component paths.  
 **Why:** The manifest says where the bundled components live.
 
-**Action:** Create `.claude-plugin/plugin.json` with these contents:
+**Action:** Create `.claude-plugin/plugin.json` with these contents and **save** it:
 
 ```json
 {
@@ -1147,6 +1147,7 @@ What subagents are available in this project?
 
 ![Listing out agents](./images/ccode268.png?raw=true "Listing out agents")
 
+> You could also use the `<- for agents` key at the bottom to get info about agents, but this is a longer path to that.
 
 
 Next, let's look at the skills. Run: 
@@ -1199,7 +1200,7 @@ Use the reviewer subagent to review the change we just made. Show me its RISKS, 
 
 The reviewer may run as a **backgrounded agent** (*"Backgrounded agent (↓ to manage · ctrl+o to expand)"*), then the main agent reports.
 
-Expect the RISKS / TESTS TO ADD / PATCH SUGGESTIONS sections. The main agent *interprets* subagent output — without "verbatim" it summarizes in its own words. For the subagent's transcript, press *ctrl+o* and scroll up (or ↓ for the agent manager).
+Expect the RISKS / TESTS TO ADD / PATCH SUGGESTIONS sections. The main agent *interprets* subagent output — without "verbatim" it summarizes in its own words. For the subagent's transcript, press *ctrl+o* and scroll up.
 
 ![Start of reviewer output](./images/ccode239.png?raw=true "Start of reviewer output")
 
