@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.32 - 08/26/26
+## Revision 6.33 - 08/26/26
 
 <br><br>
 
@@ -274,7 +274,7 @@ claude --permission-mode manual
 <br><br>
 
 ## 2: Test Manual Mode Permissions
-**What we're doing:** Triggering a prompt.  
+**What we're doing:** Triggering a permission prompt (like we saw in Lab 1).  
 **Why:** Permission prompts keep you in control.
 
 **Action:** Type:
@@ -318,6 +318,12 @@ Create a basic user profile page with fields for name, email, and profile pictur
 
 While this is running, type `Ctrl+o` to see the larger "thinking" process that Claude is using. When done viewing that, type `Ctrl+o` again to get back to the normal view.
 
+<br><br>
+
+> If you did the `Ctrl+o` to see the thinking process, and you see `dialog waiting` down in the lower-left corner, that means Claude is waiting on input from you, so use `Ctrl+o` to switch back to the main interface.
+
+<br><br>
+
 ![Thinking process](./images/ccode246.png?raw=true "Thinking process")
 
 ---
@@ -346,10 +352,16 @@ While this is running, type `Ctrl+o` to see the larger "thinking" process that C
 
 **Action:** 
 1. Press `ctrl+g` to open the plan in the editor. Plans live in `~/.claude/plans/`, outside this folder, so VS Code may ask *"Do you want to allow untrusted files in this workspace?"* — choose **Open**.
-2. (Optional) In VS Code if you want to see the source of the markdown: right-click, *Reopen Editor with ... Text Editor*, for markdown.
-3. Close the file(s) when done.
+
+<br><br>
 
 > ⚠️ **Known issue:** with the plan file open, don't scroll or click in the Claude Code panel — mouse events spill harmless garbage (`M^[[<35;86;12M`). `Esc` clears stray input; `ctrl+l` redraws.
+
+<br><br> 
+
+2. (Optional) In VS Code if you want to see the source of the markdown: right-click, *Reopen Editor with ... Text Editor*, for markdown.
+
+3. Close the file(s) when done.
 
 4. **Select option 1** — **"Yes, and use auto mode"** when auto is available, else **"Yes, auto-accept edits"**.
    
@@ -387,7 +399,13 @@ Claude finishes with a summary.
 
 On the screen, you will see categories in the row that starts with `Permissions`. Primary rules are grouped into categories of **Allow**, **Ask**, and **Deny**. We'll add one to the **Deny** list.
 
-**Action:** Use the `Tab` or `arrow` keys to highlight the `Ask` category. Select `1` to Add a new rule. 
+**Action:** Use the `Tab` or `arrow` keys to highlight the `Deny` category. Select `1` to Add a new rule.
+
+<br>
+
+> Note: If you try to type `1` it will probably go into the search filter.  To select `1`, you can use the down arrow to get the pointer on it (`> 1. Add`) and then hit `Enter` to get to the `Add deny permission rule` screen.
+
+<br>
 
 ![Deny category](./images/ccode250.png?raw=true "Deny category")
 
@@ -408,16 +426,16 @@ Press `Esc` to get out of the rule entry section.
 
 > **Rule syntax:** `Tool` or `Tool(specifier)`; `*` matches anything, spaces included, so `Bash(git push *)` catches `git push origin main` (`Bash(git push:*)` is equivalent). Rules save to `.claude/settings.local.json` at the repo root, covering future sessions.
 
+---
+<br><br>
+
 ## 9: Test the rule
 **What we're doing:** Testing the **deny rule**.
 **Why:** To prove that it works.
 
-**Action:** In a **separate terminal**, run:
-```bash
-git add -A && git commit -m "lab work"
-```
+We don't have to actually have anything committed to see the rule take effect. 
 
-**Action:** Back in Claude, test the rule. Type:
+**Action:** In Claude, test the rule. Type:
 ```
 Push our changes to origin.
 ```
