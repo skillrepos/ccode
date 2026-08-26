@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.33 - 08/26/26
+## Revision 6.34 - 08/26/26
 
 <br><br>
 
@@ -463,7 +463,7 @@ claude --dangerously-skip-permissions
 
 If you don't see **bypass permissions on**, `Shift+Tab` until you do. (The `claude-yolo` alias does the same, from a second terminal.)
 
-⚠️ **Note:** Use with caution — Claude won't ask before changing anything. Save it for throwaway sandboxes like this Codespace.
+> ⚠️ **Note:** Use with caution — Claude won't ask before changing anything. Save it for throwaway sandboxes like this Codespace.
 
 ![YOLO](./images/ccode123.png?raw=true "YOLO")
 
@@ -565,7 +565,7 @@ claude
 **What we're doing:** Building conversation history.  
 **Why:** We need content to manage.
 
-**Action:** Enter these one at a time, accepting edits:
+**Action:** Enter these one at a time: (Claude should have started in `auto` mode, so you shouldn't have to approve any changes.)
 ```
 Create a user.js file with a User class
 ```
@@ -660,7 +660,11 @@ d. Choose **Restore code and conversation**.
 
 ![rewind](./images/ccode260.png?raw=true "rewind")
 
-e. This will put you back to the point before you ran the command to remove the validation. Open user.js to confirm the validation is back.
+e. This will put you back to the point before you ran the command to remove the validation. 
+
+> ⚠️ **Note:** While the state is set back to the point before the command, the command will likely be populated in Claude.  Don't press `Enter` on that or you'll remove the validation again. Instead, you can just backspace over the command.
+
+f. Open user.js to confirm the validation is back. 
 
 ![restored content](./images/ccode261.png?raw=true "restored content")
 
@@ -745,14 +749,18 @@ echo "What files are in this directory?" | claude -p
 
 `-p` is print (headless) mode: stdin in, result out, no session.
 
+![claude.md](./images/ccode266.png?raw=true "claude.md")
+
 **Note:** headless runs start in **manual** mode, not auto. Nobody is there to answer prompts, so pre-approve with `--allowedTools`, or lock down with `--permission-mode dontAsk` — which never prompts at all and denies anything you did not pre-approve. Try it:
 ```bash
 claude -p "run the test suite and summarize failures" --permission-mode dontAsk --allowedTools "Bash(node --test *)" "Read"
 ```
 
+![claude.md](./images/ccode277.png?raw=true "claude.md")
+
 > Add `--output-format json` for scripts that parse the result.
 
-![claude.md](./images/ccode266.png?raw=true "claude.md")
+
 
 ---
 <br><br>
