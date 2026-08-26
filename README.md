@@ -89,7 +89,7 @@ When prompted about trusting the folder, select `Trust Folder & Continue`.
 <br/><br/>
 
 
-## 8. Complete the startup/authentication steps in the file [STARTUP.md](./STARTUP.md). 
+## 8. Ignore any `Welcome` screens in the codespace that offer to get Claude Code started. Now, complete the startup/authentication steps in the file [STARTUP.md](./STARTUP.md). You must do the steps in STARTUP.md to be able to do the labs.
 
 Once the codespace is running, you will need to authenticate Claude Code in the codespace using your Claude account. Follow the steps in [STARTUP.md](./STARTUP.md) to complete this task.
 
