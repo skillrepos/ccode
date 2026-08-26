@@ -41,9 +41,11 @@ Go to [Get Started](https://code.claude.com/docs/en/overview#get-started), choos
 <br><br>
 
 
-## 5. Since you're not using the Codespace, you will need a version of `node` installed and available on your system to allow Claude to complete a few steps. 
+## 5. Other prerequisites if not running on the codespace.
 
-This is not required for successful completion of the workshop though.
+A few steps expect a version of `node` to be available on the system. This is not required for successful completion of the workshop though.
+
+Also some steps will run commands in the shell. If using a `Windows` system, you will need to translate those commands appropriately for the Windows command line.
 
 ## 6. Go to the cloned repo, start Claude and authenticate as appropriate.
 
