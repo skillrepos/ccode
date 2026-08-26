@@ -1,7 +1,7 @@
 # AI-Powered Coding with Claude Code
 ## Learn practical workflows, hands-on coding techniques, and structured interactions
 ## Session Labs
-## Revision 6.31 - 08/24/26
+## Revision 6.32 - 08/26/26
 
 <br><br>
 
@@ -32,6 +32,8 @@
 **These labs assume `⏵⏵ auto mode on` — STARTUP.md Step 5.**
 
 > Check the bottom-left of the prompt; if it reads `⏸ manual mode on` — which is where a brand-new Codespace starts — press **Shift+Tab** until it reads *auto mode on*. Lab 2 explores all of the modes.
+
+> Note: Some lab steps may assume a version of `node` and/or `python` is available if you're running this on your local machine.
 
 <br><br>
 
@@ -86,7 +88,7 @@ Explain this code: console.log([1,2,3].map(x => x * 2))
 Create a simple hello.js file that prints "Hello from Claude Code!"
 ```
 
-> **NOTE:** The status bar should read `⏵⏵ auto mode on` — in this mode Claude creates the file without asking, because a background classifier approves routine actions. Claude Code starts in auto mode on Pro, Max and Team plans, **except on the very first session after a fresh install** (a brand-new Codespace counts), which starts in manual. If yours reads `⏸ manual mode on`, press **Shift+Tab** until it reads *auto mode on*. Lab 2 covers the modes.
+> **NOTE:** The status bar should read `⏵⏵ auto mode on` — in this mode Claude creates the file without asking, because a background classifier approves routine actions. Lab 2 covers the modes.
 
 ![Initial file creation](./images/ccode86.png?raw=true "Initial file creation")
 
@@ -97,7 +99,7 @@ Create a simple hello.js file that prints "Hello from Claude Code!"
 **What we're doing:** Checking the file.  
 **Why:** Know where Claude saves things.
 
-**Action:** Click the file on the left, or in a new terminal tab, type:
+**Action:** Click the file on the left, or in another terminal tab (where you're not running Claude), type:
 ```bash
 ls -la
 cat hello.js
@@ -112,7 +114,7 @@ cat hello.js
 **What we're doing:** Running the code.  
 **Why:** Claude runs commands and shows output.
 
-**Action:** Type this; if asked, select option 1.
+**Action:** Back in the terminal running Claude, type this:
 ```
 Run the hello.js file we just created
 ```
@@ -192,7 +194,7 @@ If ghost text suggests running the file, hit *Tab*, *Enter*, and approve.
 
 **Note:** Create memories by asking Claude in plain language.
 
-**Action:** Type this, approving the write when asked (you are still in manual mode):
+**Action:** Type this:
 ```
 Remember that this project uses JavaScript and Python for demos.
 ```
